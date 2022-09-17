@@ -6,7 +6,7 @@ cabal-version: 1.12
 
 name:           portfolio
 version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/githubuser/portfolio#readme>
+description:    Please see the README on GitHub at <https://github.com/ichi-h/portfolio#readme>
 homepage:       https://github.com/ichi-h/portfolio#readme
 bug-reports:    https://github.com/ichi-h/portfolio/issues
 author:         ichi-h
@@ -29,7 +29,11 @@ library
       src
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base >=4.7 && <5
+    , servant-server
+    , wai
+    , warp
   default-language: Haskell2010
 
 executable portfolio-exe
@@ -40,8 +44,12 @@ executable portfolio-exe
       app
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base
     , portfolio
+    , servant-server
+    , wai
+    , warp
   default-language: Haskell2010
 
 test-suite portfolio-test
@@ -53,6 +61,13 @@ test-suite portfolio-test
       test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      base >=4.7 && <5
+      aeson
+    , base
+    , hspec
+    , hspec-wai
+    , hspec-wai-json
     , portfolio
+    , servant-server
+    , wai
+    , warp
   default-language: Haskell2010
