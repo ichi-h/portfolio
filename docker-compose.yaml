@@ -18,6 +18,7 @@ services:
     container_name: portfolio-haskell
     volumes:
       - ./server:/var/www/project
+      - stack-work:/var/www/project/.stack-work
     working_dir: /var/www/project
     env_file: ./server/.env
     command: stack exec portfolio-exe
@@ -50,4 +51,5 @@ services:
       - "7000:80"
 
 volumes:
+  stack-work:
   node_modules:
