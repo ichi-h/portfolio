@@ -21,7 +21,7 @@ services:
       - stack-work:/var/www/project/.stack-work
     working_dir: /var/www/project
     env_file: ./server/.env
-    command: stack exec portfolio-exe
+    command: ghcid --command "stack ghci" --test "Main.main"
     tty: true
 
   node:
