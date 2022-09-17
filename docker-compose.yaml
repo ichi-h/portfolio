@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:14.5-alpine
+    container_name: portfolio-db
+    restart: always
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    env_file: ./db/.env
+    ports:
+      - "5432:5432"
+
+  haskell:
+    build:
+      context: ./
+      dockerfile: "./resources/haskell/Dockerfile"
+    container_name: portfolio-haskell
+    volumes:
+      - ./server:/var/www/project
+    working_dir: /var/www/project
+    env_file: ./server/.env
+    command: stack exec portfolio-exe
+    tty: true
+
+  node:
+    build:
+      context: ./
+      dockerfile: "./resources/node/Dockerfile"
+    container_name: portfolio-node
+    volumes:
+      - ./client:/var/www/project
+      - node_modules:/var/www/project/node_modules
+    env_file: ./client/.env
+    command: npm run dev
+    tty: true
+
+  nginx:
+    image: nginx:1.22-alpine
+    container_name: porfolio-nginx
+    volumes:
+      - ./resources/nginx/conf/local.conf.d:/etc/nginx/conf.d
+      - ./resources/nginx/log:/var/log/nginx
+      - ./client/dist:/var/www/project/public
+    restart: always
+    depends_on:
+      - haskell
+      - node
+    ports:
+      - "7000:80"
+
+volumes:
+  node_modules:
