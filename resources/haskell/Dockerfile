@@ -8,4 +8,4 @@ RUN stack build
 
 FROM haskell-prod as haskell-dev
 
-RUN stack install ghcid
+RUN stack install ghcid ormolu

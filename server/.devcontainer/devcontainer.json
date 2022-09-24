@@ -15,6 +15,7 @@
 		"justusadam.language-haskell",
 		"dramforever.vscode-ghc-simple",
 		"oderwat.indent-rainbow",
-		"yzhang.markdown-all-in-one"
+		"yzhang.markdown-all-in-one",
+		"sjurmillidahl.ormolu-vscode"
 	]
 }
