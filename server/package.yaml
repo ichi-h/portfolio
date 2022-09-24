@@ -20,6 +20,11 @@ dependencies:
   - base >= 4.7 && < 5
   - aeson
   - servant-server
+  - beam-core
+  - beam-migrate
+  - beam-sqlite
+  - sqlite-simple
+  - text
   - wai
   - warp
 

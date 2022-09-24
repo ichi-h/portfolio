@@ -1,16 +1,6 @@
 version: "3"
 
 services:
-  db:
-    image: postgres:14.5-alpine
-    container_name: portfolio-db
-    restart: always
-    volumes:
-      - ./db/data:/var/lib/postgresql/data
-    env_file: ./db/.env
-    ports:
-      - "5432:5432"
-
   haskell:
     build:
       context: ./

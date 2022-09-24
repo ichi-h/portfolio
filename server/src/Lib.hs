@@ -1,10 +1,12 @@
-{-# LANGUAGE DataKinds       #-}
+{-# LANGUAGE DataKinds #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE TypeOperators #-}
+
 module Lib
-    ( startApp
-    , app
-    ) where
+  ( startApp,
+    app,
+  )
+where
 
 import Data.Aeson
 import Data.Aeson.TH
@@ -13,10 +15,11 @@ import Network.Wai.Handler.Warp
 import Servant
 
 data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
-  } deriving (Eq, Show)
+  { userId :: Int,
+    userFirstName :: String,
+    userLastName :: String
+  }
+  deriving (Eq, Show)
 
 $(deriveJSON defaultOptions ''User)
 
@@ -35,6 +38,7 @@ server :: Server API
 server = return users
 
 users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+users =
+  [ User 1 "Isaac" "Newton",
+    User 2 "Albert" "Einstein"
+  ]

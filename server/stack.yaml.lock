@@ -19,12 +19,26 @@ packages:
   original:
     hackage: beam-migrate-0.5.1.2
 - completed:
-    hackage: beam-postgres-0.5.2.1@sha256:5ba4fecca3a210790aa858e32469d126995c25f08dc89df267cf987301c2269f,4392
+    hackage: beam-sqlite-0.5.1.2@sha256:7486e165b8ae625a9a7e27df1be4df9f92d03841342362e58459d09343c04f7d,3671
     pantry-tree:
-      size: 1693
-      sha256: e665908580c2527887e40d9f504a1a1c6c923148698617f70e14bcf2658ee080
+      size: 988
+      sha256: 6e3795c4e4b6c7f35c402abf3ae6f0441e0f6888f448baa75cd1b9a501acd15d
   original:
-    hackage: beam-postgres-0.5.2.1
+    hackage: beam-sqlite-0.5.1.2
+- completed:
+    hackage: sqlite-simple-0.4.18.2@sha256:dda1643e723591c880dda8eeba73e93502cfa775078a79da55b5efec4c52ff66,3028
+    pantry-tree:
+      size: 1930
+      sha256: 64443740f279b344aecb3389ec8f69ea04d171916a9ed23f8fa529dd3ae75540
+  original:
+    hackage: sqlite-simple-0.4.18.2
+- completed:
+    hackage: text-1.2.4.1@sha256:e12b468008b3c2bbc1f39bd2dcb75ba8f563c65aa5e54ee223b76463a845b6f1,7184
+    pantry-tree:
+      size: 7720
+      sha256: b1fd81329340a9c6eea4e78313d36c6a333a5de6032ec1536ff6c70a4300b46c
+  original:
+    hackage: text-1.2.4.1
 snapshots:
 - completed:
     size: 590100
