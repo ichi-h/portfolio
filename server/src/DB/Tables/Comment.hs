@@ -7,7 +7,6 @@ module DB.Tables.Comment (Comment, CommentT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)
-import Data.Time (UTCTime)
 import Database.Beam
 
 data CommentT f = Comment
@@ -16,10 +15,10 @@ data CommentT f = Comment
     commentEmail :: Columnar f Text,
     commentContent :: Columnar f Text,
     commentToken :: Columnar f Text,
-    commentCreatedAt :: Columnar f UTCTime,
-    commentUpdatedAt :: Columnar f UTCTime,
-    commentPublishedAt :: Columnar f (Maybe UTCTime),
-    commentUnpublishedAt :: Columnar f (Maybe UTCTime)
+    commentCreatedAt :: Columnar f Text,
+    commentUpdatedAt :: Columnar f Text,
+    commentPublishedAt :: Columnar f (Maybe Text),
+    commentUnpublishedAt :: Columnar f (Maybe Text)
   }
   deriving (Generic, Beamable)
 

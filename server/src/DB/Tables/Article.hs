@@ -3,24 +3,23 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.Article (Article, ArticleT (..)) where
+module DB.Tables.Article (ArticleT (..)) where
 
+import DB.Tables.ArticleCategory (ArticleCategoryT)
 import Data.Int (Int32)
 import Data.Text (Text)
-import Data.Time (UTCTime)
 import Database.Beam
-import DB.Tables.ArticleCategory (ArticleCategoryT)
 
 data ArticleT f = Article
   { articleId :: Columnar f Int32,
     articleTitle :: Columnar f Text,
-    articleCategoryId :: PrimaryKey ArticleCategoryT f,
+    articleForCategory :: PrimaryKey ArticleCategoryT f,
     articleThumbnailUrl :: Columnar f Text,
     articleContent :: Columnar f Text,
-    articleCreatedAt :: Columnar f UTCTime,
-    articleUpdatedAt :: Columnar f UTCTime,
-    articlePublishedAt :: Columnar f (Maybe UTCTime),
-    articleUnpublishedAt :: Columnar f (Maybe UTCTime)
+    articleCreatedAt :: Columnar f Text,
+    articleUpdatedAt :: Columnar f Text,
+    articlePublishedAt :: Columnar f (Maybe Text),
+    articleUnpublishedAt :: Columnar f (Maybe Text)
   }
   deriving (Generic, Beamable)
 
