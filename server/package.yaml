@@ -25,6 +25,7 @@ dependencies:
   - beam-sqlite
   - sqlite-simple
   - text
+  - time
   - wai
   - warp
 
