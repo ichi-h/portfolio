@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.Music (Music, MusicT (..)) where
+module DB.Tables.Music (Music, MusicT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

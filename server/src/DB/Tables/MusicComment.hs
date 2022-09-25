@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.MusicComment (MusicComment, MusicCommentT (..)) where
+module DB.Tables.MusicComment (MusicComment, MusicCommentT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Comment (CommentT)
-import Migrations.Music (MusicT)
+import DB.Tables.Comment (CommentT)
+import DB.Tables.Music (MusicT)
 
 data MusicCommentT f = MusicComment
   { musicCommentId :: Columnar f Int32,

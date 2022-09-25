@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.ArticleCategory (ArticleCategory, ArticleCategoryT (..)) where
+module DB.Tables.ArticleCategory (ArticleCategory, ArticleCategoryT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

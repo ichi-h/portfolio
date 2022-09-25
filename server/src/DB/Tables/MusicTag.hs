@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.MusicTag (MusicTag, MusicTagT (..)) where
+module DB.Tables.MusicTag (MusicTag, MusicTagT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Music (MusicT)
-import Migrations.Tag (TagT)
+import DB.Tables.Music (MusicT)
+import DB.Tables.Tag (TagT)
 
 data MusicTagT f = MusicTag
   { musicTagId :: Columnar f Int32,

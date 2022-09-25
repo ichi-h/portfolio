@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.Comment (Comment, CommentT (..)) where
+module DB.Tables.Comment (Comment, CommentT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

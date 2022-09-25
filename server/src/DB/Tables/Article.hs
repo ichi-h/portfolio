@@ -3,13 +3,13 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.Article (Article, ArticleT (..)) where
+module DB.Tables.Article (Article, ArticleT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)
 import Data.Time (UTCTime)
 import Database.Beam
-import Migrations.ArticleCategory (ArticleCategoryT)
+import DB.Tables.ArticleCategory (ArticleCategoryT)
 
 data ArticleT f = Article
   { articleId :: Columnar f Int32,

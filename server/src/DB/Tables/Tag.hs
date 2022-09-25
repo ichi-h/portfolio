@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.Tag (Tag, TagT (..)) where
+module DB.Tables.Tag (Tag, TagT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

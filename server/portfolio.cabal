@@ -22,20 +22,20 @@ source-repository head
 
 library
   exposed-modules:
+      DB.PortfolioDB
+      DB.Tables.Article
+      DB.Tables.ArticleCategory
+      DB.Tables.ArticleComment
+      DB.Tables.ArticleTag
+      DB.Tables.Comment
+      DB.Tables.Music
+      DB.Tables.MusicComment
+      DB.Tables.MusicTag
+      DB.Tables.Photograph
+      DB.Tables.PhotographComment
+      DB.Tables.PhotographTag
+      DB.Tables.Tag
       Lib
-      Migrations.Article
-      Migrations.ArticleCategory
-      Migrations.ArticleComment
-      Migrations.ArticleTag
-      Migrations.Comment
-      Migrations.DB
-      Migrations.Music
-      Migrations.MusicComment
-      Migrations.MusicTag
-      Migrations.Photograph
-      Migrations.PhotographComment
-      Migrations.PhotographTag
-      Migrations.Tag
   other-modules:
       Paths_portfolio
   hs-source-dirs:

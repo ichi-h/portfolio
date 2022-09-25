@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.ArticleTag (ArticleTag, ArticleTagT (..)) where
+module DB.Tables.ArticleTag (ArticleTag, ArticleTagT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Article (ArticleT)
-import Migrations.Tag (TagT)
+import DB.Tables.Article (ArticleT)
+import DB.Tables.Tag (TagT)
 
 data ArticleTagT f = ArticleTag
   { articleTagId :: Columnar f Int32,

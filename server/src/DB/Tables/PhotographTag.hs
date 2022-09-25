@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.PhotographTag (PhotographTag, PhotographTagT (..)) where
+module DB.Tables.PhotographTag (PhotographTag, PhotographTagT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Photograph (PhotographT)
-import Migrations.Tag (TagT)
+import DB.Tables.Photograph (PhotographT)
+import DB.Tables.Tag (TagT)
 
 data PhotographTagT f = PhotographTag
   { photographTagId :: Columnar f Int32,

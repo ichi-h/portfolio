@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.ArticleComment (ArticleComment, ArticleCommentT (..)) where
+module DB.Tables.ArticleComment (ArticleComment, ArticleCommentT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Article (ArticleT)
-import Migrations.Comment (CommentT)
+import DB.Tables.Article (ArticleT)
+import DB.Tables.Comment (CommentT)
 
 data ArticleCommentT f = ArticleComment
   { articleCommentId :: Columnar f Int32,

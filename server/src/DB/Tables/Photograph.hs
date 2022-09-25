@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.Photograph (Photograph, PhotographT (..)) where
+module DB.Tables.Photograph (Photograph, PhotographT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

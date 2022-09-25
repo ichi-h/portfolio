@@ -3,12 +3,12 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module Migrations.PhotographComment (PhotographComment, PhotographCommentT (..)) where
+module DB.Tables.PhotographComment (PhotographComment, PhotographCommentT (..)) where
 
 import Data.Int (Int32)
 import Database.Beam
-import Migrations.Comment (CommentT)
-import Migrations.Photograph (PhotographT)
+import DB.Tables.Comment (CommentT)
+import DB.Tables.Photograph (PhotographT)
 
 data PhotographCommentT f = PhotographComment
   { photographCommentId :: Columnar f Int32,
