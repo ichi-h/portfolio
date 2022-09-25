@@ -24,8 +24,18 @@ library
   exposed-modules:
       Lib
       Migrations.Article
+      Migrations.ArticleCategory
+      Migrations.ArticleComment
+      Migrations.ArticleTag
+      Migrations.Comment
       Migrations.DB
-      Migrations.User
+      Migrations.Music
+      Migrations.MusicComment
+      Migrations.MusicTag
+      Migrations.Photograph
+      Migrations.PhotographComment
+      Migrations.PhotographTag
+      Migrations.Tag
   other-modules:
       Paths_portfolio
   hs-source-dirs:
