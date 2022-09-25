@@ -5,14 +5,12 @@
 
 module DB.Tables.MusicComment (MusicComment, MusicCommentT (..)) where
 
-import Data.Int (Int32)
-import Database.Beam
 import DB.Tables.Comment (CommentT)
 import DB.Tables.Music (MusicT)
+import Database.Beam
 
 data MusicCommentT f = MusicComment
-  { musicCommentId :: Columnar f Int32,
-    musicCommentMusicId :: PrimaryKey MusicT f,
+  { musicCommentMusicId :: PrimaryKey MusicT f,
     musicCommentCommentId :: PrimaryKey CommentT f
   }
   deriving (Generic, Beamable)
@@ -20,5 +18,10 @@ data MusicCommentT f = MusicComment
 type MusicComment = MusicCommentT Identity
 
 instance Table MusicCommentT where
-  data PrimaryKey MusicCommentT f = MusicCommentId (Columnar f Int32) deriving (Generic, Beamable)
-  primaryKey = MusicCommentId . musicCommentId
+  data PrimaryKey MusicCommentT f
+    = MusicCommentId (PrimaryKey MusicT f) (PrimaryKey CommentT f)
+    deriving (Generic, Beamable)
+  primaryKey =
+    MusicCommentId
+      <$> musicCommentMusicId
+      <*> musicCommentCommentId

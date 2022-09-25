@@ -5,14 +5,12 @@
 
 module DB.Tables.ArticleComment (ArticleComment, ArticleCommentT (..)) where
 
-import Data.Int (Int32)
-import Database.Beam
 import DB.Tables.Article (ArticleT)
 import DB.Tables.Comment (CommentT)
+import Database.Beam
 
 data ArticleCommentT f = ArticleComment
-  { articleCommentId :: Columnar f Int32,
-    articleCommentArticleId :: PrimaryKey ArticleT f,
+  { articleCommentArticleId :: PrimaryKey ArticleT f,
     articleCommentCommentId :: PrimaryKey CommentT f
   }
   deriving (Generic, Beamable)
@@ -20,5 +18,10 @@ data ArticleCommentT f = ArticleComment
 type ArticleComment = ArticleCommentT Identity
 
 instance Table ArticleCommentT where
-  data PrimaryKey ArticleCommentT f = ArticleCommentId (Columnar f Int32) deriving (Generic, Beamable)
-  primaryKey = ArticleCommentId . articleCommentId
+  data PrimaryKey ArticleCommentT f
+    = ArticleCommentId (PrimaryKey ArticleT f) (PrimaryKey CommentT f)
+    deriving (Generic, Beamable)
+  primaryKey =
+    ArticleCommentId
+      <$> articleCommentArticleId
+      <*> articleCommentCommentId
