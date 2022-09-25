@@ -4,7 +4,6 @@
 
 module DB.PortfolioDB (PortfolioDB (..), portfolioDB) where
 
-import Database.Beam
 import DB.Tables.Article (ArticleT)
 import DB.Tables.ArticleCategory (ArticleCategoryT)
 import DB.Tables.ArticleComment (ArticleCommentT)
@@ -17,6 +16,9 @@ import DB.Tables.Photograph (PhotographT)
 import DB.Tables.PhotographComment (PhotographCommentT)
 import DB.Tables.PhotographTag (PhotographTagT)
 import DB.Tables.Tag (TagT)
+import Database.Beam
+import Database.Beam.Migrate
+import Database.Beam.Sqlite
 
 data PortfolioDB f = PortfolioDB
   { portfolioArticles :: f (TableEntity ArticleT),
@@ -34,5 +36,5 @@ data PortfolioDB f = PortfolioDB
   }
   deriving (Generic, Database be)
 
-portfolioDB :: DatabaseSettings be PortfolioDB
-portfolioDB = defaultDbSettings
+portfolioDB :: CheckedDatabaseSettings Sqlite PortfolioDB
+portfolioDB = defaultMigratableDbSettings
