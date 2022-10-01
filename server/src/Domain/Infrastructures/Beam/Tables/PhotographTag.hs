@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.PhotographTag (PhotographTag, PhotographTagT (..)) where
+module Domain.Infrastructures.Beam.Tables.PhotographTag (PhotographTag, PhotographTagT (..)) where
 
-import DB.Tables.Photograph (PhotographT)
-import DB.Tables.Tag (TagT)
+import Domain.Infrastructures.Beam.Tables.Photograph (PhotographT)
+import Domain.Infrastructures.Beam.Tables.Tag (TagT)
 import Database.Beam
 
 data PhotographTagT f = PhotographTag

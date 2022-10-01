@@ -2,7 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Exception
-import DB.PortfolioDB (portfolioDB)
+import Domain.Infrastructures.Beam.PortfolioDB (portfolioDB)
 import Database.Beam.Migrate.Simple (VerificationResult (..), createSchema, verifySchema)
 import Database.Beam.Sqlite
 import Database.Beam.Sqlite.Migrate (migrationBackend)

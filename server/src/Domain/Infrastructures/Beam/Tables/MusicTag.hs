@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.MusicTag (MusicTag, MusicTagT (..)) where
+module Domain.Infrastructures.Beam.Tables.MusicTag (MusicTag, MusicTagT (..)) where
 
-import DB.Tables.Music (MusicT)
-import DB.Tables.Tag (TagT)
+import Domain.Infrastructures.Beam.Tables.Music (MusicT)
+import Domain.Infrastructures.Beam.Tables.Tag (TagT)
 import Database.Beam
 
 data MusicTagT f = MusicTag

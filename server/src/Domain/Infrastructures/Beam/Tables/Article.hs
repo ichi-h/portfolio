@@ -3,9 +3,9 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.Article (ArticleT (..)) where
+module Domain.Infrastructures.Beam.Tables.Article (ArticleT (..)) where
 
-import DB.Tables.ArticleCategory (ArticleCategoryT)
+import Domain.Infrastructures.Beam.Tables.ArticleCategory (ArticleCategoryT)
 import Data.Int (Int32)
 import Data.Text (Text)
 import Database.Beam

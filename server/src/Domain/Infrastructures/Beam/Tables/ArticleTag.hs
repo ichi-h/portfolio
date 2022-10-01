@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.ArticleTag (ArticleTag, ArticleTagT (..)) where
+module Domain.Infrastructures.Beam.Tables.ArticleTag (ArticleTag, ArticleTagT (..)) where
 
-import DB.Tables.Article (ArticleT)
-import DB.Tables.Tag (TagT)
+import Domain.Infrastructures.Beam.Tables.Article (ArticleT)
+import Domain.Infrastructures.Beam.Tables.Tag (TagT)
 import Database.Beam
 
 data ArticleTagT f = ArticleTag

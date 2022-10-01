@@ -2,20 +2,20 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE TypeFamilies #-}
 
-module DB.PortfolioDB (PortfolioDB (..), portfolioDB) where
+module Domain.Infrastructures.Beam.PortfolioDB (PortfolioDB (..), portfolioDB) where
 
-import DB.Tables.Article (ArticleT)
-import DB.Tables.ArticleCategory (ArticleCategoryT)
-import DB.Tables.ArticleComment (ArticleCommentT)
-import DB.Tables.ArticleTag (ArticleTagT)
-import DB.Tables.Comment (CommentT)
-import DB.Tables.Music (MusicT)
-import DB.Tables.MusicComment (MusicCommentT)
-import DB.Tables.MusicTag (MusicTagT)
-import DB.Tables.Photograph (PhotographT)
-import DB.Tables.PhotographComment (PhotographCommentT)
-import DB.Tables.PhotographTag (PhotographTagT)
-import DB.Tables.Tag (TagT)
+import Domain.Infrastructures.Beam.Tables.Article (ArticleT)
+import Domain.Infrastructures.Beam.Tables.ArticleCategory (ArticleCategoryT)
+import Domain.Infrastructures.Beam.Tables.ArticleComment (ArticleCommentT)
+import Domain.Infrastructures.Beam.Tables.ArticleTag (ArticleTagT)
+import Domain.Infrastructures.Beam.Tables.Comment (CommentT)
+import Domain.Infrastructures.Beam.Tables.Music (MusicT)
+import Domain.Infrastructures.Beam.Tables.MusicComment (MusicCommentT)
+import Domain.Infrastructures.Beam.Tables.MusicTag (MusicTagT)
+import Domain.Infrastructures.Beam.Tables.Photograph (PhotographT)
+import Domain.Infrastructures.Beam.Tables.PhotographComment (PhotographCommentT)
+import Domain.Infrastructures.Beam.Tables.PhotographTag (PhotographTagT)
+import Domain.Infrastructures.Beam.Tables.Tag (TagT)
 import Database.Beam
 import Database.Beam.Migrate
 import Database.Beam.Sqlite

@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.ArticleComment (ArticleComment, ArticleCommentT (..)) where
+module Domain.Infrastructures.Beam.Tables.ArticleComment (ArticleComment, ArticleCommentT (..)) where
 
-import DB.Tables.Article (ArticleT)
-import DB.Tables.Comment (CommentT)
+import Domain.Infrastructures.Beam.Tables.Article (ArticleT)
+import Domain.Infrastructures.Beam.Tables.Comment (CommentT)
 import Database.Beam
 
 data ArticleCommentT f = ArticleComment

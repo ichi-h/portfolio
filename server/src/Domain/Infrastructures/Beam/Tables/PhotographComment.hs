@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.PhotographComment (PhotographComment, PhotographCommentT (..)) where
+module Domain.Infrastructures.Beam.Tables.PhotographComment (PhotographComment, PhotographCommentT (..)) where
 
-import DB.Tables.Comment (CommentT)
-import DB.Tables.Photograph (PhotographT)
+import Domain.Infrastructures.Beam.Tables.Comment (CommentT)
+import Domain.Infrastructures.Beam.Tables.Photograph (PhotographT)
 import Database.Beam
 
 data PhotographCommentT f = PhotographComment

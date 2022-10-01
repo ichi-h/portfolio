@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.Comment (Comment, CommentT (..)) where
+module Domain.Infrastructures.Beam.Tables.Comment (Comment, CommentT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

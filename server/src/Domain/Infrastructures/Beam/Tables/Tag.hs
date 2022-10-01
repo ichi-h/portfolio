@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.Tag (Tag, TagT (..)) where
+module Domain.Infrastructures.Beam.Tables.Tag (Tag, TagT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

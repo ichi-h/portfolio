@@ -3,7 +3,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.Music (Music, MusicT (..)) where
+module Domain.Infrastructures.Beam.Tables.Music (Music, MusicT (..)) where
 
 import Data.Int (Int32)
 import Data.Text (Text)

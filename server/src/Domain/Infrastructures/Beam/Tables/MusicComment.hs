@@ -3,10 +3,10 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE TypeSynonymInstances #-}
 
-module DB.Tables.MusicComment (MusicComment, MusicCommentT (..)) where
+module Domain.Infrastructures.Beam.Tables.MusicComment (MusicComment, MusicCommentT (..)) where
 
-import DB.Tables.Comment (CommentT)
-import DB.Tables.Music (MusicT)
+import Domain.Infrastructures.Beam.Tables.Comment (CommentT)
+import Domain.Infrastructures.Beam.Tables.Music (MusicT)
 import Database.Beam
 
 data MusicCommentT f = MusicComment
