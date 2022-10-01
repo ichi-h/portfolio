@@ -22,7 +22,7 @@ source-repository head
 
 library
   exposed-modules:
-      DB.Migrate
+      Commands.Migrate
       DB.PortfolioDB
       DB.Tables.Article
       DB.Tables.ArticleCategory
