@@ -11,7 +11,7 @@ RUN apt-get update && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   # wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
   # dpkg -i litestream-v0.3.9-linux-amd64.deb
-  stack setup
+  stack build
 
 FROM haskell-prod as haskell-dev
 
