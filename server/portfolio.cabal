@@ -23,6 +23,7 @@ source-repository head
 library
   exposed-modules:
       Commands.Migrate
+      Domain.Entities.Entity
       Domain.Infrastructures.Beam.PortfolioDB
       Domain.Infrastructures.Beam.Tables.Article
       Domain.Infrastructures.Beam.Tables.ArticleCategory
