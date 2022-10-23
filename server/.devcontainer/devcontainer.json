@@ -11,7 +11,6 @@
 	"extensions": [
 		"streetsidesoftware.code-spell-checker",
 		"GitHub.copilot",
-		"haskell.haskell",
 		"justusadam.language-haskell",
 		"dramforever.vscode-ghc-simple",
 		"oderwat.indent-rainbow",
