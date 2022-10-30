@@ -1,18 +1,17 @@
-version: "3.7"
+version: "3"
 
 services:
   rust:
     build:
-      context: ./
+      context: .
       dockerfile: "./resources/rust/Dockerfile"
-      target: rust-dev
     container_name: portfolio-rust
     volumes:
       - ./server:/var/www/project
       - cargo-cache:/usr/local/cargo/registry
-      - target-cache:/var/www/project/target
+      - target-cache:/backend/target
     env_file: ./server/.env
-    command: cargo watch -x run
+    command: /var/www/project/target/release/lyrian_web
     tty: true
 
   node:
@@ -24,7 +23,7 @@ services:
       - ./client:/var/www/project
       - node_modules:/var/www/project/node_modules
     env_file: ./client/.env
-    command: npm run dev
+    command: npm run start
     tty: true
 
   nginx:
@@ -36,12 +35,11 @@ services:
       - ./client/dist:/var/www/project/public
     restart: always
     depends_on:
-      - rust
+      - haskell
       - node
     ports:
       - "7000:80"
 
 volumes:
-  cargo-cache:
-  target-cache:
+  stack-work:
   node_modules:
