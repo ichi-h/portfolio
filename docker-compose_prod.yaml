@@ -1,19 +1,6 @@
 version: "3"
 
 services:
-  rust:
-    build:
-      context: .
-      dockerfile: "./resources/rust/Dockerfile"
-    container_name: portfolio-rust
-    volumes:
-      - ./server:/var/www/project
-      - cargo-cache:/usr/local/cargo/registry
-      - target-cache:/backend/target
-    env_file: ./server/.env
-    command: /var/www/project/target/release/lyrian_web
-    tty: true
-
   node:
     build:
       context: ./
@@ -41,5 +28,4 @@ services:
       - "7000:80"
 
 volumes:
-  stack-work:
   node_modules:

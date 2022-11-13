@@ -1,20 +1,6 @@
 version: "3.7"
 
 services:
-  rust:
-    build:
-      context: ./
-      dockerfile: "./resources/rust/Dockerfile"
-      target: rust-dev
-    container_name: portfolio-rust
-    volumes:
-      - ./server:/var/www/project
-      - cargo-cache:/usr/local/cargo/registry
-      - target-cache:/var/www/project/target
-    env_file: ./server/.env
-    command: cargo watch -x run
-    tty: true
-
   node:
     build:
       context: ./
@@ -42,6 +28,4 @@ services:
       - "7000:80"
 
 volumes:
-  cargo-cache:
-  target-cache:
   node_modules:
