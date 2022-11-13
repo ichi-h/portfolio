@@ -1,18 +1,17 @@
 version: "3.7"
 
 services:
-  rust:
+  haskell:
     build:
       context: ./
-      dockerfile: "./resources/rust/Dockerfile"
-      target: rust-dev
-    container_name: portfolio-rust
+      dockerfile: "./resources/haskell/Dockerfile"
+    container_name: portfolio-haskell
     volumes:
-      - ./server:/var/www/project
-      - cargo-cache:/usr/local/cargo/registry
-      - target-cache:/var/www/project/target
-    env_file: ./server/.env
-    command: cargo watch -x run
+      - ./server2:/var/www/project
+      - stack-work:/var/www/project/.stack-work
+    working_dir: /var/www/project
+    env_file: ./server2/.env
+    command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
     tty: true
 
   node:
@@ -36,12 +35,11 @@ services:
       - ./client/dist:/var/www/project/public
     restart: always
     depends_on:
-      - rust
+      - haskell
       - node
     ports:
       - "7000:80"
 
 volumes:
-  cargo-cache:
-  target-cache:
+  stack-work:
   node_modules:

@@ -23,6 +23,7 @@ source-repository head
 library
   exposed-modules:
       Commands.Migrate
+      Domain.Entities.ArticleT
       Domain.Entities.Entity
       Domain.Infrastructures.Beam.PortfolioDB
       Domain.Infrastructures.Beam.Tables.Article
@@ -37,6 +38,14 @@ library
       Domain.Infrastructures.Beam.Tables.PhotographComment
       Domain.Infrastructures.Beam.Tables.PhotographTag
       Domain.Infrastructures.Beam.Tables.Tag
+      Domain.Infrastructures.Repositories.Article.ArticleSetatement
+      Domain.Infrastructures.Repositories.Article.ArticleT
+      Domain.Infrastructures.Repositories.Base.Clause
+      Domain.Infrastructures.Repositories.Base.Filter
+      Domain.Infrastructures.Repositories.Base.Order
+      Domain.Infrastructures.Repositories.Base.PrimaryKey
+      Domain.Infrastructures.Repositories.Base.Query
+      Domain.Infrastructures.Repositories.Base.Statement
       Lib
   other-modules:
       Paths_portfolio
