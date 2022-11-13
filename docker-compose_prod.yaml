@@ -22,7 +22,6 @@ services:
       - ./client/dist:/var/www/project/public
     restart: always
     depends_on:
-      - haskell
       - node
     ports:
       - "7000:80"
