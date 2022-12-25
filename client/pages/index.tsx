@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { readArticleBySlug } from "../core/entities/article/read";
+import { readArticleBySlug } from "../core/infrastructures/fs/articles";
 import { mdToHtml } from "../lib/remark/convert";
 import styles from "../styles/Home.module.css";
 
