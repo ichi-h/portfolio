@@ -1,9 +1,10 @@
-import type { InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { mdToHtml } from "../lib/remark/convert";
+
 import { readArticleBySlug } from "../core/entities/article/read";
+import { mdToHtml } from "../lib/remark/convert";
 import styles from "../styles/Home.module.css";
+
+import type { InferGetStaticPropsType, NextPage } from "next";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 

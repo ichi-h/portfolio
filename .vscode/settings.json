@@ -1,0 +1,12 @@
+{
+  "prettier.configPath": "client/.prettierrc",
+  "eslint.workingDirectories": [
+    "client"
+  ],
+  "editor.renderWhitespace": "all",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+}

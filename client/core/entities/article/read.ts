@@ -1,6 +1,8 @@
 import fs from "fs";
 import { join } from "path";
+
 import matter from "gray-matter";
+
 import { Article, articleSchema } from "./schema";
 
 const articlesDir = join(process.cwd(), "content/articles");
