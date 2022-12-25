@@ -2,7 +2,8 @@ import { z } from "zod";
 
 import { TAGS } from "../tags";
 
-const uidRegex = /^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$/;
+const uidRegex =
+  /^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$/;
 const requiredDateRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
 const optionalDateRegex = /(^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$|^$)/;
 
