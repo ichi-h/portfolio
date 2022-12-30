@@ -1,6 +1,6 @@
 import { styled } from "linaria/react";
 
-import { Size } from "../../types";
+import { Size } from "@/ui/types";
 
 interface Props {
   children: React.ReactNode;

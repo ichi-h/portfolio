@@ -1,7 +1,7 @@
 import { styled } from "linaria/react";
 
-import { THEME } from "../../base";
-import { Color } from "../../types";
+import { THEME } from "@/ui/base";
+import { Color } from "@/ui/types";
 
 interface StyleProps {
   color?: Color;

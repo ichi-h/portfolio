@@ -1,7 +1,7 @@
 import Head from "next/head";
 
-import { readArticleBySlug } from "../../core/infrastructures/fs/articles";
-import { mdToHtml } from "../../lib/remark/convert";
+import { readArticleBySlug } from "@/core/infrastructures/fs/articles";
+import { mdToHtml } from "@/lib/remark/convert";
 
 import type { InferGetStaticPropsType, NextPage } from "next";
 

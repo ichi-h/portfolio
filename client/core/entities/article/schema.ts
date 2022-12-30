@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { TAGS } from "../tags";
+import { TAGS } from "@/core/entities/tags";
 
 const uidRegex =
   /^[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}$/;

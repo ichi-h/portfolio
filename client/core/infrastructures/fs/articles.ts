@@ -9,7 +9,7 @@ import {
   ReadAllArticles,
   ReadAllArticleSlugs,
   ReadArticleBySlug,
-} from "../../entities/article";
+} from "@/core/entities/article";
 
 const articlesDir = join(process.cwd(), "content/articles");
 const indexMd = "index.md";

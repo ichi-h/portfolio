@@ -1,7 +1,7 @@
 import { styled } from "linaria/react";
 
-import { THEME } from "../../base";
-import { Color, Size } from "../../types";
+import { THEME } from "@/ui/base";
+import { Color, Size } from "@/ui/types";
 
 interface Props {
   children: React.ReactNode;
