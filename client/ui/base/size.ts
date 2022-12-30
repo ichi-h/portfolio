@@ -25,4 +25,6 @@ export const SIZE = {
   xl5: "2.25rem",
   /** 40px */
   xl6: "2.5rem",
+  /** 48px */
+  xl7: "3rem",
 } as const;
