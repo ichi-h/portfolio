@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { HomeTemplate } from "@/features/home/templete";
+import { HomeTemplate } from "@/features/home/template";
 
 import type { NextPage } from "next";
 
