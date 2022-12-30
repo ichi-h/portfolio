@@ -18,8 +18,8 @@ const StyledStack = styled.div<Props>`
   align-items: ${(props) => props.align || "center"};
   flex-direction: ${(props) => props.direction || "row"};
   gap: ${(props) => props.gap || "0"};
-  width: ${(props) => props.width || "100%"};
-  height: ${(props) => props.height || "100%"};
+  width: ${(props) => props.width || "initial"};
+  height: ${(props) => props.height || "initial"};
 `;
 
 export const Stack = (props: Props) => {
