@@ -1,4 +1,5 @@
 import { styled } from "linaria/react";
+import NextLink from "next/link";
 
 import { THEME } from "@/ui/base";
 import { Color, Size } from "@/ui/types";
@@ -9,10 +10,9 @@ interface StyleProps {
 }
 
 interface Props extends StyleProps {
-  type: "anchor";
+  type: "link";
   children?: React.ReactNode;
-  href: string;
-  blank?: boolean;
+  to: string;
 }
 
 const defaultProps = {
@@ -20,7 +20,7 @@ const defaultProps = {
   fontSize: THEME.size.sm,
 };
 
-export const StyledAnchor = styled.a<StyleProps>`
+export const StyledSpan = styled.span<StyleProps>`
   color: ${(props) => props.color || defaultProps.color};
   text-decoration: none;
   font-size: ${(props) => props.fontSize || defaultProps.fontSize};
@@ -30,16 +30,12 @@ export const StyledAnchor = styled.a<StyleProps>`
   }
 `;
 
-export const Anchor = (props: Props) => {
+export const Link = (props: Props) => {
   return (
-    <StyledAnchor
-      href={props.href}
-      target={props.blank ? "_blank" : "_self"}
-      rel={props.blank ? "noopener noreferrer" : ""}
-      color={props.color}
-      fontSize={props.fontSize}
-    >
-      {props.children}
-    </StyledAnchor>
+    <NextLink href={props.to}>
+      <StyledSpan color={props.color} fontSize={props.fontSize}>
+        {props.children}
+      </StyledSpan>
+    </NextLink>
   );
 };

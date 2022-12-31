@@ -7,8 +7,8 @@ import { Fade } from "@/ui/parts/animation/fade";
 import { Box } from "@/ui/parts/box/box";
 import { Avatar } from "@/ui/parts/image/avatar";
 import { Stack } from "@/ui/parts/stack/stack";
-import { Anchor } from "@/ui/parts/text/anchor";
 import { Headline } from "@/ui/parts/text/headline";
+import { Link } from "@/ui/parts/text/link";
 
 import { DISPLAY_AT } from "./display-at";
 
@@ -43,38 +43,38 @@ export const HomeNav = () => {
             ichi-h
           </Headline>
           <Stack gap={THEME.size.md}>
-            <Anchor
+            <Link
               type="link"
               to="/blog"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
               Blog
-            </Anchor>
-            <Anchor
+            </Link>
+            <Link
               type="link"
               to="#"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
               Development
-            </Anchor>
-            <Anchor
+            </Link>
+            <Link
               type="link"
               to="#"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
               Music
-            </Anchor>
-            <Anchor
+            </Link>
+            <Link
               type="link"
               to="#"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
               Photograph
-            </Anchor>
+            </Link>
           </Stack>
         </Stack>
       </Box>
