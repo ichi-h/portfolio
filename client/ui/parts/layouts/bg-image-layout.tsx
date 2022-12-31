@@ -7,11 +7,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Template = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
 const Background = styled.div`
   position: fixed;
   top: 50%;
@@ -28,9 +23,9 @@ const Background = styled.div`
 
 export const BgImageLayout = (props: Props) => {
   return (
-    <Template>
+    <>
       <Background style={{ backgroundImage: `url("${props.src}")` }} />
       {props.children}
-    </Template>
+    </>
   );
 };
