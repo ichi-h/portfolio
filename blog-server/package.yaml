@@ -1,0 +1,72 @@
+name: portfolio
+version: 0.1.0.0
+github: "ichi-h/portfolio"
+author: "ichi-h"
+copyright: "2022 ichi-h"
+
+extra-source-files:
+  - README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description: Please see the README on GitHub at <https://github.com/ichi-h/portfolio#readme>
+
+dependencies:
+  - base >= 4.7 && < 5
+  - aeson
+  - servant-server
+  - beam-core
+  - beam-migrate
+  - beam-sqlite
+  - sqlite-simple
+  - text
+  - time
+  - wai
+  - warp
+
+ghc-options:
+  - -Wall
+  - -Wcompat
+  - -Widentities
+  - -Wincomplete-record-updates
+  - -Wincomplete-uni-patterns
+  - -Wmissing-export-lists
+  - -Wmissing-home-modules
+  - -Wpartial-fields
+  - -Wredundant-constraints
+
+library:
+  source-dirs: src
+
+executables:
+  portfolio-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - portfolio
+
+tests:
+  portfolio-test:
+    main: Spec.hs
+    source-dirs: test
+    ghc-options:
+      - -threaded
+      - -rtsopts
+      - -with-rtsopts=-N
+    dependencies:
+      - base
+      - portfolio
+      - hspec
+      - hspec-wai
+      - hspec-wai-json
+      - aeson

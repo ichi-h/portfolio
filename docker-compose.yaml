@@ -1,6 +1,19 @@
 version: "3.7"
 
 services:
+  blog-server:
+    build:
+      context: ./
+      dockerfile: "./resources/haskell/Dockerfile"
+    container_name: portfolio-blog-server
+    volumes:
+      - ./blog-server:/var/www/project
+      - stack-work:/var/www/project/.stack-work
+    working_dir: /var/www/project
+    env_file: ./server2/.env
+    command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
+    tty: true
+
   node:
     build:
       context: ./
@@ -22,9 +35,11 @@ services:
       - ./client/dist:/var/www/project/public
     restart: always
     depends_on:
+      - blog-server
       - node
     ports:
       - "7000:80"
 
 volumes:
+  stack-work:
   node_modules:
