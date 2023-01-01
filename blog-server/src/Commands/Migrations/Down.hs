@@ -14,7 +14,6 @@ import Database.SQLite.Simple
     query_,
   )
 
--- TODO
 down :: IO ()
 down = do
   conn <- open "./db/portfolio.sqlite3"
