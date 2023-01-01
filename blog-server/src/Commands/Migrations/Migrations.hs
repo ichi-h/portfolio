@@ -9,9 +9,9 @@ import Database.SQLite.Simple
 import Database.SQLite.Simple.FromRow (field)
 
 data Migrations = Migrations
-  { id :: Int,
-    name :: String,
-    batch :: Int
+  { migrationId :: Int,
+    migrationName :: String,
+    migrationBatch :: Int
   }
 
 instance FromRow Migrations where
