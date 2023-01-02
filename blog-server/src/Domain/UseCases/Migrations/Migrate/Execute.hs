@@ -6,10 +6,10 @@ where
 import Data.Text
 import Domain.Entities.Migration (Migration (..))
 import Domain.UseCases.Migrations.Migrate.Persistent
-  ( RunRawQuery,
-    InsertMigration,
+  ( InsertMigration,
     ReadAllMigration,
     ReadMigrateFile,
+    RunRawQuery,
   )
 
 nextBatch :: [Migration] -> Int

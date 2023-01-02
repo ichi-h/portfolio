@@ -30,12 +30,13 @@ library
       Domain.Entities.Migration
       Domain.Infrastructures.Fs.ReadMigrationFile
       Domain.Infrastructures.Repository.Connection
-      Domain.Infrastructures.Repository.Operators.Migrations.Base
+      Domain.Infrastructures.Repository.Operators.Migrations
       Domain.Infrastructures.Repository.Operators.RawQuery
       Domain.Infrastructures.Repository.Tables.Migrations
       Domain.UseCases.Migrations.Migrate.Execute
       Domain.UseCases.Migrations.Migrate.Persistent
       Domain.UseCases.Migrations.Rollback.Execute
+      Domain.UseCases.Migrations.Rollback.Persistent
       Lib
   other-modules:
       Paths_portfolio
