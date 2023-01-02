@@ -2,26 +2,16 @@
 
 module Commands.Migrations.Migrate (main) where
 
-import Commands.Migrations.Migration (Migration (..))
 import Configuration.Dotenv (defaultConfig, loadFile)
-import Data.Text
-import Database.SQLite.Simple
-  ( Query (..),
-    close,
-    execute,
-    execute_,
-    open,
-    query_,
+import Domain.Infrastructures.Repository.Connection (closeDB, connectDB)
+import Domain.Infrastructures.Repository.Operators.Migrations.Base (insertMigration_, readAllMigrations_)
+import Domain.Infrastructures.Repository.Operators.RawQuery (runRawQuery_)
+import Domain.Infrastructures.Fs.ReadMigrationFile
+  ( MigrateOrRollback (Migrate),
+    readMigrationFile,
   )
-import System.Environment (getArgs, getEnv)
-
-include :: Eq a => a -> [a] -> Bool
-include _ [] = False
-include x (y : ys) = x == y || include x ys
-
-nextBatch :: [Migration] -> Int
-nextBatch [] = 1
-nextBatch migrations = (+) 1 $ Prelude.maximum (Prelude.map (\m -> migrationBatch m) migrations)
+import Domain.UseCases.Migrations.Migrate.Execute (executeMigrate)
+import System.Environment (getArgs)
 
 main :: IO ()
 main = do
@@ -30,14 +20,13 @@ main = do
     [] -> putStrLn "Enter migration name"
     (target : _) -> do
       _ <- loadFile defaultConfig
-      dbPath <- getEnv "DB_PATH"
-      conn <- open dbPath
-      migrations <- query_ conn "SELECT * from migrations" :: IO [Migration]
-      if include target (Prelude.map (\m -> migrationName m) migrations)
-        then putStrLn "Migration already exists"
-        else do
-          sql <- readFile $ "./db/migrations/" ++ target ++ "/up.sql"
-          execute_ conn Query {fromQuery = pack sql}
-          execute conn "INSERT INTO migrations (name, batch) VALUES (?, ?)" (target :: String, nextBatch migrations :: Int)
-      close conn
-      putStrLn $ "Migrated " ++ target
+      conn <- connectDB
+      let insertMigration = insertMigration_ conn
+          readAllMigrations = readAllMigrations_ conn
+          readMigrateFile = readMigrationFile Migrate
+          runRawQuery = runRawQuery_ conn
+      result <- executeMigrate target insertMigration readAllMigrations readMigrateFile runRawQuery
+      closeDB conn
+      case result of
+        Left msg -> putStrLn msg
+        Right msg -> putStrLn msg
