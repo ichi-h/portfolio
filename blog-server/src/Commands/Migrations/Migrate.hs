@@ -40,3 +40,4 @@ main = do
           execute_ conn Query {fromQuery = pack sql}
           execute conn "INSERT INTO migrations (name, batch) VALUES (?, ?)" (target :: String, nextBatch migrations :: Int)
       close conn
+      putStrLn $ "Migrated " ++ target
