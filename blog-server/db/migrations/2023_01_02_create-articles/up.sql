@@ -1,6 +1,6 @@
 create table articles (
   id integer primary key autoincrement,
-  content_id integer not null,
+  work_id integer not null,
   body text not null default '',
-  FOREIGN KEY (`content_id`) REFERENCES `contents` (`id`) ON DELETE CASCADE
+  FOREIGN KEY (`work_id`) REFERENCES `works` (`id`) ON DELETE CASCADE
 );

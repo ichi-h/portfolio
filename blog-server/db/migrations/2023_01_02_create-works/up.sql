@@ -1,4 +1,4 @@
-create table contents (
+create table works (
   id integer primary key autoincrement,
   category text not null default '',
   slug text not null unique default '',
