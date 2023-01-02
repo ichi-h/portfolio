@@ -1,8 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Commands.Migrations.Down (down) where
+module Commands.Migrations.Down (main) where
 
 import Commands.Migrations.Migrations (Migrations (..))
+import Configuration.Dotenv (defaultConfig, loadFile)
 import Data.Text
 import Database.SQLite.Simple
   ( Only (..),
@@ -13,10 +14,13 @@ import Database.SQLite.Simple
     open,
     query_,
   )
+import System.Environment (getEnv)
 
-down :: IO ()
-down = do
-  conn <- open "./db/portfolio.sqlite3"
+main :: IO ()
+main = do
+  _ <- loadFile defaultConfig
+  dbPath <- getEnv "DB_PATH"
+  conn <- open dbPath
   migrations <- query_ conn "SELECT * from migrations order by batch desc limit 1" :: IO [Migrations]
   case migrations of
     [] -> putStrLn "No migrations to rollback"

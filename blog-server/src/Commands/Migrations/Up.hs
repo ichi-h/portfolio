@@ -1,8 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Commands.Migrations.Up (up) where
+module Commands.Migrations.Up (main) where
 
 import Commands.Migrations.Migrations (Migrations (..))
+import Configuration.Dotenv (defaultConfig, loadFile)
 import Data.Text
 import Database.SQLite.Simple
   ( Query (..),
@@ -12,6 +13,7 @@ import Database.SQLite.Simple
     open,
     query_,
   )
+import System.Environment (getArgs, getEnv)
 
 include :: Eq a => a -> [a] -> Bool
 include _ [] = False
@@ -21,12 +23,15 @@ nextBatch :: [Migrations] -> Int
 nextBatch [] = 1
 nextBatch migrations = (+) 1 $ Prelude.maximum (Prelude.map (\m -> migrationBatch m) migrations)
 
-up :: String -> IO ()
-up target = do
+main :: IO ()
+main = do
+  (target : _) <- getArgs
+  _ <- loadFile defaultConfig
+  dbPath <- getEnv "DB_PATH"
   if target == ""
     then putStrLn "No migration name provided"
     else do
-      conn <- open "./db/portfolio.sqlite3"
+      conn <- open dbPath
       migrations <- query_ conn "SELECT * from migrations" :: IO [Migrations]
       if include target (Prelude.map (\m -> migrationName m) migrations)
         then putStrLn "Migration already exists"
