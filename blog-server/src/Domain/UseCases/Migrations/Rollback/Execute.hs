@@ -21,4 +21,4 @@ executeRollback readLatestMigration readRollbackFile runRawQuery deleteMigration
       sql <- readRollbackFile $ migrationName m
       runRawQuery $ pack sql
       deleteMigration $ migrationId m
-      pure $ Right $ "Rolled back migration " ++ migrationName m
+      pure $ Right $ "Rolled back migration '" ++ migrationName m ++ "'"

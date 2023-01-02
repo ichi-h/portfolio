@@ -20,9 +20,9 @@ executeMigrate :: String -> InsertMigration -> ReadAllMigration -> ReadMigrateFi
 executeMigrate target insertMigration readAllMigrations readMigrateFile runRawQuery = do
   migrations <- readAllMigrations
   if Prelude.elem target (Prelude.map (\m -> migrationName m) migrations)
-    then pure $ Left $ "Migration already exists"
+    then pure $ Left $ "Migration '" ++ target ++ "' already exists"
     else do
       sql <- readMigrateFile target
       runRawQuery $ pack sql
       insertMigration (target :: String, nextBatch migrations :: Int)
-      pure $ Right $ "Migrated " ++ target
+      pure $ Right $ "Migrated '" ++ target ++ "'"
