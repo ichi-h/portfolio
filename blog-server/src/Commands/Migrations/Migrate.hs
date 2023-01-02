@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Commands.Migrations.Up (main) where
+module Commands.Migrations.Migrate (main) where
 
 import Commands.Migrations.Migration (Migration (..))
 import Configuration.Dotenv (defaultConfig, loadFile)

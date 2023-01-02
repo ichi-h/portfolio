@@ -22,10 +22,10 @@ source-repository head
 
 library
   exposed-modules:
-      Commands.Migrations.Down
       Commands.Migrations.Initialize
+      Commands.Migrations.Migrate
       Commands.Migrations.Migration
-      Commands.Migrations.Up
+      Commands.Migrations.Rollback
       Domain.Entities.ArticleT
       Domain.Entities.Entity
       Lib

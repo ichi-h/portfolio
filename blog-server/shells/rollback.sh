@@ -1,1 +1,1 @@
-stack runhaskell ./src/Commands/Migrations/Down.hs
+stack runhaskell ./src/Commands/Migrations/Rollback.hs
