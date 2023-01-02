@@ -24,7 +24,7 @@ library
   exposed-modules:
       Commands.Migrations.Down
       Commands.Migrations.Initialize
-      Commands.Migrations.Migrations
+      Commands.Migrations.Migration
       Commands.Migrations.Up
       Domain.Entities.ArticleT
       Domain.Entities.Entity

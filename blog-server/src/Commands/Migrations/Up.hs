@@ -2,7 +2,7 @@
 
 module Commands.Migrations.Up (main) where
 
-import Commands.Migrations.Migrations (Migrations (..))
+import Commands.Migrations.Migration (Migration (..))
 import Configuration.Dotenv (defaultConfig, loadFile)
 import Data.Text
 import Database.SQLite.Simple
@@ -19,20 +19,20 @@ include :: Eq a => a -> [a] -> Bool
 include _ [] = False
 include x (y : ys) = x == y || include x ys
 
-nextBatch :: [Migrations] -> Int
+nextBatch :: [Migration] -> Int
 nextBatch [] = 1
 nextBatch migrations = (+) 1 $ Prelude.maximum (Prelude.map (\m -> migrationBatch m) migrations)
 
 main :: IO ()
 main = do
-  (target : _) <- getArgs
-  _ <- loadFile defaultConfig
-  dbPath <- getEnv "DB_PATH"
-  if target == ""
-    then putStrLn "No migration name provided"
-    else do
+  args <- getArgs
+  case args of
+    [] -> putStrLn "Enter migration name"
+    (target : _) -> do
+      _ <- loadFile defaultConfig
+      dbPath <- getEnv "DB_PATH"
       conn <- open dbPath
-      migrations <- query_ conn "SELECT * from migrations" :: IO [Migrations]
+      migrations <- query_ conn "SELECT * from migrations" :: IO [Migration]
       if include target (Prelude.map (\m -> migrationName m) migrations)
         then putStrLn "Migration already exists"
         else do
