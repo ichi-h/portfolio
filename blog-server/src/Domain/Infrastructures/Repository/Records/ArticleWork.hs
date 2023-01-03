@@ -19,21 +19,22 @@ data ArticleWorkR = ArticleWorkR
     articleWorkRTitle :: Text,
     articleWorkRDescription :: Text,
     articleWorkRThumbnailUrl :: Text,
+    articleWorkRIsDraft :: Int,
     articleWorkRCreatedAt :: UTCTime,
     articleWorkRRevisedAt :: UTCTime,
     articleWorkRPublishedAt :: Maybe UTCTime,
     articleWorkRUnpublishedAt :: Maybe UTCTime,
-    articleWorkRIsDraft :: Int,
+    articleWorkRArticleId :: Int,
     articleWorkRBody :: Text,
     articleWorkRTagId :: Int,
     articleWorkRTagName :: Text
   }
 
 instance FromRow ArticleWorkR where
-  fromRow = ArticleWorkR <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
+  fromRow = ArticleWorkR <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
 
 instance ToRow ArticleWorkR where
-  toRow (ArticleWorkR a b c d e f g h i j k l m o) = toRow (a, b, c, d, e, f, g, h, i, j) ++ toRow (k, l, m, o)
+  toRow (ArticleWorkR a b c d e f g h i j k l m n o) = toRow (a, b, c, d, e, f, g) ++ toRow (h, i, j, k) ++ toRow (l, m, n, o)
 
 articleWorkRToTag :: [ArticleWorkR] -> [Tag]
 articleWorkRToTag records = map (\r -> Tag (articleWorkRTagId r) (articleWorkRTagName r)) records
@@ -53,16 +54,15 @@ articleWorkRToEntity records =
             workTitle = articleWorkRTitle r,
             workDescription = articleWorkRDescription r,
             workThumbnailUrl = articleWorkRThumbnailUrl r,
+            workIsDraft = articleWorkRIsDraft r == 1,
             workCreatedAt = articleWorkRCreatedAt r,
             workRevisedAt = articleWorkRRevisedAt r,
             workPublishedAt = articleWorkRPublishedAt r,
             workUnpublishedAt = articleWorkRUnpublishedAt r,
-            workIsDraft = articleWorkRIsDraft r == 1,
             workTags = articleWorkRToTag (filter (\y -> articleWorkRId r == articleWorkRId y) records),
             workContent =
               Article
-                { articleId = articleWorkRId r,
-                  articleWorkId = articleWorkRId r,
+                { articleId = articleWorkRArticleId r,
                   articleBody = articleWorkRBody r
                 }
           }

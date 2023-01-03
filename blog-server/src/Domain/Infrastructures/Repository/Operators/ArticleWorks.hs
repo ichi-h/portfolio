@@ -12,7 +12,7 @@ import Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR (..),
 
 readAllArticleWorks_ :: Connection -> IO [ArticleWork]
 readAllArticleWorks_ conn = do
-  let select = "SELECT w.*, a.body, t2.* from works w"
+  let select = "SELECT w.*, a.id, a.body, t2.* from works w"
       joinArticles = "INNER JOIN articles a ON w.id = a.work_id"
       joinTaggings = "INNER JOIN taggings t1 ON w.id = t1.work_id"
       joinTags = "INNER JOIN tags t2 ON t1.tag_id = t2.id"
