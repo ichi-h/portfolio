@@ -10,7 +10,7 @@ where
 
 import Database.SQLite.Simple (Connection, Only (..), execute, query_)
 import Domain.Entities.Migration (Migration (..))
-import Domain.Infrastructures.Repository.Tables.Migrations (MigrationT (..))
+import Domain.Infrastructures.Repository.Records.Migration (MigrationR (..))
 
 insertMigration_ :: Connection -> (String, Int) -> IO ()
 insertMigration_ conn (target, nextBatch) = execute conn "INSERT INTO migrations (name, batch) VALUES (?, ?)" (target :: String, nextBatch :: Int)
@@ -20,14 +20,14 @@ deleteMigration_ conn id' = execute conn "DELETE FROM migrations WHERE id = ?" (
 
 readAllMigrations_ :: Connection -> IO [Migration]
 readAllMigrations_ conn = do
-  migrationRecords <- query_ conn "SELECT * from migrations" :: IO [MigrationT]
+  migrationRecords <- query_ conn "SELECT * from migrations" :: IO [MigrationR]
   let migrations =
         Prelude.map
           ( \m ->
               Migration
-                { migrationId = migrationTId m,
-                  migrationName = migrationTName m,
-                  migrationBatch = migrationTBatch m
+                { migrationId = migrationRId m,
+                  migrationName = migrationRName m,
+                  migrationBatch = migrationRBatch m
                 }
           )
           migrationRecords
@@ -35,15 +35,15 @@ readAllMigrations_ conn = do
 
 readLatestMigration_ :: Connection -> IO (Maybe Migration)
 readLatestMigration_ conn = do
-  migrations <- query_ conn "SELECT * from migrations order by batch desc limit 1" :: IO [MigrationT]
+  migrations <- query_ conn "SELECT * from migrations order by batch desc limit 1" :: IO [MigrationR]
   case migrations of
     [] -> pure Nothing
     (m : _) ->
       pure $
         Just
           ( Migration
-              { migrationId = migrationTId m,
-                migrationName = migrationTName m,
-                migrationBatch = migrationTBatch m
+              { migrationId = migrationRId m,
+                migrationName = migrationRName m,
+                migrationBatch = migrationRBatch m
               }
           )

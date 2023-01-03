@@ -35,8 +35,8 @@ library
       Domain.Infrastructures.Repository.Operators.ArticleWorks
       Domain.Infrastructures.Repository.Operators.Migrations
       Domain.Infrastructures.Repository.Operators.RawQuery
-      Domain.Infrastructures.Repository.Tables.ArticleWorks
-      Domain.Infrastructures.Repository.Tables.Migrations
+      Domain.Infrastructures.Repository.Records.ArticleWork
+      Domain.Infrastructures.Repository.Records.Migration
       Domain.UseCases.Articles.GetAll.Execute
       Domain.UseCases.Articles.GetAll.Persistent
       Domain.UseCases.Migrations.Migrate.Execute
