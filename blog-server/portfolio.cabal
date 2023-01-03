@@ -54,6 +54,7 @@ library
       aeson
     , base >=4.7 && <5
     , dotenv
+    , lens
     , servant-server
     , sqlite-simple
     , text
@@ -73,6 +74,7 @@ executable portfolio-exe
       aeson
     , base
     , dotenv
+    , lens
     , portfolio
     , servant-server
     , sqlite-simple
@@ -97,6 +99,7 @@ test-suite portfolio-test
     , hspec
     , hspec-wai
     , hspec-wai-json
+    , lens
     , portfolio
     , servant-server
     , sqlite-simple

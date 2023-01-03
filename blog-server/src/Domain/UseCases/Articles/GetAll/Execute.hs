@@ -3,11 +3,11 @@ module Domain.UseCases.Articles.GetAll.Execute
   )
 where
 
-import Domain.UseCases.Articles.GetAll.Output (GetAllArticlesOutput, articleWorkToOutput)
+import Domain.UseCases.Articles.GetAll.Output (GetAllArticlesOutput, toOutput)
 import Domain.UseCases.Articles.GetAll.Persistent (ReadAllArticleWorks)
 import Prelude
 
 executeGetAllArticle :: ReadAllArticleWorks -> IO [GetAllArticlesOutput]
 executeGetAllArticle readAllArticleWorks = do
   articles <- readAllArticleWorks
-  pure $ map articleWorkToOutput articles
+  pure $ toOutput articles

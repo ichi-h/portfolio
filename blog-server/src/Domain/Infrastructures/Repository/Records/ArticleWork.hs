@@ -1,4 +1,4 @@
-module Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR (..), articleWorkRToEntity) where
+module Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR, articleWorkRToEntity) where
 
 import Data.Text (Text)
 import Data.Time (UTCTime)
@@ -48,22 +48,22 @@ articleWorkRToEntity records =
   map
     ( \r ->
         Work
-          { workId = articleWorkRId r,
-            workCategory = articleWorkRCategory r,
-            workSlug = articleWorkRSlug r,
-            workTitle = articleWorkRTitle r,
-            workDescription = articleWorkRDescription r,
-            workThumbnailUrl = articleWorkRThumbnailUrl r,
-            workIsDraft = articleWorkRIsDraft r == 1,
-            workCreatedAt = articleWorkRCreatedAt r,
-            workRevisedAt = articleWorkRRevisedAt r,
-            workPublishedAt = articleWorkRPublishedAt r,
-            workUnpublishedAt = articleWorkRUnpublishedAt r,
-            workTags = articleWorkRToTag (filter (\y -> articleWorkRId r == articleWorkRId y) records),
-            workContent =
+          { _workId = articleWorkRId r,
+            _workCategory = articleWorkRCategory r,
+            _workSlug = articleWorkRSlug r,
+            _workTitle = articleWorkRTitle r,
+            _workDescription = articleWorkRDescription r,
+            _workThumbnailUrl = articleWorkRThumbnailUrl r,
+            _workIsDraft = articleWorkRIsDraft r == 1,
+            _workCreatedAt = articleWorkRCreatedAt r,
+            _workRevisedAt = articleWorkRRevisedAt r,
+            _workPublishedAt = articleWorkRPublishedAt r,
+            _workUnpublishedAt = articleWorkRUnpublishedAt r,
+            _workTags = articleWorkRToTag (filter (\y -> articleWorkRId r == articleWorkRId y) records),
+            _workContent =
               Article
-                { articleId = articleWorkRArticleId r,
-                  articleBody = articleWorkRBody r
+                { _articleId = articleWorkRArticleId r,
+                  _articleBody = articleWorkRBody r
                 }
           }
     )

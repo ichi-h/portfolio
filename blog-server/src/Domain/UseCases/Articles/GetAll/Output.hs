@@ -1,7 +1,9 @@
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE TemplateHaskell #-}
 
-module Domain.UseCases.Articles.GetAll.Output (GetAllArticlesOutput, articleWorkToOutput) where
+module Domain.UseCases.Articles.GetAll.Output (GetAllArticlesOutput, toOutput) where
 
+import Control.Lens (makeLenses, (^.))
 import Data.Aeson
 import Data.Text (Text)
 import Data.Time (UTCTime)
@@ -9,71 +11,49 @@ import Domain.Entities.Article (Article (..))
 import Domain.Entities.Tag (Tag (..))
 import Domain.Entities.Work (ArticleWork, Work (..))
 import GHC.Generics
-import Prelude
+import Prelude hiding (id)
 
-data TagOutput = TagOutput
-  { tagOutputId :: Int,
-    tagOutputName :: Text
-  }
-  deriving (Generic)
-
-instance ToJSON TagOutput
-
-data ArticleOutput = ArticleOutput
-  { articleOutputId :: Int,
-    articleOutputBody :: Text
-  }
-  deriving (Generic)
-
-instance ToJSON ArticleOutput
+makeLenses ''Work
+makeLenses ''Tag
+makeLenses ''Article
 
 data GetAllArticlesOutput = GetAllArticlesOutput
-  { outputId :: Int,
-    outputCategory :: Text,
-    outputSlug :: Text,
-    outputTitle :: Text,
-    outputDescription :: Text,
-    outputThumbnailUrl :: Text,
-    outputIsDraft :: Bool,
-    outputCreatedAt :: UTCTime,
-    outputRevisedAt :: UTCTime,
-    outputPublishedAt :: Maybe UTCTime,
-    outputUnpublishedAt :: Maybe UTCTime,
-    outputTags :: [TagOutput],
-    outputContent :: ArticleOutput
+  { id :: Int,
+    category :: Text,
+    slug :: Text,
+    title :: Text,
+    description :: Text,
+    body :: Text,
+    thumbnailUrl :: Text,
+    isDraft :: Bool,
+    createdAt :: UTCTime,
+    revisedAt :: UTCTime,
+    publishedAt :: Maybe UTCTime,
+    unpublishedAt :: Maybe UTCTime,
+    tags :: [Text]
   }
   deriving (Generic)
 
 instance ToJSON GetAllArticlesOutput
 
-tagEntityToOutput :: Tag -> TagOutput
-tagEntityToOutput e =
-  TagOutput
-    { tagOutputId = tagId e,
-      tagOutputName = tagName e
-    }
-
-articleEntityToOutput :: Article -> ArticleOutput
-articleEntityToOutput e =
-  ArticleOutput
-    { articleOutputId = articleId e,
-      articleOutputBody = articleBody e
-    }
-
-articleWorkToOutput :: ArticleWork -> GetAllArticlesOutput
-articleWorkToOutput e =
-  GetAllArticlesOutput
-    { outputId = workId e,
-      outputCategory = workCategory e,
-      outputSlug = workSlug e,
-      outputTitle = workTitle e,
-      outputDescription = workDescription e,
-      outputThumbnailUrl = workThumbnailUrl e,
-      outputIsDraft = workIsDraft e,
-      outputCreatedAt = workCreatedAt e,
-      outputRevisedAt = workRevisedAt e,
-      outputPublishedAt = workPublishedAt e,
-      outputUnpublishedAt = workUnpublishedAt e,
-      outputTags = map (\t -> tagEntityToOutput t) $ workTags e,
-      outputContent = articleEntityToOutput $ workContent e
-    }
+toOutput :: [ArticleWork] -> [GetAllArticlesOutput]
+toOutput as =
+  map
+    ( \a ->
+        GetAllArticlesOutput
+          { id = a ^. workId,
+            category = a ^. workCategory,
+            slug = a ^. workSlug,
+            title = a ^. workTitle,
+            description = a ^. workDescription,
+            body = a ^. workContent ^. articleBody,
+            thumbnailUrl = a ^. workThumbnailUrl,
+            isDraft = a ^. workIsDraft,
+            createdAt = a ^. workCreatedAt,
+            revisedAt = a ^. workRevisedAt,
+            publishedAt = a ^. workPublishedAt,
+            unpublishedAt = a ^. workUnpublishedAt,
+            tags = map (\t -> t ^. tagName) $ a ^. workTags
+          }
+    )
+    as

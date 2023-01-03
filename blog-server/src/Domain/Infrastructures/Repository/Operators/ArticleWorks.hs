@@ -8,7 +8,7 @@ where
 import Data.Text (pack)
 import Database.SQLite.Simple (Connection, Query (..), query_)
 import Domain.Entities.Work (ArticleWork)
-import Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR (..), articleWorkRToEntity)
+import Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR, articleWorkRToEntity)
 
 readAllArticleWorks_ :: Connection -> IO [ArticleWork]
 readAllArticleWorks_ conn = do
