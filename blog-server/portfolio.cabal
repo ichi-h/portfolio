@@ -25,14 +25,20 @@ library
       Commands.Migrations.Initialize
       Commands.Migrations.Migrate
       Commands.Migrations.Rollback
-      Domain.Entities.ArticleT
+      Domain.Entities.Article
       Domain.Entities.Entity
       Domain.Entities.Migration
+      Domain.Entities.Tag
+      Domain.Entities.Work
       Domain.Infrastructures.Fs.ReadMigrationFile
       Domain.Infrastructures.Repository.Connection
+      Domain.Infrastructures.Repository.Operators.ArticleWorks
       Domain.Infrastructures.Repository.Operators.Migrations
       Domain.Infrastructures.Repository.Operators.RawQuery
+      Domain.Infrastructures.Repository.Tables.ArticleWorks
       Domain.Infrastructures.Repository.Tables.Migrations
+      Domain.UseCases.Articles.GetAll.Execute
+      Domain.UseCases.Articles.GetAll.Persistent
       Domain.UseCases.Migrations.Migrate.Execute
       Domain.UseCases.Migrations.Migrate.Persistent
       Domain.UseCases.Migrations.Rollback.Execute
