@@ -10,7 +10,7 @@ where
 
 import Database.SQLite.Simple (Connection, Only (..), execute, query_)
 import Domain.Entities.Migration (Migration (..))
-import Domain.Infrastructures.Repository.Records.Migration (MigrationR (..))
+import Domain.Infrastructures.Repository.Records.Migration (MigrationR (..), migrationRToEntity)
 
 insertMigration_ :: Connection -> (String, Int) -> IO ()
 insertMigration_ conn (target, nextBatch) = execute conn "INSERT INTO migrations (name, batch) VALUES (?, ?)" (target :: String, nextBatch :: Int)
@@ -21,16 +21,7 @@ deleteMigration_ conn id' = execute conn "DELETE FROM migrations WHERE id = ?" (
 readAllMigrations_ :: Connection -> IO [Migration]
 readAllMigrations_ conn = do
   migrationRecords <- query_ conn "SELECT * from migrations" :: IO [MigrationR]
-  let migrations =
-        Prelude.map
-          ( \m ->
-              Migration
-                { migrationId = migrationRId m,
-                  migrationName = migrationRName m,
-                  migrationBatch = migrationRBatch m
-                }
-          )
-          migrationRecords
+  let migrations = Prelude.map migrationRToEntity migrationRecords
   pure migrations
 
 readLatestMigration_ :: Connection -> IO (Maybe Migration)
@@ -39,11 +30,4 @@ readLatestMigration_ conn = do
   case migrations of
     [] -> pure Nothing
     (m : _) ->
-      pure $
-        Just
-          ( Migration
-              { migrationId = migrationRId m,
-                migrationName = migrationRName m,
-                migrationBatch = migrationRBatch m
-              }
-          )
+      pure $ Just $ migrationRToEntity m
