@@ -1,5 +1,5 @@
 create table works (
-  id integer primary key autoincrement,
+  id integer primary key,
   category text not null default '',
   slug text not null unique default '',
   title text not null default '',

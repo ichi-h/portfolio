@@ -11,5 +11,5 @@ import Database.SQLite.Simple
 main :: IO ()
 main = do
   conn <- open "./db/portfolio.sqlite3"
-  execute_ conn "CREATE TABLE IF NOT EXISTS migrations (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, batch INTEGER)"
+  execute_ conn "CREATE TABLE IF NOT EXISTS migrations (id INTEGER PRIMARY KEY, name TEXT, batch INTEGER)"
   close conn
