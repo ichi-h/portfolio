@@ -3,6 +3,7 @@
     "Beamable",
     "ghci",
     "Migratable",
+    "taggings",
     "utctime",
     "varchar"
   ]
