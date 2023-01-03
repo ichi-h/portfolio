@@ -45,15 +45,7 @@ export const HomeNav = () => {
           <Stack gap={THEME.size.md}>
             <Link
               type="link"
-              to="/blog"
-              color={THEME.color.mono["900"]}
-              fontSize={THEME.size.xl3}
-            >
-              Blog
-            </Link>
-            <Link
-              type="link"
-              to="#"
+              to="/works?tags=development"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
@@ -61,7 +53,7 @@ export const HomeNav = () => {
             </Link>
             <Link
               type="link"
-              to="#"
+              to="/works?tags=music"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
@@ -69,11 +61,19 @@ export const HomeNav = () => {
             </Link>
             <Link
               type="link"
-              to="#"
+              to="/works?tags=photograph"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
             >
               Photograph
+            </Link>
+            <Link
+              type="link"
+              to="/works?tags=thought"
+              color={THEME.color.mono["900"]}
+              fontSize={THEME.size.xl3}
+            >
+              Thought
             </Link>
           </Stack>
         </Stack>
