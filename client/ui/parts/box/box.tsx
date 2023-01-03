@@ -1,5 +1,7 @@
 import { styled } from "linaria/react";
 
+import { Color } from "@/ui/types";
+
 interface Props {
   children?: React.ReactNode;
   position?: "relative" | "absolute" | "fixed" | "static" | "sticky";
@@ -11,6 +13,7 @@ interface Props {
   width?: string;
   height?: string;
   zIndex?: number;
+  backgroundColor?: Color;
 }
 
 export const Box = styled.div<Props>`
@@ -23,4 +26,5 @@ export const Box = styled.div<Props>`
   width: ${(props) => props.width || "initial"};
   height: ${(props) => props.height || "initial"};
   z-index: ${(props) => props.zIndex || "initial"};
+  background-color: ${(props) => props.backgroundColor || "initial"};
 `;
