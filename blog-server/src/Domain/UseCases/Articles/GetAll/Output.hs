@@ -23,13 +23,9 @@ data GetAllArticlesOutput = GetAllArticlesOutput
     slug :: Text,
     title :: Text,
     description :: Text,
-    body :: Text,
     thumbnailUrl :: Text,
-    isDraft :: Bool,
-    createdAt :: UTCTime,
     revisedAt :: UTCTime,
     publishedAt :: Maybe UTCTime,
-    unpublishedAt :: Maybe UTCTime,
     tags :: [Text]
   }
   deriving (Generic)
@@ -46,13 +42,9 @@ toOutput as =
             slug = a ^. workSlug,
             title = a ^. workTitle,
             description = a ^. workDescription,
-            body = a ^. workContent ^. articleBody,
             thumbnailUrl = a ^. workThumbnailUrl,
-            isDraft = a ^. workIsDraft,
-            createdAt = a ^. workCreatedAt,
             revisedAt = a ^. workRevisedAt,
             publishedAt = a ^. workPublishedAt,
-            unpublishedAt = a ^. workUnpublishedAt,
             tags = map (\t -> t ^. tagName) $ a ^. workTags
           }
     )

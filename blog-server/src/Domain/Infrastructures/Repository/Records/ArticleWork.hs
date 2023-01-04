@@ -19,7 +19,6 @@ data ArticleWorkR = ArticleWorkR
     articleWorkRTitle :: Text,
     articleWorkRDescription :: Text,
     articleWorkRThumbnailUrl :: Text,
-    articleWorkRIsDraft :: Int,
     articleWorkRCreatedAt :: UTCTime,
     articleWorkRRevisedAt :: UTCTime,
     articleWorkRPublishedAt :: Maybe UTCTime,
@@ -31,10 +30,10 @@ data ArticleWorkR = ArticleWorkR
   }
 
 instance FromRow ArticleWorkR where
-  fromRow = ArticleWorkR <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
+  fromRow = ArticleWorkR <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
 
 instance ToRow ArticleWorkR where
-  toRow (ArticleWorkR a b c d e f g h i j k l m n o) = toRow (a, b, c, d, e, f, g) ++ toRow (h, i, j, k) ++ toRow (l, m, n, o)
+  toRow (ArticleWorkR a b c d e f g h i j k l m n) = toRow (a, b, c, d, e, f, g, h, i, j) ++ toRow (k, l, m, n)
 
 articleWorkRToTag :: [ArticleWorkR] -> [Tag]
 articleWorkRToTag records = map (\r -> Tag (articleWorkRTagId r) (articleWorkRTagName r)) records
@@ -54,7 +53,6 @@ articleWorkRToEntity records =
             _workTitle = articleWorkRTitle r,
             _workDescription = articleWorkRDescription r,
             _workThumbnailUrl = articleWorkRThumbnailUrl r,
-            _workIsDraft = articleWorkRIsDraft r == 1,
             _workCreatedAt = articleWorkRCreatedAt r,
             _workRevisedAt = articleWorkRRevisedAt r,
             _workPublishedAt = articleWorkRPublishedAt r,

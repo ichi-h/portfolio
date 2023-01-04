@@ -1,4 +1,4 @@
-import { Article } from "@/api/articles/getAllAricles";
+import { Article } from "@/api/articles/getAllArticles";
 import { THEME } from "@/ui/base";
 import { Box } from "@/ui/parts/box/box";
 
@@ -15,7 +15,6 @@ export const WorksTemplate = (props: Props) => {
           <h2>title: {article.title}</h2>
           <p>id: {article.id}</p>
           <p>description: {article.description}</p>
-          <p>body: {article.body}</p>
         </div>
       ))}
     </Box>
