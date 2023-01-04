@@ -14,7 +14,6 @@ data Work c = Work
     _workTitle :: Text,
     _workDescription :: Text,
     _workThumbnailUrl :: Text,
-    _workIsDraft :: Bool,
     _workCreatedAt :: UTCTime,
     _workRevisedAt :: UTCTime,
     _workPublishedAt :: Maybe UTCTime,
