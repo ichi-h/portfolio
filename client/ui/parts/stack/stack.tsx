@@ -8,6 +8,7 @@ interface Props {
   justify?: "center" | "flex-start" | "flex-end" | "space-between";
   align?: "center" | "flex-start" | "flex-end" | "baseline";
   direction?: "row" | "column";
+  wrap?: "nowrap" | "wrap" | "wrap-reverse";
   gap?: Size;
   width?: string;
   height?: string;
@@ -27,6 +28,7 @@ export const Stack = styled.div<Props>`
   justify-content: ${(props) => props.justify || "center"};
   align-items: ${(props) => props.align || "center"};
   flex-direction: ${(props) => props.direction || "row"};
+  flex-wrap: ${(props) => props.wrap || "nowrap"};
   gap: ${(props) => props.gap || "0"};
   width: ${(props) => props.width || "initial"};
   height: ${(props) => props.height || "initial"};
