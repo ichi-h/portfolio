@@ -1,5 +1,6 @@
 import { styled } from "linaria/react";
 
+import { THEME } from "@/ui/base";
 import { Size } from "@/ui/types";
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   backgroundColor?: string;
   border?: string;
   borderRadius?: string;
+  isShadow?: boolean;
 }
 
 export const Stack = styled.div<Props>`
@@ -36,4 +38,6 @@ export const Stack = styled.div<Props>`
   background-color: ${(props) => props.backgroundColor || "initial"};
   border: ${(props) => props.border || "initial"};
   border-radius: ${(props) => props.borderRadius || "initial"};
+  box-shadow: ${(props) =>
+    props.isShadow ? THEME.color.shadow["000"] : "initial"};
 `;
