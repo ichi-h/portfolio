@@ -1,6 +1,8 @@
 export const SIZE = {
   /** 0px */
   none: "0",
+  /** 4px */
+  xs4: "0.25rem",
   /** 8px */
   xs3: "0.5rem",
   /** 10px */
