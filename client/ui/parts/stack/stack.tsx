@@ -10,9 +10,17 @@ interface Props {
   gap?: Size;
   width?: string;
   height?: string;
+  maxWidth?: string;
+  maxHeight?: string;
+  minWidth?: string;
+  minHeight?: string;
+  padding?: string;
+  backgroundColor?: string;
+  border?: string;
+  borderRadius?: string;
 }
 
-const StyledStack = styled.div<Props>`
+export const Stack = styled.div<Props>`
   display: flex;
   justify-content: ${(props) => props.justify || "center"};
   align-items: ${(props) => props.align || "center"};
@@ -20,19 +28,12 @@ const StyledStack = styled.div<Props>`
   gap: ${(props) => props.gap || "0"};
   width: ${(props) => props.width || "initial"};
   height: ${(props) => props.height || "initial"};
+  max-width: ${(props) => props.maxWidth || "initial"};
+  max-height: ${(props) => props.maxHeight || "initial"};
+  min-width: ${(props) => props.minWidth || "initial"};
+  min-height: ${(props) => props.minHeight || "initial"};
+  padding: ${(props) => props.padding || "initial"};
+  background-color: ${(props) => props.backgroundColor || "initial"};
+  border: ${(props) => props.border || "initial"};
+  border-radius: ${(props) => props.borderRadius || "initial"};
 `;
-
-export const Stack = (props: Props) => {
-  return (
-    <StyledStack
-      justify={props.justify}
-      align={props.align}
-      direction={props.direction}
-      gap={props.gap}
-      width={props.width}
-      height={props.height}
-    >
-      {props.children}
-    </StyledStack>
-  );
-};
