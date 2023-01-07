@@ -8,7 +8,7 @@ export interface Article {
   description: string;
   thumbnailUrl: string;
   revisedAt: string;
-  publishedAt: string | null;
+  publishedAt: string;
   tags: string[];
 }
 
