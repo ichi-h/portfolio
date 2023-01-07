@@ -44,7 +44,6 @@ export const HomeNav = () => {
           </Headline>
           <Stack gap={THEME.size.md}>
             <Link
-              type="link"
               to="/works?tags=development"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
@@ -52,7 +51,6 @@ export const HomeNav = () => {
               Development
             </Link>
             <Link
-              type="link"
               to="/works?tags=music"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
@@ -60,7 +58,6 @@ export const HomeNav = () => {
               Music
             </Link>
             <Link
-              type="link"
               to="/works?tags=photograph"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}
@@ -68,7 +65,6 @@ export const HomeNav = () => {
               Photograph
             </Link>
             <Link
-              type="link"
               to="/works?tags=thought"
               color={THEME.color.mono["900"]}
               fontSize={THEME.size.xl3}

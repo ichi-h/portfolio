@@ -9,7 +9,6 @@ interface StyleProps {
 }
 
 interface Props extends StyleProps {
-  type: "anchor";
   children?: React.ReactNode;
   href: string;
   blank?: boolean;
