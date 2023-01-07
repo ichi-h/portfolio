@@ -7,6 +7,7 @@ interface Props {
   lineHeight?: string;
   color?: string;
   verticalAlign?: "center" | "flex-start" | "flex-end" | "baseline";
+  lineClamp?: number;
 }
 
 export const Text = styled.span<Props>`
@@ -15,4 +16,8 @@ export const Text = styled.span<Props>`
   line-height: ${(props) => props.lineHeight || "initial"};
   color: ${(props) => props.color || "initial"};
   vertical-align: ${(props) => props.verticalAlign || "center"};
+  display: ${(props) => (props.lineClamp ? "-webkit-box" : "initial")};
+  -webkit-box-orient: ${(props) => (props.lineClamp ? "vertical" : "initial")};
+  -webkit-line-clamp: ${(props) => props.lineClamp || "initial"};
+  overflow: ${(props) => (props.lineClamp ? "hidden" : "initial")};
 `;
