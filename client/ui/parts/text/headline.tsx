@@ -21,6 +21,7 @@ const color = (props: StyleProps) => props.color || defaultProps.color;
 export const StyledH1 = styled.h1<StyleProps>`
   color: ${color};
   font-size: ${THEME.size.xl7};
+  text-align: center;
 `;
 export const StyledH2 = styled.h2<StyleProps>`
   color: ${color};
