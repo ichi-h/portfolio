@@ -27,4 +27,5 @@ export const SIZE = {
   xl6: "2.5rem",
   /** 48px */
   xl7: "3rem",
+  pcMaxWidth: "1200px",
 } as const;
