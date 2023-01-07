@@ -1,32 +1,25 @@
 import { right, left, Either } from "@/utils/either";
 import { useEnv } from "@/utils/env";
 
-export interface ResponseError {
-  status: number;
-  statusText: string;
-}
-
 const customFetch = async (
   input: RequestInfo,
   init?: RequestInit,
 ) => {
   const { APP_URL } = useEnv();
+  const url = `${APP_URL}${input}`;
   if (typeof input === "string") {
-    return fetch(`${APP_URL}${input}`, init);
+    return fetch(url, init);
   }
-  return fetch({ ...input, url: `${APP_URL}${input.url}` }, init);
+  return fetch({ ...input, url }, init);
 };
 
-export const fetchJson = async <T>(
+export const fetchJson = async <E, T>(
   input: RequestInfo,
   init?: RequestInit,
-): Promise<Either<ResponseError, T>> => {
+): Promise<Either<E, T>> => {
   const response = await customFetch(input, init);
   if (!response.ok) {
-    return left({
-      status: response.status,
-      statusText: response.statusText,
-    });
+    return left(await response.json() as E);
   }
   return right(await response.json() as T);
 };
