@@ -2,3 +2,7 @@ html {
   font-family: "Klee One", cursive;
   background-color: #222222;
 }
+
+svg {
+  vertical-align: middle;
+}
