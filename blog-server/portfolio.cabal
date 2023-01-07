@@ -35,8 +35,10 @@ library
       Domain.Infrastructures.Repository.Operators.ArticleWorks
       Domain.Infrastructures.Repository.Operators.Migrations
       Domain.Infrastructures.Repository.Operators.RawQuery
+      Domain.Infrastructures.Repository.Operators.Tags
       Domain.Infrastructures.Repository.Records.ArticleWork
       Domain.Infrastructures.Repository.Records.Migration
+      Domain.Infrastructures.Repository.Records.Tag
       Domain.UseCases.Articles.GetAll.Execute
       Domain.UseCases.Articles.GetAll.Output
       Domain.UseCases.Articles.GetAll.Persistent
@@ -44,6 +46,9 @@ library
       Domain.UseCases.Migrations.Migrate.Persistent
       Domain.UseCases.Migrations.Rollback.Execute
       Domain.UseCases.Migrations.Rollback.Persistent
+      Domain.UseCases.Tags.GetAll.Execute
+      Domain.UseCases.Tags.GetAll.Output
+      Domain.UseCases.Tags.GetAll.Persistent
       Lib
   other-modules:
       Paths_portfolio
