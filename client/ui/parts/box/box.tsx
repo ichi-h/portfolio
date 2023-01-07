@@ -23,6 +23,7 @@ interface Props {
   borderRadius?: string;
   padding?: string;
   isShadow?: boolean;
+  align?: "center" | "right" | "left";
 }
 
 const Div = styled.div<Props>`
@@ -45,6 +46,7 @@ const Div = styled.div<Props>`
   padding: ${(props) => props.padding || "initial"};
   box-shadow: ${(props) =>
     props.isShadow ? THEME.color.shadow["000"] : "initial"};
+  text-align: ${(props) => props.align || "initial"};
 `;
 
 const Nav = styled.nav<Props>`
@@ -67,6 +69,7 @@ const Nav = styled.nav<Props>`
   padding: ${(props) => props.padding || "initial"};
   box-shadow: ${(props) =>
     props.isShadow ? THEME.color.shadow["000"] : "initial"};
+  text-align: ${(props) => props.align || "initial"};
 `;
 
 const Header = styled.header<Props>`
@@ -89,6 +92,7 @@ const Header = styled.header<Props>`
   padding: ${(props) => props.padding || "initial"};
   box-shadow: ${(props) =>
     props.isShadow ? THEME.color.shadow["000"] : "initial"};
+  text-align: ${(props) => props.align || "initial"};
 `;
 
 const Footer = styled.footer<Props>`
@@ -111,6 +115,7 @@ const Footer = styled.footer<Props>`
   padding: ${(props) => props.padding || "initial"};
   box-shadow: ${(props) =>
     props.isShadow ? THEME.color.shadow["000"] : "initial"};
+  text-align: ${(props) => props.align || "initial"};
 `;
 
 export const Box = (props: Props) => {
