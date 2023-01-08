@@ -1,17 +1,38 @@
 import { useState } from "react";
 
+import { PRIMARY_TAGS } from "@/constants/tags";
 import { ArticleSummary } from "@/core/entities/article";
 
+interface TagStatus {
+  label: string;
+  isPrimary: boolean;
+  selected: boolean;
+}
+
+const unique = <T>(arr: T[]) => [...new Set(arr)];
+
 export const useFilteredArticles = (init: ArticleSummary[]) => {
+  const tags = unique(init.flatMap((a) => a.tags))
+    .filter((t) => !PRIMARY_TAGS.includes(t))
+    .sort();
   const [searchText, setSearchText] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-  const baseTags = ["development", "music", "photograph", "thought"];
-  const tags = [...new Set([...baseTags, ...init.flatMap((a) => a.tags)])];
+  const [tagStatuses, setTagStatuses] = useState<TagStatus[]>(
+    tags.concat(PRIMARY_TAGS).map((t) => ({
+      label: t,
+      isPrimary: PRIMARY_TAGS.includes(t),
+      selected: false,
+    }))
+  );
   const filteredArticles = init.filter((a) => {
-    const hasTag = selectedTags.length === 0 || selectedTags.every((t) => a.tags.includes(t));
+    const primarySelected = tagStatuses.filter((t) => t.isPrimary && t.selected);
+    const normalSelected = tagStatuses.filter((t) => !t.isPrimary && t.selected);
+    const hasPrimaryTag = primarySelected.length === 0 ||
+      primarySelected.some((t) => a.tags.includes(t.label));
+    const hasTag = normalSelected.length === 0 ||
+      normalSelected.every((t) => a.tags.includes(t.label));
     const hasTitle = a.title.toLowerCase().includes(searchText.toLowerCase());
     const hasDescription = a.description.toLowerCase().includes(searchText.toLowerCase());
-    return hasTag && (hasTitle || hasDescription);
+    return hasPrimaryTag && hasTag && (hasTitle || hasDescription);
   });
-  return { filteredArticles, searchText, setSearchText, selectedTags, setSelectedTags, tags };
+  return { filteredArticles, searchText, setSearchText, tagStatuses, setTagStatuses };
 };
