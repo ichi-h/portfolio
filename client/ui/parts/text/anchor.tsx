@@ -12,6 +12,7 @@ interface Props extends StyleProps {
   children?: React.ReactNode;
   href: string;
   blank?: boolean;
+  rel?: string;
 }
 
 const defaultProps = {
@@ -22,7 +23,7 @@ const defaultProps = {
 export const StyledAnchor = styled.a<StyleProps>`
   color: ${(props) => props.color || defaultProps.color};
   text-decoration: none;
-  font-size: ${(props) => props.fontSize || defaultProps.fontSize};
+  font-size: ${(props) => props.fontSize || "initial"};
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -34,7 +35,7 @@ export const Anchor = (props: Props) => {
     <StyledAnchor
       href={props.href}
       target={props.blank ? "_blank" : "_self"}
-      rel={props.blank ? "noopener noreferrer" : ""}
+      rel={`${props.rel || ""} ${props.blank ? "noopener noreferrer" : ""}`}
       color={props.color}
       fontSize={props.fontSize}
     >
