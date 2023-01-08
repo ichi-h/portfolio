@@ -1,14 +1,13 @@
-import { styled } from "linaria/react";
+import { css } from "linaria";
 
-interface Props {
-  transition: string;
-}
-
-export const Hover = styled.div<Props>`
-  transition: ${(props: Props) => props.transition};
+const hoverStyle = css`
+  transition: 0.1s;
   cursor: pointer;
-  filter: brightness(2);
   &:hover {
     transform: scale(1.02);
   }
 `;
+
+export const Hover = ({ children }: { children: React.ReactNode }) => {
+  return <div className={hoverStyle}>{children}</div>;
+};

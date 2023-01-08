@@ -20,7 +20,7 @@ export const WorksCard = ({ article }: Props) => {
   };
 
   return (
-    <Hover key={article.id} transition="0.1s">
+    <Hover key={article.id}>
       <Link
         to={`/works/${article.category}/${article.slug}`}
         color={THEME.color.mono["000"]}
