@@ -1,10 +1,11 @@
 import Head from "next/head";
 
-import { ArticleError, getAllArticles } from "@/api/articles/getAllArticles";
+import { getAllArticles } from "@/api/articles/getAllArticles";
 import { ArticleSummary } from "@/core/entities/article";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredArticles } from "@/features/works/useFilteredArticles";
 import { WorksContext } from "@/features/works/worksContext";
+import { ErrorResponse } from "@/types/response";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 import { either } from "@/utils/either";
 
@@ -16,7 +17,7 @@ export const getStaticProps = async () => {
   const response = await getAllArticles();
   const onLeft = () => [] as ArticleSummary[];
   const onRight = (articles: ArticleSummary[]) => articles;
-  const articles = either<ArticleError, ArticleSummary[], ArticleSummary[]>(
+  const articles = either<ErrorResponse, ArticleSummary[], ArticleSummary[]>(
     onLeft
   )(onRight)(response);
   return {
