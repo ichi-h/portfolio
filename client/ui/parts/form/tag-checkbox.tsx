@@ -34,6 +34,13 @@ const StyledSpan = styled.span<StyleProps>`
   cursor: pointer;
   padding: 0 ${THEME.size.xs3};
   user-select: none;
+  &::before {
+    content: "#";
+  }
+  &:hover {
+    background-color: ${(props) =>
+      props.isChecked ? THEME.color.mono["000"] : THEME.color.mono["700"]};
+  }
 `;
 
 export const TagCheckbox = ({
