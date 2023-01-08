@@ -19,11 +19,11 @@ getAllArticleWorks = do
   liftIO $ closeDB conn
   pure result
 
-getArticleWork :: Int -> Handler GetArticleOutput
-getArticleWork workId = do
+getArticleWork :: String -> Handler GetArticleOutput
+getArticleWork slug = do
   conn <- liftIO (connectDB)
   let readArticleWork = readArticleWork_ conn
-  result <- liftIO $ executeGetArticle readArticleWork workId
+  result <- liftIO $ executeGetArticle readArticleWork slug
   case result of
     Left msg -> throwError $ err404 {errBody = encodeUtf8 $ pack msg}
     Right a -> pure a

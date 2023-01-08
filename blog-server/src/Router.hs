@@ -13,7 +13,7 @@ type V1Prefix uri = "api" :> "v1" :> uri
 
 type API =
   V1Prefix ("works" :> "articles" :> Get '[JSON] [GetAllArticlesOutput])
-    :<|> V1Prefix ("works" :> "articles" :> Capture "workId" Int :> Get '[JSON] GetArticleOutput)
+    :<|> V1Prefix ("works" :> "articles" :> Capture "slug" String :> Get '[JSON] GetArticleOutput)
 
 server :: Server API
 server =

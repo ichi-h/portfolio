@@ -5,4 +5,4 @@ where
 
 import Domain.Entities.Work (ArticleWork)
 
-type ReadArticleWork = Int -> IO (Either String ArticleWork)
+type ReadArticleWork = String -> IO (Either String ArticleWork)
