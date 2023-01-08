@@ -4,6 +4,7 @@ import { useMounted } from "@/hooks/useMounted";
 import Me from "@/public/assets/images/me.jpg";
 import { THEME } from "@/ui/base";
 import { Fade } from "@/ui/parts/animation/fade";
+import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
 import { Avatar } from "@/ui/parts/image/avatar";
 import { Stack } from "@/ui/parts/stack/stack";
@@ -33,14 +34,18 @@ export const HomeNav = () => {
           align="center"
           gap={THEME.size.md}
         >
-          <Avatar
-            src={Me.src}
-            width="180px"
-            height="180px"
-            shadow={`10px 10px 30px ${THEME.color.mono["000"]}44`}
-          />
+          <Hover>
+            <Link to="/me">
+              <Avatar
+                src={Me.src}
+                width="180px"
+                height="180px"
+                shadow={`10px 10px 30px ${THEME.color.mono["000"]}44`}
+              />
+            </Link>
+          </Hover>
           <Headline level={1} color={THEME.color.mono["900"]}>
-            ichi-h
+            ichi-h.com
           </Headline>
           <Stack gap={THEME.size.md}>
             <Link
