@@ -41,6 +41,9 @@ library
       Domain.Infrastructures.Repository.Records.ArticleWork
       Domain.Infrastructures.Repository.Records.Migration
       Domain.Infrastructures.Repository.Records.Tag
+      Domain.UseCases.Articles.Get.Execute
+      Domain.UseCases.Articles.Get.Output
+      Domain.UseCases.Articles.Get.Persistent
       Domain.UseCases.Articles.GetAll.Execute
       Domain.UseCases.Articles.GetAll.Output
       Domain.UseCases.Articles.GetAll.Persistent
