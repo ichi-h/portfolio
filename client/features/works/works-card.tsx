@@ -40,7 +40,7 @@ export const WorksCard = ({ article }: Props) => {
               src={article.thumbnailUrl}
               alt={article.title}
               width="100%"
-              height="100px"
+              height="166px"
             />
             <Headline level={2} fontSize={THEME.size.lg}>
               <Text lineClamp={2}>{article.title}</Text>

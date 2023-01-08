@@ -39,7 +39,7 @@ const StyledErrorImage = styled.div<StyleProps>`
   min-width: ${(props: StyleProps) => props.minWidth || "initial"};
   min-height: ${(props: StyleProps) => props.minHeight || "initial"};
   border-radius: ${(props: StyleProps) => props.borderRadius || "initial"};
-  background-color: ${THEME.color.mono["300"]};
+  background-color: ${THEME.color.mono["500"]};
   display: flex;
   justify-content: center;
   align-items: center;
