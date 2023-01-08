@@ -22,9 +22,11 @@ source-repository head
 
 library
   exposed-modules:
+      App
       Commands.Migrations.Initialize
       Commands.Migrations.Migrate
       Commands.Migrations.Rollback
+      Controllers.Articles
       Domain.Entities.Article
       Domain.Entities.Entity
       Domain.Entities.Migration
@@ -49,7 +51,7 @@ library
       Domain.UseCases.Tags.GetAll.Execute
       Domain.UseCases.Tags.GetAll.Output
       Domain.UseCases.Tags.GetAll.Persistent
-      Lib
+      Router
   other-modules:
       Paths_portfolio
   hs-source-dirs:
