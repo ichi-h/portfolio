@@ -1,5 +1,7 @@
 import { styled } from "linaria/react";
 
+import { THEME } from "@/ui/base";
+
 interface Props {
   children?: React.ReactNode;
   fontSize?: string;
@@ -14,7 +16,7 @@ export const Text = styled.span<Props>`
   font-size: ${(props) => props.fontSize || "initial"};
   font-weight: ${(props) => props.fontWeight || "initial"};
   line-height: ${(props) => props.lineHeight || "initial"};
-  color: ${(props) => props.color || "initial"};
+  color: ${(props) => props.color || THEME.color.mono["000"]};
   vertical-align: ${(props) => props.verticalAlign || "center"};
   display: ${(props) => (props.lineClamp ? "-webkit-box" : "initial")};
   -webkit-box-orient: ${(props) => (props.lineClamp ? "vertical" : "initial")};
