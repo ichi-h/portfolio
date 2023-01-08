@@ -27,7 +27,11 @@ export const WorksTags = () => {
   }, [tagCheckboxes, setSelectedTags]);
 
   return (
-    <Stack gap={THEME.size.md} wrap="wrap" maxWidth="500px">
+    <Stack
+      gap={THEME.size.md}
+      wrap="wrap"
+      maxWidth={`calc(${THEME.size.pcMaxWidth} / 2)`}
+    >
       {tagCheckboxes.map((tag) => (
         <TagCheckbox
           key={tag.label}
