@@ -31,7 +31,7 @@ const Home: NextPage<Props> = ({ articles }) => {
         <title>Works - ichi-h.com</title>
       </Head>
       <WorksContext.Provider value={provider}>
-        <WorksTemplate articles={articles} />
+        <WorksTemplate />
       </WorksContext.Provider>
     </>
   );
