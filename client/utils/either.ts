@@ -29,29 +29,31 @@ export const right = <L, R>(right: R): Either<L, R> => {
 // either :: (a -> c) -> (b -> c) -> Either a b -> c
 export const either =
   <L, R, T>(onLeft: (left: L) => T) =>
-    (onRight: (right: R) => T) =>
-      (either: Either<L, R>): T => {
-        switch (which(either)) {
-          case "left": return onLeft(value(either) as L);
-          case "right": return onRight(value(either) as R);
-        }
-      };
+  (onRight: (right: R) => T) =>
+  (either: Either<L, R>): T => {
+    switch (which(either)) {
+      case "left":
+        return onLeft(value(either) as L);
+      case "right":
+        return onRight(value(either) as R);
+    }
+  };
 
 // fromLeft:: a -> Either a b -> a
 export const fromLeft =
   <L, R>(left: L) =>
-    (either: Either<L, R>): L => {
-      if (which(either) === "left") return value(either) as L;
-      return left;
-    };
+  (either: Either<L, R>): L => {
+    if (which(either) === "left") return value(either) as L;
+    return left;
+  };
 
 // fromRight:: b -> Either a b -> b
 export const fromRight =
   <L, R>(right: R) =>
-    (either: Either<L, R>): R => {
-      if (which(either) === "right") return value(either) as R;
-      return right;
-    };
+  (either: Either<L, R>): R => {
+    if (which(either) === "right") return value(either) as R;
+    return right;
+  };
 
 // isLeft:: Either a b -> Bool
 export const isLeft = <L, R>(either: Either<L, R>): boolean => {

@@ -6,6 +6,5 @@ export interface ArticleError {
   message: string;
 }
 
-export const getAllArticles = () => fetchJson<ArticleError, ArticleSummary[]>(
-  "/api/v1/works/articles"
-);
+export const getAllArticles = () =>
+  fetchJson<ArticleError, ArticleSummary[]>("/api/v1/works/articles");

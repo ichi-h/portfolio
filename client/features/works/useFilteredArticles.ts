@@ -24,15 +24,29 @@ export const useFilteredArticles = (init: ArticleSummary[]) => {
     }))
   );
   const filteredArticles = init.filter((a) => {
-    const primarySelected = tagStatuses.filter((t) => t.isPrimary && t.selected);
-    const normalSelected = tagStatuses.filter((t) => !t.isPrimary && t.selected);
-    const hasPrimaryTag = primarySelected.length === 0 ||
+    const primarySelected = tagStatuses.filter(
+      (t) => t.isPrimary && t.selected
+    );
+    const normalSelected = tagStatuses.filter(
+      (t) => !t.isPrimary && t.selected
+    );
+    const hasPrimaryTag =
+      primarySelected.length === 0 ||
       primarySelected.some((t) => a.tags.includes(t.label));
-    const hasTag = normalSelected.length === 0 ||
+    const hasTag =
+      normalSelected.length === 0 ||
       normalSelected.every((t) => a.tags.includes(t.label));
     const hasTitle = a.title.toLowerCase().includes(searchText.toLowerCase());
-    const hasDescription = a.description.toLowerCase().includes(searchText.toLowerCase());
+    const hasDescription = a.description
+      .toLowerCase()
+      .includes(searchText.toLowerCase());
     return hasPrimaryTag && hasTag && (hasTitle || hasDescription);
   });
-  return { filteredArticles, searchText, setSearchText, tagStatuses, setTagStatuses };
+  return {
+    filteredArticles,
+    searchText,
+    setSearchText,
+    tagStatuses,
+    setTagStatuses,
+  };
 };
