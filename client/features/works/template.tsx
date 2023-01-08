@@ -1,6 +1,7 @@
 import HomeImage from "@/public/assets/images/home.jpg";
 import { THEME } from "@/ui/base";
 import { GlobalNav } from "@/ui/components/global-nav";
+import { HorizonRole } from "@/ui/parts/horizon-role";
 import { BgImageLayout } from "@/ui/parts/layouts/bg-image-layout";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
@@ -26,6 +27,7 @@ export const WorksTemplate = () => {
           <Headline level={1}>Works</Headline>
           <WorksTags />
           <WorksSearch />
+          <HorizonRole />
           <WorksList />
         </Stack>
       </Stack>
