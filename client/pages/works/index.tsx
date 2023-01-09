@@ -15,14 +15,18 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
   const response = await getAllArticles();
-  const onLeft = () => [] as ArticleSummary[];
-  const onRight = (articles: ArticleSummary[]) => articles;
-  const articles = either<ErrorResponse, ArticleSummary[], ArticleSummary[]>(
+  const onLeft = (e: ErrorResponse) => ({
+    props: {
+      articles: [] as ArticleSummary[],
+      message: e.message,
+    },
+  });
+  const onRight = (articles: ArticleSummary[]) => ({
+    props: { articles, message: "" },
+  });
+  return either<ErrorResponse, ArticleSummary[], ReturnType<typeof onRight>>(
     onLeft
   )(onRight)(response);
-  return {
-    props: { articles },
-  };
 };
 
 const Home: NextPage<Props> = ({ articles }) => {
