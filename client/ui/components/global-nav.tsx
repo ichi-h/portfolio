@@ -15,7 +15,7 @@ export const GlobalNav = () => {
         <Stack
           justify="space-between"
           align="center"
-          width={THEME.size.pcMaxWidth}
+          width={`${THEME.breakPoint.lg}px`}
         >
           <Box>
             <Link

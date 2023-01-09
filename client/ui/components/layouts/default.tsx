@@ -21,7 +21,7 @@ export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
               borderRadius={THEME.size.xs3}
               padding={`${THEME.size.xl3}`}
               width="100%"
-              maxWidth={THEME.size.pcMaxWidth}
+              maxWidth={`${THEME.breakPoint.lg}px`}
             >
               {children}
             </Stack>
