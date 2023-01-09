@@ -1,6 +1,7 @@
 import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
+import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { getArticle } from "@/api/articles/getArticle";
 import { ARTICLE_SLUGS } from "@/constants/articlePaths";
@@ -77,6 +78,17 @@ const ArticlePage: NextPage<Props> = ({
     <>
       <Head>
         <title>{article.title} - ichi-h.com</title>
+        <meta name="description" content={article.description} />
+        <meta name="keywords" content={article.tags.join(",")} />
+        <meta property="og:title" content={`${article.title} - ichi-h.com`} />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:url"
+          content={`https://ichi-h.com/works/articles/${article.slug}`}
+        />
+        <meta property="og:image" content={OGPBG.src} />
+        <meta property="og:site_name" content="ichi-h.com" />
+        <meta property="og:description" content={article.description} />
       </Head>
       <DefaultLayout>
         <Headline level={1} fontSize={THEME.size.xl4}>

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { getAllArticles } from "@/api/articles/getAllArticles";
 import { ArticleSummary } from "@/core/entities/article";
@@ -35,6 +36,14 @@ const Home: NextPage<Props> = ({ articles }) => {
     <>
       <Head>
         <title>Works - ichi-h.com</title>
+        <link rel="canonical" href="https://ichi-h.com/works" />
+        <meta name="description" content="Works - ichi-h.com" />
+        <meta property="og:title" content="Works - ichi-h.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://ichi-h.com/works" />
+        <meta property="og:image" content={OGPBG.src} />
+        <meta property="og:site_name" content="ichi-h.com" />
+        <meta property="og:description" content="Works - ichi-h.com" />
       </Head>
       <WorksContext.Provider value={provider}>
         <DefaultLayout>

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { THEME } from "@/ui/base";
 import { DefaultLayout } from "@/ui/components/layouts/default";
@@ -12,6 +13,14 @@ const Contact: NextPage = () => {
     <>
       <Head>
         <title>Contact - ichi-h.com</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="description" content="Contact - ichi-h.com" />
+        <meta property="og:title" content="Contact - ichi-h.com" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://ichi-h.com" />
+        <meta property="og:image" content={OGPBG.src} />
+        <meta property="og:site_name" content="ichi-h.com" />
+        <meta property="og:description" content="Contact - ichi-h.com" />
       </Head>
       <DefaultLayout>
         <Headline level={1}>Contact</Headline>
