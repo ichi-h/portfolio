@@ -19,7 +19,7 @@ export const GlobalFooter = () => {
           blank={true}
         >
           <img
-            alt="クリエイティブ・コモンズ・ライセンス"
+            alt="Creative Commons License"
             src="https://i.creativecommons.org/l/by/4.0/88x31.png"
           />
         </Anchor>
