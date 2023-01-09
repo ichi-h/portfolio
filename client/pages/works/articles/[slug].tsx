@@ -1,4 +1,5 @@
 import hljs from "highlight.js";
+import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
 
 import { getArticle } from "@/api/articles/getArticle";
@@ -19,6 +20,8 @@ import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/formatDate";
 
 import type { InferGetStaticPropsType, NextPage } from "next";
+
+hljs.registerLanguage("python", python);
 
 export async function getStaticPaths() {
   return {
@@ -68,15 +71,12 @@ const ArticlePage: NextPage<Props> = ({
   body: string;
 }) => {
   useMounted(() => {
-    if (typeof window === "undefined") return;
     hljs.highlightAll();
   });
   return (
     <>
       <Head>
         <title>{article.title} - ichi-h.com</title>
-        <link rel="stylesheet" href="/assets/css/atom-one-dark.min.css" />
-        <script src="/assets/js/highlight.min.js" defer />
       </Head>
       <DefaultLayout>
         <Headline level={1} fontSize={THEME.size.xl4}>
