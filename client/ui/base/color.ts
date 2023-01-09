@@ -8,7 +8,10 @@ export const COLOR = {
     "900": "#ffffff",
   },
   blue: {
-    "500": "#0071b0",
+    "500": "#008cda",
+  },
+  red: {
+    "500": "#db5457",
   },
   shadow: {
     "000": "0 0 10px rgba(0, 0, 0, 0.2)",
