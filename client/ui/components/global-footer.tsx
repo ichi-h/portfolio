@@ -1,3 +1,4 @@
+import { COPY_WRITE } from "@/constants/copyright";
 import { THEME } from "@/ui/base";
 import { Box } from "@/ui/parts/box/box";
 import { Stack } from "@/ui/parts/stack/stack";
@@ -34,9 +35,7 @@ export const GlobalFooter = () => {
           </Anchor>
           .
         </Text>
-        <Text color={THEME.color.mono[900]}>
-          Copyright © {new Date().getFullYear()} ichi-h All rights reserved.
-        </Text>
+        <Text color={THEME.color.mono[900]}>{COPY_WRITE}</Text>
       </Stack>
     </Box>
   );

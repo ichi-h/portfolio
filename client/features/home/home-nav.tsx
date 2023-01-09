@@ -11,17 +11,17 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 
-import { DISPLAY_AT } from "./display-at";
+import { FADE_MANAGER } from "./fade-manager";
 
 export const HomeNav = () => {
   const [isDisplay, setIsDisplay] = useState(false);
 
   useMounted(() => {
-    setTimeout(() => setIsDisplay(true), DISPLAY_AT.NAV);
+    setTimeout(() => setIsDisplay(true), FADE_MANAGER.CONTENT);
   });
 
   return (
-    <Fade isDisplay={isDisplay} transition="1s">
+    <Fade isDisplay={isDisplay} transition={FADE_MANAGER.ANIMATION_TIME}>
       <Box
         position="fixed"
         top="50%"
