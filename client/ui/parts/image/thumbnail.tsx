@@ -55,7 +55,7 @@ export const Thumbnail = (props: Props) => {
 
   return (
     <>
-      {isError ? (
+      {!isError ? (
         <StyledImage
           src={props.src}
           alt={props.alt}
