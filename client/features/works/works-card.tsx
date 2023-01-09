@@ -8,17 +8,13 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
+import { formatDate } from "@/utils/formatDate";
 
 interface Props {
   article: ArticleSummary;
 }
 
 export const WorksCard = ({ article }: Props) => {
-  const formatDate = (date: string) => {
-    const d = new Date(date);
-    return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`;
-  };
-
   return (
     <Hover key={article.id}>
       <Link
