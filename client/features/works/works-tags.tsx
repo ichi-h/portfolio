@@ -9,6 +9,7 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { WorksContext } from "./worksContext";
 
 export const WorksTags = () => {
+  const router = useRouter();
   const [isQueryReady, setIsQueryReady] = useState(false);
   const { tagStatuses, setTagStatuses } = useCustomContext(WorksContext);
 
@@ -17,9 +18,18 @@ export const WorksTags = () => {
       t.label === label ? { ...t, selected: !t.selected } : t
     );
     setTagStatuses(newSelectedTags);
+    router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        tags: newSelectedTags
+          .filter((t) => t.selected)
+          .map((t) => t.label)
+          .join(","),
+      },
+    });
   };
 
-  const router = useRouter();
   useEffect(() => {
     if (!isQueryReady && router.isReady) {
       const initialTags = ((router.query.tags as string) || "").split(",");
@@ -37,7 +47,7 @@ export const WorksTags = () => {
       <Stack
         gap={THEME.size.md}
         wrap="wrap"
-        maxWidth={`calc(${THEME.size.pcMaxWidth} / 2)`}
+        maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
         {tagStatuses
           .filter((t) => t.isPrimary)
@@ -54,7 +64,7 @@ export const WorksTags = () => {
       <Stack
         gap={THEME.size.md}
         wrap="wrap"
-        maxWidth={`calc(${THEME.size.pcMaxWidth} / 2)`}
+        maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
         {tagStatuses
           .filter((t) => !t.isPrimary)
