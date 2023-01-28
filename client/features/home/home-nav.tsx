@@ -40,7 +40,7 @@ export const HomeNav = () => {
                 src={Me.src}
                 width="180px"
                 height="180px"
-                shadow={`10px 10px 30px ${THEME.color.mono["000"]}44`}
+                isShadow={true}
               />
             </Link>
           </Hover>

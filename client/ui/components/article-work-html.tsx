@@ -8,6 +8,7 @@ const articleWorkMd = css`
   gap: ${THEME.size.lg};
   width: 100%;
   font-size: ${THEME.size.lg};
+  color: ${THEME.color.mono["000"]};
   h2 {
     font-size: ${THEME.size.xl4};
   }
@@ -58,6 +59,9 @@ const articleWorkMd = css`
     }
     &-bold {
       font-weight: bold;
+    }
+    &-underline {
+      text-decoration: underline;
     }
     ${Object.entries(THEME.size)
       .map(([key, value]) => `&-${key} { font-size: ${value}; }`)

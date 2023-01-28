@@ -1,17 +1,20 @@
 import { styled } from "linaria/react";
 
+import { THEME } from "@/ui/base";
+
 interface Props {
   src: string;
   width: string;
   height: string;
-  shadow?: string;
+  isShadow?: boolean;
 }
 
 const Styled = styled.img<Props>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: 50%;
-  box-shadow: ${(props) => props.shadow || "0 0 0 0"};
+  box-shadow: ${(props) => (props.isShadow ? THEME.color.shadow["000"] : "")};
+  user-select: none;
 `;
 
 export const Avatar = (props: Props) => {
@@ -20,7 +23,7 @@ export const Avatar = (props: Props) => {
       src={props.src}
       width={props.width}
       height={props.height}
-      shadow={props.shadow}
+      isShadow={props.isShadow}
     />
   );
 };

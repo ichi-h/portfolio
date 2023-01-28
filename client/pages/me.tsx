@@ -1,14 +1,29 @@
+import fs from "fs";
+import path from "path";
+import process from "process";
+
 import Head from "next/head";
 import OGPBG from "public/assets/images/ogp_bg.webp";
 
-import { THEME } from "@/ui/base";
+import { MeTemplate } from "@/features/me/template";
+import { mdToHtml } from "@/lib/remark/convert";
 import { DefaultLayout } from "@/ui/components/layouts/default";
-import { Headline } from "@/ui/parts/text/headline";
-import { Text } from "@/ui/parts/text/text";
 
-import type { NextPage } from "next";
+import type { InferGetStaticPropsType, NextPage } from "next";
 
-const Me: NextPage = () => {
+export const getStaticProps = async () => {
+  const cwd = process.cwd();
+  const filePath = path.join(cwd, "features/me/about-me.md");
+  const md = fs.readFileSync(filePath, "utf-8");
+  const html = await mdToHtml(md);
+  return {
+    props: { html },
+  };
+};
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Me: NextPage<Props> = ({ html }) => {
   return (
     <>
       <Head>
@@ -22,8 +37,7 @@ const Me: NextPage = () => {
         <meta property="og:description" content="About me - ichi-h.com" />
       </Head>
       <DefaultLayout>
-        <Headline level={1}>About me</Headline>
-        <Text fontSize={THEME.size.lg}>Coming soon...</Text>
+        <MeTemplate html={html} />
       </DefaultLayout>
     </>
   );
