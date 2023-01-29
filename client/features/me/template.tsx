@@ -1,8 +1,10 @@
 import Me from "@/public/assets/images/me.jpg";
 import { THEME } from "@/ui/base";
 import { ArticleWorkHtml } from "@/ui/components/article-work-html";
+import { Hover } from "@/ui/parts/animation/hover";
 import { HorizonRole } from "@/ui/parts/horizon-role";
 import { GitHubIcon } from "@/ui/parts/icons/github";
+import { TwitterIcon } from "@/ui/parts/icons/twitter";
 import { Avatar } from "@/ui/parts/image/avatar";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Anchor } from "@/ui/parts/text/anchor";
@@ -24,12 +26,19 @@ export const MeTemplate = ({ html }: Props) => {
       <Text fontSize={THEME.size.lg} align="center">
         同人作曲家 → Webエンジニア / PdM
         <br />
-        趣味: 創作、考えること、読書、写真、散歩
+        趣味: 作ること、考えること、歌うこと、読書、写真、散歩
       </Text>
-      <Stack>
-        <Anchor href="https://github.com/ichi-h" blank={true}>
-          <GitHubIcon width="32" height="32" />
-        </Anchor>
+      <Stack gap={THEME.size.xl}>
+        <Hover scale="lg">
+          <Anchor href="https://github.com/ichi-h" blank={true}>
+            <GitHubIcon width="32" height="32" />
+          </Anchor>
+        </Hover>
+        <Hover scale="lg">
+          <Anchor href="https://twitter.com/ichi_h3" blank={true}>
+            <TwitterIcon width="32" height="32" />
+          </Anchor>
+        </Hover>
       </Stack>
       <HorizonRole />
       <ArticleWorkHtml html={html} />
