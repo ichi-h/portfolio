@@ -39,7 +39,7 @@ services:
       - blog-server
       - node
     ports:
-      - "7000:80"
+      - "8800:80"
 
 volumes:
   stack-work:

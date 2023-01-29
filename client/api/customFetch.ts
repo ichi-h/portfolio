@@ -2,20 +2,24 @@ import { ErrorResponse } from "@/types/response";
 import { right, left, Either } from "@/utils/either";
 import { useEnv } from "@/utils/env";
 
-const customFetch = async (input: RequestInfo, init?: RequestInit) => {
-  const { APP_URL } = useEnv();
-  const url = `${APP_URL}${input}`;
+export type FetchOrigin = "proxy" | "container";
+
+const customFetch = (originType: FetchOrigin) => async (input: RequestInfo, init?: RequestInit) => {
+  const { APP_URL, BLOG_SERVER_URL } = useEnv();
+  const origin = originType === "proxy" ? APP_URL : BLOG_SERVER_URL;
   if (typeof input === "string") {
+    const url = `${origin}${input}`;
     return fetch(url, init);
   }
+  const url = `${origin}${input.url}`;
   return fetch({ ...input, url }, init);
 };
 
-export const fetchJson = async <T>(
+export const fetchJson = <T>(originType: FetchOrigin) => async (
   input: RequestInfo,
   init?: RequestInit
 ): Promise<Either<ErrorResponse, T>> => {
-  const response = await customFetch(input, init);
+  const response = await customFetch(originType)(input, init);
   if (!response.ok) {
     const error: ErrorResponse = {
       status: response.status,
