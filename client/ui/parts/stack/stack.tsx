@@ -23,7 +23,7 @@ interface Props extends StyleProps {
   direction?: "row" | "column";
   wrap?: "nowrap" | "wrap" | "reverse";
   gap?: SizeKey;
-  borderRadius?: SizeKey;
+  borderRadius?: SizeKey | "circle";
   isShadow?: boolean;
 }
 
@@ -127,6 +127,9 @@ const gapStyle = {
 };
 
 const borderRadiusStyle = {
+  circle: css`
+    border-radius: 50%;
+  `,
   none: css`
     border-radius: 0;
   `,
