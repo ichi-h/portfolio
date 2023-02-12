@@ -13,7 +13,7 @@ export const GlobalNav = () => {
     >
       <Stack justify="center">
         <Stack
-          justify="space-between"
+          justify="between"
           align="center"
           width={`${THEME.breakPoint.lg}px`}
         >
@@ -26,7 +26,7 @@ export const GlobalNav = () => {
               ichi-h.com
             </Link>
           </Box>
-          <Stack gap={THEME.size.lg}>
+          <Stack gap="lg">
             <Link
               to="/works"
               fontSize={THEME.size.xl3}

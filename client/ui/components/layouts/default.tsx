@@ -10,15 +10,15 @@ import { GlobalFooter } from "../global-footer";
 export const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <BgImageLayout src={HomeImage.src}>
-      <Stack direction="column" gap={THEME.size.md}>
+      <Stack direction="column" gap="md">
         <Box>
           <GlobalNav />
           <Stack justify="center" align="center" width="100%">
             <Stack
               direction="column"
-              gap={THEME.size.md}
+              gap="md"
               backgroundColor={`${THEME.color.mono[900]}${THEME.color.opacity[700]}`}
-              borderRadius={THEME.size.xs3}
+              borderRadius="xs3"
               padding={`${THEME.size.xl3}`}
               width="100%"
               maxWidth={`${THEME.breakPoint.lg}px`}

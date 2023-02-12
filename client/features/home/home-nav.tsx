@@ -28,12 +28,7 @@ export const HomeNav = () => {
         left="50%"
         transformTranslate="translate(-50%, -50%)"
       >
-        <Stack
-          direction="column"
-          justify="center"
-          align="center"
-          gap={THEME.size.md}
-        >
+        <Stack direction="column" justify="center" align="center" gap="md">
           <Hover>
             <Link to="/me">
               <Avatar
@@ -47,7 +42,7 @@ export const HomeNav = () => {
           <Headline level={1} color={THEME.color.mono["900"]}>
             ichi-h.com
           </Headline>
-          <Stack gap={THEME.size.md}>
+          <Stack gap="md">
             <Link
               to="/works?tags=development"
               color={THEME.color.mono["900"]}

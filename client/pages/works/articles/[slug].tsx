@@ -94,14 +94,14 @@ const ArticlePage: NextPage<Props> = ({
         <Headline level={1} fontSize={THEME.size.xl4}>
           {article.title}
         </Headline>
-        <Stack gap={THEME.size.md}>
+        <Stack justify="center" gap="md">
           {article.tags.map((tag) => (
             <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">
               <Budge>{tag}</Budge>
             </Link>
           ))}
         </Stack>
-        <Stack width="100%" justify="flex-end" gap={THEME.size.xs2}>
+        <Stack width="100%" justify="end" gap="xs2">
           <Text>
             <PublishIcon /> {formatDate(article.publishedAt)}
           </Text>

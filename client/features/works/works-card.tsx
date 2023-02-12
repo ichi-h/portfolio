@@ -24,10 +24,10 @@ export const WorksCard = ({ article }: Props) => {
       >
         <Stack
           direction="column"
-          justify="space-between"
+          justify="between"
           isShadow={true}
           padding={THEME.size.md}
-          borderRadius={THEME.size.xs3}
+          borderRadius="xs3"
           width="100%"
           height="100%"
         >

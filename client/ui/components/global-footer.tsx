@@ -13,7 +13,7 @@ export const GlobalFooter = () => {
       padding={`${THEME.size.md} ${THEME.size.none}`}
       align="center"
     >
-      <Stack direction="column" gap={THEME.size.xs3}>
+      <Stack align="center" direction="column" gap="xs3">
         <Anchor
           href="http://creativecommons.org/licenses/by/4.0/"
           rel="license"

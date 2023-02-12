@@ -19,26 +19,28 @@ export const MeTemplate = ({ html }: Props) => {
   return (
     <>
       <Headline level={1}>About me</Headline>
-      <Avatar src={Me.src} width="180px" height="180px" isShadow={true} />
-      <Headline level={2} fontSize={THEME.size.xl4}>
-        ichi-h
-      </Headline>
-      <Text fontSize={THEME.size.lg} align="center">
-        同人作曲家 → Webエンジニア / PdM
-        <br />
-        趣味: 作ること、考えること、歌うこと、読書、写真、散歩
-      </Text>
-      <Stack gap={THEME.size.xl}>
-        <Hover scale="lg">
-          <Anchor href="https://github.com/ichi-h" blank={true}>
-            <GitHubIcon width="32" height="32" />
-          </Anchor>
-        </Hover>
-        <Hover scale="lg">
-          <Anchor href="https://twitter.com/ichi_h3" blank={true}>
-            <TwitterIcon width="32" height="32" />
-          </Anchor>
-        </Hover>
+      <Stack align="center" direction="column" gap="md">
+        <Avatar src={Me.src} width="180px" height="180px" isShadow={true} />
+        <Headline level={2} fontSize={THEME.size.xl4}>
+          ichi-h
+        </Headline>
+        <Text fontSize={THEME.size.lg} align="center">
+          同人作曲家 → Webエンジニア / PdM
+          <br />
+          趣味: 作ること、考えること、歌うこと、読書、写真、散歩
+        </Text>
+        <Stack gap="xl">
+          <Hover scale="lg">
+            <Anchor href="https://github.com/ichi-h" blank={true}>
+              <GitHubIcon width="32" height="32" />
+            </Anchor>
+          </Hover>
+          <Hover scale="lg">
+            <Anchor href="https://twitter.com/ichi_h3" blank={true}>
+              <TwitterIcon width="32" height="32" />
+            </Anchor>
+          </Hover>
+        </Stack>
       </Stack>
       <HorizonRole />
       <ArticleWorkHtml html={html} />

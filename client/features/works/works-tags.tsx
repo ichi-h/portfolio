@@ -43,9 +43,15 @@ export const WorksTags = () => {
   }, [router.isReady, router.query, setTagStatuses, tagStatuses, isQueryReady]);
 
   return (
-    <>
+    <Stack
+      justify="center"
+      align="center"
+      direction="column"
+      gap="md"
+      width="100%"
+    >
       <Stack
-        gap={THEME.size.md}
+        gap="md"
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
@@ -62,7 +68,7 @@ export const WorksTags = () => {
           ))}
       </Stack>
       <Stack
-        gap={THEME.size.md}
+        gap="md"
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
@@ -78,6 +84,6 @@ export const WorksTags = () => {
             </TagCheckbox>
           ))}
       </Stack>
-    </>
+    </Stack>
   );
 };

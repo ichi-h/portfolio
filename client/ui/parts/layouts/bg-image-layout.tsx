@@ -1,4 +1,4 @@
-import { styled } from "linaria/react";
+import { css } from "linaria";
 
 import { THEME } from "@/ui/base";
 
@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-const Background = styled.div`
+const backgroundStyle = css`
   position: fixed;
   top: 50%;
   left: 50%;
@@ -24,7 +24,10 @@ const Background = styled.div`
 export const BgImageLayout = (props: Props) => {
   return (
     <>
-      <Background style={{ backgroundImage: `url("${props.src}")` }} />
+      <div
+        className={backgroundStyle}
+        style={{ backgroundImage: `url("${props.src}")` }}
+      />
       {props.children}
     </>
   );
