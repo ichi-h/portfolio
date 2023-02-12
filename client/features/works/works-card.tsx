@@ -3,6 +3,7 @@ import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
 import { PublishIcon } from "@/ui/parts/icons/publish";
+import { UpdateIcon } from "@/ui/parts/icons/update";
 import { Thumbnail } from "@/ui/parts/image/thumbnail";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
@@ -12,9 +13,10 @@ import { formatDate } from "@/utils/formatDate";
 
 interface Props {
   article: ArticleSummary;
+  order: keyof Pick<ArticleSummary, "publishedAt" | "revisedAt">;
 }
 
-export const WorksCard = ({ article }: Props) => {
+export const WorksCard = ({ article, order }: Props) => {
   return (
     <Hover key={article.id}>
       <Link
@@ -43,10 +45,18 @@ export const WorksCard = ({ article }: Props) => {
             </Headline>
           </Box>
           <Box align="right" width="100%">
-            <Text fontSize={THEME.size.xs}>
-              <PublishIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-              {formatDate(article.publishedAt)}
-            </Text>
+            {order === "publishedAt" && (
+              <Text fontSize={THEME.size.xs}>
+                <PublishIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
+                {formatDate(article.publishedAt)}
+              </Text>
+            )}
+            {order === "revisedAt" && (
+              <Text fontSize={THEME.size.xs}>
+                <UpdateIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
+                {formatDate(article.revisedAt)}
+              </Text>
+            )}
           </Box>
         </Stack>
       </Link>
