@@ -21,6 +21,7 @@ const articleWorkMd = css`
   h5 {
     font-size: ${THEME.size.xl};
     text-decoration: underline;
+    margin: 0;
   }
   ul {
     margin: 0;
