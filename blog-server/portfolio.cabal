@@ -33,14 +33,14 @@ library
       Domain.Entities.Tag
       Domain.Entities.Work
       Domain.Infrastructures.Fs.ReadMigrationFile
-      Domain.Infrastructures.Repository.Connection
-      Domain.Infrastructures.Repository.Operators.ArticleWorks
-      Domain.Infrastructures.Repository.Operators.Migrations
-      Domain.Infrastructures.Repository.Operators.RawQuery
-      Domain.Infrastructures.Repository.Operators.Tags
-      Domain.Infrastructures.Repository.Records.ArticleWork
-      Domain.Infrastructures.Repository.Records.Migration
-      Domain.Infrastructures.Repository.Records.Tag
+      Domain.Infrastructures.Persistent.Connection
+      Domain.Infrastructures.Persistent.Operators.ArticleWorks
+      Domain.Infrastructures.Persistent.Operators.Migrations
+      Domain.Infrastructures.Persistent.Operators.RawQuery
+      Domain.Infrastructures.Persistent.Operators.Tags
+      Domain.Infrastructures.Persistent.Records.ArticleWork
+      Domain.Infrastructures.Persistent.Records.Migration
+      Domain.Infrastructures.Persistent.Records.Tag
       Domain.UseCases.Articles.Get.Execute
       Domain.UseCases.Articles.Get.Output
       Domain.UseCases.Articles.Get.Persistent

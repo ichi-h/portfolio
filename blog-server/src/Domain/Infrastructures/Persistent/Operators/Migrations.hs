@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Repository.Operators.Migrations
+module Domain.Infrastructures.Persistent.Operators.Migrations
   ( insertMigration_,
     deleteMigration_,
     readAllMigrations_,
@@ -10,7 +10,7 @@ where
 
 import Database.SQLite.Simple (Connection, Only (..), execute, query_)
 import Domain.Entities.Migration (Migration (..))
-import Domain.Infrastructures.Repository.Records.Migration (MigrationR (..), migrationRToEntity)
+import Domain.Infrastructures.Persistent.Records.Migration (MigrationR (..), migrationRToEntity)
 
 insertMigration_ :: Connection -> (String, Int) -> IO ()
 insertMigration_ conn (target, nextBatch) = execute conn "INSERT INTO migrations (name, batch) VALUES (?, ?)" (target :: String, nextBatch :: Int)

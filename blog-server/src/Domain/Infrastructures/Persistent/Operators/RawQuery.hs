@@ -1,4 +1,4 @@
-module Domain.Infrastructures.Repository.Operators.RawQuery
+module Domain.Infrastructures.Persistent.Operators.RawQuery
   ( runRawQuery_,
   )
 where

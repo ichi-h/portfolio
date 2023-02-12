@@ -1,4 +1,4 @@
-module Domain.Infrastructures.Repository.Records.ArticleWork (ArticleWorkR, articleWorkRToEntity) where
+module Domain.Infrastructures.Persistent.Records.ArticleWork (ArticleWorkR, articleWorkRToEntity) where
 
 import Data.Text (Text)
 import Data.Time (UTCTime)

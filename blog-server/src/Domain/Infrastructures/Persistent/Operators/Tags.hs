@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Repository.Operators.Tags
+module Domain.Infrastructures.Persistent.Operators.Tags
   ( readAllTags_,
   )
 where
@@ -8,7 +8,7 @@ where
 import Data.Text (pack)
 import Database.SQLite.Simple (Connection, Query (..), query_)
 import Domain.Entities.Tag (Tag)
-import Domain.Infrastructures.Repository.Records.Tag (TagR, tagRToEntity)
+import Domain.Infrastructures.Persistent.Records.Tag (TagR, tagRToEntity)
 
 readAllTags_ :: Connection -> IO [Tag]
 readAllTags_ conn = do

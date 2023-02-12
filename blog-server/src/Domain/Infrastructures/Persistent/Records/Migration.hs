@@ -1,4 +1,4 @@
-module Domain.Infrastructures.Repository.Records.Migration (MigrationR (..), migrationRToEntity) where
+module Domain.Infrastructures.Persistent.Records.Migration (MigrationR (..), migrationRToEntity) where
 
 import Database.SQLite.Simple
   ( FromRow (..),

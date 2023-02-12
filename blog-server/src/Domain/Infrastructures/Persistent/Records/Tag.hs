@@ -1,4 +1,4 @@
-module Domain.Infrastructures.Repository.Records.Tag (TagR, tagRToEntity) where
+module Domain.Infrastructures.Persistent.Records.Tag (TagR, tagRToEntity) where
 
 import Data.Text (Text)
 import Database.SQLite.Simple

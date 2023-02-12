@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Repository.Connection (connectDB, closeDB) where
+module Domain.Infrastructures.Persistent.Connection (connectDB, closeDB) where
 
 import Database.SQLite.Simple (Connection, close, open)
 import System.Environment (getEnv)
