@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Persistent.Operators.Tags
+module Domain.Infrastructures.Persistent.Queries.Tags
   ( readAllTags_,
   )
 where

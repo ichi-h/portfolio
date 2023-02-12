@@ -4,8 +4,8 @@ module Commands.Migrations.Migrate (main) where
 
 import Configuration.Dotenv (defaultConfig, loadFile)
 import Domain.Infrastructures.Persistent.Connection (closeDB, connectDB)
-import Domain.Infrastructures.Persistent.Operators.Migrations (insertMigration_, readAllMigrations_)
-import Domain.Infrastructures.Persistent.Operators.RawQuery (runRawQuery_)
+import Domain.Infrastructures.Persistent.Queries.Migrations (insertMigration_, readAllMigrations_)
+import Domain.Infrastructures.Persistent.Queries.RawQuery (runRawQuery_)
 import Domain.Infrastructures.Fs.ReadMigrationFile
   ( MigrateOrRollback (Migrate),
     readMigrationFile,

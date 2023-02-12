@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Persistent.Operators.Migrations
+module Domain.Infrastructures.Persistent.Queries.Migrations
   ( insertMigration_,
     deleteMigration_,
     readAllMigrations_,

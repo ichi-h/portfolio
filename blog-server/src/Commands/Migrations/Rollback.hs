@@ -8,8 +8,8 @@ import Domain.Infrastructures.Fs.ReadMigrationFile
     readMigrationFile,
   )
 import Domain.Infrastructures.Persistent.Connection (closeDB, connectDB)
-import Domain.Infrastructures.Persistent.Operators.Migrations (deleteMigration_, readLatestMigration_)
-import Domain.Infrastructures.Persistent.Operators.RawQuery (runRawQuery_)
+import Domain.Infrastructures.Persistent.Queries.Migrations (deleteMigration_, readLatestMigration_)
+import Domain.Infrastructures.Persistent.Queries.RawQuery (runRawQuery_)
 import Domain.UseCases.Migrations.Rollback.Execute (executeRollback)
 
 main :: IO ()

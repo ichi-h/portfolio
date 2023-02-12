@@ -34,10 +34,10 @@ library
       Domain.Entities.Work
       Domain.Infrastructures.Fs.ReadMigrationFile
       Domain.Infrastructures.Persistent.Connection
-      Domain.Infrastructures.Persistent.Operators.ArticleWorks
-      Domain.Infrastructures.Persistent.Operators.Migrations
-      Domain.Infrastructures.Persistent.Operators.RawQuery
-      Domain.Infrastructures.Persistent.Operators.Tags
+      Domain.Infrastructures.Persistent.Queries.ArticleWorks
+      Domain.Infrastructures.Persistent.Queries.Migrations
+      Domain.Infrastructures.Persistent.Queries.RawQuery
+      Domain.Infrastructures.Persistent.Queries.Tags
       Domain.Infrastructures.Persistent.Records.ArticleWork
       Domain.Infrastructures.Persistent.Records.Migration
       Domain.Infrastructures.Persistent.Records.Tag

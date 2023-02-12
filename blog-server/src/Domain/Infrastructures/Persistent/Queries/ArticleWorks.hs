@@ -1,6 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Domain.Infrastructures.Persistent.Operators.ArticleWorks
+module Domain.Infrastructures.Persistent.Queries.ArticleWorks
   ( readAllArticleWorks_,
     readArticleWork_,
   )
