@@ -1,10 +1,10 @@
 import Head from "next/head";
 import OGPBG from "public/assets/images/ogp_bg.webp";
 
-import { getAllArticles } from "@/api/articles/getAllArticles";
-import { ArticleSummary } from "@/core/entities/article";
+import { getAllWorks } from "@/api/works/getAllWorks";
+import { WorkSummary } from "@/core/entities/work";
 import { WorksTemplate } from "@/features/works/template";
-import { useFilteredArticles } from "@/features/works/useFilteredArticles";
+import { useFilteredWorks } from "@/features/works/useFilteredArticles";
 import { WorksContext } from "@/features/works/worksContext";
 import { ErrorResponse } from "@/types/response";
 import { DefaultLayout } from "@/ui/components/layouts/default";
@@ -15,23 +15,23 @@ import type { InferGetStaticPropsType, NextPage } from "next";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
-  const response = await getAllArticles();
+  const response = await getAllWorks();
   const onLeft = (e: ErrorResponse) => ({
     props: {
-      articles: [] as ArticleSummary[],
+      works: [] as WorkSummary[],
       message: e.message,
     },
   });
-  const onRight = (articles: ArticleSummary[]) => ({
-    props: { articles, message: "" },
+  const onRight = (works: WorkSummary[]) => ({
+    props: { works, message: "" },
   });
-  return either<ErrorResponse, ArticleSummary[], ReturnType<typeof onRight>>(
+  return either<ErrorResponse, WorkSummary[], ReturnType<typeof onRight>>(
     onLeft
   )(onRight)(response);
 };
 
-const Home: NextPage<Props> = ({ articles }) => {
-  const provider = useFilteredArticles(articles);
+const Home: NextPage<Props> = ({ works }) => {
+  const provider = useFilteredWorks(works);
   return (
     <>
       <Head>

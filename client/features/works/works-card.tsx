@@ -1,4 +1,4 @@
-import { ArticleSummary } from "@/core/entities/article";
+import { WorkSummary } from "@/core/entities/work";
 import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
@@ -12,15 +12,15 @@ import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/formatDate";
 
 interface Props {
-  article: ArticleSummary;
-  order: keyof Pick<ArticleSummary, "publishedAt" | "revisedAt">;
+  work: WorkSummary;
+  order: keyof Pick<WorkSummary, "publishedAt" | "revisedAt">;
 }
 
-export const WorksCard = ({ article, order }: Props) => {
+export const WorksCard = ({ work, order }: Props) => {
   return (
-    <Hover key={article.id}>
+    <Hover key={work.id}>
       <Link
-        to={`/works/${article.category}/${article.slug}`}
+        to={`/works/${work.category}/${work.slug}`}
         color={THEME.color.mono["000"]}
         textDecoration="none"
       >
@@ -35,26 +35,26 @@ export const WorksCard = ({ article, order }: Props) => {
         >
           <Box width="100%">
             <Thumbnail
-              src={article.thumbnailUrl}
-              alt={article.title}
+              src={work.thumbnailUrl}
+              alt={work.title}
               width="100%"
               height="166px"
             />
             <Headline level={2} fontSize={THEME.size.lg}>
-              <Text lineClamp={2}>{article.title}</Text>
+              <Text lineClamp={2}>{work.title}</Text>
             </Headline>
           </Box>
           <Box align="right" width="100%">
             {order === "publishedAt" && (
               <Text fontSize={THEME.size.xs}>
                 <PublishIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-                {formatDate(article.publishedAt)}
+                {formatDate(work.publishedAt)}
               </Text>
             )}
             {order === "revisedAt" && (
               <Text fontSize={THEME.size.xs}>
                 <UpdateIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-                {formatDate(article.revisedAt)}
+                {formatDate(work.revisedAt)}
               </Text>
             )}
           </Box>

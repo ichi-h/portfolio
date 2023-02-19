@@ -2,7 +2,7 @@ import { css } from "linaria";
 
 import { THEME } from "@/ui/base";
 
-const articleWorkMd = css`
+const articleMdStyle = css`
   display: flex;
   flex-direction: column;
   gap: ${THEME.size.lg};
@@ -74,8 +74,11 @@ interface Props {
   html: string;
 }
 
-export const ArticleWorkHtml = ({ html }: Props) => {
+export const ArticleHtml = ({ html }: Props) => {
   return (
-    <div className={articleWorkMd} dangerouslySetInnerHTML={{ __html: html }} />
+    <div
+      className={articleMdStyle}
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 };

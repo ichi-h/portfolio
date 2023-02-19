@@ -3,13 +3,13 @@ import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
 import OGPBG from "public/assets/images/ogp_bg.webp";
 
-import { getArticle } from "@/api/articles/getArticle";
+import { getWork } from "@/api/works/getWork";
 import { ARTICLE_SLUGS } from "@/constants/articlePaths";
-import { Article } from "@/core/entities/article";
+import { Work } from "@/core/entities/work";
 import { useMounted } from "@/lib/react/useMounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { THEME } from "@/ui/base";
-import { ArticleWorkHtml } from "@/ui/components/article-work-html";
+import { ArticleHtml } from "@/ui/components/article-html";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 import { Budge } from "@/ui/parts/budge";
 import { PublishIcon } from "@/ui/parts/icons/publish";
@@ -41,22 +41,23 @@ interface StaticContext {
 
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
-  const response = await getArticle(slug);
+  const response = await getWork(slug);
   switch (response.which) {
     case "left":
       return {
         props: {
-          article: {} as Article,
-          body: "",
+          work: {} as Work,
+          articleBody: "",
           message: response.value.message,
         },
         notFound: true,
       };
     case "right":
-      const body = await mdToHtml(response.value.body);
-      console.log(body);
+      const articleBody = await mdToHtml(
+        response.value.article ? response.value.article.body : ""
+      );
       return {
-        props: { article: response.value, body, message: "" },
+        props: { work: response.value, articleBody, message: "" },
         notFound: false,
       };
   }
@@ -65,11 +66,11 @@ export const getStaticProps = async (context: StaticContext) => {
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const ArticlePage: NextPage<Props> = ({
-  article,
-  body,
+  work,
+  articleBody,
 }: {
-  article: Article;
-  body: string;
+  work: Work;
+  articleBody: string;
 }) => {
   useMounted(() => {
     hljs.highlightAll();
@@ -77,25 +78,25 @@ const ArticlePage: NextPage<Props> = ({
   return (
     <>
       <Head>
-        <title>{article.title} - ichi-h.com</title>
-        <meta name="description" content={article.description} />
-        <meta name="keywords" content={article.tags.join(",")} />
-        <meta property="og:title" content={`${article.title} - ichi-h.com`} />
+        <title>{work.title} - ichi-h.com</title>
+        <meta name="description" content={work.description} />
+        <meta name="keywords" content={work.tags.join(",")} />
+        <meta property="og:title" content={`${work.title} - ichi-h.com`} />
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://ichi-h.com/works/articles/${article.slug}`}
+          content={`https://ichi-h.com/works/articles/${work.slug}`}
         />
         <meta property="og:image" content={OGPBG.src} />
         <meta property="og:site_name" content="ichi-h.com" />
-        <meta property="og:description" content={article.description} />
+        <meta property="og:description" content={work.description} />
       </Head>
       <DefaultLayout>
         <Headline level={1} fontSize={THEME.size.xl4}>
-          {article.title}
+          {work.title}
         </Headline>
         <Stack justify="center" gap="md">
-          {article.tags.map((tag) => (
+          {work.tags.map((tag) => (
             <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">
               <Budge>{tag}</Budge>
             </Link>
@@ -103,13 +104,13 @@ const ArticlePage: NextPage<Props> = ({
         </Stack>
         <Stack width="100%" justify="end" gap="xs2">
           <Text>
-            <PublishIcon /> {formatDate(article.publishedAt)}
+            <PublishIcon /> {formatDate(work.publishedAt)}
           </Text>
           <Text>
-            <UpdateIcon /> {formatDate(article.revisedAt)}
+            <UpdateIcon /> {formatDate(work.revisedAt)}
           </Text>
         </Stack>
-        <ArticleWorkHtml html={body} />
+        <ArticleHtml html={articleBody} />
       </DefaultLayout>
     </>
   );

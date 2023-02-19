@@ -1,14 +1,16 @@
-export interface Article {
+export interface Work {
   id: number;
   category: string;
   slug: string;
   title: string;
   description: string;
-  body: string;
   thumbnailUrl: string;
   revisedAt: string;
   publishedAt: string;
   tags: string[];
+  article?: {
+    body: string;
+  };
 }
 
-export type ArticleSummary = Omit<Article, "body">;
+export type WorkSummary = Omit<Work, "article">;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ArticleSummary } from "@/core/entities/article";
+import { WorkSummary } from "@/core/entities/work";
 import { useCustomContext } from "@/lib/react/useCustomContext";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";
@@ -13,10 +13,10 @@ import { WorksContext } from "./worksContext";
 
 export const WorksList = () => {
   const provider = useCustomContext(WorksContext);
-  const { filteredArticles } = provider;
+  const { filteredWorks } = provider;
 
   const items: RadioItem<
-    keyof Pick<ArticleSummary, "publishedAt" | "revisedAt">
+    keyof Pick<WorkSummary, "publishedAt" | "revisedAt">
   >[] = [
     {
       label: "作成日順",
@@ -30,7 +30,7 @@ export const WorksList = () => {
   const [order, setOrder] =
     useState<typeof items[number]["value"]>("publishedAt");
 
-  const sortedArticles = filteredArticles.sort((a, b) => {
+  const sortedWorks = filteredWorks.sort((a, b) => {
     if (order === "publishedAt") {
       const aDate = new Date(a.publishedAt);
       const bDate = new Date(b.publishedAt);
@@ -49,20 +49,20 @@ export const WorksList = () => {
       <Stack justify="end">
         <Radio name="order" items={items} value={order} onClick={setOrder} />
       </Stack>
-      {sortedArticles.length === 0 && (
+      {sortedWorks.length === 0 && (
         <Text fontSize={THEME.size.lg} align="center">
           お探しのものは見つかりませんでした。
         </Text>
       )}
-      {sortedArticles.length > 0 && (
+      {sortedWorks.length > 0 && (
         <Grid
           gridTemplateColumns="repeat(3, 1fr)"
           gridTemplateRows="1fr"
           gap={THEME.size.xl2}
           width="100%"
         >
-          {sortedArticles.map((article) => (
-            <WorksCard key={article.id} article={article} order={order} />
+          {sortedWorks.map((work) => (
+            <WorksCard key={work.id} work={work} order={order} />
           ))}
         </Grid>
       )}

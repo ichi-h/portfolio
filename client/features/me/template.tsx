@@ -1,6 +1,6 @@
 import Me from "@/public/assets/images/me.jpg";
 import { THEME } from "@/ui/base";
-import { ArticleWorkHtml } from "@/ui/components/article-work-html";
+import { ArticleHtml } from "@/ui/components/article-html";
 import { Hover } from "@/ui/parts/animation/hover";
 import { HorizonRole } from "@/ui/parts/horizon-role";
 import { GitHubIcon } from "@/ui/parts/icons/github";
@@ -25,9 +25,9 @@ export const MeTemplate = ({ html }: Props) => {
           ichi-h
         </Headline>
         <Text fontSize={THEME.size.lg} align="center">
-          同人作曲家 → Webエンジニア / PdM
+          考えること。作ること。
           <br />
-          趣味: 作ること、考えること、歌うこと、読書、写真、散歩
+          To live is to think and create.
         </Text>
         <Stack gap="xl">
           <Hover scale="lg">
@@ -43,7 +43,7 @@ export const MeTemplate = ({ html }: Props) => {
         </Stack>
       </Stack>
       <HorizonRole />
-      <ArticleWorkHtml html={html} />
+      <ArticleHtml html={html} />
     </>
   );
 };

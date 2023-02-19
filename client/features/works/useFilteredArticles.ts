@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { PRIMARY_TAGS } from "@/constants/tags";
-import { ArticleSummary } from "@/core/entities/article";
+import { WorkSummary } from "@/core/entities/work";
 
 interface TagStatus {
   label: string;
@@ -11,7 +11,7 @@ interface TagStatus {
 
 const unique = <T>(arr: T[]) => [...new Set(arr)];
 
-export const useFilteredArticles = (init: ArticleSummary[]) => {
+export const useFilteredWorks = (init: WorkSummary[]) => {
   const tags = unique(init.flatMap((a) => a.tags))
     .filter((t) => !PRIMARY_TAGS.includes(t))
     .sort();
@@ -23,7 +23,7 @@ export const useFilteredArticles = (init: ArticleSummary[]) => {
       selected: false,
     }))
   );
-  const filteredArticles = init.filter((a) => {
+  const filteredWorks = init.filter((a) => {
     const primarySelected = tagStatuses.filter(
       (t) => t.isPrimary && t.selected
     );
@@ -43,7 +43,7 @@ export const useFilteredArticles = (init: ArticleSummary[]) => {
     return hasPrimaryTag && hasTag && (hasTitle || hasDescription);
   });
   return {
-    filteredArticles,
+    filteredWorks,
     searchText,
     setSearchText,
     tagStatuses,
