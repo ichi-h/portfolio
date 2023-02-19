@@ -85,7 +85,7 @@ const ArticlePage: NextPage<Props> = ({
         <meta property="og:type" content="article" />
         <meta
           property="og:url"
-          content={`https://ichi-h.com/works/articles/${work.slug}`}
+          content={`https://ichi-h.com/works/${work.slug}`}
         />
         <meta property="og:image" content={OGPBG.src} />
         <meta property="og:site_name" content="ichi-h.com" />

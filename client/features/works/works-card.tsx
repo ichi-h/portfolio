@@ -20,7 +20,7 @@ export const WorksCard = ({ work, order }: Props) => {
   return (
     <Hover key={work.id}>
       <Link
-        to={`/works/${work.category}/${work.slug}`}
+        to={`/works/${work.slug}`}
         color={THEME.color.mono["000"]}
         textDecoration="none"
       >
