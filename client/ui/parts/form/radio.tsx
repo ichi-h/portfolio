@@ -47,7 +47,7 @@ export const Radio = <T extends string>({
               type="radio"
               id={`radio-${name}-${item.value}`}
               value={item.value}
-              checked={value === item.value}
+              defaultChecked={value === item.value}
               onClick={onClickHandler}
             />
             <Stack

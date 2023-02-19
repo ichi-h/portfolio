@@ -7,7 +7,6 @@ export default function Document() {
     <Html>
       <Head>
         <meta name="author" content="ichi-h" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content={THEME.color.primary["000"]} />
         <meta name="twitter:card" content="summary_large_image" />
