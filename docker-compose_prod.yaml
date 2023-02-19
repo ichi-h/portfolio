@@ -8,10 +8,10 @@ services:
       target: blog-server-prod
     container_name: portfolio-blog-server
     volumes:
-      - ./blog-server:/var/www/project
+      - ./haskell/blog-server:/var/www/project
       - stack-work:/var/www/project/.stack-work
     working_dir: /var/www/project
-    env_file: ./blog-server/.env
+    env_file: ./haskell/blog-server/.env
     command: portfolio
     tty: true
 

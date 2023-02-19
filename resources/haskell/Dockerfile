@@ -2,7 +2,7 @@ FROM fpco/stack-build-small:lts-18.28 as blog-server-dev
 
 WORKDIR /var/www/project
 
-COPY ./blog-server .
+COPY ./haskell/blog-server .
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3=3.* && \
@@ -16,7 +16,7 @@ FROM ubuntu:18.04 as blog-server-prod
 
 WORKDIR /var/www/project
 
-COPY ./blog-server .
+COPY ./haskell/blog-server .
 
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3=3.* wget && \
