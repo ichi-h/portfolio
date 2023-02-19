@@ -1,0 +1,19 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.2/containers/docker-existing-docker-compose
+// If you want to run as a non-root user in the container, see .devcontainer/docker-compose.yml.
+{
+	"name": "portfolio-ogp-server",
+	"dockerComposeFile": [
+		"../../../docker-compose.yaml"
+	],
+	"service": "ogp-server",
+	"workspaceFolder": "/var/www/project",
+	"extensions": [
+		"streetsidesoftware.code-spell-checker",
+		"GitHub.copilot",
+		"oderwat.indent-rainbow",
+		"yzhang.markdown-all-in-one",
+		"bungcip.better-toml",
+		"rust-lang.rust-analyzer"
+	]
+}

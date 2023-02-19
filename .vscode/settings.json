@@ -10,6 +10,7 @@
     "source.fixAll.eslint": true
   },
   "cSpell.words": [
+    "actix",
     "Dotenv",
     "Linaria"
   ],
