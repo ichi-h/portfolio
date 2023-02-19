@@ -1,4 +1,4 @@
-import { RecordValues } from "@/types/recordValues";
+import { RecordValues } from "@/types/record-values";
 import { THEME } from "@/ui/base";
 
 export type BreakPoint = RecordValues<typeof THEME.breakPoint>;

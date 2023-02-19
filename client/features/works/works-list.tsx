@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { WorkSummary } from "@/core/entities/work";
-import { useCustomContext } from "@/lib/react/useCustomContext";
+import { useCustomContext } from "@/lib/react/use-custom-context";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";
 import { Grid } from "@/ui/parts/grid/grid";
@@ -9,7 +9,7 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { Text } from "@/ui/parts/text/text";
 
 import { WorksCard } from "./works-card";
-import { WorksContext } from "./worksContext";
+import { WorksContext } from "./works-context";
 
 export const WorksList = () => {
   const provider = useCustomContext(WorksContext);

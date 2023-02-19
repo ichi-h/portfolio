@@ -4,9 +4,9 @@ import Head from "next/head";
 import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { getWork } from "@/api/works/getWork";
-import { ARTICLE_SLUGS } from "@/constants/articlePaths";
+import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { Work } from "@/core/entities/work";
-import { useMounted } from "@/lib/react/useMounted";
+import { useMounted } from "@/lib/react/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
@@ -18,7 +18,7 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
-import { formatDate } from "@/utils/formatDate";
+import { formatDate } from "@/utils/date";
 
 import type { InferGetStaticPropsType, NextPage } from "next";
 

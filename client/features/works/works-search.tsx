@@ -1,8 +1,8 @@
-import { useCustomContext } from "@/lib/react/useCustomContext";
+import { useCustomContext } from "@/lib/react/use-custom-context";
 import { TextBox } from "@/ui/parts/form/textbox";
 import { Stack } from "@/ui/parts/stack/stack";
 
-import { WorksContext } from "./worksContext";
+import { WorksContext } from "./works-context";
 
 export const WorksSearch = () => {
   const { searchText, setSearchText } = useCustomContext(WorksContext);

@@ -9,7 +9,7 @@ import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
-import { formatDate } from "@/utils/formatDate";
+import { formatDate } from "@/utils/date";
 
 interface Props {
   work: WorkSummary;

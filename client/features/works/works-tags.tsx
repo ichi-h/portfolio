@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import { useCustomContext } from "@/lib/react/useCustomContext";
+import { useCustomContext } from "@/lib/react/use-custom-context";
 import { THEME } from "@/ui/base";
 import { TagCheckbox } from "@/ui/parts/form/tag-checkbox";
 import { Stack } from "@/ui/parts/stack/stack";
 
-import { WorksContext } from "./worksContext";
+import { WorksContext } from "./works-context";
 
 export const WorksTags = () => {
   const router = useRouter();
