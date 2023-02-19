@@ -1,13 +1,13 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-module Domain.Entities.Work (Work (..), ArticleWork) where
+module Domain.Entities.Work (Work (..)) where
 
 import Data.Text
 import Data.Time (UTCTime)
 import Domain.Entities.Article (Article)
 import Domain.Entities.Tag (Tag)
 
-data Work c = Work
+data Work = Work
   { _workId :: Int,
     _workCategory :: Text,
     _workSlug :: Text,
@@ -19,7 +19,5 @@ data Work c = Work
     _workPublishedAt :: Maybe UTCTime,
     _workUnpublishedAt :: Maybe UTCTime,
     _workTags :: [Tag],
-    _workContent :: c
+    _workArticle :: Maybe Article
   }
-
-type ArticleWork = Work Article

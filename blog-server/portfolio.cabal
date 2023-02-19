@@ -26,7 +26,7 @@ library
       Commands.Migrations.Initialize
       Commands.Migrations.Migrate
       Commands.Migrations.Rollback
-      Controllers.Articles
+      Controllers.Works
       Domain.Entities.Article
       Domain.Entities.Entity
       Domain.Entities.Migration
@@ -34,19 +34,13 @@ library
       Domain.Entities.Work
       Domain.Infrastructures.Fs.ReadMigrationFile
       Domain.Infrastructures.Persistent.Connection
-      Domain.Infrastructures.Persistent.Queries.ArticleWorks
       Domain.Infrastructures.Persistent.Queries.Migrations
       Domain.Infrastructures.Persistent.Queries.RawQuery
       Domain.Infrastructures.Persistent.Queries.Tags
-      Domain.Infrastructures.Persistent.Records.ArticleWork
+      Domain.Infrastructures.Persistent.Queries.Works
       Domain.Infrastructures.Persistent.Records.Migration
       Domain.Infrastructures.Persistent.Records.Tag
-      Domain.UseCases.Articles.Get.Execute
-      Domain.UseCases.Articles.Get.Output
-      Domain.UseCases.Articles.Get.Persistent
-      Domain.UseCases.Articles.GetAll.Execute
-      Domain.UseCases.Articles.GetAll.Output
-      Domain.UseCases.Articles.GetAll.Persistent
+      Domain.Infrastructures.Persistent.Records.Work
       Domain.UseCases.Migrations.Migrate.Execute
       Domain.UseCases.Migrations.Migrate.Persistent
       Domain.UseCases.Migrations.Rollback.Execute
@@ -54,6 +48,12 @@ library
       Domain.UseCases.Tags.GetAll.Execute
       Domain.UseCases.Tags.GetAll.Output
       Domain.UseCases.Tags.GetAll.Persistent
+      Domain.UseCases.Works.Get.Execute
+      Domain.UseCases.Works.Get.Output
+      Domain.UseCases.Works.Get.Persistent
+      Domain.UseCases.Works.GetAll.Execute
+      Domain.UseCases.Works.GetAll.Output
+      Domain.UseCases.Works.GetAll.Persistent
       Router
   other-modules:
       Paths_portfolio

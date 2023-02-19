@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE TemplateHaskell #-}
 
-module Domain.UseCases.Articles.GetAll.Output (GetAllArticlesOutput, toOutput) where
+module Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput, toOutput) where
 
 import Control.Lens (makeLenses, (^.))
 import Data.Aeson
@@ -9,7 +9,7 @@ import Data.Text (Text)
 import Data.Time (UTCTime)
 import Domain.Entities.Article (Article (..))
 import Domain.Entities.Tag (Tag (..))
-import Domain.Entities.Work (ArticleWork, Work (..))
+import Domain.Entities.Work (Work (..))
 import GHC.Generics
 import Prelude hiding (id)
 
@@ -17,7 +17,7 @@ makeLenses ''Work
 makeLenses ''Tag
 makeLenses ''Article
 
-data GetAllArticlesOutput = GetAllArticlesOutput
+data Work' = Work'
   { id :: Int,
     category :: Text,
     slug :: Text,
@@ -30,13 +30,15 @@ data GetAllArticlesOutput = GetAllArticlesOutput
   }
   deriving (Generic)
 
-instance ToJSON GetAllArticlesOutput
+instance ToJSON Work'
 
-toOutput :: [ArticleWork] -> [GetAllArticlesOutput]
+type GetAllWorksOutput = [Work']
+
+toOutput :: [Work] -> GetAllWorksOutput
 toOutput as =
   map
     ( \a ->
-        GetAllArticlesOutput
+        Work'
           { id = a ^. workId,
             category = a ^. workCategory,
             slug = a ^. workSlug,
