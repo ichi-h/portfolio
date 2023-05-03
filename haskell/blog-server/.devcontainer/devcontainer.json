@@ -8,13 +8,15 @@
 	],
 	"service": "blog-server",
 	"workspaceFolder": "/var/www/project",
-	"extensions": [
-		"streetsidesoftware.code-spell-checker",
-		"GitHub.copilot",
-		"justusadam.language-haskell",
-		"dramforever.vscode-ghc-simple",
-		"oderwat.indent-rainbow",
-		"yzhang.markdown-all-in-one",
-		"sjurmillidahl.ormolu-vscode"
-	]
+	"customizations": {
+		"extensions": [
+			"streetsidesoftware.code-spell-checker",
+			"GitHub.copilot",
+			"justusadam.language-haskell",
+			"dramforever.vscode-ghc-simple",
+			"oderwat.indent-rainbow",
+			"yzhang.markdown-all-in-one",
+			"sjurmillidahl.ormolu-vscode"
+		]
+	}
 }

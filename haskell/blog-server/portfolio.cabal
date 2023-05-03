@@ -23,28 +23,18 @@ source-repository head
 library
   exposed-modules:
       App
-      Commands.Migrations.Initialize
-      Commands.Migrations.Migrate
-      Commands.Migrations.Rollback
       Controllers.Works
       Domain.Entities.Article
       Domain.Entities.Entity
       Domain.Entities.Migration
       Domain.Entities.Tag
       Domain.Entities.Work
-      Domain.Infrastructures.Fs.ReadMigrationFile
       Domain.Infrastructures.Persistent.Connection
-      Domain.Infrastructures.Persistent.Queries.Migrations
       Domain.Infrastructures.Persistent.Queries.RawQuery
       Domain.Infrastructures.Persistent.Queries.Tags
       Domain.Infrastructures.Persistent.Queries.Works
-      Domain.Infrastructures.Persistent.Records.Migration
       Domain.Infrastructures.Persistent.Records.Tag
       Domain.Infrastructures.Persistent.Records.Work
-      Domain.UseCases.Migrations.Migrate.Execute
-      Domain.UseCases.Migrations.Migrate.Persistent
-      Domain.UseCases.Migrations.Rollback.Execute
-      Domain.UseCases.Migrations.Rollback.Persistent
       Domain.UseCases.Tags.GetAll.Execute
       Domain.UseCases.Tags.GetAll.Output
       Domain.UseCases.Tags.GetAll.Persistent
