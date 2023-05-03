@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-cd client
+cd node
 echo "Running lint-staged"
 npx lint-staged

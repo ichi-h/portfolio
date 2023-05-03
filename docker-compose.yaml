@@ -31,14 +31,14 @@ services:
 
   node:
     build:
-      context: ./client
+      context: ./node
       dockerfile: "./resources/node/Dockerfile"
     container_name: portfolio-node
     volumes:
-      - ./client:/var/www/project
+      - ./node:/var/www/project
       - node_modules:/var/www/project/node_modules
-    env_file: ./client/.env
-    command: npm run dev
+    env_file: ./node/.env
+    command: pnpm dev
     tty: true
 
   nginx:
@@ -47,7 +47,7 @@ services:
     volumes:
       - ./resources/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./resources/nginx/log:/var/log/nginx
-      - ./client/dist:/var/www/project/public
+      - ./node/blog/dist:/var/www/project/public
     restart: always
     depends_on:
       - blog-server
