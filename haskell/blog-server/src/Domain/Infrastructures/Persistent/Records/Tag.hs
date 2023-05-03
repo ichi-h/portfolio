@@ -1,4 +1,6 @@
-module Domain.Infrastructures.Persistent.Records.Tag (TagR, tagRToEntity) where
+{-# LANGUAGE MultiParamTypeClasses #-}
+
+module Domain.Infrastructures.Persistent.Records.Tag (TagR (..), toEntity) where
 
 import Data.Text (Text)
 import Database.SQLite.Simple
@@ -7,6 +9,7 @@ import Database.SQLite.Simple
   )
 import Database.SQLite.Simple.FromRow (field)
 import Domain.Entities.Tag (Tag (..))
+import Domain.Infrastructures.Persistent.Records.Record
 import Prelude
 
 data TagR = TagR
@@ -20,5 +23,5 @@ instance FromRow TagR where
 instance ToRow TagR where
   toRow (TagR a b) = toRow (a, b)
 
-tagRToEntity :: [TagR] -> [Tag]
-tagRToEntity records = map (\r -> Tag (tagRId r) (tagRName r)) records
+instance Record TagR Tag where
+  toEntity tags = map (\r -> Tag (tagRId r) (tagRName r)) tags

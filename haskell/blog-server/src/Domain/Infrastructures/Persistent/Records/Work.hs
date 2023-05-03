@@ -1,4 +1,6 @@
-module Domain.Infrastructures.Persistent.Records.Work (WorkR, workRToEntity) where
+{-# LANGUAGE MultiParamTypeClasses #-}
+
+module Domain.Infrastructures.Persistent.Records.Work (WorkR, toEntity) where
 
 import Data.Text (Text)
 import Data.Time (UTCTime)
@@ -10,6 +12,7 @@ import Database.SQLite.Simple.FromRow (field)
 import Domain.Entities.Article (Article (..))
 import Domain.Entities.Tag (Tag (..))
 import Domain.Entities.Work (Work (..))
+import Domain.Infrastructures.Persistent.Records.Record (Record (..))
 import Prelude hiding (id)
 
 data WorkR = WorkR
@@ -48,25 +51,25 @@ articleRtoEntity :: ArticleR -> Maybe Article
 articleRtoEntity (ArticleR (Just id) (Just body)) = Just $ Article id body
 articleRtoEntity _ = Nothing
 
-workRToEntity :: [WorkR] -> [Work]
-workRToEntity records =
-  map
-    ( \r ->
-        Work
-          { _workId = workRId r,
-            _workCategory = workRCategory r,
-            _workSlug = workRSlug r,
-            _workTitle = workRTitle r,
-            _workDescription = workRDescription r,
-            _workThumbnailUrl = workRThumbnailUrl r,
-            _workCreatedAt = workRCreatedAt r,
-            _workRevisedAt = workRRevisedAt r,
-            _workPublishedAt = workRPublishedAt r,
-            _workUnpublishedAt = workRUnpublishedAt r,
-            _workTags = workRToTag (filter (\y -> workRId r == workRId y) records),
-            _workArticle = articleRtoEntity $ ArticleR (workRArticleId r) (workRBody r)
-          }
-    )
-    uniques
-  where
-    uniques = rmDuplication records
+instance Record WorkR Work where
+  toEntity records =
+    map
+      ( \r ->
+          Work
+            { _workId = workRId r,
+              _workCategory = workRCategory r,
+              _workSlug = workRSlug r,
+              _workTitle = workRTitle r,
+              _workDescription = workRDescription r,
+              _workThumbnailUrl = workRThumbnailUrl r,
+              _workCreatedAt = workRCreatedAt r,
+              _workRevisedAt = workRRevisedAt r,
+              _workPublishedAt = workRPublishedAt r,
+              _workUnpublishedAt = workRUnpublishedAt r,
+              _workTags = workRToTag (filter (\y -> workRId r == workRId y) records),
+              _workArticle = articleRtoEntity $ ArticleR (workRArticleId r) (workRBody r)
+            }
+      )
+      uniques
+    where
+      uniques = rmDuplication records

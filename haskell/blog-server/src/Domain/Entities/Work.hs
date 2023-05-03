@@ -5,6 +5,7 @@ module Domain.Entities.Work (Work (..)) where
 import Data.Text
 import Data.Time (UTCTime)
 import Domain.Entities.Article (Article)
+import Domain.Entities.Entity (Entity (..))
 import Domain.Entities.Tag (Tag)
 
 data Work = Work
@@ -21,3 +22,6 @@ data Work = Work
     _workTags :: [Tag],
     _workArticle :: Maybe Article
   }
+
+instance Entity Work where
+  validate work = Right work -- TODO: implement

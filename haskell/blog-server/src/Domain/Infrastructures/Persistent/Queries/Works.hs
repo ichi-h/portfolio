@@ -9,7 +9,7 @@ where
 import Data.Text (pack)
 import Database.SQLite.Simple (Connection, Query (..), query_)
 import Domain.Entities.Work (Work)
-import Domain.Infrastructures.Persistent.Records.Work (WorkR, workRToEntity)
+import Domain.Infrastructures.Persistent.Records.Work (WorkR, toEntity)
 
 select :: String
 select =
@@ -23,7 +23,7 @@ readAllWorks_ conn = do
   let where' = "WHERE w.published_at IS NOT NULL and w.unpublished_at IS NULL"
       q = Query {fromQuery = pack $ select ++ where'}
   records <- query_ conn q :: IO [WorkR]
-  pure $ workRToEntity records
+  pure $ toEntity records
 
 readWork_ :: Connection -> String -> IO (Either String Work)
 readWork_ conn slug = do
@@ -32,4 +32,4 @@ readWork_ conn slug = do
   records <- query_ conn q :: IO [WorkR]
   case records of
     [] -> pure $ Left "No articles found."
-    _ -> pure $ Right $ head $ workRToEntity records
+    _ -> pure $ Right $ head $ toEntity records
