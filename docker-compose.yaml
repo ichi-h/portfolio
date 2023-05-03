@@ -1,23 +1,37 @@
 version: "3.7"
 
 services:
+  db-manager:
+    build:
+      context: ./db-manager
+      dockerfile: "./resources/db-manager/Dockerfile"
+      target: db-dev
+    container_name: portfolio-db-manager
+    env_file: ./db-manager/.env
+    volumes:
+      - db-manager:/db
+    tty: true
+
   blog-server:
     build:
-      context: ./
+      context: ./haskell/blog-server
       dockerfile: "./resources/haskell/Dockerfile"
       target: blog-server-dev
     container_name: portfolio-blog-server
     volumes:
       - ./haskell/blog-server:/var/www/project
       - stack-work:/var/www/project/.stack-work
+      - db-manager:/var/www/project/db
     working_dir: /var/www/project
     env_file: ./haskell/blog-server/.env
     command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
     tty: true
+    depends_on:
+      - db-manager
 
   node:
     build:
-      context: ./
+      context: ./client
       dockerfile: "./resources/node/Dockerfile"
     container_name: portfolio-node
     volumes:
@@ -44,3 +58,4 @@ services:
 volumes:
   stack-work:
   node_modules:
+  db-manager:

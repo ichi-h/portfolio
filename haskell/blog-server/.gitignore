@@ -1,4 +1,4 @@
 .stack-work/
 *~
 
-*.sqlite3
+db/
