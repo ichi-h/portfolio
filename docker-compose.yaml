@@ -15,20 +15,6 @@ services:
     command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
     tty: true
 
-  ogp-server:
-    build:
-      context: ./
-      dockerfile: "./resources/rust/Dockerfile"
-      target: ogp-server-dev
-    container_name: portfolio-ogp-server
-    volumes:
-      - ./rust/ogp_server:/var/www/project
-      - target:/var/www/project/target
-    working_dir: /var/www/project
-    env_file: ./rust/ogp_server/.env
-    command: cargo watch -x run
-    tty: true
-
   node:
     build:
       context: ./
@@ -51,12 +37,10 @@ services:
     restart: always
     depends_on:
       - blog-server
-      - ogp-server
       - node
     ports:
       - "8800:80"
 
 volumes:
   stack-work:
-  target:
   node_modules:

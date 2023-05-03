@@ -15,20 +15,6 @@ services:
     command: portfolio
     tty: true
 
-  ogp-server:
-    build:
-      context: ./
-      dockerfile: "./resources/rust/Dockerfile"
-      target: ogp-server-prod
-    container_name: portfolio-ogp-server
-    volumes:
-      - ./rust/ogp_server:/var/www/project
-      - target:/var/www/project/target
-    working_dir: /var/www/project
-    env_file: ./rust/ogp_server/.env
-    command: ./script.sh
-    tty: true
-
   node:
     build:
       context: ./
@@ -51,7 +37,6 @@ services:
     restart: always
     depends_on:
       - blog-server
-      - ogp-server
       - node
     ports:
       - "80:80"
@@ -59,4 +44,3 @@ services:
 volumes:
   stack-work:
   node_modules:
-  target:
