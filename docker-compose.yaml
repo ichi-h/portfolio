@@ -3,7 +3,7 @@ version: "3.7"
 services:
   db-manager:
     build:
-      context: ./db-manager
+      context: .
       dockerfile: "./resources/db-manager/Dockerfile"
       target: db-dev
     container_name: portfolio-db-manager
@@ -14,7 +14,7 @@ services:
 
   blog-server:
     build:
-      context: ./haskell/blog-server
+      context: .
       dockerfile: "./resources/haskell/Dockerfile"
       target: blog-server-dev
     container_name: portfolio-blog-server
@@ -31,13 +31,12 @@ services:
 
   node:
     build:
-      context: ./node
+      context: .
       dockerfile: "./resources/node/Dockerfile"
     container_name: portfolio-node
     volumes:
       - ./node:/var/www/project
       - node_modules:/var/www/project/node_modules
-    env_file: ./node/.env
     command: pnpm dev
     tty: true
 

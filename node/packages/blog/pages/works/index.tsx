@@ -1,11 +1,11 @@
 import Head from "next/head";
-import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { getAllWorks } from "@/api/works/getAllWorks";
 import { WorkSummary } from "@/core/entities/work";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
+import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { ErrorResponse } from "@/types/response";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 import { either } from "@/utils/either";

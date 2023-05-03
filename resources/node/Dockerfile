@@ -1,7 +1,7 @@
-FROM node:16.17-bullseye-slim
+FROM node:16.19-bullseye-slim
 
 WORKDIR /var/www/project
 
-COPY ./node/package.json ./node/package-lock.json ./
+COPY ./node ./
 
-RUN npm ci
+RUN npm install -g pnpm && pnpm install

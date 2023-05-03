@@ -1,7 +1,7 @@
 import Head from "next/head";
-import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { HomeTemplate } from "@/features/home/template";
+import OGPBG from "@/public/assets/images/ogp_bg.webp";
 
 import type { NextPage } from "next";
 

@@ -1,6 +1,6 @@
 import Head from "next/head";
-import OGPBG from "public/assets/images/ogp_bg.webp";
 
+import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { THEME } from "@/ui/base";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 import { Headline } from "@/ui/parts/text/headline";

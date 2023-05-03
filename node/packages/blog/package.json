@@ -1,0 +1,24 @@
+{
+  "name": "portfolio-blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export -o dist",
+    "start": "next start"
+  },
+  "dependencies": {
+    "highlight.js": "^11.7.0",
+    "linaria": "^4.1.10",
+    "modern-css-reset": "^1.4.0",
+    "next-linaria": "^0.11.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.7",
+    "@linaria/webpack-loader": "^4.1.10",
+    "@types/react": "18.0.20",
+    "@types/react-dom": "18.0.6"
+  }
+}

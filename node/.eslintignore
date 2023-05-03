@@ -1,0 +1,14 @@
+/**/*.config.ts
+/**/*.config.js
+
+/**/node_modules
+
+# testing
+/**/coverage
+
+# next.js
+/**/.next/
+/**/out/
+
+# production
+/**/dist

@@ -3,10 +3,10 @@ import path from "path";
 import process from "process";
 
 import Head from "next/head";
-import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { MeTemplate } from "@/features/me/template";
 import { mdToHtml } from "@/lib/remark/convert";
+import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 
 import type { InferGetStaticPropsType, NextPage } from "next";

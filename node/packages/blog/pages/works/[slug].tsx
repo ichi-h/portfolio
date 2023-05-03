@@ -1,13 +1,13 @@
 import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
-import OGPBG from "public/assets/images/ogp_bg.webp";
 
 import { getWork } from "@/api/works/getWork";
 import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { Work } from "@/core/entities/work";
 import { useMounted } from "@/lib/react/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
+import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { DefaultLayout } from "@/ui/components/layouts/default";

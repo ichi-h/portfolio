@@ -28,7 +28,7 @@ export const WorksList = () => {
     },
   ];
   const [order, setOrder] =
-    useState<typeof items[number]["value"]>("publishedAt");
+    useState<(typeof items)[number]["value"]>("publishedAt");
 
   const sortedWorks = filteredWorks.sort((a, b) => {
     if (order === "publishedAt") {
