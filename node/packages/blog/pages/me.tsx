@@ -7,7 +7,7 @@ import Head from "next/head";
 import { MeTemplate } from "@/features/me/template";
 import { mdToHtml } from "@/lib/remark/convert";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
-import { DefaultLayout } from "@/ui/components/layouts/default";
+import { WithHeaderAndFooter } from "@/ui/components/layouts";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
@@ -42,7 +42,7 @@ const Me: NextPageWithLayout<Props> = ({ html }) => {
 };
 
 Me.getLayout = (page) => {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <WithHeaderAndFooter>{page}</WithHeaderAndFooter>;
 };
 
 export default Me;

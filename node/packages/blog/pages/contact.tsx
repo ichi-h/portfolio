@@ -2,7 +2,7 @@ import Head from "next/head";
 
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { THEME } from "@/ui/base";
-import { DefaultLayout } from "@/ui/components/layouts/default";
+import { WithHeaderAndFooter } from "@/ui/components/layouts";
 import { Headline } from "@/ui/parts/text/headline";
 import { Text } from "@/ui/parts/text/text";
 
@@ -29,7 +29,7 @@ const Contact: NextPageWithLayout = () => {
 };
 
 Contact.getLayout = (page) => {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <WithHeaderAndFooter>{page}</WithHeaderAndFooter>;
 };
 
 export default Contact;
