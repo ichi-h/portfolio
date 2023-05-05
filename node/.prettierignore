@@ -2,6 +2,7 @@
 /**/*.config.js
 
 /**/node_modules
+/**/.pnpm-store
 
 # testing
 /**/coverage
