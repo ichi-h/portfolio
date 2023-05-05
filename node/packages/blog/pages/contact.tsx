@@ -6,9 +6,9 @@ import { DefaultLayout } from "@/ui/components/layouts/default";
 import { Headline } from "@/ui/parts/text/headline";
 import { Text } from "@/ui/parts/text/text";
 
-import type { NextPage } from "next";
+import type { NextPageWithLayout } from "next";
 
-const Contact: NextPage = () => {
+const Contact: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -22,12 +22,14 @@ const Contact: NextPage = () => {
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content="Contact - ichi-h.com" />
       </Head>
-      <DefaultLayout>
-        <Headline level={1}>Contact</Headline>
-        <Text fontSize={THEME.size.lg}>Coming soon...</Text>
-      </DefaultLayout>
+      <Headline level={1}>Contact</Headline>
+      <Text fontSize={THEME.size.lg}>Coming soon...</Text>
     </>
   );
+};
+
+Contact.getLayout = (page) => {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Contact;

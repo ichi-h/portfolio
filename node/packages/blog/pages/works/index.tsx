@@ -9,7 +9,7 @@ import { ErrorResponse } from "@/types/response";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 import { either } from "@/utils/either";
 
-import type { InferGetStaticPropsType, NextPage } from "next";
+import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -29,7 +29,7 @@ export const getStaticProps = async () => {
   )(onRight)(response);
 };
 
-const Home: NextPage<Props> = ({ works }) => {
+const Home: NextPageWithLayout<Props> = ({ works }) => {
   const provider = useFilteredWorks(works);
   return (
     <>
@@ -45,12 +45,14 @@ const Home: NextPage<Props> = ({ works }) => {
         <meta property="og:description" content="Works - ichi-h.com" />
       </Head>
       <WorksContext.Provider value={provider}>
-        <DefaultLayout>
-          <WorksTemplate />
-        </DefaultLayout>
+        <WorksTemplate />
       </WorksContext.Provider>
     </>
   );
+};
+
+Home.getLayout = (page) => {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Home;

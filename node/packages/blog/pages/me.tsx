@@ -9,7 +9,7 @@ import { mdToHtml } from "@/lib/remark/convert";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { DefaultLayout } from "@/ui/components/layouts/default";
 
-import type { InferGetStaticPropsType, NextPage } from "next";
+import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
 export const getStaticProps = async () => {
   const cwd = process.cwd();
@@ -23,7 +23,7 @@ export const getStaticProps = async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Me: NextPage<Props> = ({ html }) => {
+const Me: NextPageWithLayout<Props> = ({ html }) => {
   return (
     <>
       <Head>
@@ -36,11 +36,13 @@ const Me: NextPage<Props> = ({ html }) => {
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content="About me - ichi-h.com" />
       </Head>
-      <DefaultLayout>
-        <MeTemplate html={html} />
-      </DefaultLayout>
+      <MeTemplate html={html} />
     </>
   );
+};
+
+Me.getLayout = (page) => {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default Me;

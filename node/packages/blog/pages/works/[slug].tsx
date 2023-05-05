@@ -19,7 +19,7 @@ import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
 
-import type { InferGetStaticPropsType, NextPage } from "next";
+import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
 hljs.registerLanguage("python", python);
 
@@ -64,7 +64,7 @@ export const getStaticProps = async (context: StaticContext) => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const ArticlePage: NextPage<Props> = ({
+const ArticlePage: NextPageWithLayout<Props> = ({
   work,
   articleBody,
 }: {
@@ -90,29 +90,31 @@ const ArticlePage: NextPage<Props> = ({
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content={work.description} />
       </Head>
-      <DefaultLayout>
-        <Headline level={1} fontSize={THEME.size.xl4}>
-          {work.title}
-        </Headline>
-        <Stack justify="center" gap="md">
-          {work.tags.map((tag) => (
-            <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">
-              <Budge>{tag}</Budge>
-            </Link>
-          ))}
-        </Stack>
-        <Stack width="100%" justify="end" gap="xs2">
-          <Text>
-            <PublishIcon /> {formatDate(work.publishedAt)}
-          </Text>
-          <Text>
-            <UpdateIcon /> {formatDate(work.revisedAt)}
-          </Text>
-        </Stack>
-        <ArticleHtml html={articleBody} />
-      </DefaultLayout>
+      <Headline level={1} fontSize={THEME.size.xl4}>
+        {work.title}
+      </Headline>
+      <Stack justify="center" gap="md">
+        {work.tags.map((tag) => (
+          <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">
+            <Budge>{tag}</Budge>
+          </Link>
+        ))}
+      </Stack>
+      <Stack width="100%" justify="end" gap="xs2">
+        <Text>
+          <PublishIcon /> {formatDate(work.publishedAt)}
+        </Text>
+        <Text>
+          <UpdateIcon /> {formatDate(work.revisedAt)}
+        </Text>
+      </Stack>
+      <ArticleHtml html={articleBody} />
     </>
   );
+};
+
+ArticlePage.getLayout = (page) => {
+  return <DefaultLayout>{page}</DefaultLayout>;
 };
 
 export default ArticlePage;
