@@ -7,6 +7,7 @@ import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { useMounted } from "@/lib/react/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
+import { ErrorResponse } from "@/types/response";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { DefaultLayout } from "@/ui/components/layouts/default";
@@ -18,6 +19,7 @@ import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
+import { either } from "@/utils/either";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
@@ -41,25 +43,24 @@ interface StaticContext {
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
   const response = await getWork(slug);
-  switch (response.which) {
-    case "left":
-      return {
-        props: {
-          work: {} as Work,
-          articleBody: "",
-          message: response.value.message,
-        },
-        notFound: true,
-      };
-    case "right":
-      const articleBody = await mdToHtml(
-        response.value.article ? response.value.article.body : ""
-      );
-      return {
-        props: { work: response.value, articleBody, message: "" },
-        notFound: false,
-      };
-  }
+  const onLeft = async (e: ErrorResponse) => ({
+    props: {
+      work: {} as Work,
+      articleBody: "",
+      message: e.message,
+    },
+    notFound: true,
+  });
+  const onRight = async (work: Work) => {
+    const articleBody = await mdToHtml(work.article ? work.article.body : "");
+    return {
+      props: { work: work, articleBody, message: "" },
+      notFound: false,
+    };
+  };
+  return await either<ErrorResponse, Work, ReturnType<typeof onRight>>(onLeft)(
+    onRight
+  )(response);
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;

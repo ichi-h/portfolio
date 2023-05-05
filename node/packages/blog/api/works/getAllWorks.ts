@@ -12,5 +12,4 @@ export interface WorkSummary {
   tags: string[];
 }
 
-export const getAllWorks = () =>
-  fetchJson<WorkSummary[]>("container")("/api/v1/works");
+export const getAllWorks = () => fetchJson<WorkSummary[]>("/api/v1/works");

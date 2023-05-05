@@ -16,4 +16,4 @@ export interface Work {
 }
 
 export const getWork = (slug: string) =>
-  fetchJson<Work>("container")(`/api/v1/works/${slug}`);
+  fetchJson<Work>(`/api/v1/works/${slug}`);
