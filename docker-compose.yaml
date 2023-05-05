@@ -46,7 +46,7 @@ services:
     volumes:
       - ./resources/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./resources/nginx/log:/var/log/nginx
-      - ./node/blog/dist:/var/www/project/public
+      - ./node/packages/blog/dist:/var/www/project/public
     restart: always
     depends_on:
       - blog-server
