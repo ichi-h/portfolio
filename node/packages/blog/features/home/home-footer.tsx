@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { COPY_WRITE } from "@/constants/copyright";
-import { useMounted } from "@/lib/react/use-mounted";
+import { useMounted } from "@/hooks/use-mounted";
 import { THEME } from "@/ui/base";
 import { Fade } from "@/ui/parts/animation/fade";
 import { Box } from "@/ui/parts/box/box";

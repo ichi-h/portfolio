@@ -1,4 +1,4 @@
-import { useCustomContext } from "@/lib/react/use-custom-context";
+import { useCustomContext } from "@/hooks/use-custom-context";
 import { TextBox } from "@/ui/parts/form/textbox";
 import { Stack } from "@/ui/parts/stack/stack";
 

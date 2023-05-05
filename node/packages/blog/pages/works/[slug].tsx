@@ -4,7 +4,7 @@ import Head from "next/head";
 
 import { getWork, Work } from "@/api/works";
 import { ARTICLE_SLUGS } from "@/constants/article-paths";
-import { useMounted } from "@/lib/react/use-mounted";
+import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
 import { ErrorResponse } from "@/types/response";

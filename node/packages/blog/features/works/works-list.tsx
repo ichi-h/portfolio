@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { WorkSummary } from "@/api/works";
-import { useCustomContext } from "@/lib/react/use-custom-context";
+import { useCustomContext } from "@/hooks/use-custom-context";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";
 import { Grid } from "@/ui/parts/grid/grid";

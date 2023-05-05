@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { useMounted } from "@/lib/react/use-mounted";
+import { useMounted } from "@/hooks/use-mounted";
 import HomeImage from "@/public/assets/images/home.jpg";
 import { Fade } from "@/ui/parts/animation/fade";
 import { BgImageLayout } from "@/ui/parts/layouts/bg-image-layout";
