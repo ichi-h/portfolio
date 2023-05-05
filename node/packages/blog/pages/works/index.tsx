@@ -4,7 +4,7 @@ import { WorkSummary, getAllWorks } from "@/api/works";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
-import OGPBG from "@/public/assets/images/ogp_bg.webp";
+import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
 import { isLeft } from "@/utils/either";
 

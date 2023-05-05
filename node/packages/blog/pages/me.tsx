@@ -6,7 +6,7 @@ import Head from "next/head";
 
 import { MeTemplate } from "@/features/me/template";
 import { mdToHtml } from "@/lib/remark/convert";
-import OGPBG from "@/public/assets/images/ogp_bg.webp";
+import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";

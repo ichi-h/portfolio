@@ -6,7 +6,7 @@ import { getWork, Work } from "@/api/works";
 import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
-import OGPBG from "@/public/assets/images/ogp_bg.webp";
+import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
