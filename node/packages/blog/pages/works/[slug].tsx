@@ -6,7 +6,6 @@ import { getWork, Work } from "@/api/works";
 import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
-import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
@@ -78,7 +77,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
           property="og:url"
           content={`https://ichi-h.com/works/${work.slug}`}
         />
-        <meta property="og:image" content={OGPBG.src} />
+        <meta property="og:image" content={`/assets/ogp/${work.slug}.svg`} />
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content={work.description} />
       </Head>

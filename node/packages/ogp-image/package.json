@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-ogp-image",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "pnpm": true,
+  "scripts": {
+    "build": "node ./build.js"
+  },
+  "devDependencies": {
+    "node-fetch": "^3.3.1",
+    "satori": "^0.7.3",
+    "ts-node": "^10.9.1"
+  }
+}

@@ -1,3 +1,5 @@
+const keys = ["APP_URL", "BLOG_SERVER_URL", "NODE_ENV"] as const;
+
 export const useEnv = () => {
   const env = {
     APP_URL: process.env.APP_URL,
@@ -13,5 +15,5 @@ export const useEnv = () => {
     throw new Error(`Missing environment variables: ${missingEnv.join(", ")}`);
   }
 
-  return env;
+  return env as Record<(typeof keys)[number], string>;
 };

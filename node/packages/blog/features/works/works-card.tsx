@@ -33,17 +33,17 @@ export const WorksCard = ({ work, order }: Props) => {
           width="100%"
           height="100%"
         >
-          <Box width="100%">
+          <Stack direction="column" gap="xs3" width="100%">
             <Thumbnail
-              src={work.thumbnailUrl}
+              src={`/assets/ogp/${work.slug}.svg`}
               alt={work.title}
               width="100%"
-              height="166px"
+              min-height="144px"
             />
             <Headline level={2} fontSize={THEME.size.lg}>
               <Text lineClamp={2}>{work.title}</Text>
             </Headline>
-          </Box>
+          </Stack>
           <Box align="right" width="100%">
             {order === "publishedAt" && (
               <Text fontSize={THEME.size.xs}>
