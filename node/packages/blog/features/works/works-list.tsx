@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { WorkSummary } from "@/core/entities/work";
+import { WorkSummary } from "@/api/works";
 import { useCustomContext } from "@/lib/react/use-custom-context";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";

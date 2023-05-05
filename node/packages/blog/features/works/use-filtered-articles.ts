@@ -1,7 +1,7 @@
 import { useState } from "react";
 
+import { WorkSummary } from "@/api/works";
 import { PRIMARY_TAGS } from "@/constants/tags";
-import { WorkSummary } from "@/core/entities/work";
 
 interface TagStatus {
   label: string;

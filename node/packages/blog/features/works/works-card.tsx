@@ -1,4 +1,4 @@
-import { WorkSummary } from "@/core/entities/work";
+import { WorkSummary } from "@/api/works";
 import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";

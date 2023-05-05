@@ -1,7 +1,6 @@
 import Head from "next/head";
 
-import { getAllWorks } from "@/api/works/getAllWorks";
-import { WorkSummary } from "@/core/entities/work";
+import { WorkSummary, getAllWorks } from "@/api/works";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
