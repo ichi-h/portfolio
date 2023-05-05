@@ -56,11 +56,11 @@ export const fromRight =
   };
 
 // isLeft:: Either a b -> Bool
-export const isLeft = <L, R>(either: Either<L, R>): boolean => {
+export const isLeft = <L, R>(either: Either<L, R>): either is Left<L> => {
   return which(either) === "left";
 };
 
 // isRight:: Either a b -> Bool
-export const isRight = <L, R>(either: Either<L, R>): boolean => {
+export const isRight = <L, R>(either: Either<L, R>): either is Right<R> => {
   return which(either) === "right";
 };

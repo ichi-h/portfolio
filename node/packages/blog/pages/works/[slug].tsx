@@ -7,10 +7,9 @@ import { ARTICLE_SLUGS } from "@/constants/article-paths";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
-import { ErrorResponse } from "@/types/response";
 import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
-import { DefaultLayout } from "@/ui/components/layouts/default";
+import { WithHeaderAndFooter } from "@/ui/components/layouts";
 import { Budge } from "@/ui/parts/budge";
 import { PublishIcon } from "@/ui/parts/icons/publish";
 import { UpdateIcon } from "@/ui/parts/icons/update";
@@ -19,7 +18,7 @@ import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
-import { either } from "@/utils/either";
+import { isLeft } from "@/utils/either";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
@@ -30,7 +29,7 @@ export async function getStaticPaths() {
     paths: ARTICLE_SLUGS.map((slug) => ({
       params: { slug },
     })),
-    fallback: true,
+    fallback: "blocking",
   };
 }
 
@@ -43,24 +42,16 @@ interface StaticContext {
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
   const response = await getWork(slug);
-  const onLeft = async (e: ErrorResponse) => ({
-    props: {
-      work: {} as Work,
-      articleBody: "",
-      message: e.message,
-    },
-    notFound: true,
-  });
-  const onRight = async (work: Work) => {
-    const articleBody = await mdToHtml(work.article ? work.article.body : "");
+  if (isLeft(response)) {
     return {
-      props: { work: work, articleBody, message: "" },
-      notFound: false,
+      notFound: true,
     };
+  }
+  const work = response.value;
+  const articleBody = await mdToHtml(work.article ? work.article.body : "");
+  return {
+    props: { work: work, articleBody, message: "" },
   };
-  return await either<ErrorResponse, Work, ReturnType<typeof onRight>>(onLeft)(
-    onRight
-  )(response);
 };
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
@@ -115,7 +106,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
 };
 
 ArticlePage.getLayout = (page) => {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <WithHeaderAndFooter>{page}</WithHeaderAndFooter>;
 };
 
 export default ArticlePage;

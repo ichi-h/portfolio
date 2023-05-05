@@ -5,9 +5,8 @@ import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
 import OGPBG from "@/public/assets/images/ogp_bg.webp";
-import { ErrorResponse } from "@/types/response";
-import { DefaultLayout } from "@/ui/components/layouts/default";
-import { either } from "@/utils/either";
+import { WithHeaderAndFooter } from "@/ui/components/layouts";
+import { isLeft } from "@/utils/either";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
@@ -15,18 +14,17 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
   const response = await getAllWorks();
-  const onLeft = (e: ErrorResponse) => ({
-    props: {
-      works: [] as WorkSummary[],
-      message: e.message,
-    },
-  });
-  const onRight = (works: WorkSummary[]) => ({
-    props: { works, message: "" },
-  });
-  return either<ErrorResponse, WorkSummary[], ReturnType<typeof onRight>>(
-    onLeft
-  )(onRight)(response);
+  if (isLeft(response)) {
+    return {
+      props: {
+        works: [] as WorkSummary[],
+        message: response.value.message,
+      },
+    };
+  }
+  return {
+    props: { works: response.value, message: "" },
+  };
 };
 
 const Home: NextPageWithLayout<Props> = ({ works }) => {
@@ -52,7 +50,7 @@ const Home: NextPageWithLayout<Props> = ({ works }) => {
 };
 
 Home.getLayout = (page) => {
-  return <DefaultLayout>{page}</DefaultLayout>;
+  return <WithHeaderAndFooter>{page}</WithHeaderAndFooter>;
 };
 
 export default Home;
