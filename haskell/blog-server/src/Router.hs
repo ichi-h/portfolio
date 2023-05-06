@@ -17,13 +17,13 @@ type V1Prefix uri = "api" :> "v1" :> uri
 
 type API =
   V1Prefix ("works" :> Get '[JSON] GetAllWorksOutput)
-    :<|> V1Prefix ("works" :> Capture "slug" Text :> Get '[JSON] GetWorkOutput)
     :<|> V1Prefix ("works" :> "filter" :> QueryParam "search_word" Text :> QueryParam "tags" Text :> Get '[JSON] FilterWorksOutput)
+    :<|> V1Prefix ("works" :> Capture "slug" Text :> Get '[JSON] GetWorkOutput)
     :<|> V1Prefix ("tags" :> Get '[JSON] GetAllTagsOutput)
 
 server :: Server API
 server =
   getAllWorks
-    :<|> getWork
     :<|> filterWorks
+    :<|> getWork
     :<|> getAllTags
