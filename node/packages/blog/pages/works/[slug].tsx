@@ -2,8 +2,7 @@ import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
 
-import { getWork, Work } from "@/api/works";
-import { ARTICLE_SLUGS } from "@/constants/article-paths";
+import { getAllWorks, getWork, Work } from "@/api/works";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { THEME } from "@/ui/base";
@@ -24,9 +23,17 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 hljs.registerLanguage("python", python);
 
 export async function getStaticPaths() {
+  const res = await getAllWorks();
+  if (isLeft(res)) {
+    return {
+      paths: [],
+      fallback: "blocking",
+    };
+  }
+  const works = res.value;
   return {
-    paths: ARTICLE_SLUGS.map((slug) => ({
-      params: { slug },
+    paths: works.map((work) => ({
+      params: { slug: work.slug },
     })),
     fallback: "blocking",
   };
