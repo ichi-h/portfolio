@@ -10,7 +10,10 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
+    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -p 5432
     tty: true
+    ports:
+      - "5432:5432"
 
   blog-server:
     build:

@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as db-dev
+FROM python:3.11.3-slim-bullseye as db-dev
 
 WORKDIR /db
 
@@ -12,10 +12,11 @@ RUN apt-get update && \
   wget && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   curl -fsSL -o /usr/local/bin/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 && \
-  chmod +x /usr/local/bin/dbmate
-
-RUN dbmate create && \
-  dbmate migrate
+  chmod +x /usr/local/bin/dbmate && \
+  dbmate create && \
+  dbmate migrate && \
+  python -m pip install --upgrade pip setuptools && \
+  pip install sqlite-web python-dotenv
 
 FROM dv-dev as db-prod
 
