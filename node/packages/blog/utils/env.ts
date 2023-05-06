@@ -2,8 +2,8 @@ const keys = ["APP_URL", "BLOG_SERVER_URL", "NODE_ENV"] as const;
 
 export const useEnv = () => {
   const env = {
-    APP_URL: process.env.APP_URL,
-    BLOG_SERVER_URL: process.env.BLOG_SERVER_URL,
+    APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    BLOG_SERVER_URL: process.env.NEXT_PUBLIC_BLOG_SERVER_URL,
     NODE_ENV: process.env.NODE_ENV,
   } as const;
 

@@ -1,19 +1,10 @@
 import { fetchJson } from "../customFetch";
 
-export interface Work {
-  id: number;
-  category: string;
-  slug: string;
-  title: string;
-  description: string;
-  thumbnailUrl: string;
-  revisedAt: string;
-  publishedAt: string;
-  tags: string[];
-  article?: {
-    body: string;
-  };
-}
+import { Work } from "./types";
 
-export const getWork = (slug: string) =>
-  fetchJson<Work>(`/api/v1/works/${slug}`);
+const _getWork = (slug: string) => fetchJson<Work>(`/api/v1/works/${slug}`);
+
+export const getWork = (slug: string) => _getWork(slug)("proxy");
+
+export const getWorkViaContainer = (slug: string) =>
+  _getWork(slug)("container");
