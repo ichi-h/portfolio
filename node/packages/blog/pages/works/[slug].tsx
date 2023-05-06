@@ -2,7 +2,11 @@ import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
 
-import { getAllWorks, getWork, Work } from "@/api/works";
+import {
+  getAllWorksViaContainer,
+  getWorkViaContainer,
+  Work,
+} from "@/api/works";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { THEME } from "@/ui/base";
@@ -23,7 +27,7 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 hljs.registerLanguage("python", python);
 
 export async function getStaticPaths() {
-  const res = await getAllWorks();
+  const res = await getAllWorksViaContainer();
   if (isLeft(res)) {
     return {
       paths: [],
@@ -47,7 +51,7 @@ interface StaticContext {
 
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
-  const response = await getWork(slug);
+  const response = await getWorkViaContainer(slug);
   if (isLeft(response)) {
     return {
       notFound: true,
