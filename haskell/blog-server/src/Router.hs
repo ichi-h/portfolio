@@ -4,7 +4,9 @@
 
 module Router (API, server) where
 
-import Controllers.Works (getAllWorks, getWork)
+import Controllers.Works (filterWorks, getAllWorks, getWork)
+import Data.Text (Text)
+import Domain.UseCases.Works.Filter.Output (FilterWorksOutput)
 import Domain.UseCases.Works.Get.Output (GetWorkOutput)
 import Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput)
 import Servant
@@ -13,9 +15,11 @@ type V1Prefix uri = "api" :> "v1" :> uri
 
 type API =
   V1Prefix ("works" :> Get '[JSON] GetAllWorksOutput)
-    :<|> V1Prefix ("works" :> Capture "slug" String :> Get '[JSON] GetWorkOutput)
+    :<|> V1Prefix ("works" :> Capture "slug" Text :> Get '[JSON] GetWorkOutput)
+    :<|> V1Prefix ("works" :> "filter" :> QueryParam "search_word" Text :> QueryParam "tags" Text :> Get '[JSON] FilterWorksOutput)
 
 server :: Server API
 server =
   getAllWorks
     :<|> getWork
+    :<|> filterWorks

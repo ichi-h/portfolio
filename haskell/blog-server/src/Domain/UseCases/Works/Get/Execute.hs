@@ -1,10 +1,11 @@
 module Domain.UseCases.Works.Get.Execute (executeGetWork) where
 
+import Data.Text (Text)
 import Domain.UseCases.Works.Get.Output (GetWorkOutput, toOutput)
 import Domain.UseCases.Works.Get.Persistent (ReadWork)
 import Prelude
 
-executeGetWork :: ReadWork -> String -> IO (Either String GetWorkOutput)
+executeGetWork :: ReadWork -> Text -> IO (Either Text GetWorkOutput)
 executeGetWork readWork slug = do
   article <- readWork slug
   case article of

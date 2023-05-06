@@ -3,6 +3,7 @@ module Domain.UseCases.Works.Get.Persistent
   )
 where
 
+import Data.Text (Text)
 import Domain.Entities.Work (Work)
 
-type ReadWork = String -> IO (Either String Work)
+type ReadWork = Text -> IO (Either Text Work)

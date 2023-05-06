@@ -1,10 +1,15 @@
-module Controllers.Works (getAllWorks, getWork) where
+module Controllers.Works (getAllWorks, getWork, filterWorks) where
 
 import Control.Monad.IO.Class (liftIO)
-import Data.Text.Lazy (pack)
+import Data.Maybe (fromMaybe)
+import Data.Text (Text, pack, splitOn)
+import qualified Data.Text.Lazy as LazyText (fromStrict)
 import Data.Text.Lazy.Encoding (encodeUtf8)
 import Domain.Infrastructures.Persistent.Connection (closeDB, connectDB)
-import Domain.Infrastructures.Persistent.Queries.Works (readAllWorks_, readWork_)
+import Domain.Infrastructures.Persistent.Queries.Works (filterWork_, readAllWorks_, readWork_)
+import Domain.UseCases.Works.Filter.Execute (executeFilterWorks)
+import Domain.UseCases.Works.Filter.Input (FilterWorksInput (..))
+import Domain.UseCases.Works.Filter.Output (FilterWorksOutput)
 import Domain.UseCases.Works.Get.Execute (executeGetWork)
 import Domain.UseCases.Works.Get.Output (GetWorkOutput)
 import Domain.UseCases.Works.GetAll.Execute (executeGetAllArticle)
@@ -19,11 +24,29 @@ getAllWorks = do
   liftIO $ closeDB conn
   pure result
 
-getWork :: String -> Handler GetWorkOutput
+getWork :: Text -> Handler GetWorkOutput
 getWork slug = do
   conn <- liftIO (connectDB)
   let readWork = readWork_ conn
   result <- liftIO $ executeGetWork readWork slug
   case result of
-    Left msg -> throwError $ err404 {errBody = encodeUtf8 $ pack msg}
+    Left msg -> throwError $ err404 {errBody = encodeUtf8 $ LazyText.fromStrict msg}
     Right a -> pure a
+
+filterWorks :: Maybe Text -> Maybe Text -> Handler FilterWorksOutput
+filterWorks searchWord tags = do
+  conn <- liftIO (connectDB)
+  let searchWord' = fromMaybe emptyText searchWord
+      tags' = fromMaybe emptyText tags
+      input =
+        FilterWorksInput
+          { _searchWord = searchWord',
+            _tags = splitCommas tags',
+            _filterWorks = filterWork_ conn
+          }
+  result <- liftIO $ executeFilterWorks input
+  liftIO $ closeDB conn
+  pure result
+  where
+    emptyText = pack ""
+    splitCommas = splitOn (pack ",")
