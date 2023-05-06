@@ -1,4 +1,4 @@
-export * from "./filterWorks";
-export * from "./getAllWorks";
-export * from "./getWork";
+export * from "./filter-works";
+export * from "./get-all-works";
+export * from "./get-work";
 export * from "./types";
