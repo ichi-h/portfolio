@@ -42,11 +42,11 @@ library
       Domain.UseCases.Works.Filter.Input
       Domain.UseCases.Works.Filter.Output
       Domain.UseCases.Works.Get.Execute
+      Domain.UseCases.Works.Get.Input
       Domain.UseCases.Works.Get.Output
-      Domain.UseCases.Works.Get.Persistent
       Domain.UseCases.Works.GetAll.Execute
+      Domain.UseCases.Works.GetAll.Input
       Domain.UseCases.Works.GetAll.Output
-      Domain.UseCases.Works.GetAll.Persistent
       Router
   other-modules:
       Paths_portfolio

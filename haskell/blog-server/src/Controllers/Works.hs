@@ -11,24 +11,33 @@ import Domain.UseCases.Works.Filter.Execute (executeFilterWorks)
 import Domain.UseCases.Works.Filter.Input (FilterWorksInput (..))
 import Domain.UseCases.Works.Filter.Output (FilterWorksOutput)
 import Domain.UseCases.Works.Get.Execute (executeGetWork)
+import Domain.UseCases.Works.Get.Input (GetWorkInput (..))
 import Domain.UseCases.Works.Get.Output (GetWorkOutput)
 import Domain.UseCases.Works.GetAll.Execute (executeGetAllArticle)
+import Domain.UseCases.Works.GetAll.Input (GetAllWorksInput (..))
 import Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput)
 import Servant
 
 getAllWorks :: Handler GetAllWorksOutput
 getAllWorks = do
   conn <- liftIO (connectDB)
-  let readAllWorks = readAllWorks_ conn
-  result <- liftIO $ executeGetAllArticle readAllWorks
+  let input =
+        GetAllWorksInput
+          { _readAllWorks = readAllWorks_ conn
+          }
+  result <- liftIO $ executeGetAllArticle input
   liftIO $ closeDB conn
   pure result
 
 getWork :: Text -> Handler GetWorkOutput
 getWork slug = do
   conn <- liftIO (connectDB)
-  let readWork = readWork_ conn
-  result <- liftIO $ executeGetWork readWork slug
+  let input =
+        GetWorkInput
+          { _slug = slug,
+            _readWork = readWork_ conn
+          }
+  result <- liftIO $ executeGetWork input
   case result of
     Left msg -> throwError $ err404 {errBody = encodeUtf8 $ LazyText.fromStrict msg}
     Right a -> pure a

@@ -8,7 +8,6 @@ where
 import Control.Lens (makeLenses, (^.))
 import Domain.UseCases.Works.Filter.Input (FilterWorksInput)
 import Domain.UseCases.Works.Filter.Output (FilterWorksOutput, toOutput)
-import Prelude
 
 makeLenses ''FilterWorksInput
 
