@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { WorkSummary, getAllWorks } from "@/api/works";
+import { getAllTagsViaContainer } from "@/api/tags";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
@@ -13,22 +13,26 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticProps = async () => {
-  const response = await getAllWorks();
-  if (isLeft(response)) {
-    return {
-      props: {
-        works: [] as WorkSummary[],
-        message: response.value.message,
-      },
-    };
-  }
+  const generateErrorProps = (message: string) => ({
+    props: {
+      tags: [] as string[],
+      isError: true,
+      message,
+    },
+  });
+  const tagRes = await getAllTagsViaContainer();
+  if (isLeft(tagRes)) return generateErrorProps(tagRes.value.message);
   return {
-    props: { works: response.value, message: "" },
+    props: {
+      tags: tagRes.value,
+      isError: false,
+      message: "",
+    },
   };
 };
 
-const Home: NextPageWithLayout<Props> = ({ works }) => {
-  const provider = useFilteredWorks(works);
+const Home: NextPageWithLayout<Props> = ({ tags }) => {
+  const provider = useFilteredWorks(tags);
   return (
     <>
       <Head>

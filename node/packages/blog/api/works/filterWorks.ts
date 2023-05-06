@@ -2,11 +2,7 @@ import { fetchJson } from "../customFetch";
 
 import { WorkSummary } from "./types";
 
-const _filterWorks = (
-  searchWord: string,
-  tags: string[],
-  controller?: AbortController
-) => {
+const _filterWorks = (searchWord: string, tags: string[]) => {
   const searchWordQuery = searchWord ? `search_word=${searchWord}` : "";
   const tagsQuery = tags.length ? `tags=${tags.join(",")}` : "";
   const query = (() => {
@@ -21,19 +17,11 @@ const _filterWorks = (
     }
     return "";
   })();
-  return fetchJson<WorkSummary[]>(`/api/v1/works/filter${query}`, {
-    signal: controller?.signal,
-  });
+  return fetchJson<WorkSummary[]>(`/api/v1/works/filter${query}`);
 };
 
-export const filterWorks = (
-  searchWord: string,
-  tags: string[],
-  controller?: AbortController
-) => _filterWorks(searchWord, tags, controller)("proxy");
+export const filterWorks = (searchWord: string, tags: string[]) =>
+  _filterWorks(searchWord, tags)("proxy");
 
-export const filterWorksViaContainer = (
-  searchWord: string,
-  tags: string[],
-  controller?: AbortController
-) => _filterWorks(searchWord, tags, controller)("container");
+export const filterWorksViaContainer = (searchWord: string, tags: string[]) =>
+  _filterWorks(searchWord, tags)("container");

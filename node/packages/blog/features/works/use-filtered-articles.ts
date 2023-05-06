@@ -1,52 +1,62 @@
-import { useState } from "react";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
 
-import { WorkSummary } from "@/api/works";
-import { PRIMARY_TAGS } from "@/constants/tags";
+import { WorkSummary, filterWorks } from "@/api/works";
+import { isLeft } from "@/utils/either";
 
 interface TagStatus {
   label: string;
-  isPrimary: boolean;
   selected: boolean;
 }
 
-const unique = <T>(arr: T[]) => [...new Set(arr)];
+export const useFilteredWorks = (tags: string[]) => {
+  const [isQueryReady, setIsQueryReady] = useState(false);
+  const router = useRouter();
 
-export const useFilteredWorks = (init: WorkSummary[]) => {
-  const tags = unique(init.flatMap((a) => a.tags))
-    .filter((t) => !PRIMARY_TAGS.includes(t))
-    .sort();
+  const [filteredWorks, setFilteredWorks] = useState<WorkSummary[]>([]);
   const [searchText, setSearchText] = useState("");
-  const [tagStatuses, setTagStatuses] = useState<TagStatus[]>(
-    tags.concat(PRIMARY_TAGS).map((t) => ({
+  const [selectedTags, setSelectedTags] = useState<TagStatus[]>(
+    tags.map((t) => ({
       label: t,
-      isPrimary: PRIMARY_TAGS.includes(t),
       selected: false,
     }))
   );
-  const filteredWorks = init.filter((a) => {
-    const primarySelected = tagStatuses.filter(
-      (t) => t.isPrimary && t.selected
-    );
-    const normalSelected = tagStatuses.filter(
-      (t) => !t.isPrimary && t.selected
-    );
-    const hasPrimaryTag =
-      primarySelected.length === 0 ||
-      primarySelected.some((t) => a.tags.includes(t.label));
-    const hasTag =
-      normalSelected.length === 0 ||
-      normalSelected.every((t) => a.tags.includes(t.label));
-    const hasTitle = a.title.toLowerCase().includes(searchText.toLowerCase());
-    const hasDescription = a.description
-      .toLowerCase()
-      .includes(searchText.toLowerCase());
-    return hasPrimaryTag && hasTag && (hasTitle || hasDescription);
-  });
+
+  const searchWorks = useCallback(async () => {
+    const tagLabels = selectedTags
+      .filter((t) => t.selected)
+      .map((t) => t.label);
+    const res = await filterWorks(searchText, tagLabels);
+    if (isLeft(res)) return;
+    setFilteredWorks(res.value);
+  }, [searchText, selectedTags]);
+
+  useEffect(() => {
+    if (!isQueryReady && router.isReady) {
+      setSelectedTags(
+        tags.map((t) => ({
+          label: t,
+          selected: (router.query.tags ?? "").includes(t) ?? false,
+        }))
+      );
+      setIsQueryReady(true);
+    }
+    searchWorks();
+  }, [
+    isQueryReady,
+    router.isReady,
+    router.query.tags,
+    searchWorks,
+    setSelectedTags,
+    tags,
+  ]);
+
   return {
     filteredWorks,
     searchText,
     setSearchText,
-    tagStatuses,
-    setTagStatuses,
+    selectedTags,
+    setSelectedTags,
+    searchWorks,
   };
 };

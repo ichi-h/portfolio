@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 import { useCustomContext } from "@/hooks/use-custom-context";
 import { THEME } from "@/ui/base";
@@ -10,14 +9,13 @@ import { WorksContext } from "./works-context";
 
 export const WorksTags = () => {
   const router = useRouter();
-  const [isQueryReady, setIsQueryReady] = useState(false);
-  const { tagStatuses, setTagStatuses } = useCustomContext(WorksContext);
+  const { selectedTags, setSelectedTags } = useCustomContext(WorksContext);
 
-  const updateTagStatuses = (label: string) => () => {
-    const newSelectedTags = tagStatuses.map((t) =>
+  const toggleTag = (label: string) => () => {
+    const newSelectedTags = selectedTags.map((t) =>
       t.label === label ? { ...t, selected: !t.selected } : t
     );
-    setTagStatuses(newSelectedTags);
+    setSelectedTags(newSelectedTags);
     router.push({
       pathname: router.pathname,
       query: {
@@ -29,18 +27,6 @@ export const WorksTags = () => {
       },
     });
   };
-
-  useEffect(() => {
-    if (!isQueryReady && router.isReady) {
-      const initialTags = ((router.query.tags as string) || "").split(",");
-      setTagStatuses(
-        tagStatuses.map((t) =>
-          initialTags.includes(t.label) ? { ...t, selected: true } : t
-        )
-      );
-      setIsQueryReady(true);
-    }
-  }, [router.isReady, router.query, setTagStatuses, tagStatuses, isQueryReady]);
 
   return (
     <Stack
@@ -55,34 +41,15 @@ export const WorksTags = () => {
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
-        {tagStatuses
-          .filter((t) => t.isPrimary)
-          .map((tag) => (
-            <TagCheckbox
-              key={tag.label}
-              isChecked={tag.selected}
-              onChange={updateTagStatuses(tag.label)}
-            >
-              {tag.label}
-            </TagCheckbox>
-          ))}
-      </Stack>
-      <Stack
-        gap="md"
-        wrap="wrap"
-        maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
-      >
-        {tagStatuses
-          .filter((t) => !t.isPrimary)
-          .map((tag) => (
-            <TagCheckbox
-              key={tag.label}
-              isChecked={tag.selected}
-              onChange={updateTagStatuses(tag.label)}
-            >
-              {tag.label}
-            </TagCheckbox>
-          ))}
+        {selectedTags.map((tag) => (
+          <TagCheckbox
+            key={tag.label}
+            isChecked={tag.selected}
+            onChange={toggleTag(tag.label)}
+          >
+            {tag.label}
+          </TagCheckbox>
+        ))}
       </Stack>
     </Stack>
   );
