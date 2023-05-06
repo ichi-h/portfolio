@@ -22,6 +22,7 @@ data Work = Work
     _workTags :: [Tag],
     _workArticle :: Maybe Article
   }
+  deriving (Show)
 
 instance Entity Work where
   validate work = Right work -- TODO: implement

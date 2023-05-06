@@ -7,6 +7,7 @@ data Tag = Tag
   { _tagId :: Int,
     _tagName :: Text
   }
+  deriving (Show)
 
 instance Entity Tag where
   validate tag = Right tag -- TODO: implement

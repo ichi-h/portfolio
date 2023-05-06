@@ -46,11 +46,13 @@ filterWorks :: Maybe Text -> Maybe Text -> Handler FilterWorksOutput
 filterWorks searchWord tags = do
   conn <- liftIO (connectDB)
   let searchWord' = fromMaybe emptyText searchWord
-      tags' = fromMaybe emptyText tags
+      tags' = case tags of
+        Just t -> splitCommas t
+        Nothing -> []
       input =
         FilterWorksInput
           { _searchWord = searchWord',
-            _tags = splitCommas tags',
+            _tags = tags',
             _filterWorks = filterWork_ conn
           }
   result <- liftIO $ executeFilterWorks input
