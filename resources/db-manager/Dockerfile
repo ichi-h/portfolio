@@ -18,7 +18,7 @@ RUN apt-get update && \
   python -m pip install --upgrade pip setuptools && \
   pip install sqlite-web python-dotenv
 
-FROM dv-dev as db-prod
+FROM db-dev as db-prod
 
 # RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
 #   dpkg -i litestream-v0.3.9-linux-amd64.deb

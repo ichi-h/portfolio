@@ -10,10 +10,8 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
-    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -p 5432
+    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -u /admin -p 5432
     tty: true
-    ports:
-      - "5432:5432"
 
   blog-server:
     build:
@@ -49,7 +47,6 @@ services:
     volumes:
       - ./resources/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./resources/nginx/log:/var/log/nginx
-      - ./node/packages/blog/dist:/var/www/project/public
     restart: always
     depends_on:
       - blog-server

@@ -1,31 +1,34 @@
 version: "3.7"
 
 services:
+  db-manager:
+    build:
+      context: .
+      dockerfile: "./resources/db-manager/Dockerfile"
+      target: db-prod
+    container_name: portfolio-db-manager
+    env_file: ./db-manager/.env
+    volumes:
+      - db-manager:/db
+    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -u /admin -p 5432
+    tty: true
+
   blog-server:
     build:
-      context: ./
+      context: .
       dockerfile: "./resources/haskell/Dockerfile"
       target: blog-server-prod
     container_name: portfolio-blog-server
     volumes:
       - ./haskell/blog-server:/var/www/project
       - stack-work:/var/www/project/.stack-work
+      - db-manager:/var/www/project/db
     working_dir: /var/www/project
     env_file: ./haskell/blog-server/.env
     command: portfolio
     tty: true
-
-  node:
-    build:
-      context: ./
-      dockerfile: "./resources/node/Dockerfile"
-    container_name: portfolio-node
-    volumes:
-      - ./client:/var/www/project
-      - node_modules:/var/www/project/node_modules
-    env_file: ./client/.env
-    command: npm run build
-    tty: true
+    depends_on:
+      - db-manager
 
   nginx:
     image: nginx:1.22-alpine
@@ -33,14 +36,13 @@ services:
     volumes:
       - ./resources/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
       - ./resources/nginx/log:/var/log/nginx
-      - ./client/dist:/var/www/project/public
+      - ./node/packages/blog/dist:/var/www/project/public
     restart: always
     depends_on:
       - blog-server
-      - node
     ports:
       - "80:80"
 
 volumes:
   stack-work:
-  node_modules:
+  db-manager:
