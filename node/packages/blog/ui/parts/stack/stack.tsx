@@ -16,6 +16,8 @@ interface StyleProps {
   border?: string;
   direction?: "row" | "column";
   mDirection?: "row" | "column";
+  gap?: SizeKey;
+  mdGap?: SizeKey;
 }
 
 interface Props extends StyleProps {
@@ -23,7 +25,6 @@ interface Props extends StyleProps {
   justify?: "center" | "start" | "end" | "between";
   align?: "center" | "start" | "end" | "baseline";
   wrap?: "nowrap" | "wrap" | "reverse";
-  gap?: SizeKey;
   borderRadius?: SizeKey | "circle";
   isShadow?: boolean;
 }
@@ -67,54 +68,6 @@ const wrapStyle = {
   `,
   reverse: css`
     flex-wrap: wrap-reverse;
-  `,
-};
-
-const gapStyle = {
-  none: css`
-    gap: 0;
-  `,
-  xs4: css`
-    gap: ${THEME.size.xs4};
-  `,
-  xs3: css`
-    gap: ${THEME.size.xs3};
-  `,
-  xs2: css`
-    gap: ${THEME.size.xs2};
-  `,
-  xs: css`
-    gap: ${THEME.size.xs};
-  `,
-  sm: css`
-    gap: ${THEME.size.sm};
-  `,
-  md: css`
-    gap: ${THEME.size.md};
-  `,
-  lg: css`
-    gap: ${THEME.size.lg};
-  `,
-  xl: css`
-    gap: ${THEME.size.xl};
-  `,
-  xl2: css`
-    gap: ${THEME.size.xl2};
-  `,
-  xl3: css`
-    gap: ${THEME.size.xl3};
-  `,
-  xl4: css`
-    gap: ${THEME.size.xl4};
-  `,
-  xl5: css`
-    gap: ${THEME.size.xl5};
-  `,
-  xl6: css`
-    gap: ${THEME.size.xl6};
-  `,
-  xl7: css`
-    gap: ${THEME.size.xl7};
   `,
 };
 
@@ -185,8 +138,10 @@ const StyledStack = styled.div<StyleProps>`
   background-color: ${(props) => props.backgroundColor || "initial"};
   border: ${(props) => props.border || "initial"};
   flex-direction: ${(props) => props.direction || "row"};
+  gap: ${(props) => THEME.size[props.gap || "none"]};
   @media only screen and (max-width: ${THEME.breakPoint.md}px) {
     flex-direction: ${(props) => props.mDirection || props.direction || "row"};
+    gap: ${(props) => THEME.size[props.mdGap || props.gap || "none"]};
   }
 `;
 
@@ -207,6 +162,7 @@ export const Stack = ({
   mDirection,
   wrap,
   gap,
+  mdGap,
   borderRadius,
   isShadow,
 }: Props) => {
@@ -214,7 +170,6 @@ export const Stack = ({
     justify && justifyStyle[justify],
     align && alignStyle[align],
     wrap && wrapStyle[wrap],
-    gap && gapStyle[gap],
     borderRadius && borderRadiusStyle[borderRadius],
     isShadow && shadowStyle,
   ]
@@ -233,6 +188,8 @@ export const Stack = ({
     border,
     direction,
     mDirection,
+    gap,
+    mdGap,
   };
 
   return (

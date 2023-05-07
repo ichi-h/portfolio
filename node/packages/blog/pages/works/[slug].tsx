@@ -92,7 +92,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
         <meta property="og:description" content={work.description} />
       </Head>
       <Headline level={1}>{work.title}</Headline>
-      <Stack justify="center" gap="md">
+      <Stack justify="center" gap="md" mdGap="xs2" wrap="wrap">
         {work.tags.map((tag) => (
           <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">
             <Budge>{tag}</Budge>

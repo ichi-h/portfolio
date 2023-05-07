@@ -10,23 +10,41 @@ interface Props {
 export const h1Style = css`
   color: ${THEME.color.mono["000"]};
   font-size: ${THEME.size.xl5};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    font-size: ${THEME.size.xl4};
+  }
+  @media only screen and (max-width: ${THEME.breakPoint.sm}px) {
+    font-size: ${THEME.size.xl3};
+  }
   text-align: center;
 `;
 export const h2Style = css`
   color: ${THEME.color.mono["000"]};
   font-size: ${THEME.size.xl4};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    font-size: ${THEME.size.xl3};
+  }
 `;
 export const h3Style = css`
   color: ${THEME.color.mono["000"]};
   font-size: ${THEME.size.xl3};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    font-size: ${THEME.size.xl2};
+  }
 `;
 export const h4Style = css`
   color: ${THEME.color.mono["000"]};
   font-size: ${THEME.size.xl2};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    font-size: ${THEME.size.xl};
+  }
 `;
 export const h5Style = css`
   color: ${THEME.color.mono["000"]};
   font-size: ${THEME.size.xl};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    font-size: ${THEME.size.lg};
+  }
 `;
 export const h6Style = css`
   color: ${THEME.color.mono["000"]};

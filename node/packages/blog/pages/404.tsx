@@ -24,8 +24,10 @@ const Custom404: NextPageWithLayout = () => {
         height="100vh"
         gap="md"
       >
-        <Headline level={1} color={THEME.color.mono["900"]}>
-          Page Not Found
+        <Headline level={1}>
+          <Text color={THEME.color.mono["900"]} fontSize={THEME.size.xl7}>
+            Page Not Found
+          </Text>
         </Headline>
         <Text color={THEME.color.mono["900"]}>
           お探しのページは見つかりませんでした。

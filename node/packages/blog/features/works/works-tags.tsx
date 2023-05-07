@@ -29,15 +29,9 @@ export const WorksTags = () => {
   };
 
   return (
-    <Stack
-      justify="center"
-      align="center"
-      direction="column"
-      gap="md"
-      width="100%"
-    >
+    <Stack justify="center" align="center" direction="column" width="100%">
       <Stack
-        gap="md"
+        gap="xs2"
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >

@@ -57,6 +57,8 @@ export const WorksList = () => {
       {sortedWorks.length > 0 && (
         <Grid
           gridTemplateColumns="repeat(3, 1fr)"
+          mdGridTemplateColumns="repeat(2, 1fr)"
+          smGridTemplateColumns="repeat(1, 1fr)"
           gridTemplateRows="1fr"
           gap={THEME.size.xl2}
           width="100%"

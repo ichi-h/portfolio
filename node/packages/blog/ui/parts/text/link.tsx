@@ -32,7 +32,7 @@ const StyledSpan = styled.span<StyleProps>`
   &:hover {
     text-decoration: ${(props) => props.textDecoration || "underline"};
   }
-  @media only screen and (min-width: ${THEME.breakPoint.md}px) {
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
     font-size: ${(props) =>
       props.mdFontSize || props.fontSize || defaultProps.fontSize};
   }

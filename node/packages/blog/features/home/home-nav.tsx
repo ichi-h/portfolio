@@ -10,6 +10,7 @@ import { Avatar } from "@/ui/parts/image/avatar";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
+import { Text } from "@/ui/parts/text/text";
 
 import { FADE_MANAGER } from "./fade-manager";
 
@@ -59,8 +60,10 @@ export const HomeNav = () => {
               />
             </Link>
           </Hover>
-          <Headline level={1} color={THEME.color.mono["900"]}>
-            ichi-h.com
+          <Headline level={1}>
+            <Text color={THEME.color.mono["900"]} fontSize={THEME.size.xl7}>
+              ichi-h.com
+            </Text>
           </Headline>
           <Stack gap="md" mDirection="column">
             {links.map((link) => (

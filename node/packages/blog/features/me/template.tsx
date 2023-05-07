@@ -21,9 +21,7 @@ export const MeTemplate = ({ html }: Props) => {
       <Headline level={1}>About me</Headline>
       <Stack align="center" direction="column" gap="md">
         <Avatar src={Me.src} width="180px" height="180px" isShadow={true} />
-        <Headline level={2} fontSize={THEME.size.xl4}>
-          ichi-h
-        </Headline>
+        <Headline level={2}>ichi-h</Headline>
         <Text fontSize={THEME.size.lg} align="center">
           考えること。作ること。
           <br />

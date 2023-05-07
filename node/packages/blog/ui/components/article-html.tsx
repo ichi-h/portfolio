@@ -11,15 +11,27 @@ const articleMdStyle = css`
   color: ${THEME.color.mono["000"]};
   h2 {
     font-size: ${THEME.size.xl4};
+    @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+      font-size: ${THEME.size.xl3};
+    }
   }
   h3 {
     font-size: ${THEME.size.xl3};
+    @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+      font-size: ${THEME.size.xl2};
+    }
   }
   h4 {
     font-size: ${THEME.size.xl2};
+    @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+      font-size: ${THEME.size.xl};
+    }
   }
   h5 {
     font-size: ${THEME.size.xl};
+    @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+      font-size: ${THEME.size.lg};
+    }
     text-decoration: underline;
     margin: 0;
   }

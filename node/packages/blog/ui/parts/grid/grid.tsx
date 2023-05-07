@@ -1,9 +1,13 @@
 import { styled } from "linaria/react";
 
+import { THEME } from "@/ui/base";
+
 interface Props {
   children?: React.ReactNode;
   gridTemplateColumns?: string;
   gridTemplateRows?: string;
+  mdGridTemplateColumns?: string;
+  smGridTemplateColumns?: string;
   gap?: string;
   width?: string;
   height?: string;
@@ -25,4 +29,12 @@ export const Grid = styled.div<Props>`
   max-height: ${(props: Props) => props.maxHeight || "initial"};
   min-width: ${(props: Props) => props.minWidth || "initial"};
   min-height: ${(props: Props) => props.minHeight || "initial"};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    grid-template-columns: ${(props: Props) =>
+      props.mdGridTemplateColumns || props.gridTemplateColumns || "initial"};
+  }
+  @media only screen and (max-width: ${THEME.breakPoint.sm}px) {
+    grid-template-columns: ${(props: Props) =>
+      props.smGridTemplateColumns || props.gridTemplateColumns || "initial"};
+  }
 `;
