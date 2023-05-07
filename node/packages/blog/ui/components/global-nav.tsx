@@ -5,6 +5,21 @@ import { Link } from "@/ui/parts/text/link";
 import { THEME } from "../base";
 
 export const GlobalNav = () => {
+  const links = [
+    {
+      to: "/works",
+      text: "Works",
+    },
+    {
+      to: "/me",
+      text: "Me",
+    },
+    {
+      to: "/contact",
+      text: "Contact",
+    },
+  ];
+
   return (
     <Box
       type="nav"
@@ -21,33 +36,26 @@ export const GlobalNav = () => {
             <Link
               to="/"
               fontSize={THEME.size.xl3}
+              smFontSize={THEME.size.xl2}
+              xsFontSize={THEME.size.xl}
               color={THEME.color.mono[900]}
             >
               ichi-h.com
             </Link>
           </Box>
           <Stack gap="lg">
-            <Link
-              to="/works"
-              fontSize={THEME.size.xl3}
-              color={THEME.color.mono[900]}
-            >
-              Works
-            </Link>
-            <Link
-              to="/me"
-              fontSize={THEME.size.xl3}
-              color={THEME.color.mono[900]}
-            >
-              Me
-            </Link>
-            <Link
-              to="/contact"
-              fontSize={THEME.size.xl3}
-              color={THEME.color.mono[900]}
-            >
-              Contact
-            </Link>
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                fontSize={THEME.size.xl3}
+                smFontSize={THEME.size.xl2}
+                xsFontSize={THEME.size.xl}
+                color={THEME.color.mono[900]}
+              >
+                {link.text}
+              </Link>
+            ))}
           </Stack>
         </Stack>
       </Stack>

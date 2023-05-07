@@ -14,7 +14,7 @@ export const WithHeaderAndFooter = ({
 }) => {
   return (
     <BgImageLayout src={HomeImage.src}>
-      <Stack direction="column" gap="md">
+      <Stack direction="column" gap="md" padding="0 16px">
         <Box>
           <GlobalNav />
           <Stack justify="center" align="center" width="100%">

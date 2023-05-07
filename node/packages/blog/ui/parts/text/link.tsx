@@ -9,6 +9,9 @@ interface StyleProps {
   color?: Color;
   fontSize?: Size;
   textDecoration?: "none" | "underline";
+  mdFontSize?: Size;
+  smFontSize?: Size;
+  xsFontSize?: Size;
 }
 
 interface Props extends StyleProps {
@@ -29,6 +32,18 @@ const StyledSpan = styled.span<StyleProps>`
   &:hover {
     text-decoration: ${(props) => props.textDecoration || "underline"};
   }
+  @media only screen and (min-width: ${THEME.breakPoint.md}px) {
+    font-size: ${(props) =>
+      props.mdFontSize || props.fontSize || defaultProps.fontSize};
+  }
+  @media only screen and (max-width: ${THEME.breakPoint.sm}px) {
+    font-size: ${(props) =>
+      props.smFontSize || props.fontSize || defaultProps.fontSize};
+  }
+  @media only screen and (max-width: ${THEME.breakPoint.xs}px) {
+    font-size: ${(props) =>
+      props.xsFontSize || props.fontSize || defaultProps.fontSize};
+  }
 `;
 
 const anchor = css`
@@ -43,6 +58,9 @@ export const Link = (props: Props) => {
         <StyledSpan
           color={props.color}
           fontSize={props.fontSize}
+          mdFontSize={props.mdFontSize}
+          smFontSize={props.smFontSize}
+          xsFontSize={props.xsFontSize}
           textDecoration={props.textDecoration}
         >
           {props.children}

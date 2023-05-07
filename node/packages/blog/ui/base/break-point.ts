@@ -1,7 +1,8 @@
 export const BREAK_POINT = {
-  xs: 320,
-  sm: 480,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
+  xs2: 320,
+  xs: 374,
+  sm: 479,
+  md: 767,
+  lg: 1023,
+  xl: 1279,
 } as const;
