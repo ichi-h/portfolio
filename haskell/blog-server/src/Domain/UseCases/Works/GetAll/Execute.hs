@@ -1,7 +1,7 @@
 {-# LANGUAGE TemplateHaskell #-}
 
 module Domain.UseCases.Works.GetAll.Execute
-  ( executeGetAllArticle,
+  ( executeGetAllWorks,
   )
 where
 
@@ -11,8 +11,8 @@ import Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput, toOutput)
 
 makeLenses ''GetAllWorksInput
 
-executeGetAllArticle :: GetAllWorksInput -> IO GetAllWorksOutput
-executeGetAllArticle input = do
+executeGetAllWorks :: GetAllWorksInput -> IO GetAllWorksOutput
+executeGetAllWorks input = do
   let readAllWorks' = input ^. readAllWorks
   articles <- readAllWorks'
   pure $ toOutput articles

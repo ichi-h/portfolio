@@ -13,7 +13,7 @@ import Domain.UseCases.Works.Filter.Output (FilterWorksOutput)
 import Domain.UseCases.Works.Get.Execute (executeGetWork)
 import Domain.UseCases.Works.Get.Input (GetWorkInput (..))
 import Domain.UseCases.Works.Get.Output (GetWorkOutput)
-import Domain.UseCases.Works.GetAll.Execute (executeGetAllArticle)
+import Domain.UseCases.Works.GetAll.Execute (executeGetAllWorks)
 import Domain.UseCases.Works.GetAll.Input (GetAllWorksInput (..))
 import Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput)
 import Servant
@@ -25,7 +25,7 @@ getAllWorks = do
         GetAllWorksInput
           { _readAllWorks = readAllWorks_ conn
           }
-  result <- liftIO $ executeGetAllArticle input
+  result <- liftIO $ executeGetAllWorks input
   liftIO $ closeDB conn
   pure result
 
