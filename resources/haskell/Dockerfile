@@ -1,18 +1,13 @@
-FROM fpco/stack-build-small:lts-18.28 as blog-server-base
-
-RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3=3.* && \
-  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
-
-FROM blog-server-base as blog-server-dev
+FROM fpco/stack-build-small:lts-18.28 as blog-server-dev
 
 WORKDIR /var/www/project
 
 COPY ./haskell/blog-server .
 
-RUN stack install ghcid ormolu && \
+RUN apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3=3.* && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  stack install ghcid ormolu && \
   stack build
 
 
