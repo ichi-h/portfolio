@@ -1,15 +1,31 @@
-FROM fpco/stack-build-small:lts-18.28 as blog-server-dev
+FROM debian:bullseye-slim as blog-server-dev
 
 WORKDIR /var/www/project
 
 COPY ./haskell/blog-server .
 
 RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3=3.* && \
+  DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
+  ca-certificates \
+  curl \
+  gcc \
+  libc6-dev \
+  libffi-dev \
+  libgmp-dev \
+  make \
+  zlib1g-dev \
+  git \
+  netbase \
+  xz-utils \
+  gnupg \
+  sqlite3=3.* && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  curl -sSL https://get.haskellstack.org/ | sh && \
+  stack upgrade && \
+  stack --version && \
+  stack setup && \
   stack install ghcid ormolu && \
   stack build
-
 
 
 FROM debian:bullseye-slim as blog-server-prod
