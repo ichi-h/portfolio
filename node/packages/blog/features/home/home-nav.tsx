@@ -5,13 +5,12 @@ import Me from "@/public/assets/images/me.jpg";
 import { THEME } from "@/ui/base";
 import { Fade } from "@/ui/parts/animation/fade";
 import { Hover } from "@/ui/parts/animation/hover";
-import { Box } from "@/ui/parts/box/box";
 import { Avatar } from "@/ui/parts/image/avatar";
-import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 
 import { FADE_MANAGER } from "./fade-manager";
+import * as style from "./home-nav.style";
 
 export const HomeNav = () => {
   const [isDisplay, setIsDisplay] = useState(false);
@@ -22,13 +21,8 @@ export const HomeNav = () => {
 
   return (
     <Fade isDisplay={isDisplay} transition={FADE_MANAGER.ANIMATION_TIME}>
-      <Box
-        position="fixed"
-        top="50%"
-        left="50%"
-        transformTranslate="translate(-50%, -50%)"
-      >
-        <Stack direction="column" justify="center" align="center" gap="md">
+      <div className={style.homeNavWrapperStyle}>
+        <div className={style.homeNavStyle}>
           <Hover>
             <Link to="/me">
               <Avatar
@@ -42,7 +36,7 @@ export const HomeNav = () => {
           <Headline level={1} color={THEME.color.mono["900"]}>
             ichi-h.com
           </Headline>
-          <Stack gap="md">
+          <div className={style.homeNavLinksStyle}>
             <Link
               to="/works?tags=development"
               color={THEME.color.mono["900"]}
@@ -71,9 +65,9 @@ export const HomeNav = () => {
             >
               Thought
             </Link>
-          </Stack>
-        </Stack>
-      </Box>
+          </div>
+        </div>
+      </div>
     </Fade>
   );
 };
