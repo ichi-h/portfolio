@@ -14,11 +14,9 @@ RUN apt-get update && \
   curl -fsSL -o /usr/local/bin/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 && \
   chmod +x /usr/local/bin/dbmate && \
   dbmate create && \
-  dbmate migrate && \
-  python -m pip install --upgrade pip setuptools && \
-  pip install sqlite-web python-dotenv
+  dbmate migrate
 
 FROM db-dev as db-prod
 
-# RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
-#   dpkg -i litestream-v0.3.9-linux-amd64.deb
+RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
+  dpkg -i litestream-v0.3.9-linux-amd64.deb

@@ -10,7 +10,17 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
-    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -p 5432
+    tty: true
+
+  db-client:
+    build:
+      context: .
+      dockerfile: "./resources/db-client/Dockerfile"
+    container_name: portfolio-db-client
+    env_file: ./db-client/.env
+    volumes:
+      - db-manager:/db
+    command: sqlite_web /db/portfolio.sqlite3 --password -H 0.0.0.0 -p 5432
     tty: true
     ports:
       - "5432:5432"

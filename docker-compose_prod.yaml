@@ -10,7 +10,6 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
-    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -u /admin -p 5432
     tty: true
 
   blog-server:
