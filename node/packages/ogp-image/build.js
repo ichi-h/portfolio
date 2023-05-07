@@ -88,9 +88,9 @@ export const generateOgpSvg = async (title, imageUrl) => {
 };
 
 const main = async () => {
-  const works = await fetch(`${process.env.APP_URL}/api/v1/works`).then((r) =>
-    r.json()
-  );
+  const works = await fetch(
+    `${process.env.BLOG_SERVER_URL}/blog/v1/works`
+  ).then((r) => r.json());
   await Promise.all(
     works.map(async (work) => {
       const imageUrl = process.env.OGP_IMAGE_URL ?? "";

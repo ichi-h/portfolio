@@ -2,7 +2,7 @@ import { fetchJson } from "../customFetch";
 
 import { Work } from "./types";
 
-const _getWork = (slug: string) => fetchJson<Work>(`/api/v1/works/${slug}`);
+const _getWork = (slug: string) => fetchJson<Work>(`/blog/v1/works/${slug}`);
 
 export const getWork = (slug: string) => _getWork(slug)("proxy");
 

@@ -17,7 +17,7 @@ const _filterWorks = (searchWord: string, tags: string[]) => {
     }
     return "";
   })();
-  return fetchJson<WorkSummary[]>(`/api/v1/works/filter${query}`);
+  return fetchJson<WorkSummary[]>(`/blog/v1/works/filter${query}`);
 };
 
 export const filterWorks = (searchWord: string, tags: string[]) =>

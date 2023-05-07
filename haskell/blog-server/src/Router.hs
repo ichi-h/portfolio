@@ -13,7 +13,7 @@ import Domain.UseCases.Works.Get.Output (GetWorkOutput)
 import Domain.UseCases.Works.GetAll.Output (GetAllWorksOutput)
 import Servant
 
-type V1Prefix uri = "api" :> "v1" :> uri
+type V1Prefix uri = "blog" :> "v1" :> uri
 
 type API =
   V1Prefix ("works" :> Get '[JSON] GetAllWorksOutput)

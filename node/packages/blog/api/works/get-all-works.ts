@@ -2,7 +2,7 @@ import { fetchJson } from "../customFetch";
 
 import { WorkSummary } from "./types";
 
-const _getAllWorks = fetchJson<WorkSummary[]>("/api/v1/works");
+const _getAllWorks = fetchJson<WorkSummary[]>("/blog/v1/works");
 
 export const getAllWorks = () => _getAllWorks("proxy");
 

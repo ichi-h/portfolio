@@ -1,6 +1,6 @@
 import { fetchJson } from "../customFetch";
 
-const _getAllTags = fetchJson<string[]>("/api/v1/tags");
+const _getAllTags = fetchJson<string[]>("/blog/v1/tags");
 
 export const getAllTags = () => _getAllTags("proxy");
 

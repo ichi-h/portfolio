@@ -10,8 +10,10 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
-    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -u /admin -p 5432
+    command: sqlite_web ./portfolio.sqlite3 --password -H 0.0.0.0 -p 5432
     tty: true
+    ports:
+      - "5432:5432"
 
   blog-server:
     build:
@@ -30,17 +32,6 @@ services:
     depends_on:
       - db-manager
 
-  node:
-    build:
-      context: .
-      dockerfile: "./resources/node/Dockerfile"
-    container_name: portfolio-node
-    volumes:
-      - ./node:/var/www/project
-      - node_modules:/var/www/project/node_modules
-    command: pnpm dev
-    tty: true
-
   nginx:
     image: nginx:1.22-alpine
     container_name: portfolio-nginx
@@ -50,11 +41,9 @@ services:
     restart: always
     depends_on:
       - blog-server
-      - node
     ports:
       - "8800:80"
 
 volumes:
   stack-work:
-  node_modules:
   db-manager:
