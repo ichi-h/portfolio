@@ -8,16 +8,17 @@ RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install \
   ca-certificates \
   curl \
+  g++ \
   gcc \
   libc6-dev \
   libffi-dev \
   libgmp-dev \
   make \
+  xz-utils \
   zlib1g-dev \
   git \
-  netbase \
-  xz-utils \
   gnupg \
+  netbase \
   sqlite3=3.* && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   curl -sSL https://get.haskellstack.org/ | sh && \
