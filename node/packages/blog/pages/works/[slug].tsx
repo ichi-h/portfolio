@@ -9,7 +9,6 @@ import {
 } from "@/api/works";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
-import { THEME } from "@/ui/base";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
 import { Budge } from "@/ui/parts/budge";
@@ -92,9 +91,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content={work.description} />
       </Head>
-      <Headline level={1} fontSize={THEME.size.xl4}>
-        {work.title}
-      </Headline>
+      <Headline level={1}>{work.title}</Headline>
       <Stack justify="center" gap="md">
         {work.tags.map((tag) => (
           <Link key={tag} to={`/works?tags=${tag}`} textDecoration="none">

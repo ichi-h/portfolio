@@ -40,8 +40,10 @@ export const WorksCard = ({ work, order }: Props) => {
               width="100%"
               min-height="144px"
             />
-            <Headline level={2} fontSize={THEME.size.lg}>
-              <Text lineClamp={2}>{work.title}</Text>
+            <Headline level={2}>
+              <Text fontSize={THEME.size.lg} lineClamp={2}>
+                {work.title}
+              </Text>
             </Headline>
           </Stack>
           <Box align="right" width="100%">
