@@ -5,14 +5,34 @@ import Me from "@/public/assets/images/me.jpg";
 import { THEME } from "@/ui/base";
 import { Fade } from "@/ui/parts/animation/fade";
 import { Hover } from "@/ui/parts/animation/hover";
+import { Box } from "@/ui/parts/box/box";
 import { Avatar } from "@/ui/parts/image/avatar";
+import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 
 import { FADE_MANAGER } from "./fade-manager";
-import * as style from "./home-nav.style";
 
 export const HomeNav = () => {
+  const links = [
+    {
+      to: "/works?tags=development",
+      text: "Development",
+    },
+    {
+      to: "/works?tags=music",
+      text: "Music",
+    },
+    {
+      to: "/works?tags=photograph",
+      text: "Photograph",
+    },
+    {
+      to: "/works?tags=thought",
+      text: "Thought",
+    },
+  ];
+
   const [isDisplay, setIsDisplay] = useState(false);
 
   useMounted(() => {
@@ -21,8 +41,14 @@ export const HomeNav = () => {
 
   return (
     <Fade isDisplay={isDisplay} transition={FADE_MANAGER.ANIMATION_TIME}>
-      <div className={style.homeNavWrapperStyle}>
-        <div className={style.homeNavStyle}>
+      <Box
+        position="fixed"
+        top="50%"
+        left="50%"
+        transformTranslate="translate(-50%, -50%)"
+        width="100%"
+      >
+        <Stack direction="column" justify="center" align="center" gap="md">
           <Hover>
             <Link to="/me">
               <Avatar
@@ -36,38 +62,20 @@ export const HomeNav = () => {
           <Headline level={1} color={THEME.color.mono["900"]}>
             ichi-h.com
           </Headline>
-          <div className={style.homeNavLinksStyle}>
-            <Link
-              to="/works?tags=development"
-              color={THEME.color.mono["900"]}
-              fontSize={THEME.size.xl3}
-            >
-              Development
-            </Link>
-            <Link
-              to="/works?tags=music"
-              color={THEME.color.mono["900"]}
-              fontSize={THEME.size.xl3}
-            >
-              Music
-            </Link>
-            <Link
-              to="/works?tags=photograph"
-              color={THEME.color.mono["900"]}
-              fontSize={THEME.size.xl3}
-            >
-              Photograph
-            </Link>
-            <Link
-              to="/works?tags=thought"
-              color={THEME.color.mono["900"]}
-              fontSize={THEME.size.xl3}
-            >
-              Thought
-            </Link>
-          </div>
-        </div>
-      </div>
+          <Stack gap="md" mDirection="column">
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                color={THEME.color.mono["900"]}
+                fontSize={THEME.size.xl3}
+              >
+                {link.text}
+              </Link>
+            ))}
+          </Stack>
+        </Stack>
+      </Box>
     </Fade>
   );
 };

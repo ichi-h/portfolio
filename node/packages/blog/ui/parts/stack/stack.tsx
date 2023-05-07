@@ -14,13 +14,14 @@ interface StyleProps {
   padding?: string;
   backgroundColor?: string;
   border?: string;
+  direction?: "row" | "column";
+  mDirection?: "row" | "column";
 }
 
 interface Props extends StyleProps {
   children?: React.ReactNode;
   justify?: "center" | "start" | "end" | "between";
   align?: "center" | "start" | "end" | "baseline";
-  direction?: "row" | "column";
   wrap?: "nowrap" | "wrap" | "reverse";
   gap?: SizeKey;
   borderRadius?: SizeKey | "circle";
@@ -54,15 +55,6 @@ const alignStyle = {
   `,
   baseline: css`
     align-items: baseline;
-  `,
-};
-
-const directionStyle = {
-  row: css`
-    flex-direction: row;
-  `,
-  column: css`
-    flex-direction: column;
   `,
 };
 
@@ -192,6 +184,10 @@ const StyledStack = styled.div<StyleProps>`
   padding: ${(props) => props.padding || "initial"};
   background-color: ${(props) => props.backgroundColor || "initial"};
   border: ${(props) => props.border || "initial"};
+  flex-direction: ${(props) => props.direction || "row"};
+  @media only screen and (max-width: ${THEME.breakPoint.md}px) {
+    flex-direction: ${(props) => props.mDirection || props.direction || "row"};
+  }
 `;
 
 export const Stack = ({
@@ -208,6 +204,7 @@ export const Stack = ({
   justify,
   align,
   direction,
+  mDirection,
   wrap,
   gap,
   borderRadius,
@@ -216,7 +213,6 @@ export const Stack = ({
   const staticStyle = [
     justify && justifyStyle[justify],
     align && alignStyle[align],
-    direction && directionStyle[direction],
     wrap && wrapStyle[wrap],
     gap && gapStyle[gap],
     borderRadius && borderRadiusStyle[borderRadius],
@@ -235,6 +231,8 @@ export const Stack = ({
     padding,
     backgroundColor,
     border,
+    direction,
+    mDirection,
   };
 
   return (
