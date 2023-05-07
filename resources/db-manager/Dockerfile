@@ -1,4 +1,4 @@
-FROM python:3.11.3-slim-bullseye as db-dev
+FROM debian:bullseye-slim as db-dev
 
 WORKDIR /db
 
@@ -18,5 +18,5 @@ RUN apt-get update && \
 
 FROM db-dev as db-prod
 
-RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
-  dpkg -i litestream-v0.3.9-linux-amd64.deb
+# RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
+#   dpkg -i litestream-v0.3.9-linux-amd64.deb
