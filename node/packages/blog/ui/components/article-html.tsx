@@ -80,6 +80,12 @@ const articleMdStyle = css`
       .map(([key, value]) => `&-${key} { font-size: ${value}; }`)
       .join()}
   }
+  iframe[src*="youtube.com"] {
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16 / 9;
+    max-width: 700px;
+  }
 `;
 
 interface Props {
