@@ -1,6 +1,4 @@
 .env
 *.log
 
-docker-compose_prod.yaml
-
 credentials
