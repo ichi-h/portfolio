@@ -37,15 +37,17 @@ Iaculis nunc magnis lectus. Nisi ligula parturient quisque magnis sollicitudin s
 
 ##### Headline 5
 
-<div class="text-center text-gray">The time to create a Markov Chain model from each of the dummy texts of 100, 500, and 1000 words.</div>
+{{
+  "type": "text",
+  "style": ["center", "gray"],
+  "text": "The time to create a Markov Chain model from each of the dummy texts of 100, 500, and 1000 words."
+}}
 
 ![image](https://raw.githubusercontent.com/ichi-h/markov_rs/main/imgs/create_model.jpg)
 
 ## YouTube
 
-<div class="text-center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/CvglW3KNSsQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</div>
+{{ "type": "youtube", "id": "CvglW3KNSsQ" }}
 
 ## Quote
 
@@ -63,17 +65,17 @@ main()
 
 ## Expand
 
-<span class="font-bold">強調</span>
+{{ "type": "text", "style": ["bold"], "text": "強調" }}
 
-<span class="font-bold text-blue">強調</span>
+{{ "type": "text", "style": ["bold", "blue"], "text": "強調" }}
 
-<span class="font-bold text-blue text-xs">強調</span>
+{{ "type": "text", "style": ["bold", "blue", "xs"], "text": "強調" }}
 
-<span class="font-bold text-red">強調</span>
+{{ "type": "text", "style": ["bold", "red"], "text": "強調" }}
 
-<span class="font-bold text-red text-xl">強調</span>
+{{ "type": "text", "style": ["bold", "red", "xl"], "text": "強調" }}
 
-<span class="font-bold text-red text-xl4">強調</span>
+{{ "type": "text", "style": ["bold", "red", "xl4"], "text": "強調" }}
 
-<span class="font-bold text-red text-xl7">強調</span>
+{{ "type": "text", "style": ["bold", "red", "xl7"], "text": "強調" }}
 ';
