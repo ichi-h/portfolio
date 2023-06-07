@@ -25,6 +25,15 @@ services:
     ports:
       - "5432:5432"
 
+  proto:
+    build:
+      context: .
+      dockerfile: "./resources/protoc/Dockerfile"
+    container_name: portfolio-proto
+    volumes:
+      - ./proto:/proto
+    tty: true
+
   blog-server:
     build:
       context: .

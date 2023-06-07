@@ -12,6 +12,8 @@
   "cSpell.words": [
     "actix",
     "Dotenv",
-    "Linaria"
+    "Linaria",
+    "proto",
+    "protoc"
   ],
 }
