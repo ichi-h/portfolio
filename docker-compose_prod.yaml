@@ -5,6 +5,7 @@ services:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-manager:latest
     container_name: portfolio-db-manager
     env_file: ./db-manager/.env
+    command: ./entrypoint.sh
     volumes:
       - db-manager:/db
     tty: true

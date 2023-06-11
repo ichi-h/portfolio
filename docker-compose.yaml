@@ -46,7 +46,7 @@ services:
       - db-manager:/var/www/project/db
     working_dir: /var/www/project
     env_file: ./haskell/blog-server/.env
-    command: stack run
+    command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
     tty: true
     depends_on:
       - db-manager
