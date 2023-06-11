@@ -15,7 +15,6 @@ services:
     container_name: portfolio-blog-server
     volumes:
       - ./haskell/blog-server:/var/www/project
-      - stack-work:/var/www/project/.stack-work
       - db-manager:/var/www/project/db
     working_dir: /var/www/project
     env_file: ./haskell/blog-server/.env
@@ -30,7 +29,6 @@ services:
     volumes:
       - ./resources/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
       - ./resources/nginx/log:/var/log/nginx
-      - ./node/packages/blog/dist:/var/www/project/public
     restart: always
     depends_on:
       - blog-server
