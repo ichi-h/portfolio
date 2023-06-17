@@ -34,22 +34,40 @@ services:
       - ./proto:/proto
     tty: true
 
-  blog-server:
+  # blog-server:
+  #   build:
+  #     context: .
+  #     dockerfile: "./resources/haskell/Dockerfile"
+  #     target: blog-server-dev
+  #   container_name: portfolio-blog-server
+  #   volumes:
+  #     - ./haskell/blog-server:/var/www/project
+  #     - stack-work:/var/www/project/.stack-work
+  #     - db-manager:/var/www/project/db
+  #   working_dir: /var/www/project
+  #   env_file: ./haskell/blog-server/.env
+  #   command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
+  #   tty: true
+  #   depends_on:
+  #     - db-manager
+
+  node:
     build:
       context: .
-      dockerfile: "./resources/haskell/Dockerfile"
-      target: blog-server-dev
-    container_name: portfolio-blog-server
+      dockerfile: "./resources/node/Dockerfile"
+      target: node-dev
+    container_name: portfolio-node
     volumes:
-      - ./haskell/blog-server:/var/www/project
-      - stack-work:/var/www/project/.stack-work
-      - db-manager:/var/www/project/db
+      - ./node:/var/www/project
+      - node_modules:/var/www/project/node_modules
+      - db-manager:/var/www/project/packages/server/db
     working_dir: /var/www/project
-    env_file: ./haskell/blog-server/.env
-    command: ghcid --command "stack ghci portfolio:exe:portfolio-exe" --test "Main.main"
+    command: pnpm run dev
     tty: true
     depends_on:
       - db-manager
+    ports:
+      - "3000:3000"
 
   nginx:
     image: nginx:1.22-alpine
@@ -59,10 +77,11 @@ services:
       - ./resources/nginx/log:/var/log/nginx
     restart: always
     depends_on:
-      - blog-server
+      - node
     ports:
       - "8800:80"
 
 volumes:
   stack-work:
   db-manager:
+  node_modules:
