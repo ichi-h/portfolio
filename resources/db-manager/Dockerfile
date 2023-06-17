@@ -19,4 +19,5 @@ RUN apt-get update && \
 FROM db-dev as db-prod
 
 RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.9/litestream-v0.3.9-linux-amd64.deb && \
-  dpkg -i litestream-v0.3.9-linux-amd64.deb
+  dpkg -i litestream-v0.3.9-linux-amd64.deb && \
+  rm litestream-v0.3.9-linux-amd64.deb
