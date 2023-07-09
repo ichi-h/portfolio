@@ -25,14 +25,14 @@ services:
     ports:
       - "5432:5432"
 
-  proto:
-    build:
-      context: .
-      dockerfile: "./resources/protoc/Dockerfile"
-    container_name: portfolio-proto
-    volumes:
-      - ./proto:/proto
-    tty: true
+  # proto:
+  #   build:
+  #     context: .
+  #     dockerfile: "./resources/protoc/Dockerfile"
+  #   container_name: portfolio-proto
+  #   volumes:
+  #     - ./proto:/proto
+  #   tty: true
 
   # blog-server:
   #   build:
@@ -50,6 +50,22 @@ services:
   #   tty: true
   #   depends_on:
   #     - db-manager
+
+  blog-server:
+    build:
+      context: .
+      dockerfile: "./resources/go/Dockerfile"
+      target: go-dev
+    container_name: portfolio-blog-server
+    volumes:
+      - ./go:/var/www/project
+      - db-manager:/var/www/project/db
+    working_dir: /var/www/project
+    env_file: ./go/.env
+    command: air
+    tty: true
+    depends_on:
+      - db-manager
 
   node:
     build:
