@@ -39,9 +39,11 @@
     "vite-plugin-dts": "^2.3.0"
   },
   "lint-staged": {
-    "*.{js,ts,.jsx,tsx}": [
-      "eslint . --ignore-path .eslintignore",
+    "*.{js,ts,.jsx,tsx,json,md}": [
       "prettier --write . --ignore-path .prettierignore"
+    ],
+    "*.{js,ts,.jsx,tsx}": [
+      "eslint . --ignore-path .eslintignore"
     ]
   }
 }

@@ -1,19 +1,11 @@
 {
   "prettier.configPath": ".prettierrc",
-  "eslint.workingDirectories": [
-    "."
-  ],
+  "eslint.workingDirectories": ["."],
   "editor.renderWhitespace": "all",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "cSpell.words": [
-    "actix",
-    "Dotenv",
-    "Linaria",
-    "proto",
-    "protoc"
-  ],
+  "cSpell.words": ["actix", "Dotenv", "Linaria", "proto", "protoc"]
 }
