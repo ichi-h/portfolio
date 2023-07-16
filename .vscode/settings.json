@@ -1,7 +1,7 @@
 {
-  "prettier.configPath": "node/.prettierrc",
+  "prettier.configPath": ".prettierrc",
   "eslint.workingDirectories": [
-    "node"
+    "."
   ],
   "editor.renderWhitespace": "all",
   "editor.formatOnPaste": true,

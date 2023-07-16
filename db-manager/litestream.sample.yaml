@@ -1,9 +1,0 @@
-dbs:
-  - path:
-    replicas:
-      - type: s3
-        bucket:
-        path:
-        region:
-        access-key-id:
-        secret-access-key:
