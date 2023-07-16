@@ -13,10 +13,10 @@ questions:
 ---
 title: "required"
 description: "required"
-thumbnail: "optional"
+thumbnail: ""
 tags: []
 publish: false
 ---
 
-# Title
+## Title
 ```
