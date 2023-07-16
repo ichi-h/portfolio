@@ -1,9 +1,9 @@
 {
-  "name": "portfolio-articles",
+  "name": "portfolio-works",
   "private": true,
   "version": "0.0.0",
-  "main": "./dist/portfolio-articles.umd.js",
-  "module": "./dist/portfolio-articles.es.js",
+  "main": "./dist/portfolio-works.umd.js",
+  "module": "./dist/portfolio-works.es.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"

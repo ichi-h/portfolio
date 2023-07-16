@@ -12,8 +12,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, "index.ts"),
-      name: "portfolio-articles",
-      fileName: (format) => `portfolio-articles.${format}.js`,
+      name: "portfolio-works",
+      fileName: (format) => `portfolio-works.${format}.js`,
     },
   },
 });
