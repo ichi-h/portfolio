@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "build": "tsc && vite build",
+    "generate": "scaffdog generate",
     "time": "echo 'console.log(new Date().toISOString());' | node"
   },
   "devDependencies": {
