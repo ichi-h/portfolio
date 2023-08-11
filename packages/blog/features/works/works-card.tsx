@@ -1,4 +1,3 @@
-import { WorkSummary } from "@/api/works";
 import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
@@ -11,14 +10,16 @@ import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
 
+import type { Work } from "portfolio-works";
+
 interface Props {
-  work: WorkSummary;
-  order: keyof Pick<WorkSummary, "publishedAt" | "revisedAt">;
+  work: Work;
+  order: keyof Pick<Work, "createdAt" | "updatedAt">;
 }
 
 export const WorksCard = ({ work, order }: Props) => {
   return (
-    <Hover key={work.id}>
+    <Hover key={work.slug}>
       <Link
         to={`/works/${work.slug}`}
         color={THEME.color.mono["000"]}
@@ -35,7 +36,7 @@ export const WorksCard = ({ work, order }: Props) => {
         >
           <Stack direction="column" gap="xs3" width="100%">
             <Thumbnail
-              src={`/assets/ogp/${work.slug}.svg`}
+              src={`/assets/ogp/${work.slug}/${work.updatedAt}.svg`}
               alt={work.title}
               width="100%"
               min-height="144px"
@@ -47,16 +48,16 @@ export const WorksCard = ({ work, order }: Props) => {
             </Headline>
           </Stack>
           <Box align="right" width="100%">
-            {order === "publishedAt" && (
+            {order === "createdAt" && (
               <Text fontSize={THEME.size.xs}>
                 <PublishIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-                {formatDate(work.publishedAt)}
+                {formatDate(work.createdAt)}
               </Text>
             )}
-            {order === "revisedAt" && (
+            {order === "updatedAt" && (
               <Text fontSize={THEME.size.xs}>
                 <UpdateIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-                {formatDate(work.revisedAt)}
+                {formatDate(work.updatedAt)}
               </Text>
             )}
           </Box>

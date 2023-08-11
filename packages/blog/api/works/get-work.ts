@@ -1,10 +1,5 @@
 import { fetchJson } from "../customFetch";
 
-import { Work } from "./types";
+import type { Work } from "portfolio-works";
 
-const _getWork = (slug: string) => fetchJson<Work>(`/blog/v1/works/${slug}`);
-
-export const getWork = (slug: string) => _getWork(slug)("proxy");
-
-export const getWorkViaContainer = (slug: string) =>
-  _getWork(slug)("container");
+export const getWork = (slug: string) => fetchJson<Work>(`/api/works/${slug}`);

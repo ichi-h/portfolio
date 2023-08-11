@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import { WorkSummary } from "@/api/works";
 import { useCustomContext } from "@/hooks/use-custom-context";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";
@@ -11,34 +10,34 @@ import { Text } from "@/ui/parts/text/text";
 import { WorksCard } from "./works-card";
 import { WorksContext } from "./works-context";
 
+import type { Work } from "portfolio-works";
+
 export const WorksList = () => {
   const provider = useCustomContext(WorksContext);
   const { filteredWorks } = provider;
 
-  const items: RadioItem<
-    keyof Pick<WorkSummary, "publishedAt" | "revisedAt">
-  >[] = [
+  const items: RadioItem<keyof Pick<Work, "createdAt" | "updatedAt">>[] = [
     {
       label: "作成日順",
-      value: "publishedAt",
+      value: "createdAt",
     },
     {
       label: "更新日順",
-      value: "revisedAt",
+      value: "updatedAt",
     },
   ];
   const [order, setOrder] =
-    useState<(typeof items)[number]["value"]>("publishedAt");
+    useState<(typeof items)[number]["value"]>("createdAt");
 
   const sortedWorks = filteredWorks.sort((a, b) => {
-    if (order === "publishedAt") {
-      const aDate = new Date(a.publishedAt);
-      const bDate = new Date(b.publishedAt);
+    if (order === "createdAt") {
+      const aDate = new Date(a.createdAt);
+      const bDate = new Date(b.createdAt);
       return aDate > bDate ? -1 : 1;
     }
-    if (order === "revisedAt") {
-      const aDate = new Date(a.revisedAt);
-      const bDate = new Date(b.revisedAt);
+    if (order === "updatedAt") {
+      const aDate = new Date(a.updatedAt);
+      const bDate = new Date(b.updatedAt);
       return aDate > bDate ? -1 : 1;
     }
     return 0;
@@ -64,7 +63,7 @@ export const WorksList = () => {
           width="100%"
         >
           {sortedWorks.map((work) => (
-            <WorksCard key={work.id} work={work} order={order} />
+            <WorksCard key={work.slug} work={work} order={order} />
           ))}
         </Grid>
       )}

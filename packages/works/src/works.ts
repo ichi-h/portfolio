@@ -5,23 +5,23 @@ import process from "process";
 import dotenv from "dotenv";
 import matter from "gray-matter";
 
-import { TAGS, Tag } from "./tags";
+import { TAGS } from "./tags";
 
-export interface ParsedMarkdown {
+export interface Work {
   title: string;
   description: string;
   thumbnail: string;
-  tags: Tag[];
+  tags: string[];
   publish: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
   slug: string;
   content: string;
 }
 
 export interface WorkFilter {
   search?: string;
-  tags?: Tag[];
+  tags?: string[];
 }
 
 dotenv.config();
@@ -52,40 +52,38 @@ export const getWorksBySlug = async (slug: string, hasContent = false) => {
       return mdFileContent;
     })
   );
-  const parsedMdFiles: ParsedMarkdown[] = mdFileContents.map(
-    (mdFileContent, i) => {
-      const { data, content } = matter(mdFileContent);
+  const works: Work[] = mdFileContents.map((mdFileContent, i) => {
+    const { data, content } = matter(mdFileContent);
 
-      if (data.title === undefined || data.title === "") {
-        throw new Error(`Invalid title in ${slug}/${mdFiles[i].name}.`);
-      }
-      if (data.description === undefined || data.description === "") {
-        throw new Error(`Invalid description in ${slug}/${mdFiles[i].name}.`);
-      }
-
-      const isValidTags = data.tags.every((tag: string) => {
-        return TAGS.map((t) => `${t}`).includes(tag);
-      });
-      if (!isValidTags) {
-        throw new Error(
-          `Invalid tags in ${slug}/${mdFiles[i].name}. (tags: ${data.tags})`
-        );
-      }
-
-      return {
-        title: data.title ?? "",
-        description: data.description ?? "",
-        thumbnail: data.thumbnail ?? "",
-        tags: data.tags,
-        publish: data.publish,
-        createdAt: new Date(mdFiles[0].name.split(".md")[0]),
-        updatedAt: new Date(mdFiles[i].name.split(".md")[0]),
-        slug,
-        content: hasContent ? content : "",
-      };
+    if (data.title === undefined || data.title === "") {
+      throw new Error(`Invalid title in ${slug}/${mdFiles[i].name}.`);
     }
-  );
-  return parsedMdFiles;
+    if (data.description === undefined || data.description === "") {
+      throw new Error(`Invalid description in ${slug}/${mdFiles[i].name}.`);
+    }
+
+    const isValidTags = data.tags.every((tag: string) => {
+      return TAGS.map((t) => `${t}`).includes(tag);
+    });
+    if (!isValidTags) {
+      throw new Error(
+        `Invalid tags in ${slug}/${mdFiles[i].name}. (tags: ${data.tags})`
+      );
+    }
+
+    return {
+      title: data.title ?? "",
+      description: data.description ?? "",
+      thumbnail: data.thumbnail ?? "",
+      tags: data.tags,
+      publish: data.publish,
+      createdAt: mdFiles[0].name.split(".md")[0],
+      updatedAt: mdFiles[i].name.split(".md")[0],
+      slug,
+      content: hasContent ? content : "",
+    };
+  });
+  return works;
 };
 
 export const getLatestWorkBySlug = async (slug: string, hasContent = false) => {
@@ -94,12 +92,12 @@ export const getLatestWorkBySlug = async (slug: string, hasContent = false) => {
     return null;
   }
   const latestWork = works.sort((a, b) => {
-    return b.updatedAt.getTime() - a.updatedAt.getTime();
+    return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
   })[0];
   return latestWork;
 };
 
-const filterWorks = (works: ParsedMarkdown[], filter: WorkFilter) => {
+const filterWorks = (works: Work[], filter: WorkFilter) => {
   const workFilter = {
     search: filter.search ?? "",
     tags: filter.tags ?? [],
@@ -126,7 +124,7 @@ export const getAllLatestWorks = async (
         return await getLatestWorkBySlug(slug, hasContent);
       })
     )
-  ).filter((work) => work !== null) as ParsedMarkdown[];
+  ).filter((work) => work !== null) as Work[];
   if (!filter) return works;
   return filterWorks(works, filter);
 };

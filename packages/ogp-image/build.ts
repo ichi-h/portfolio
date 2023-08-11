@@ -101,9 +101,7 @@ const main = async () => {
       }
       const dir = path.join(
         process.cwd(),
-        `../blog/public/assets/ogp/${
-          work.slug
-        }/${work.createdAt.toISOString()}.svg`
+        `../blog/public/assets/ogp/${work.slug}/${work.updatedAt}.svg`
       );
       fs.writeFileSync(dir, svg);
     })

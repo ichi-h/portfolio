@@ -25,6 +25,7 @@ export default defineConfig({
           path: "path",
           fs: "fs",
           "fs/promises": "fs/promises",
+          process: "process",
         },
       },
     },

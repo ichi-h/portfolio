@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-import { WorkSummary, filterWorks } from "@/api/works";
+import { filterWorks } from "@/api/works";
 import { isLeft } from "@/utils/either";
+
+import type { Work } from "portfolio-works";
 
 interface TagStatus {
   label: string;
@@ -13,7 +15,7 @@ export const useFilteredWorks = (tags: string[]) => {
   const [isQueryReady, setIsQueryReady] = useState(false);
   const router = useRouter();
 
-  const [filteredWorks, setFilteredWorks] = useState<WorkSummary[]>([]);
+  const [filteredWorks, setFilteredWorks] = useState<Work[]>([]);
   const [searchText, setSearchText] = useState("");
   const [selectedTags, setSelectedTags] = useState<TagStatus[]>(
     tags.map((t) => ({

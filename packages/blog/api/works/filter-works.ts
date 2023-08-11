@@ -1,8 +1,8 @@
 import { fetchJson } from "../customFetch";
 
-import { WorkSummary } from "./types";
+import type { Work } from "portfolio-works";
 
-const _filterWorks = (searchWord: string, tags: string[]) => {
+export const filterWorks = (searchWord: string, tags: string[]) => {
   const searchWordQuery = searchWord ? `search_word=${searchWord}` : "";
   const tagsQuery = tags.length ? `tags=${tags.join(",")}` : "";
   const query = (() => {
@@ -17,11 +17,10 @@ const _filterWorks = (searchWord: string, tags: string[]) => {
     }
     return "";
   })();
-  return fetchJson<WorkSummary[]>(`/blog/v1/works/filter${query}`);
+  return fetchJson<Work[]>(`/api/works${query}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };
-
-export const filterWorks = (searchWord: string, tags: string[]) =>
-  _filterWorks(searchWord, tags)("proxy");
-
-export const filterWorksViaContainer = (searchWord: string, tags: string[]) =>
-  _filterWorks(searchWord, tags)("container");

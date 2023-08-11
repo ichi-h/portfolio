@@ -1,12 +1,9 @@
 import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
-import {
-  ParsedMarkdown,
-  getAllLatestWorks,
-  getLatestWorkBySlug,
-} from "portfolio-works";
+import { getAllLatestWorks } from "portfolio-works";
 
+import { getWork } from "@/api/works";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { ArticleHtml } from "@/ui/components/article-html";
@@ -19,8 +16,10 @@ import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
+import { isLeft } from "@/utils/either";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
+import type { Work } from "portfolio-works";
 
 hljs.registerLanguage("python", python);
 
@@ -42,20 +41,17 @@ interface StaticContext {
 
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
-  const work = await getLatestWorkBySlug(slug, true);
-  if (work === null) {
+  const res = await getWork(slug);
+  if (isLeft(res)) {
     return {
       notFound: true,
     };
   }
+  const work = res.value;
   const articleBody = await mdToHtml(work.content);
   return {
     props: {
-      work: {
-        ...work,
-        createdAt: work.createdAt.toISOString(),
-        updatedAt: work.updatedAt.toISOString(),
-      },
+      work,
       articleBody,
       message: "",
     },
@@ -68,10 +64,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
   work,
   articleBody,
 }: {
-  work: ParsedMarkdown & {
-    createdAt: string;
-    updatedAt: string;
-  };
+  work: Work;
   articleBody: string;
 }) => {
   useMounted(() => {
