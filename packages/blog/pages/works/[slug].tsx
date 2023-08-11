@@ -1,12 +1,12 @@
 import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
-
 import {
-  getAllWorksViaContainer,
-  getWorkViaContainer,
-  Work,
-} from "@/api/works";
+  ParsedMarkdown,
+  getAllLatestWorks,
+  getLatestWorkBySlug,
+} from "portfolio-works";
+
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
 import { ArticleHtml } from "@/ui/components/article-html";
@@ -19,21 +19,13 @@ import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
-import { isLeft } from "@/utils/either";
 
 import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
 hljs.registerLanguage("python", python);
 
 export async function getStaticPaths() {
-  const res = await getAllWorksViaContainer();
-  if (isLeft(res)) {
-    return {
-      paths: [],
-      fallback: "blocking",
-    };
-  }
-  const works = res.value;
+  const works = await getAllLatestWorks();
   return {
     paths: works.map((work) => ({
       params: { slug: work.slug },
@@ -50,16 +42,23 @@ interface StaticContext {
 
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
-  const response = await getWorkViaContainer(slug);
-  if (isLeft(response)) {
+  const work = await getLatestWorkBySlug(slug, true);
+  if (work === null) {
     return {
       notFound: true,
     };
   }
-  const work = response.value;
-  const articleBody = await mdToHtml(work.article ? work.article.body : "");
+  const articleBody = await mdToHtml(work.content);
   return {
-    props: { work: work, articleBody, message: "" },
+    props: {
+      work: {
+        ...work,
+        createdAt: work.createdAt.toISOString(),
+        updatedAt: work.updatedAt.toISOString(),
+      },
+      articleBody,
+      message: "",
+    },
   };
 };
 
@@ -69,7 +68,10 @@ const ArticlePage: NextPageWithLayout<Props> = ({
   work,
   articleBody,
 }: {
-  work: Work;
+  work: ParsedMarkdown & {
+    createdAt: string;
+    updatedAt: string;
+  };
   articleBody: string;
 }) => {
   useMounted(() => {
@@ -101,10 +103,10 @@ const ArticlePage: NextPageWithLayout<Props> = ({
       </Stack>
       <Stack width="100%" justify="end" gap="xs2">
         <Text>
-          <PublishIcon /> {formatDate(work.publishedAt)}
+          <PublishIcon /> {formatDate(work.createdAt)}
         </Text>
         <Text>
-          <UpdateIcon /> {formatDate(work.revisedAt)}
+          <UpdateIcon /> {formatDate(work.updatedAt)}
         </Text>
       </Stack>
       <ArticleHtml html={articleBody} />

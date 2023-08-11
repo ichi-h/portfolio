@@ -12,7 +12,8 @@
     "highlight.js": "^11.7.0",
     "linaria": "^4.1.10",
     "modern-css-reset": "^1.4.0",
-    "next-linaria": "^0.11.0"
+    "next-linaria": "^0.11.0",
+    "portfolio-works": "workspace:*"
   },
   "devDependencies": {
     "@babel/core": "^7.20.7",

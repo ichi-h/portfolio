@@ -1,37 +1,16 @@
 import Head from "next/head";
+import { TAGS } from "portfolio-works";
 
-import { getAllTagsViaContainer } from "@/api/tags";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
 import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
-import { isLeft } from "@/utils/either";
 
-import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
+import type { NextPageWithLayout } from "next";
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
-
-export const getStaticProps = async () => {
-  const generateErrorProps = (message: string) => ({
-    props: {
-      tags: [] as string[],
-      isError: true,
-      message,
-    },
-  });
-  const tagRes = await getAllTagsViaContainer();
-  if (isLeft(tagRes)) return generateErrorProps(tagRes.value.message);
-  return {
-    props: {
-      tags: tagRes.value,
-      isError: false,
-      message: "",
-    },
-  };
-};
-
-const Home: NextPageWithLayout<Props> = ({ tags }) => {
+const Home: NextPageWithLayout = () => {
+  const tags = JSON.parse(JSON.stringify(TAGS)) as string[];
   const provider = useFilteredWorks(tags);
   return (
     <>

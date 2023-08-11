@@ -19,7 +19,7 @@ export default defineConfig({
       fileName: (format) => `portfolio-works.${format}.js`,
     },
     rollupOptions: {
-      external: ["path", "fs", "fs/promises"],
+      external: ["path", "fs", "fs/promises", "process"],
       output: {
         globals: {
           path: "path",

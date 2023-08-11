@@ -1,6 +1,8 @@
 import fs from "fs/promises";
 import path from "path";
+import process from "process";
 
+import dotenv from "dotenv";
 import matter from "gray-matter";
 
 import { TAGS, Tag } from "./tags";
@@ -12,19 +14,27 @@ export interface ParsedMarkdown {
   tags: Tag[];
   publish: boolean;
   createdAt: Date;
+  updatedAt: Date;
   slug: string;
   content: string;
 }
 
-const pagesDir = path.resolve(__dirname, "./pages");
+export interface WorkFilter {
+  search?: string;
+  tags?: Tag[];
+}
+
+dotenv.config();
+
+const worksDir = process.env.WORKS_DIR ?? path.resolve(__dirname, "./pages");
 
 export const getAllSlugs = async () => {
-  const dirs = await fs.readdir(pagesDir, { withFileTypes: true });
+  const dirs = await fs.readdir(worksDir, { withFileTypes: true });
   return dirs.filter((dirent) => dirent.isDirectory()).map(({ name }) => name);
 };
 
-export const getWorkBySlug = async (slug: string, hasContent = false) => {
-  const files = await fs.readdir(path.resolve(pagesDir, slug), {
+export const getWorksBySlug = async (slug: string, hasContent = false) => {
+  const files = await fs.readdir(path.resolve(worksDir, slug), {
     withFileTypes: true,
   });
   const mdFiles = files.filter((file) => {
@@ -36,7 +46,7 @@ export const getWorkBySlug = async (slug: string, hasContent = false) => {
   const mdFileContents = await Promise.all(
     mdFiles.map(async (mdFile) => {
       const mdFileContent = await fs.readFile(
-        path.resolve(pagesDir, slug, mdFile.name),
+        path.resolve(worksDir, slug, mdFile.name),
         "utf8"
       );
       return mdFileContent;
@@ -68,7 +78,8 @@ export const getWorkBySlug = async (slug: string, hasContent = false) => {
         thumbnail: data.thumbnail ?? "",
         tags: data.tags,
         publish: data.publish,
-        createdAt: new Date(mdFiles[i].name.split(".md")[0]),
+        createdAt: new Date(mdFiles[0].name.split(".md")[0]),
+        updatedAt: new Date(mdFiles[i].name.split(".md")[0]),
         slug,
         content: hasContent ? content : "",
       };
@@ -78,32 +89,57 @@ export const getWorkBySlug = async (slug: string, hasContent = false) => {
 };
 
 export const getLatestWorkBySlug = async (slug: string, hasContent = false) => {
-  const works = await getWorkBySlug(slug, hasContent);
+  const works = await getWorksBySlug(slug, hasContent);
   if (works.length === 0) {
     return null;
   }
   const latestWork = works.sort((a, b) => {
-    return b.createdAt.getTime() - a.createdAt.getTime();
+    return b.updatedAt.getTime() - a.updatedAt.getTime();
   })[0];
   return latestWork;
 };
 
-export const getAllLatestWorks = async (hasContent = false) => {
-  const slugs = await getAllSlugs();
-  const works = await Promise.all(
-    slugs.map(async (slug) => {
-      return await getLatestWorkBySlug(slug, hasContent);
-    })
-  );
-  return works.filter((work) => work !== null) as ParsedMarkdown[];
+const filterWorks = (works: ParsedMarkdown[], filter: WorkFilter) => {
+  const workFilter = {
+    search: filter.search ?? "",
+    tags: filter.tags ?? [],
+  };
+  const filteredWorks = works.filter((work) => {
+    return (
+      work.title.includes(workFilter.search) ||
+      work.description.includes(workFilter.search) ||
+      work.content.includes(workFilter.search) ||
+      work.tags.some((tag) => workFilter.tags.includes(tag))
+    );
+  });
+  return filteredWorks;
 };
 
-export const getAllWorks = async (hasContent = false) => {
+export const getAllLatestWorks = async (
+  hasContent = false,
+  filter?: WorkFilter
+) => {
   const slugs = await getAllSlugs();
-  const works = await Promise.all(
-    slugs.map(async (slug) => {
-      return await getWorkBySlug(slug, hasContent);
-    })
-  );
-  return works.flat();
+  const works = (
+    await Promise.all(
+      slugs.map(async (slug) => {
+        return await getLatestWorkBySlug(slug, hasContent);
+      })
+    )
+  ).filter((work) => work !== null) as ParsedMarkdown[];
+  if (!filter) return works;
+  return filterWorks(works, filter);
+};
+
+export const getAllWorks = async (hasContent = false, filter?: WorkFilter) => {
+  const slugs = await getAllSlugs();
+  const works = (
+    await Promise.all(
+      slugs.map(async (slug) => {
+        return await getWorksBySlug(slug, hasContent);
+      })
+    )
+  ).flat();
+  if (!filter) return works;
+  return filterWorks(works, filter);
 };
