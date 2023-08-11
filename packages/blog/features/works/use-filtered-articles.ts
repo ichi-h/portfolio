@@ -1,9 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-import { filterWorks } from "@/api/works";
-import { isLeft } from "@/utils/either";
-
 import type { Work } from "portfolio-works";
 
 interface TagStatus {
@@ -11,7 +8,33 @@ interface TagStatus {
   selected: boolean;
 }
 
-export const useFilteredWorks = (tags: string[]) => {
+export interface WorkFilter {
+  search?: string;
+  tags?: string[];
+}
+
+const filterWorks = (works: Work[], filter?: WorkFilter) => {
+  if (!filter) return works;
+  const workFilter = {
+    search: filter.search ?? "",
+    tags: filter.tags ?? [],
+  };
+  if (workFilter.search === "" && workFilter.tags.length === 0) {
+    return works;
+  }
+  const filteredWorks = works.filter((work) => {
+    return (
+      (workFilter.search && work.title.includes(workFilter.search)) ||
+      (workFilter.search && work.description.includes(workFilter.search)) ||
+      (workFilter.search && work.content.includes(workFilter.search)) ||
+      (workFilter.tags.length !== 0 &&
+        workFilter.tags.every((tag) => work.tags.includes(tag)))
+    );
+  });
+  return filteredWorks;
+};
+
+export const useFilteredWorks = (works: Work[], tags: string[]) => {
   const [isQueryReady, setIsQueryReady] = useState(false);
   const router = useRouter();
 
@@ -24,14 +47,13 @@ export const useFilteredWorks = (tags: string[]) => {
     }))
   );
 
-  const searchWorks = useCallback(async () => {
+  const searchWorks = useCallback(() => {
     const tagLabels = selectedTags
       .filter((t) => t.selected)
       .map((t) => t.label);
-    const res = await filterWorks(searchText, tagLabels);
-    if (isLeft(res)) return;
-    setFilteredWorks(res.value);
-  }, [searchText, selectedTags]);
+    const result = filterWorks(works, { search: searchText, tags: tagLabels });
+    setFilteredWorks(result);
+  }, [searchText, selectedTags, works]);
 
   useEffect(() => {
     if (!isQueryReady && router.isReady) {

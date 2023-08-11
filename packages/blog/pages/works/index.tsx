@@ -1,6 +1,8 @@
 import Head from "next/head";
+import { Work } from "portfolio-works";
 
 import { getAllTags } from "@/api/tags";
+import { getAllLatestWorks } from "@/api/works";
 import { WorksTemplate } from "@/features/works/template";
 import { useFilteredWorks } from "@/features/works/use-filtered-articles";
 import { WorksContext } from "@/features/works/works-context";
@@ -11,17 +13,19 @@ import { isLeft } from "@/utils/either";
 import type { NextPageWithLayout, InferGetStaticPropsType } from "next";
 
 export const getStaticProps = async () => {
-  const res = await getAllTags();
-  if (isLeft(res)) {
-    return {
-      props: {
-        tags: [],
-      },
-    };
-  }
-  const tags = res.value;
+  const resWorks = await getAllLatestWorks();
+  const resTags = await getAllTags();
+  const works = (() => {
+    if (isLeft(resWorks)) return [];
+    return resWorks.value;
+  })();
+  const tags = (() => {
+    if (isLeft(resTags)) return [];
+    return resTags.value;
+  })();
   return {
     props: {
+      works,
       tags,
     },
   };
@@ -29,8 +33,14 @@ export const getStaticProps = async () => {
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Home: NextPageWithLayout<Props> = ({ tags }: { tags: string[] }) => {
-  const provider = useFilteredWorks(tags);
+const Home: NextPageWithLayout<Props> = ({
+  works,
+  tags,
+}: {
+  works: Work[];
+  tags: string[];
+}) => {
+  const provider = useFilteredWorks(works, tags);
   return (
     <>
       <Head>

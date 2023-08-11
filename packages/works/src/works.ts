@@ -19,11 +19,6 @@ export interface Work {
   content: string;
 }
 
-export interface WorkFilter {
-  search?: string;
-  tags?: string[];
-}
-
 dotenv.config();
 
 const worksDir = process.env.WORKS_DIR ?? path.resolve(__dirname, "./pages");
@@ -97,30 +92,7 @@ export const getLatestWorkBySlug = async (slug: string, hasContent = false) => {
   return latestWork;
 };
 
-const filterWorks = (works: Work[], filter: WorkFilter) => {
-  const workFilter = {
-    search: filter.search ?? "",
-    tags: filter.tags ?? [],
-  };
-  if (workFilter.search === "" && workFilter.tags.length === 0) {
-    return works;
-  }
-  const filteredWorks = works.filter((work) => {
-    return (
-      (workFilter.search && work.title.includes(workFilter.search)) ||
-      (workFilter.search && work.description.includes(workFilter.search)) ||
-      (workFilter.search && work.content.includes(workFilter.search)) ||
-      (workFilter.tags.length !== 0 &&
-        work.tags.some((tag) => workFilter.tags.includes(tag)))
-    );
-  });
-  return filteredWorks;
-};
-
-export const getAllLatestWorks = async (
-  hasContent = false,
-  filter?: WorkFilter
-) => {
+export const getAllLatestWorks = async (hasContent = false) => {
   const slugs = await getAllSlugs();
   const works = (
     await Promise.all(
@@ -129,11 +101,10 @@ export const getAllLatestWorks = async (
       })
     )
   ).filter((work) => work !== null) as Work[];
-  if (!filter) return works;
-  return filterWorks(works, filter);
+  return works;
 };
 
-export const getAllWorks = async (hasContent = false, filter?: WorkFilter) => {
+export const getAllWorks = async (hasContent = false) => {
   const slugs = await getAllSlugs();
   const works = (
     await Promise.all(
@@ -142,6 +113,5 @@ export const getAllWorks = async (hasContent = false, filter?: WorkFilter) => {
       })
     )
   ).flat();
-  if (!filter) return works;
-  return filterWorks(works, filter);
+  return works;
 };

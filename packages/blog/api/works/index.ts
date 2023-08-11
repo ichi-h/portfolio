@@ -1,2 +1,2 @@
-export * from "./filter-works";
+export * from "./get-all-latest-works";
 export * from "./get-work";
