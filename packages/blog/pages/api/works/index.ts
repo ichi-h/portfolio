@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse<Work[]>
 ) {
   const search = String(req.query.search_word ?? "");
-  const tags = String(req.query.tags ?? "").split(",");
+  const tags = req.query.tags ? String(req.query.tags).split(",") : [];
   const works = await getAllLatestWorks(false, { search, tags });
   res.status(200).json(works);
 }

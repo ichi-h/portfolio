@@ -102,12 +102,16 @@ const filterWorks = (works: Work[], filter: WorkFilter) => {
     search: filter.search ?? "",
     tags: filter.tags ?? [],
   };
+  if (workFilter.search === "" && workFilter.tags.length === 0) {
+    return works;
+  }
   const filteredWorks = works.filter((work) => {
     return (
-      work.title.includes(workFilter.search) ||
-      work.description.includes(workFilter.search) ||
-      work.content.includes(workFilter.search) ||
-      work.tags.some((tag) => workFilter.tags.includes(tag))
+      (workFilter.search && work.title.includes(workFilter.search)) ||
+      (workFilter.search && work.description.includes(workFilter.search)) ||
+      (workFilter.search && work.content.includes(workFilter.search)) ||
+      (workFilter.tags.length !== 0 &&
+        work.tags.some((tag) => workFilter.tags.includes(tag)))
     );
   });
   return filteredWorks;
