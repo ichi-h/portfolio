@@ -1,5 +1,5 @@
 ---
-name: "new-article"
+name: "new-work"
 root: "."
 output: "."
 ignore: []
@@ -19,4 +19,14 @@ publish: false
 ---
 
 ## Title
+```
+
+# `./pages/{{ inputs.slug }}/index.ts`
+
+```typescript
+import {{ inputs.slug }}_1 from "./{{ currentDate }}.md";
+
+export const {{ inputs.slug | constant }} = [
+  {{ inputs.slug }}_1,
+];
 ```

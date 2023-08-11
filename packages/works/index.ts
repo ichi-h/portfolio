@@ -1,2 +1,2 @@
-export * from "./pages";
-export * from "./tags";
+export * from "./src/works";
+export * from "./src/tags";

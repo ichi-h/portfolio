@@ -3,14 +3,12 @@ import path from "path";
 import process from "process";
 
 import dotenv from "dotenv";
-import fetch from "node-fetch";
+import { getAllWorks } from "portfolio-works";
 import satori from "satori";
 
 dotenv.config();
 
-globalThis.fetch = fetch;
-
-export const generateOgpSvg = async (title, imageUrl) => {
+export const generateOgpSvg = async (title: string, imageUrl: string) => {
   const fontData = fs.readFileSync(
     path.join(process.cwd(), "ZenKakuGothicNew-Regular.ttf")
   );
@@ -18,6 +16,7 @@ export const generateOgpSvg = async (title, imageUrl) => {
   return await satori(
     {
       type: "div",
+      key: "root",
       props: {
         children: [
           {
@@ -88,16 +87,23 @@ export const generateOgpSvg = async (title, imageUrl) => {
 };
 
 const main = async () => {
-  const works = await fetch(
-    `${process.env.BLOG_SERVER_URL}/blog/v1/works`
-  ).then((r) => r.json());
+  const works = await getAllWorks();
   await Promise.all(
     works.map(async (work) => {
       const imageUrl = process.env.OGP_IMAGE_URL ?? "";
       const svg = await generateOgpSvg(work.title, imageUrl);
+      const blogAssetsDir = path.join(process.cwd(), "../blog/public/assets");
+      if (!fs.existsSync(path.join(blogAssetsDir, "ogp"))) {
+        fs.mkdirSync(path.join(blogAssetsDir, "ogp"));
+      }
+      if (!fs.existsSync(path.join(blogAssetsDir, "ogp", work.slug))) {
+        fs.mkdirSync(path.join(blogAssetsDir, "ogp", work.slug));
+      }
       const dir = path.join(
         process.cwd(),
-        `../blog/public/assets/ogp/${work.slug}.svg`
+        `../blog/public/assets/ogp/${
+          work.slug
+        }/${work.createdAt.toISOString()}.svg`
       );
       fs.writeFileSync(dir, svg);
     })

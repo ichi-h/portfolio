@@ -1,8 +1,10 @@
+const date = new Date().toISOString();
+
 export default {
   files: ["*"],
   helpers: [
     (registry) => {
-      registry.set("currentDate", () => new Date().toISOString());
+      registry.set("currentDate", () => date);
     },
   ],
 };
