@@ -1,29 +1,26 @@
 import { useRouter } from "next/router";
+import { ChangeEvent } from "react";
 
 import { useCustomContext } from "@/hooks/use-custom-context";
+import { Category } from "@/markdown";
 import { THEME } from "@/ui/base";
-import { TagCheckbox } from "@/ui/parts/form/tag-checkbox";
 import { Stack } from "@/ui/parts/stack/stack";
 
 import { WorksContext } from "./works-context";
 
 export const WorksTags = () => {
   const router = useRouter();
-  const { selectedTags, setSelectedTags } = useCustomContext(WorksContext);
+  const { selectedCategory, setSelectedCategory } =
+    useCustomContext(WorksContext);
 
-  const toggleTag = (label: string) => () => {
-    const newSelectedTags = selectedTags.map((t) =>
-      t.label === label ? { ...t, selected: !t.selected } : t
-    );
-    setSelectedTags(newSelectedTags);
+  const selected = (e: ChangeEvent<HTMLSelectElement>) => {
+    const category = e.target.value as Category;
+    setSelectedCategory(category);
     router.push({
       pathname: router.pathname,
       query: {
         ...router.query,
-        tags: newSelectedTags
-          .filter((t) => t.selected)
-          .map((t) => t.label)
-          .join(","),
+        category: category,
       },
     });
   };
@@ -35,15 +32,12 @@ export const WorksTags = () => {
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
-        {selectedTags.map((tag) => (
-          <TagCheckbox
-            key={tag.label}
-            isChecked={tag.selected}
-            onChange={toggleTag(tag.label)}
-          >
-            {tag.label}
-          </TagCheckbox>
-        ))}
+        <select onChange={selected} value={selectedCategory}>
+          <option value="development">Development</option>
+          <option value="music">Music</option>
+          <option value="philosophy">Philosophy</option>
+          <option value="photograph">Photograph</option>
+        </select>
       </Stack>
     </Stack>
   );

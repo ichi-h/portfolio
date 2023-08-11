@@ -1,3 +1,4 @@
+import { Work } from "@/markdown";
 import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
@@ -9,8 +10,6 @@ import { Headline } from "@/ui/parts/text/headline";
 import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
-
-import type { Work } from "portfolio-works";
 
 interface Props {
   work: Work;
@@ -36,7 +35,7 @@ export const WorksCard = ({ work, order }: Props) => {
         >
           <Stack direction="column" gap="xs3" width="100%">
             <Thumbnail
-              src={`/assets/ogp/${work.slug}/${work.updatedAt}.svg`}
+              src={`/api/ogp?title=${work.title}`}
               alt={work.title}
               width="100%"
               min-height="144px"

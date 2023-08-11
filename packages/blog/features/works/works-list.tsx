@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { useCustomContext } from "@/hooks/use-custom-context";
+import { Work } from "@/markdown";
 import { THEME } from "@/ui/base";
 import { Radio, RadioItem } from "@/ui/parts/form/radio";
 import { Grid } from "@/ui/parts/grid/grid";
@@ -9,8 +10,6 @@ import { Text } from "@/ui/parts/text/text";
 
 import { WorksCard } from "./works-card";
 import { WorksContext } from "./works-context";
-
-import type { Work } from "portfolio-works";
 
 export const WorksList = () => {
   const provider = useCustomContext(WorksContext);

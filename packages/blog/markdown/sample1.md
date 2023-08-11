@@ -1,9 +1,12 @@
 ---
-title: "私は十一月どうもそんな答弁人というのの中に云いだべから。"
-description: "私は十一月どうもそんな答弁人というのの中に云いだべから。"
+title: "先生を聴くましのはしかるに多数をたといたました。"
+description: "先生を聴くましのはしかるに多数をたといたました。"
 thumbnail: ""
-tags: ["Development"]
+category: "development"
+keywords: ["sample", "markdown"]
 publish: true
+createdAt: "2023-08-11T11:53:14.457Z"
+updatedAt: "2023-08-11T11:53:14.457Z"
 ---
 
 ## Headline 2
