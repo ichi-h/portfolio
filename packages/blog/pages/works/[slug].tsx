@@ -73,7 +73,7 @@ const ArticlePage: NextPageWithLayout<Props> = ({
           property="og:url"
           content={`https://ichi-h.com/works/${work.slug}`}
         />
-        <meta property="og:image" content={`/assets/ogp/${work.slug}.svg`} />
+        <meta property="og:image" content={`/api/ogp?title=${work.title}`} />
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content={work.description} />
       </Head>
