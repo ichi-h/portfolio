@@ -1,8 +1,10 @@
 import { Box } from "@/ui/parts/box/box";
+import { SearchIcon } from "@/ui/parts/icons/search";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Link } from "@/ui/parts/text/link";
 
 import { THEME } from "../base";
+import { NoStyleButton } from "../parts/button/no-style-button";
 
 export const GlobalNav = () => {
   const links = [
@@ -20,6 +22,8 @@ export const GlobalNav = () => {
     },
   ];
 
+  const openSearchDialog = () => console.log("open");
+
   return (
     <Box
       type="nav"
@@ -31,6 +35,7 @@ export const GlobalNav = () => {
           justify="between"
           align="center"
           width={`${THEME.breakPoint.lg}px`}
+          sDirection="column"
         >
           <Box>
             <Link
@@ -43,7 +48,7 @@ export const GlobalNav = () => {
               ichi-h.com
             </Link>
           </Box>
-          <Stack gap="lg">
+          <Stack gap="lg" align="center">
             {links.map((link) => (
               <Link
                 key={link.to}
@@ -56,6 +61,13 @@ export const GlobalNav = () => {
                 {link.text}
               </Link>
             ))}
+            <NoStyleButton onClick={openSearchDialog}>
+              <SearchIcon
+                width={THEME.size.xl3}
+                height={THEME.size.xl3}
+                color={THEME.color.mono[900]}
+              />
+            </NoStyleButton>
           </Stack>
         </Stack>
       </Stack>

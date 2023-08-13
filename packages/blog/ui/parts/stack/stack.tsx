@@ -16,6 +16,7 @@ interface StyleProps {
   border?: string;
   direction?: "row" | "column";
   mDirection?: "row" | "column";
+  sDirection?: "row" | "column";
   gap?: SizeKey;
   mdGap?: SizeKey;
 }
@@ -143,6 +144,9 @@ const StyledStack = styled.div<StyleProps>`
     flex-direction: ${(props) => props.mDirection || props.direction || "row"};
     gap: ${(props) => THEME.size[props.mdGap || props.gap || "none"]};
   }
+  @media only screen and (max-width: ${THEME.breakPoint.sm}px) {
+    flex-direction: ${(props) => props.sDirection || props.direction || "row"};
+  }
 `;
 
 export const Stack = ({
@@ -160,6 +164,7 @@ export const Stack = ({
   align,
   direction,
   mDirection,
+  sDirection,
   wrap,
   gap,
   mdGap,
@@ -188,6 +193,7 @@ export const Stack = ({
     border,
     direction,
     mDirection,
+    sDirection,
     gap,
     mdGap,
   };
