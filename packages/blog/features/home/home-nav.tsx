@@ -67,7 +67,7 @@ export const HomeNav = () => {
               ichi-h.com
             </Text>
           </Headline>
-          <Stack gap="md" mDirection="column">
+          <Stack gap="md" mDirection="column" sDirection="column">
             {links.map((link) => (
               <Link
                 key={link.to}
