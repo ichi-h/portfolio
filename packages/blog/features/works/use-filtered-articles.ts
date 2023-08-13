@@ -1,22 +1,23 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-import { Category, Work } from "@/markdown";
+import { CATEGORY, Category } from "@/constants/category";
+import { Work } from "@/markdown";
+
+interface CategoryStatus {
+  label: Category;
+  selected: boolean;
+}
 
 export interface WorkFilter {
-  search: string;
-  category: Category;
+  category: Category[];
 }
 
 const filterWorks = (works: Work[], filter: WorkFilter) => {
-  const filteredWorks = works.filter((work) => {
-    return (
-      (filter.search && work.title.includes(filter.search)) ||
-      (filter.search && work.description.includes(filter.search)) ||
-      (filter.search && work.content.includes(filter.search)) ||
-      work.category === filter.category
-    );
-  });
+  if (filter.category.length === 0) return works;
+  const filteredWorks = works.filter((work) =>
+    filter.category.every((c) => work.category.includes(c))
+  );
   return filteredWorks;
 };
 
@@ -25,37 +26,42 @@ export const useFilteredWorks = (works: Work[]) => {
   const router = useRouter();
 
   const [filteredWorks, setFilteredWorks] = useState<Work[]>([]);
-  const [searchText, setSearchText] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<Category>(
-    String(router.query.category ?? "development") as Category
+  const [selectedCategory, setSelectedCategory] = useState<CategoryStatus[]>(
+    CATEGORY.map((c) => ({
+      label: c,
+      selected: false,
+    }))
   );
 
   const searchWorks = useCallback(() => {
+    const labels = selectedCategory
+      .filter((c) => c.selected)
+      .map((c) => c.label);
     const result = filterWorks(works, {
-      search: searchText,
-      category: selectedCategory,
+      category: labels,
+    }).sort((a, b) => {
+      const aDate = new Date(a.createdAt);
+      const bDate = new Date(b.createdAt);
+      return aDate > bDate ? -1 : 1;
     });
     setFilteredWorks(result);
-  }, [searchText, selectedCategory, works]);
+  }, [selectedCategory, works]);
 
   useEffect(() => {
     if (!isQueryReady && router.isReady) {
-      setSelectedCategory((router.query.category ?? "development") as Category);
+      setSelectedCategory(
+        CATEGORY.map((c) => ({
+          label: c,
+          selected: (router.query.category ?? "").includes(c) ?? false,
+        }))
+      );
       setIsQueryReady(true);
     }
     searchWorks();
-  }, [
-    isQueryReady,
-    router.isReady,
-    router.query.category,
-    router.query.tags,
-    searchWorks,
-  ]);
+  }, [isQueryReady, router.isReady, router.query.category, searchWorks]);
 
   return {
     filteredWorks,
-    searchText,
-    setSearchText,
     searchWorks,
     selectedCategory,
     setSelectedCategory,

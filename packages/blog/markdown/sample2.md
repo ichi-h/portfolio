@@ -2,7 +2,7 @@
 title: "先生を聴くましのはしかるに多数をたといたました。"
 description: "先生を聴くましのはしかるに多数をたといたました。"
 thumbnail: ""
-category: "music"
+category: ["music"]
 keywords: ["sample", "markdown"]
 publish: true
 createdAt: "2023-07-11T11:53:14.457Z"

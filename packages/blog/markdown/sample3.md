@@ -2,7 +2,7 @@
 title: "先生を聴くましのはしかるに多数をたといたました。"
 description: "先生を聴くましのはしかるに多数をたといたました。"
 thumbnail: ""
-category: "philosophy"
+category: ["philosophy"]
 keywords: ["sample", "markdown"]
 publish: true
 createdAt: "2022-08-11T11:53:14.457Z"

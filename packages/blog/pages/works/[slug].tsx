@@ -7,10 +7,12 @@ import { mdToHtml } from "@/lib/remark/convert";
 import { Work, getAllSlugs, getWorkBySlug } from "@/markdown";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
+import { Budge } from "@/ui/parts/budge";
 import { PublishIcon } from "@/ui/parts/icons/publish";
 import { UpdateIcon } from "@/ui/parts/icons/update";
 import { Stack } from "@/ui/parts/stack/stack";
 import { Headline } from "@/ui/parts/text/headline";
+import { Link } from "@/ui/parts/text/link";
 import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
 
@@ -75,14 +77,25 @@ const ArticlePage: NextPageWithLayout<Props> = ({
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content={work.description} />
       </Head>
-      <Headline level={1}>{work.title}</Headline>
-      <Stack width="100%" justify="end" gap="xs2">
-        <Text>
-          <PublishIcon /> {formatDate(work.createdAt)}
-        </Text>
-        <Text>
-          <UpdateIcon /> {formatDate(work.updatedAt)}
-        </Text>
+      <Headline level={1}>
+        <Text align="left">{work.title}</Text>
+      </Headline>
+      <Stack justify="center" direction="column" gap="xs2" wrap="wrap">
+        <Stack justify="end" gap="xs2" width="100%">
+          {work.category.map((c) => (
+            <Link key={c} to={`/works?category=${c}`} textDecoration="none">
+              <Budge>{c}</Budge>
+            </Link>
+          ))}
+        </Stack>
+        <Stack justify="end" gap="xs2" width="100%">
+          <Text>
+            <PublishIcon /> {formatDate(work.createdAt)}
+          </Text>
+          <Text>
+            <UpdateIcon /> {formatDate(work.updatedAt)}
+          </Text>
+        </Stack>
       </Stack>
       <ArticleHtml html={articleBody} />
     </>

@@ -17,6 +17,10 @@ import { FADE_MANAGER } from "./fade-manager";
 export const HomeNav = () => {
   const links = [
     {
+      to: "/works?category=philosophy",
+      text: "Philosophy",
+    },
+    {
       to: "/works?category=development",
       text: "Development",
     },
@@ -27,10 +31,6 @@ export const HomeNav = () => {
     {
       to: "/works?category=photograph",
       text: "Photograph",
-    },
-    {
-      to: "/works?category=philosophy",
-      text: "Philosophy",
     },
   ];
 

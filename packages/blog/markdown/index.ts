@@ -4,14 +4,14 @@ import process from "process";
 
 import matter from "gray-matter";
 
-export type Category = "development" | "music" | "philosophy" | "photography";
+import { CATEGORY, Category } from "@/constants/category";
 
 export interface Work {
   slug: string;
   title: string;
   description: string;
   thumbnail: string;
-  category: Category;
+  category: Category[];
   keywords: string[];
   createdAt: string;
   updatedAt: string;
@@ -48,10 +48,10 @@ export const getWorkBySlug = async (
   }
   if (
     data.category === undefined ||
-    (data.category !== "development" &&
-      data.category !== "music" &&
-      data.category !== "philosophy" &&
-      data.category !== "photograph")
+    data.category.length === 0 ||
+    !data.category.every((category: string) =>
+      CATEGORY.map((c) => `${c}`).includes(category)
+    )
   ) {
     throw new Error(`Invalid category in ${slug}.`);
   }

@@ -2,6 +2,8 @@ import { css } from "linaria";
 
 import { THEME } from "@/ui/base";
 
+import { Stack } from "../stack/stack";
+
 interface Props {
   children: React.ReactNode;
   level: 1 | 2 | 3 | 4 | 5 | 6;
@@ -16,7 +18,7 @@ export const h1Style = css`
   @media only screen and (max-width: ${THEME.breakPoint.sm}px) {
     font-size: ${THEME.size.xl3};
   }
-  text-align: center;
+  text-align: left;
 `;
 export const h2Style = css`
   color: ${THEME.color.mono["000"]};
@@ -52,7 +54,13 @@ export const h6Style = css`
 `;
 
 export const Headline = (props: Props) => {
-  if (props.level === 1) return <h1 className={h1Style}>{props.children}</h1>;
+  if (props.level === 1) {
+    return (
+      <Stack justify="center">
+        <h1 className={h1Style}>{props.children}</h1>
+      </Stack>
+    );
+  }
   if (props.level === 2) return <h2 className={h2Style}>{props.children}</h2>;
   if (props.level === 3) return <h3 className={h3Style}>{props.children}</h3>;
   if (props.level === 4) return <h4 className={h4Style}>{props.children}</h4>;
