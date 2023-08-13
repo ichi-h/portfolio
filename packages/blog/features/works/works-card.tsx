@@ -36,7 +36,7 @@ export const WorksCard = ({ work }: Props) => {
               src={`/api/ogp?title=${work.title}`}
               alt={work.title}
               width="100%"
-              min-height="144px"
+              height="144px"
             />
             <Headline level={2}>
               <Text fontSize={THEME.size.lg} lineClamp={2}>

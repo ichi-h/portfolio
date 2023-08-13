@@ -25,7 +25,7 @@ export const useFilteredWorks = (works: Work[]) => {
   const [isQueryReady, setIsQueryReady] = useState(false);
   const router = useRouter();
 
-  const [filteredWorks, setFilteredWorks] = useState<Work[]>([]);
+  const [filteredWorks, setFilteredWorks] = useState<Work[]>(works);
   const [selectedCategory, setSelectedCategory] = useState<CategoryStatus[]>(
     CATEGORY.map((c) => ({
       label: c,
