@@ -18,11 +18,11 @@ export interface Work {
   content: string;
 }
 
-const worksDir = path.resolve(process.cwd(), "./markdown");
+const worksDir = path.resolve(process.cwd(), "./markdown/works");
 
 export const getAllSlugs = async () => {
-  const dirs = await fs.readdir(worksDir, { withFileTypes: true });
-  return dirs
+  const result = await fs.readdir(worksDir, { withFileTypes: true });
+  return result
     .filter((dirent) => dirent.isFile() && path.extname(dirent.name) === ".md")
     .map(({ name }) => name.split(".md")[0]);
 };

@@ -13,7 +13,7 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 
 export const getStaticProps = async () => {
   const cwd = process.cwd();
-  const filePath = path.join(cwd, "features/me/about-me.md");
+  const filePath = path.join(cwd, "markdown/about-me.md");
   const md = fs.readFileSync(filePath, "utf-8");
   const html = await mdToHtml(md);
   return {
