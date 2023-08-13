@@ -1,10 +1,13 @@
 import { css } from "linaria";
 import { styled } from "linaria/react";
+import React from "react";
 
 import { THEME } from "@/ui/base";
+import { TIcon } from "@/ui/parts/icons";
 
 interface StyleProps {
   width?: string;
+  icon?: React.ReactElement<TIcon>;
 }
 
 interface Props extends StyleProps {
@@ -24,23 +27,56 @@ const staticInput = css`
   padding: ${THEME.size.xs4} ${THEME.size.xs2};
   font-size: ${THEME.size.md};
   background: none;
+  & ~ div > svg {
+    fill: ${THEME.color.mono["300"]};
+  }
   &:hover {
     outline: 1px solid ${THEME.color.mono["000"]};
+    & ~ div > svg {
+      fill: ${THEME.color.mono["000"]};
+    }
   }
   &:focus {
     outline: 2px solid ${THEME.color.mono["000"]};
+    & ~ div > svg {
+      fill: ${THEME.color.mono["000"]};
+    }
   }
 `;
 
-export const TextBox = ({ value, placeholder, onChange, width }: Props) => {
+const hasIconInput = css`
+  padding-left: ${THEME.size.xl5};
+`;
+
+const inputWrapper = css`
+  position: relative;
+`;
+
+const iconStyle = css`
+  position: absolute;
+  top: 50%;
+  left: ${THEME.size.xs3};
+  transform: translateY(-50%);
+`;
+
+export const TextBox = ({
+  value,
+  placeholder,
+  onChange,
+  width,
+  icon,
+}: Props) => {
   return (
-    <StyledTextBox
-      type="text"
-      className={staticInput}
-      value={value}
-      placeholder={placeholder}
-      onChange={(e) => onChange(e.target.value)}
-      width={width}
-    />
+    <div className={inputWrapper}>
+      <StyledTextBox
+        type="text"
+        className={[staticInput, icon && hasIconInput].join(" ")}
+        value={value}
+        placeholder={placeholder}
+        onChange={(e) => onChange(e.target.value)}
+        width={width}
+      />
+      <div className={iconStyle}>{icon}</div>
+    </div>
   );
 };

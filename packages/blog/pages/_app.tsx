@@ -11,10 +11,7 @@ import { useMounted } from "@/hooks/use-mounted";
 import type { AppPropsWithLayout } from "next/app";
 
 function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  useMounted(() => {
-    console.log("mounted");
-    init();
-  });
+  useMounted(init);
   const getLayout = Component.getLayout ?? ((page: ReactElement) => page);
   return getLayout(
     <>

@@ -8,12 +8,14 @@ interface Props {
 const hoverStyle = css`
   transition: 0.1s;
   cursor: pointer;
+  width: 100%;
   &:hover {
     transform: scale(1.02);
   }
 `;
 
 const largeScaleStyle = css`
+  width: 100%;
   &:hover {
     transform: scale(1.06);
   }

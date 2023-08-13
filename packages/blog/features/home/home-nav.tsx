@@ -50,16 +50,18 @@ export const HomeNav = () => {
         width="100%"
       >
         <Stack direction="column" justify="center" align="center" gap="md">
-          <Hover>
-            <Link to="/me">
-              <Avatar
-                src={Me.src}
-                width="180px"
-                height="180px"
-                isShadow={true}
-              />
-            </Link>
-          </Hover>
+          <Stack justify="center" align="center">
+            <Hover>
+              <Link to="/me">
+                <Avatar
+                  src={Me.src}
+                  width="180px"
+                  height="180px"
+                  isShadow={true}
+                />
+              </Link>
+            </Hover>
+          </Stack>
           <Headline level={1}>
             <Text color={THEME.color.mono["900"]} fontSize={THEME.size.xl7}>
               ichi-h.com
