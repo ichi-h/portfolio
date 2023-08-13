@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import process from "process";
 
+import matter from "gray-matter";
 import Head from "next/head";
 
 import { MeTemplate } from "@/features/me/template";
@@ -15,7 +16,8 @@ export const getStaticProps = async () => {
   const cwd = process.cwd();
   const filePath = path.join(cwd, "markdown/about-me.md");
   const md = fs.readFileSync(filePath, "utf-8");
-  const html = await mdToHtml(md);
+  const { content } = matter(md);
+  const html = await mdToHtml(content);
   return {
     props: { html },
   };
