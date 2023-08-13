@@ -22,10 +22,11 @@ const filterWorks = (works: Work[], filter: WorkFilter) => {
 };
 
 export const useFilteredWorks = (works: Work[]) => {
-  const [isQueryReady, setIsQueryReady] = useState(false);
+  const [isFiltered, setIsFiltered] = useState(false);
+  const [isReady, setIsReady] = useState(false);
   const router = useRouter();
 
-  const [filteredWorks, setFilteredWorks] = useState<Work[]>(works);
+  const [filteredWorks, setFilteredWorks] = useState<Work[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryStatus[]>(
     CATEGORY.map((c) => ({
       label: c,
@@ -33,36 +34,49 @@ export const useFilteredWorks = (works: Work[]) => {
     }))
   );
 
-  const searchWorks = useCallback(() => {
-    const labels = selectedCategory
-      .filter((c) => c.selected)
-      .map((c) => c.label);
-    const result = filterWorks(works, {
-      category: labels,
-    }).sort((a, b) => {
-      const aDate = new Date(a.createdAt);
-      const bDate = new Date(b.createdAt);
-      return aDate > bDate ? -1 : 1;
-    });
-    setFilteredWorks(result);
-  }, [selectedCategory, works]);
+  const searchWorks = useCallback(
+    (status: CategoryStatus[]) => {
+      const labels = status.filter((c) => c.selected).map((c) => c.label);
+      const result = filterWorks(works, {
+        category: labels,
+      }).sort((a, b) => {
+        const aDate = new Date(a.createdAt);
+        const bDate = new Date(b.createdAt);
+        return aDate > bDate ? -1 : 1;
+      });
+      setFilteredWorks(result);
+    },
+    [works]
+  );
 
   useEffect(() => {
-    if (!isQueryReady && router.isReady) {
-      setSelectedCategory(
-        CATEGORY.map((c) => ({
-          label: c,
-          selected: (router.query.category ?? "").includes(c) ?? false,
-        }))
-      );
-      setIsQueryReady(true);
+    if (!router.isReady) return;
+
+    if (!isFiltered) {
+      const newStatus = CATEGORY.map((c) => ({
+        label: c,
+        selected: (router.query.category ?? "").includes(c) ?? false,
+      }));
+      setSelectedCategory(newStatus);
+      searchWorks(newStatus);
+      setIsFiltered(true);
+    } else if (isFiltered && !isReady) {
+      setIsReady(true);
+    } else {
+      searchWorks(selectedCategory);
     }
-    searchWorks();
-  }, [isQueryReady, router.isReady, router.query.category, searchWorks]);
+  }, [
+    isFiltered,
+    isReady,
+    router.isReady,
+    router.query.category,
+    searchWorks,
+    selectedCategory,
+  ]);
 
   return {
+    isReady,
     filteredWorks,
-    searchWorks,
     selectedCategory,
     setSelectedCategory,
   };

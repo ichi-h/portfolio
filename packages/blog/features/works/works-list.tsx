@@ -9,16 +9,21 @@ import { WorksContext } from "./works-context";
 
 export const WorksList = () => {
   const provider = useCustomContext(WorksContext);
-  const { filteredWorks } = provider;
+  const { filteredWorks, isReady } = provider;
 
   return (
     <Stack direction="column" gap="md">
-      {filteredWorks.length === 0 && (
+      {!isReady && (
+        <Text fontSize={THEME.size.lg} align="center">
+          Loading...
+        </Text>
+      )}
+      {isReady && filteredWorks.length === 0 && (
         <Text fontSize={THEME.size.lg} align="center">
           お探しのものは見つかりませんでした。
         </Text>
       )}
-      {filteredWorks.length > 0 && (
+      {isReady && filteredWorks.length > 0 && (
         <Grid
           gridTemplateColumns="repeat(3, 1fr)"
           mdGridTemplateColumns="repeat(2, 1fr)"
