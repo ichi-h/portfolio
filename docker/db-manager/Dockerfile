@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim as db-dev
+FROM debian:bookworm-slim as db-dev
 
 WORKDIR /db
 
