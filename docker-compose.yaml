@@ -25,7 +25,14 @@ services:
     ports:
       - "5432:5432"
 
-  # TODO: works-server
+  works-server:
+    build:
+      context: .
+      dockerfile: "./docker/fsharp/Dockerfile"
+    container_name: portfolio-works-server
+    volumes:
+      - ./fsharp:/apps
+    tty: true
 
   nginx:
     image: nginx:1.24
