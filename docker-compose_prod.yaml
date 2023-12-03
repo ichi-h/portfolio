@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  db-manager:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-manager:latest
+    container_name: portfolio-db-manager
+    env_file: ./db-manager/.env
+    command: ./entrypoint.sh
+    volumes:
+      - db-manager:/db
+    tty: true
+
+  # TODO: works-server
+
+  nginx:
+    image: nginx:1.24
+    container_name: portfolio-nginx
+    volumes:
+      - ./docker/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/log:/var/log/nginx
+    restart: always
+    depends_on:
+      - works-server
+    ports:
+      - "80:80"
+
+volumes:
+  db-manager:
