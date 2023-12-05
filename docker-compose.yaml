@@ -29,17 +29,19 @@ services:
     build:
       context: .
       dockerfile: "./docker/fsharp/Dockerfile"
+      target: works-server-dev
     container_name: portfolio-works-server
     volumes:
       - ./fsharp:/apps
+    command: dotnet watch run --project ./src/WorksServer/WorksServer.fsproj
     tty: true
 
   nginx:
     image: nginx:1.24
     container_name: portfolio-nginx
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/log:/var/log/nginx
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/log:/var/log/nginx
     restart: always
     depends_on:
       - works-server

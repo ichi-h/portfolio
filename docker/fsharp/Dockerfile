@@ -1,8 +1,10 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS works-server-dev
 
 WORKDIR /apps
 
 COPY ./fsharp .
+
+RUN dotnet restore ./src/WorksServer/WorksServer.fsproj
 
 # ARG TARGETARCH
 # WORKDIR /src
