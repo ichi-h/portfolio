@@ -3,9 +3,13 @@
 ## Setup
 
 ```bash
-pnpm install --frozen-lockfile
-pnpm build
-pnpm dev
+# TODO: set up .env
+
+docker-compose build --no-cache
+pnpm install --frozen-lockfile --prefix node
+
+cd schemas
+./codegen.sh {project-name} {language}
 ```
 
 ## build
