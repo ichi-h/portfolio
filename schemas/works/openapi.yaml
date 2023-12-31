@@ -3,7 +3,7 @@ info:
   title: ichi-h/portfolio API
   version: 1.0.0
 servers:
-  - url: https://localhost
+  - url: https://localhost:8800
     description: Local server
   - url: https://production.server.com
     description: Production server
