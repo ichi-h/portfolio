@@ -5,7 +5,7 @@
   "pnpm": true,
   "scripts": {
     "dev:swagger": "vite",
-    "dev:mock": "prism mock ../../schemas/works/openapi.yaml -p 8081"
+    "dev:works-mock": "prism mock ../../../schemas/works/openapi.yaml -p 8081"
   },
   "dependencies": {
     "swagger-ui-dist": "^5.10.5"
