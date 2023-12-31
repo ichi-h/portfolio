@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: ichi-h/portfolio API
+  version: 1.0.0
+servers:
+  - url: https://localhost
+    description: Local server
+  - url: https://production.server.com
+    description: Production server
+tags:
+  - name: Works
+paths:
+  /works/filter:
+    $ref: ./paths/works/filter.yaml
+components:
+  securitySchemes:
+    auth0:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://localhost/oauth/authorize
+          tokenUrl: https://localhost/oauth/token
+          scopes:
+            read:works: read works
+            write:works: write works

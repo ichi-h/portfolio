@@ -1,0 +1,100 @@
+get:
+  tags:
+    - Works
+  summary: Filter and get Work entities.
+  operationId: filterWorks
+  parameters:
+    - name: search
+      in: query
+      description: search string
+      required: false
+      schema:
+        type: string
+      example: "search string"
+    - name: category
+      in: query
+      description: category
+      required: false
+      schema:
+        type: string
+        enum:
+          - philosophy
+          - development
+          - music
+          - photograph
+      example: "philosophy"
+    - name: offset
+      in: query
+      description: offset
+      required: false
+      schema:
+        type: integer
+      example: 0
+    - name: limit
+      in: query
+      description: limit
+      required: false
+      schema:
+        type: integer
+      example: 5
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              total:
+                type: integer
+                example: 30
+              works:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slug:
+                      type: string
+                      example: "slug"
+                    category:
+                      type: string
+                      example: "philosophy"
+                    title:
+                      type: string
+                      example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description:
+                      type: string
+                      example: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl:
+                      type: string
+                      example: "https://picsum.photos/200"
+                example:
+                  - slug: "slug1"
+                    category: "philosophy"
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl: "https://picsum.photos/200"
+                  - slug: "slug2"
+                    category: "philosophy"
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl: "https://picsum.photos/200"
+                  - slug: "slug3"
+                    category: "philosophy"
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl: "https://picsum.photos/200"
+                  - slug: "slug4"
+                    category: "philosophy"
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl: "https://picsum.photos/200"
+                  - slug: "slug5"
+                    category: "philosophy"
+                    title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+                    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
+                    thumbnailUrl: "https://picsum.photos/200"
+    "404":
+      description: Not Found
+    "422":
+      description: Unprocessable Entity
