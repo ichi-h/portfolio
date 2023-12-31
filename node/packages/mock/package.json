@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-mock",
+  "version": "0.1.0",
+  "private": true,
+  "pnpm": true,
+  "scripts": {
+    "dev:swagger": "vite",
+    "dev:mock": "prism mock ../../schemas/openapi.yaml -p 8081"
+  },
+  "dependencies": {
+    "swagger-ui-dist": "^5.10.5"
+  },
+  "devDependencies": {
+    "@stoplight/prism-cli": "^5.5.2"
+  }
+}
