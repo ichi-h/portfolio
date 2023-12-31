@@ -33,6 +33,7 @@ services:
     container_name: portfolio-works-server
     volumes:
       - ./fsharp:/apps
+      - ./schemas/out/works/fs/OpenAPI:/apps/src/OpenAPI
     command: dotnet watch run --project ./src/WorksServer/WorksServer.fsproj
     tty: true
 
