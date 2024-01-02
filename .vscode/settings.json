@@ -7,5 +7,12 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "cSpell.words": ["actix", "Dotenv", "Linaria", "proto", "protoc"]
+  "cSpell.words": [
+    "actix",
+    "Dotenv",
+    "Linaria",
+    "proto",
+    "protoc"
+  ],
+  "FSharp.suggestGitignore": false
 }
