@@ -1,0 +1,22 @@
+post:
+  tags:
+    - Works
+  summary: Redeploy Works client.
+  operationId: redeployWorks
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "success"
+    "401":
+      description: Unauthorized
+  security:
+    - OAuth2:
+        - create:works
+        - update:works

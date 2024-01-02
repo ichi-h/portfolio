@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.1.3
 info:
   title: ichi-h/portfolio API
   version: 1.0.0
@@ -14,6 +14,8 @@ paths:
     $ref: ./paths/works/{slug}.yaml
   /works/filter:
     $ref: ./paths/works/filter.yaml
+  /works/redeploy:
+    $ref: ./paths/works/redeploy.yaml
 components:
   securitySchemes:
     auth0:
@@ -23,5 +25,6 @@ components:
           authorizationUrl: https://localhost/oauth/authorize
           tokenUrl: https://localhost/oauth/token
           scopes:
+            create:works: create works
             read:works: read works
-            write:works: write works
+            update:works: update works
