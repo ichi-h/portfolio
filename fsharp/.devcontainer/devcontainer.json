@@ -25,9 +25,19 @@
 	// "postCreateCommand": "cat /etc/os-release",
 	// Configure tool-specific properties.
 	"customizations": {
-		"extentions": [
-			"Ionide.Ionide-fsharp"
-		]
+		"vscode": {
+			"extensions": [
+				"Ionide.Ionide-fsharp",
+				"Ionide.Ionide-Paket",
+				"Ionide.Ionide-FAKE",
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"streetsidesoftware.code-spell-checker",
+				"oderwat.indent-rainbow",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit",
+				"paolodellepiane.fantomas-fmt"
+			]
+		}
 	}
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "devcontainer"
