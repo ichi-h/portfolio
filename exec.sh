@@ -1,1 +1,1 @@
-docker exec -it portfolio-$1 sh
+docker exec -it portfolio-$1 bash
