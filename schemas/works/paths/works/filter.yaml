@@ -68,32 +68,48 @@ get:
                     thumbnailUrl:
                       type: string
                       example: "https://picsum.photos/200"
+                    publishedAt:
+                      type: string
+                      example: "2024-01-01 00:00:00"
+                    updatedAt:
+                      type: string
+                      example: "2024-01-01 00:00:00"
                 example:
                   - slug: "slug1"
                     category: "philosophy"
                     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
                     thumbnailUrl: "https://picsum.photos/200"
+                    publishedAt: "2024-01-01 00:00:00"
+                    updatedAt: "2024-01-01 00:00:00"
                   - slug: "slug2"
                     category: "philosophy"
                     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
                     thumbnailUrl: "https://picsum.photos/200"
+                    publishedAt: "2024-01-01 00:00:00"
+                    updatedAt: "2024-01-01 00:00:00"
                   - slug: "slug3"
                     category: "philosophy"
                     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
                     thumbnailUrl: "https://picsum.photos/200"
+                    publishedAt: "2024-01-01 00:00:00"
+                    updatedAt: "2024-01-01 00:00:00"
                   - slug: "slug4"
                     category: "philosophy"
                     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
                     thumbnailUrl: "https://picsum.photos/200"
+                    publishedAt: "2024-01-01 00:00:00"
+                    updatedAt: "2024-01-01 00:00:00"
                   - slug: "slug5"
                     category: "philosophy"
                     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl quis aliquam ultricies, nisl nisl aliquet nisl, nec ali"
                     thumbnailUrl: "https://picsum.photos/200"
+                    publishedAt: "2024-01-01 00:00:00"
+                    updatedAt: "2024-01-01 00:00:00"
     "404":
       description: Not Found
     "422":
