@@ -4,13 +4,14 @@
   "private": true,
   "pnpm": true,
   "scripts": {
-    "dev:swagger": "vite",
+    "dev:works-swagger": "cross-env VITE_SERVICE=works PORT=3010 vite",
     "dev:works-mock": "prism mock ../../../schemas/works/openapi.yaml -p 8081"
   },
   "dependencies": {
     "swagger-ui-dist": "^5.10.5"
   },
   "devDependencies": {
-    "@stoplight/prism-cli": "^5.5.2"
+    "@stoplight/prism-cli": "^5.5.2",
+    "cross-env": "^7.0.3"
   }
 }

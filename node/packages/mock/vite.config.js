@@ -1,9 +1,11 @@
 import { defineConfig } from "vite";
 
+const port = process.env.PORT || 0;
+
 export default defineConfig({
   assetsInclude: ["**/*.yaml"],
   server: {
-    port: 3010,
+    port: port,
     fs: {
       allow: ["../../../schemas", "./"],
     }

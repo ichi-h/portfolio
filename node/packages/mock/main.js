@@ -1,9 +1,13 @@
 import { SwaggerUIBundle } from "swagger-ui-dist";
 import "swagger-ui-dist/swagger-ui.css";
 
-import openapi from "../../../schemas/works/openapi.yaml";
+(async () => {
+  const service = import.meta.env.VITE_SERVICE || "";
+  const openapi = (await import(`../../../schemas/${service}/openapi.yaml`))
+    .default;
 
-SwaggerUIBundle({
-  url: openapi,
-  dom_id: "#app",
-});
+  SwaggerUIBundle({
+    url: openapi,
+    dom_id: "#app",
+  });
+})();
