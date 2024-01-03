@@ -1,21 +1,19 @@
 insert into
   works (
-    id,
-    category,
     slug,
+    category,
     title,
     description,
     thumbnail_url,
     created_at,
-    revised_at,
+    updated_at,
     published_at,
     unpublished_at
   )
 values
   (
-    1,
+    'slug1',
     'development',
-    'blog1',
     '私は十一月どうもそんな答弁人というのの中に云いだべから。',
     'もう今で啓発式はいったいある批評ませないでもで立って出したには経験穿いたなて、それほどには並べたででしごとく。',
     'https://placehold.jp/150x150.png',
@@ -25,9 +23,8 @@ values
     null
   ),
   (
-    2,
+    'slug2',
     'development',
-    'blog2',
     '先生を聴くましのはしかるに多数をたといたました。',
     'それで不安をはその人間の自由自在奴婢が朝で忘れまし所がするからよほど活動参りがみよ今にきまっので。',
     'https://placehold.jp/150x150.png',
@@ -37,9 +34,8 @@ values
     null
   ),
   (
-    3,
+    'slug3',
     'philosophy',
-    'blog3',
     '私は十一月どうもそんな答弁人というのの中に云いだべから。',
     'もう今で啓発式はいったいある批評ませないでもで立って出したには経験穿いたなて、それほどには並べたででしごとく。',
     'https://placehold.jp/150x150.png',
@@ -49,9 +45,8 @@ values
     null
   ),
   (
-    4,
+    'slug4',
     'philosophy',
-    'blog4',
     'あいつで状態心にありまし表裏の中にその戦争的のでした。',
     '場合する来お漂を一時間京都日本人より程度にありて、釣主義を人間わありた時、自然釣がそれなが、それほど国民の真似もない、国家ばかり国家が来るば文芸にあっ疳に出はずがなるた、問題面白かろが二人はあなたにかけないない他人学に秋刀魚よ気がついて、そこなど来るばあるとなれましそうませ。',
     'https://placehold.jp/150x150.png',
@@ -61,9 +56,8 @@ values
     null
   ),
   (
-    5,
+    'slug5',
     'music',
-    'blog5',
     'もともと生れがどうもしておいました。',
     'よそ人も好きだ学校がなるば、無事ます逼がそれほど説明になるてい、しかしこのがたの垣覗き的また次的の希望の昨日云いておく。',
     'https://placehold.jp/150x150.png',
@@ -73,9 +67,8 @@ values
     null
   ),
   (
-    6,
+    'slug6',
     'photograph',
-    'blog6',
     'そんな個人もあなたって血たたか今日はいてならでです。',
     'こう好いは充分なけれうのでたます。みんなまで日本心のごまかしとかかかるているましあり。',
     'https://placehold.jp/150x150.png',
@@ -110,26 +103,108 @@ values
   ('tag20');
 
 insert into
-  taggings (tag_id, work_id)
+  taggings (tag_id, work_slug)
 values
-  (1, 1),
-  (2, 1),
-  (3, 1),
-  (1, 2),
-  (5, 2),
-  (1, 3),
-  (2, 3),
-  (3, 3),
-  (4, 3),
-  (1, 4),
-  (2, 4),
-  (3, 4),
-  (4, 4),
-  (5, 4),
-  (2, 5),
-  (3, 5),
-  (4, 5),
-  (5, 5),
-  (3, 6),
-  (4, 6),
-  (5, 6);
+  (1, 'slug1'),
+  (2, 'slug1'),
+  (3, 'slug1'),
+  (1, 'slug2'),
+  (5, 'slug2'),
+  (1, 'slug3'),
+  (2, 'slug3'),
+  (3, 'slug3'),
+  (4, 'slug3'),
+  (1, 'slug4'),
+  (2, 'slug4'),
+  (3, 'slug4'),
+  (4, 'slug4'),
+  (5, 'slug4'),
+  (2, 'slug5'),
+  (3, 'slug5'),
+  (4, 'slug5'),
+  (5, 'slug5'),
+  (3, 'slug6'),
+  (4, 'slug6'),
+  (5, 'slug6');
+
+update works set body = '## Headline 2
+
+親譲りの無鉄砲で小供の時から損ばかりしている。  
+小学校に居る時分学校の二階から飛び降りて一週間ほど腰を抜かした事がある。  
+なぜそんな無闇をしたと聞く人があるかも知れぬ。別段深い理由でもない。  
+新築の二階から首を出していたら、同級生の一人が冗談に、いくら威張っても、そこから飛び降りる事は出来まい。  
+弱虫やーい。と囃したからである。  
+小使に負ぶさって帰って来た時、おやじが大きな眼をして二階ぐらいから飛び降りて腰を抜かす奴があるかと云ったから、この次は抜かさずに飛んで見せますと答えた。（青空文庫より）
+
+### Headline 3-1
+
+Facilisis imperdiet porta facilisis conubia posuere non potenti tempor tortor, quis aenean egestas id lacinia dui conubia eros facilisis hac orci sem conubia consequat ad.
+
+Eleifend congue parturient Quam condimentum duis hymenaeos vehicula platea. Ut, imperdiet ullamcorper tempor condimentum, iaculis. Hendrerit risus erat lorem, proin at phasellus, tristique hac dapibus congue etiam torquent cubilia facilisis porttitor dignissim est quam vehicula quam porta scelerisque natoque elit urna. Erat aenean integer. Eros interdum leo.
+
+Iaculis nunc magnis lectus. Nisi ligula parturient quisque magnis sollicitudin sapien taciti eleifend dignissim integer. Hendrerit tincidunt lobortis diam varius ullamcorper facilisis. Interdum tempus magnis dictumst phasellus ultricies.
+
+### Headline 3-2
+
+Facilisis imperdiet porta facilisis conubia posuere non potenti tempor tortor, quis aenean egestas id lacinia dui conubia eros facilisis hac orci sem conubia consequat ad.
+
+Eleifend congue parturient Quam condimentum duis hymenaeos vehicula platea. Ut, imperdiet ullamcorper tempor condimentum, iaculis. Hendrerit risus erat lorem, proin at phasellus, tristique hac dapibus congue etiam torquent cubilia facilisis porttitor dignissim est quam vehicula quam porta scelerisque natoque elit urna. Erat aenean integer. Eros interdum leo.
+
+Iaculis nunc magnis lectus. Nisi ligula parturient quisque magnis sollicitudin sapien taciti eleifend dignissim integer. Hendrerit tincidunt lobortis diam varius ullamcorper facilisis. Interdum tempus magnis dictumst phasellus ultricies.
+
+#### Headline 4
+
+- list1
+- list2
+- list3
+  - list3-1
+  - list3-2
+  - list3-3
+-  list4
+
+[google](http://www.google.com) is a search engine.
+
+##### Headline 5
+
+{{
+  "type": "text",
+  "style": ["center", "gray"],
+  "text": "The time to create a Markov Chain model from each of the dummy texts of 100, 500, and 1000 words."
+}}
+
+![image](https://raw.githubusercontent.com/ichi-h/markov_rs/main/imgs/create_model.jpg)
+
+## YouTube
+
+{{ "type": "youtube", "id": "CvglW3KNSsQ" }}
+
+## Quote
+
+> This is a quote.  
+> This is a quote.  
+> This is a quote.
+
+## Code
+
+```python
+def main():
+    print("Hello World!")
+main()
+```
+
+## Expand
+
+{{ "type": "text", "style": ["bold"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "blue"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "blue", "xs"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "red"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "red", "xl"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "red", "xl4"], "text": "強調" }}
+
+{{ "type": "text", "style": ["bold", "red", "xl7"], "text": "強調" }}
+';

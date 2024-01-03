@@ -1,9 +1,8 @@
 -- migrate:up
 
 create table works (
-  id integer primary key,
+  slug text not null primary key,
   category text not null default '',
-  slug text not null unique default '',
   title text not null default '',
   description text not null default '',
   thumbnail_url text not null default '',
