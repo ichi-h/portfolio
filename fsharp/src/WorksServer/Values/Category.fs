@@ -1,18 +1,21 @@
 module WorksServer.Values.Category
 
+open WorksServer.Utils.HttpException
+
 type Category =
     | Philosophy = 1
     | Development = 2
     | Music = 3
     | Photograph = 4
+    | Unknown = 5
 
 let parseCategory (category: string) =
     match category with
-    | "philosophy" -> Some Category.Philosophy
-    | "development" -> Some Category.Development
-    | "music" -> Some Category.Music
-    | "photograph" -> Some Category.Photograph
-    | _ -> None
+    | "philosophy" -> Category.Philosophy
+    | "development" -> Category.Development
+    | "music" -> Category.Music
+    | "photograph" -> Category.Photograph
+    | _ -> Category.Unknown
 
 let categoryToString (category: Category) =
     match category with

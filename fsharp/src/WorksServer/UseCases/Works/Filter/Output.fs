@@ -1,7 +1,5 @@
 module WorksServer.UseCases.Works.Filter.Output
 
-open WorksServer.UseCases.Base
-
 type SummarizedWork =
     { slug: string
       category: string
@@ -11,8 +9,6 @@ type SummarizedWork =
       publishedAt: string
       updatedAt: string }
 
-type FilterWorksSuccess =
+type FilterWorksOutput =
     { total: int
-      works: SummarizedWork list }
-
-type FilterWorksOutput = Async<Result<FilterWorksSuccess, UseCaseError>>
+      works: SummarizedWork seq }

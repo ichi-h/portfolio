@@ -10,5 +10,7 @@ type Work =
       description: string
       body: string
       thumbnailUrl: string
+      createdAt: DateTime
+      updatedAt: DateTime
       publishedAt: DateTime
-      updatedAt: DateTime }
+      unpublishedAt: DateTime }

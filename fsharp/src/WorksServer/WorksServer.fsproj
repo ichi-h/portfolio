@@ -1,18 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
+<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <!-- <OutputType>Exe</OutputType> -->
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
+    <Compile Include="Utils/Nullable.fs" />
+    <Compile Include="Utils/HttpException.fs" />
+    <Compile Include="Values/Category.fs" />
+    <Compile Include="Entities/Work.fs" />
+    <Compile Include="UseCases/Works/Filter/Output.fs" />
+    <Compile Include="UseCases/Works/Filter/Input.fs" />
+    <Compile Include="UseCases/Works/Filter/Interactor.fs" />
+    <Compile Include="Gateway/Database/Base.fs" />
+    <Compile Include="Gateway/Database/Tables/Works.fs" />
+    <Compile Include="Gateway/Database/Parsers/Works.fs" />
+    <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
+    <Compile Include="Controllers/Works.fs" />
     <Compile Include="Controller.fs" />
     <Compile Include="Routes.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
-
   <ItemGroup>
+    <PackageReference Include="dapper" Version="2.1.28" />
     <PackageReference Include="DotNetEnv" Version="2.5.0" />
+    <PackageReference Include="FSharp.MinimalApi" Version="0.2.1" />
+    <PackageReference Include="FsToolkit.ErrorHandling" Version="4.13.0" />
+    <PackageReference Include="System.Data.SQLite" Version="1.0.118" />
   </ItemGroup>
-
 </Project>

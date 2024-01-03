@@ -32,6 +32,7 @@ services:
       target: works-server-dev
     container_name: portfolio-works-server
     volumes:
+      - db-manager:/db
       - ./fsharp:/apps
     command: dotnet watch run --project ./src/WorksServer/WorksServer.fsproj
     tty: true

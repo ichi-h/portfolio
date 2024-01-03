@@ -1,9 +1,10 @@
 module WorksServer.Routes
 
-open System
-open Microsoft.AspNetCore.Builder
-open Microsoft.AspNetCore.Http
+open FSharp.MinimalApi.Builder
+open WorksServer.Controllers
 
-let applyRoutes (app: WebApplication) =
-    app.MapGet("/works/ping", Func<IResult> Controller.pongResponse)
-    |> ignore
+let routes =
+    endpoints {
+        get "/works/ping" Controller.pongResponse
+        get "/works/filter" Works.filter
+    }
