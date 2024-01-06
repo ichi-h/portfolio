@@ -2,6 +2,11 @@ module WorksServer.Controllers.Validations
 
 open System
 
+let parseOption a =
+    match box a with
+    | null -> None
+    | _ -> Some a
+
 let openWith (property: string) value = (property, value)
 
 let close (_, value) = value
@@ -20,9 +25,3 @@ module Required =
             match box a with
             | null -> Error(sprintf "%A is required" property)
             | _ -> Ok(property, a)
-
-module Option =
-    let parse (property, a) =
-        match box a with
-        | null -> (property, None)
-        | _ -> (property, Some(a))

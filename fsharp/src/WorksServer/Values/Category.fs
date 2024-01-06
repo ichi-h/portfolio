@@ -9,11 +9,11 @@ type Category =
 
 let createCategory (category: string) =
     match category with
-    | "philosophy" -> Category.Philosophy
-    | "development" -> Category.Development
-    | "music" -> Category.Music
-    | "photograph" -> Category.Photograph
-    | _ -> Category.Unknown
+    | "philosophy" -> Ok Category.Philosophy
+    | "development" -> Ok Category.Development
+    | "music" -> Ok Category.Music
+    | "photograph" -> Ok Category.Photograph
+    | _ -> Error "category must be 'philosophy', 'development', 'music' or 'photograph'"
 
 let categoryToString (category: Category) =
     match category with

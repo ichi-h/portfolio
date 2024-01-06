@@ -25,16 +25,12 @@ type FilterRequest =
 let filter (request: FilterRequest) =
     let outputResult =
         result {
-            let search =
-                Validations.openWith "search" request.search
-                |> Validations.Option.parse
-                |> Validations.close
+            let search = Validations.parseOption request.search
 
-            let category =
-                Validations.openWith "category" request.category
-                |> Validations.Option.parse
-                |> Validations.close
-                |> Option.map createCategory
+            let! category =
+                match Validations.parseOption request.category with
+                | Some category -> createCategory category |> Result.map Some
+                | None -> Ok None
 
             let! offset =
                 Validations.openWith "offset" request.offset
