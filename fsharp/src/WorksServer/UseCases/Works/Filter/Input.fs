@@ -10,6 +10,6 @@ type FilterWorks = Option<string> -> Option<Category> -> Offset -> LimitNumber<i
 type FilterInput =
     { filterWorks: FilterWorks
       search: Option<string>
-      category: Option<string>
-      offset: int
-      limit: int }
+      category: Option<Category>
+      offset: Offset
+      limit: LimitNumber<int> }

@@ -4,25 +4,11 @@ open FsToolkit.ErrorHandling
 open WorksServer.UseCases.Works.Filter.Input
 open WorksServer.UseCases.Works.Filter.Output
 open WorksServer.Values.Category
-open WorksServer.Values.LimitNumber
-open WorksServer.Values.Offset
 
 let filterWorksInteractor (input: FilterInput) : FilterWorksOutput =
     result {
-        let category = input.category |> Option.map createCategory
-
-        let! offset =
-            input.offset
-            |> createOffset
-            |> Result.mapError ValidationError
-
-        let! limit =
-            input.offset
-            |> createLimitNumber (Some 1) (Some 50)
-            |> Result.mapError ValidationError
-
         let! works =
-            input.filterWorks input.search category offset limit
+            input.filterWorks input.search input.category input.offset input.limit
             |> Result.mapError InfrastructureError
 
         let summarizedWorks =

@@ -13,8 +13,6 @@ type FilterWorksSuccess =
     { total: int
       works: SummarizedWork seq }
 
-type FilterWorksError =
-    | ValidationError of string
-    | InfrastructureError of string
+type FilterWorksError = InfrastructureError of string
 
 type FilterWorksOutput = Result<FilterWorksSuccess, FilterWorksError>
