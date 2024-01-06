@@ -6,4 +6,4 @@ let createOffset a : Result<Offset, string> =
     if a >= 0 then
         Ok a
     else
-        Error "offset must be greater than or equal to 0"
+        Error "must be greater than or equal to 0"

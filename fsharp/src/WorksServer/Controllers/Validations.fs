@@ -2,26 +2,26 @@ module WorksServer.Controllers.Validations
 
 open System
 
-let parseOption a =
-    match box a with
-    | null -> None
-    | _ -> Some a
+type UnprocessableEntities = { param: string; message: string }
 
-let openWith (property: string) value = (property, value)
-
-let close (_, value) = value
+let throw param message = { param = param; message = message }
 
 module Number =
-    let isInt (property, a: string) =
+    let isInt (a: string) =
         match Int16.TryParse a with
-        | (true, value) -> Ok((property, int value))
-        | _ -> Error(sprintf "%A must be int" property)
+        | (true, value) -> int value |> Ok
+        | _ -> Error "must be int"
 
 module Required =
-    let isExist (property, a) =
+    let exists (a: string) =
         match a with
-        | "" -> Error(sprintf "%A is required" property)
+        | "" -> Error "required"
         | _ ->
             match box a with
-            | null -> Error(sprintf "%A is required" property)
-            | _ -> Ok(property, a)
+            | null -> Error "required"
+            | _ -> Ok a
+
+    let parseOption a =
+        match box a with
+        | null -> None
+        | _ -> Some a

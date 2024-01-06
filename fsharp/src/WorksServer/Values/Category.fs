@@ -13,7 +13,7 @@ let createCategory (category: string) =
     | "development" -> Ok Category.Development
     | "music" -> Ok Category.Music
     | "photograph" -> Ok Category.Photograph
-    | _ -> Error "category must be 'philosophy', 'development', 'music' or 'photograph'"
+    | _ -> Error "must be 'philosophy', 'development', 'music' or 'photograph'"
 
 let categoryToString (category: Category) =
     match category with

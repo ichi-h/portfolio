@@ -12,15 +12,15 @@ let createLimitNumber<'TNumber when 'TNumber: comparison>
         if value >= someMin && value <= someMax then
             Ok value
         else
-            Error(sprintf "limit must be between %A and %A" someMin someMax)
+            Error(sprintf "must be between %A and %A" someMin someMax)
     | (None, Some someMax) ->
         if value <= someMax then
             Ok value
         else
-            Error(sprintf "limit must be lower than or equal to %A" max)
+            Error(sprintf "must be lower than or equal to %A" max)
     | (Some someMin, None) ->
         if value >= someMin then
             Ok value
         else
-            Error(sprintf "limit must be greater than or equal to %A" min)
+            Error(sprintf "must be greater than or equal to %A" min)
     | (None, None) -> Ok value

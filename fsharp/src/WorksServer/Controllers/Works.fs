@@ -25,26 +25,27 @@ type FilterRequest =
 let filter (usecase: FilterWorksUseCase) (request: FilterRequest) =
     let outputResult =
         result {
-            let search = Validations.parseOption request.search
+            let search = Validations.Required.parseOption request.search
 
             let! category =
-                match Validations.parseOption request.category with
-                | Some category -> createCategory category |> Result.map Some
+                match Validations.Required.parseOption request.category with
+                | Some category ->
+                    createCategory category
+                    |> Result.map Some
+                    |> Result.mapError (Validations.throw "category")
                 | None -> Ok None
 
             let! offset =
-                Validations.openWith "offset" request.offset
-                |> Validations.Required.isExist
+                Validations.Required.exists request.offset
                 |> Result.bind Validations.Number.isInt
-                |> Result.map Validations.close
                 |> Result.bind createOffset
+                |> Result.mapError (Validations.throw "offset")
 
             let! limit =
-                Validations.openWith "limit" request.limit
-                |> Validations.Required.isExist
+                Validations.Required.exists request.limit
                 |> Result.bind Validations.Number.isInt
-                |> Result.map Validations.close
                 |> Result.bind (createLimitNumber (Some 1) (Some 50))
+                |> Result.mapError (Validations.throw "limit")
 
             let input =
                 { filterWorks = filterWorks
