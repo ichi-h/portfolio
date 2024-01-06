@@ -1,7 +1,5 @@
 module WorksServer.Values.Category
 
-open WorksServer.Utils.HttpException
-
 type Category =
     | Philosophy = 1
     | Development = 2

@@ -1,6 +1,6 @@
-module WorksServer.Utils.HttpException
+module WorksServer.Utils.Error
 
-type StatusCode =
+type ErrorStatus =
     | BadRequest = 400
     | Unauthorized = 401
     | Forbidden = 403
@@ -8,4 +8,6 @@ type StatusCode =
     | UnprocessableEntity = 422
     | InternalServerError = 500
 
-type HttpException = { status: StatusCode; message: string }
+type Error =
+    { status: ErrorStatus
+      message: string }

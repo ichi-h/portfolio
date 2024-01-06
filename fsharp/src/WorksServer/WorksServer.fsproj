@@ -5,7 +5,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Utils/Nullable.fs" />
-    <Compile Include="Utils/HttpException.fs" />
+    <Compile Include="Utils/Error.fs" />
     <Compile Include="Values/Category.fs" />
     <Compile Include="Entities/Work.fs" />
     <Compile Include="UseCases/Works/Filter/Output.fs" />

@@ -1,7 +1,7 @@
 module WorksServer.UseCases.Works.Filter.Input
 
 open WorksServer.Entities.Work
-open WorksServer.Utils.HttpException
+open WorksServer.Utils.Error
 open WorksServer.Values.Category
 
 type FilterWorks = Option<string> -> Option<Category> -> int -> int -> Work seq
@@ -18,9 +18,9 @@ let validateFilterInput (input: FilterInput) =
     | (true, true) -> Ok input
     | (false, _) ->
         Error
-            { status = StatusCode.UnprocessableEntity
+            { status = ErrorStatus.UnprocessableEntity
               message = "offset must be greater than or equal to 0" }
     | (_, false) ->
         Error
-            { status = StatusCode.UnprocessableEntity
+            { status = ErrorStatus.UnprocessableEntity
               message = "limit must be between 1 and 50" }
