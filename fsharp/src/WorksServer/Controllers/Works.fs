@@ -22,7 +22,7 @@ type FilterRequest =
       [<FromQuery>]
       limit: string }
 
-let filter (request: FilterRequest) =
+let filter (usecase: FilterWorksUseCase) (request: FilterRequest) =
     let outputResult =
         result {
             let search = Validations.parseOption request.search
@@ -53,7 +53,7 @@ let filter (request: FilterRequest) =
                   offset = offset
                   limit = limit }
 
-            return! Ok(filterWorksInteractor input)
+            return! usecase input |> Ok
         }
 
     match outputResult with
