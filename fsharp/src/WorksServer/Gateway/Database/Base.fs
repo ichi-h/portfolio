@@ -12,12 +12,21 @@ let connectDB =
 
     new SQLiteConnection(connectionString)
 
-let joinQueries (queries: Option<string> list) =
+let joinQueries (queries: string list) =
     queries
-    |> List.choose (function
-        | Some q -> Some q
-        | None -> None)
+    |> List.filter (fun (q) -> q <> "")
     |> String.concat " "
+
+/// <summary>
+/// Alternative operators for ternary operators.
+///
+/// #### Comparison
+///
+/// C#: `a ? b : c`
+///
+/// F#: `a ?= (b, c)`
+/// </summary>
+let (?=) (a: bool) (b, c) = if a then b else c
 
 let runQuery<'Record> (sql: string) (connection: IDbConnection) : Result<'Record seq, string> =
     try

@@ -29,30 +29,25 @@ let private limitBy = @"LIMIT @limit"
 let private offsetBy = @"OFFSET @offset"
 
 let filterWorks (search: Option<string>) (category: Option<Category>) (offset: Offset) (limit: LimitNumber<int>) =
-    let overrideSome value option =
-        match option with
-        | Some _ -> Some value
-        | None -> None
-
     let sql =
-        joinQueries [ Some selectFrom
-                      Some "WHERE"
-                      search |> overrideSome "("
-                      search |> overrideSome whereTitle
-                      search |> overrideSome "OR"
-                      search |> overrideSome whereBody
-                      search |> overrideSome "OR"
-                      search |> overrideSome whereDescription
-                      search |> overrideSome ")"
-                      search |> overrideSome "AND"
-                      category |> overrideSome whereCategory
-                      category |> overrideSome "AND"
-                      Some wherePublished
-                      Some "AND"
-                      Some whereUnpublished
-                      Some orderBy
-                      Some limitBy
-                      Some offsetBy ]
+        joinQueries [ selectFrom
+                      "WHERE"
+                      Option.isSome search ?= ("(", "")
+                      Option.isSome search ?= (whereTitle, "")
+                      Option.isSome search ?= ("OR", "")
+                      Option.isSome search ?= (whereBody, "")
+                      Option.isSome search ?= ("OR", "")
+                      Option.isSome search ?= (whereDescription, "")
+                      Option.isSome search ?= (")", "")
+                      Option.isSome search ?= ("AND", "")
+                      Option.isSome category ?= (whereCategory, "")
+                      Option.isSome category ?= ("AND", "")
+                      wherePublished
+                      "AND"
+                      whereUnpublished
+                      orderBy
+                      limitBy
+                      offsetBy ]
 
     let searchString = search |> Option.defaultValue ""
 
@@ -75,5 +70,5 @@ let filterWorks (search: Option<string>) (category: Option<Category>) (offset: O
             connectDB
             |> runQueryWithParams<WorkRecord> sql queryParams
 
-        return! Ok(records |> Seq.map workRecordToEntity)
+        return! records |> Seq.map workRecordToEntity |> Ok
     }
