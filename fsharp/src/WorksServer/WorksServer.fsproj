@@ -4,7 +4,6 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Utils/Nullable.fs" />
     <Compile Include="Values/Category.fs" />
     <Compile Include="Values/LimitNumber.fs" />
     <Compile Include="Values/Offset.fs" />
@@ -16,6 +15,7 @@
     <Compile Include="Gateway/Database/Tables/Works.fs" />
     <Compile Include="Gateway/Database/Parsers/Works.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
+    <Compile Include="Controllers/Validations.fs" />
     <Compile Include="Controllers/Works.fs" />
     <Compile Include="Controller.fs" />
     <Compile Include="Routes.fs" />
