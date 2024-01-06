@@ -57,10 +57,10 @@ let filterWorks (search: Option<string>) (category: Option<Category>) (offset: O
         |> Option.defaultValue ""
 
     let queryParams =
-        parameterize [ ("search", "%" + searchString + "%")
-                       ("category", categoryString)
-                       ("offset", string offset)
-                       ("limit", string limit) ]
+        [ ("search", "%" + searchString + "%")
+          ("category", categoryString)
+          ("offset", string offset)
+          ("limit", string limit) ]
 
     result {
         let! records =

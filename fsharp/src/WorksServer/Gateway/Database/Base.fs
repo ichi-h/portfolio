@@ -28,7 +28,7 @@ let joinQueries (queries: string list) =
 /// </summary>
 let (?=) (a: bool) (b, c) = if a then b else c
 
-let parameterize (parameters: list<string * string>) =
+let private parameterize (parameters: list<string * string>) =
     parameters
     |> List.map (fun (key, value) -> (key, box value))
     |> Map
@@ -41,15 +41,15 @@ let runQuery<'Record> (sql: string) (connection: IDbConnection) : Result<'Record
 
 let runQueryWithParams<'Record>
     (sql: string)
-    (param: Map<string, _>)
+    (param: list<string * string>)
     (connection: IDbConnection)
     : Result<'Record seq, string> =
     try
         let expando = ExpandoObject()
         let expandoDictionary = expando :> IDictionary<string, obj>
 
-        for paramValue in param do
-            expandoDictionary.Add(paramValue.Key, paramValue.Value :> obj)
+        for paramValue in parameterize param do
+            expandoDictionary.Add(paramValue.Key, paramValue.Value)
 
         Ok(connection.Query<'Record>(sql, expando))
     with
