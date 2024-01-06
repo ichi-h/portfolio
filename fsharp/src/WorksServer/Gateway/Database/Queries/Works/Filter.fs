@@ -1,9 +1,12 @@
 module WorksServer.Gateway.Database.Queries.Works.Filter
 
+open FsToolkit.ErrorHandling
 open WorksServer.Gateway.Database.Base
 open WorksServer.Gateway.Database.Parsers.Works
 open WorksServer.Gateway.Database.Tables.Works
 open WorksServer.Values.Category
+open WorksServer.Values.LimitNumber
+open WorksServer.Values.Offset
 
 let private selectFrom = @"SELECT * FROM works"
 
@@ -25,7 +28,7 @@ let private limitBy = @"LIMIT @limit"
 
 let private offsetBy = @"OFFSET @offset"
 
-let filterWorks (search: Option<string>) (category: Option<Category>) (offset: int) (limit: int) =
+let filterWorks (search: Option<string>) (category: Option<Category>) (offset: Offset) (limit: LimitNumber<int>) =
     let overrideSome value option =
         match option with
         | Some _ -> Some value
@@ -67,6 +70,10 @@ let filterWorks (search: Option<string>) (category: Option<Category>) (offset: i
         |> List.map (fun (key, value) -> (key, box value))
         |> Map
 
-    connectDB
-    |> runQueryWithParams<WorkRecord> sql queryParams
-    |> Seq.map workRecordToEntity
+    result {
+        let! records =
+            connectDB
+            |> runQueryWithParams<WorkRecord> sql queryParams
+
+        return! Ok(records |> Seq.map workRecordToEntity)
+    }
