@@ -7,7 +7,7 @@ open WorksServer.Values.Offset
 
 type FilterWorks = Option<string> -> Option<Category> -> Offset -> LimitNumber<int> -> Result<Work seq, string>
 
-type FilterInput =
+type FilterWorksInput =
     { filterWorks: FilterWorks
       search: Option<string>
       category: Option<Category>

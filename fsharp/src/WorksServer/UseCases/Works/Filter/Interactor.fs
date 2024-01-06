@@ -5,9 +5,9 @@ open WorksServer.UseCases.Works.Filter.Input
 open WorksServer.UseCases.Works.Filter.Output
 open WorksServer.Values.Category
 
-type FilterWorksUseCase = FilterInput -> FilterWorksOutput
+type FilterWorksUseCase = FilterWorksInput -> FilterWorksOutput
 
-let interactor (input: FilterInput) : FilterWorksOutput =
+let interactor (input: FilterWorksInput) : FilterWorksOutput =
     result {
         let! works =
             input.filterWorks input.search input.category input.offset input.limit
