@@ -6,7 +6,7 @@ open WorksServer.Values.Category
 
 let workRecordToEntity record : Work =
     { slug = record.slug
-      category = parseCategory record.category
+      category = createCategory record.category
       title = record.title
       description = record.description
       body = record.body

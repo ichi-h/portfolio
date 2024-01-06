@@ -1,26 +1,15 @@
 module WorksServer.UseCases.Works.Filter.Input
 
 open WorksServer.Entities.Work
-open WorksServer.Utils.Error
 open WorksServer.Values.Category
+open WorksServer.Values.LimitNumber
+open WorksServer.Values.Offset
 
-type FilterWorks = Option<string> -> Option<Category> -> int -> int -> Work seq
+type FilterWorks = Option<string> -> Option<Category> -> Offset -> LimitNumber<int> -> Result<Work seq, string>
 
 type FilterInput =
     { filterWorks: FilterWorks
       search: Option<string>
-      category: Option<Category>
+      category: Option<string>
       offset: int
       limit: int }
-
-let validateFilterInput (input: FilterInput) =
-    match (input.offset >= 0, input.limit >= 1 && input.limit <= 50) with
-    | (true, true) -> Ok input
-    | (false, _) ->
-        Error
-            { status = ErrorStatus.UnprocessableEntity
-              message = "offset must be greater than or equal to 0" }
-    | (_, false) ->
-        Error
-            { status = ErrorStatus.UnprocessableEntity
-              message = "limit must be between 1 and 50" }

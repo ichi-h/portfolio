@@ -7,7 +7,7 @@ type Category =
     | Photograph = 4
     | Unknown = 5
 
-let parseCategory (category: string) =
+let createCategory (category: string) =
     match category with
     | "philosophy" -> Category.Philosophy
     | "development" -> Category.Development

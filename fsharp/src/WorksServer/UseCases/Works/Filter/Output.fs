@@ -9,6 +9,12 @@ type SummarizedWork =
       publishedAt: string
       updatedAt: string }
 
-type FilterWorksOutput =
+type FilterWorksSuccess =
     { total: int
       works: SummarizedWork seq }
+
+type FilterWorksError =
+    | ValidationError of string
+    | InfrastructureError of string
+
+type FilterWorksOutput = Result<FilterWorksSuccess, FilterWorksError>
