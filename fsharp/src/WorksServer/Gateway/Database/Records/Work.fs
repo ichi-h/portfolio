@@ -1,4 +1,4 @@
-module WorksServer.Gateway.Database.Tables.Works
+module WorksServer.Gateway.Database.Records.Work
 
 open System
 

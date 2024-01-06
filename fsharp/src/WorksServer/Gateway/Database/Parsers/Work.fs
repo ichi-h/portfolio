@@ -1,7 +1,7 @@
-module WorksServer.Gateway.Database.Parsers.Works
+module WorksServer.Gateway.Database.Parsers.Work
 
 open WorksServer.Entities.Work
-open WorksServer.Gateway.Database.Tables.Works
+open WorksServer.Gateway.Database.Records.Work
 open WorksServer.Values.Category
 
 let workRecordToEntity record : Work =

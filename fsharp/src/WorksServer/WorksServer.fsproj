@@ -12,8 +12,8 @@
     <Compile Include="UseCases/Works/Filter/Input.fs" />
     <Compile Include="UseCases/Works/Filter/Interactor.fs" />
     <Compile Include="Gateway/Database/Base.fs" />
-    <Compile Include="Gateway/Database/Tables/Works.fs" />
-    <Compile Include="Gateway/Database/Parsers/Works.fs" />
+    <Compile Include="Gateway/Database/Records/Work.fs" />
+    <Compile Include="Gateway/Database/Parsers/Work.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
     <Compile Include="Controllers/Validations.fs" />
     <Compile Include="Controllers/Works.fs" />

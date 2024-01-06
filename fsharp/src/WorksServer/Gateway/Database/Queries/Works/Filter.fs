@@ -2,8 +2,8 @@ module WorksServer.Gateway.Database.Queries.Works.Filter
 
 open FsToolkit.ErrorHandling
 open WorksServer.Gateway.Database.Base
-open WorksServer.Gateway.Database.Parsers.Works
-open WorksServer.Gateway.Database.Tables.Works
+open WorksServer.Gateway.Database.Parsers.Work
+open WorksServer.Gateway.Database.Records.Work
 open WorksServer.Values.Category
 open WorksServer.Values.LimitNumber
 open WorksServer.Values.Offset
