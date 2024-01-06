@@ -17,7 +17,6 @@
     <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
     <Compile Include="Controllers/Validations.fs" />
     <Compile Include="Controllers/Works.fs" />
-    <Compile Include="Controller.fs" />
     <Compile Include="Routes.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
