@@ -62,5 +62,5 @@ let filter (request: FilterRequest) =
         | Ok success -> Results.Ok success
         | Error failure ->
             match failure with
-            | InfrastructureError message -> Results.Problem "Internal Server Error"
+            | InfrastructureError message -> Results.StatusCode 500
     | Error e -> Results.UnprocessableEntity e
