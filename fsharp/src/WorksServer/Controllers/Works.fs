@@ -5,9 +5,12 @@ open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Mvc
 open WorksServer.Controllers
 open WorksServer.Gateway.Database.Queries.Works.Filter
+open WorksServer.Gateway.Database.Queries.Works.Show
+open WorksServer.UseCases.Works
 open WorksServer.UseCases.Works.Filter.Input
 open WorksServer.UseCases.Works.Filter.Interactor
-open WorksServer.UseCases.Works.Filter.Output
+open WorksServer.UseCases.Works.Show.Input
+open WorksServer.UseCases.Works.Show.Interactor
 open WorksServer.Values.Category
 open WorksServer.Values.LimitNumber
 open WorksServer.Values.Offset
@@ -63,5 +66,31 @@ let filter (usecase: FilterWorksUseCase) (request: FilterRequest) =
         | Ok success -> Results.Ok success
         | Error failure ->
             match failure with
-            | InfrastructureError message -> Results.StatusCode 500
+            | Filter.Output.InfrastructureError message -> Results.StatusCode 500
+    | Error e -> Results.UnprocessableEntity e
+
+type ShowRequest =
+    { [<FromRoute>]
+      slug: string }
+
+let show (usecase: ShowWorkUseCase) (request: ShowRequest) =
+    let outputResult =
+        result {
+            let! slug =
+                Validations.Required.exists request.slug
+                |> Result.mapError (Validations.throw "slug")
+
+            return! usecase { showWork = showWork; slug = slug } |> Ok
+        }
+
+    match outputResult with
+    | Ok output ->
+        match output with
+        | Ok success -> Results.Ok success
+        | Error failure ->
+            match failure with
+            | Show.Output.NotFoundError ->
+                sprintf "/%s work is not found" request.slug
+                |> Results.NotFound
+            | Show.Output.InfrastructureError message -> Results.StatusCode 500
     | Error e -> Results.UnprocessableEntity e
