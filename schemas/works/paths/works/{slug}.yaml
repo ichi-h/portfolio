@@ -122,3 +122,14 @@ main()
                 example: "2024-01-01 00:00:00"
     "404":
       description: Not Found
+      content:
+        text/plain:
+          schema:
+            type: string
+            example: "/{slug} is not found"
+    "422":
+      description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/422.yaml"

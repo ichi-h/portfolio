@@ -1,0 +1,8 @@
+type: object
+properties:
+  param:
+    type: string
+    example: "category"
+  message:
+    type: string
+    example: "must be 'philosophy', 'development', 'music' or 'photograph'"

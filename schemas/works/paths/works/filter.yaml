@@ -110,7 +110,9 @@ get:
                     thumbnailUrl: "https://picsum.photos/200"
                     publishedAt: "2024-01-01 00:00:00"
                     updatedAt: "2024-01-01 00:00:00"
-    "404":
-      description: Not Found
     "422":
       description: Unprocessable Entity
+      content:
+        application/json:
+          schema:
+            $ref: "../../schemas/422.yaml"
