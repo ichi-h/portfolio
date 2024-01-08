@@ -1,7 +1,8 @@
-import { Either, left, right } from "@/utils/either";
+import { left, right } from "@/utils/either";
 import { useEnv } from "@/utils/env";
 
 import { APIError } from "./error";
+import { APIResult } from "./result";
 
 interface CustomRequestInit extends RequestInit {
   resolver?: "json" | "text" | "blob" | "arrayBuffer" | "formData";
@@ -10,7 +11,7 @@ interface CustomRequestInit extends RequestInit {
 export const customFetch = async <T, E = any>(
   input: RequestInfo,
   init?: CustomRequestInit
-): Promise<Either<APIError<E>, T>> => {
+): Promise<APIResult<T, E>> => {
   const { APP_URL } = useEnv();
   const _input = (() => {
     if (typeof input === "string") {
