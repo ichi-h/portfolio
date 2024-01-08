@@ -10,7 +10,7 @@ const style = css`
 `;
 
 export const NoStyleButton = (
-  props: React.ButtonHTMLAttributes<HTMLButtonElement>
+  props: React.ButtonHTMLAttributes<HTMLButtonElement>,
 ) => {
   return (
     <button className={style} {...props}>

@@ -5,13 +5,13 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<string>
+  res: NextApiResponse<string>,
 ) {
   dotenv.config();
 
   const title = String(req.query.title ?? "");
   const fontData = await fetch(
-    "https://github.com/googlefonts/zen-kakugothic/raw/main/fonts/ttf/ZenKakuGothicNew-Regular.ttf"
+    "https://github.com/googlefonts/zen-kakugothic/raw/main/fonts/ttf/ZenKakuGothicNew-Regular.ttf",
   ).then((res) => res.arrayBuffer());
 
   const generateOgpSvg = async (title: string, imageUrl: string) => {
@@ -84,7 +84,7 @@ export default async function handler(
             style: "normal",
           },
         ],
-      }
+      },
     );
   };
   const imageUrl = process.env.OGP_IMAGE_URL ?? "";

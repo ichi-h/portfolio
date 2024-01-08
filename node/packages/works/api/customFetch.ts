@@ -10,7 +10,7 @@ interface CustomRequestInit extends RequestInit {
 
 export const customFetch = async <T, E = any>(
   input: RequestInfo,
-  init?: CustomRequestInit
+  init?: CustomRequestInit,
 ): Promise<APIResult<T, E>> => {
   const { APP_URL } = useEnv();
   const _input = (() => {
@@ -27,7 +27,7 @@ export const customFetch = async <T, E = any>(
 
   if (!response.ok) {
     return error(
-      new APIError(response.statusText, await response.json(), response.status)
+      new APIError(response.statusText, await response.json(), response.status),
     );
   }
 

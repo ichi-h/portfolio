@@ -29,7 +29,7 @@ export const getAllSlugs = async () => {
 
 export const getWorkBySlug = async (
   slug: string,
-  hasContent = false
+  hasContent = false,
 ): Promise<Work> => {
   const mdFile = await fs.readFile(path.resolve(worksDir, `${slug}.md`), {
     encoding: "utf8",
@@ -50,7 +50,7 @@ export const getWorkBySlug = async (
     data.category === undefined ||
     data.category.length === 0 ||
     !data.category.every((category: string) =>
-      CATEGORY.map((c) => `${c}`).includes(category)
+      CATEGORY.map((c) => `${c}`).includes(category),
     )
   ) {
     throw new Error(`Invalid category in ${slug}.`);
@@ -83,7 +83,7 @@ export const getAllWorks = async (hasContent = false) => {
   const works = await Promise.all(
     slugs.map(async (slug) => {
       return await getWorkBySlug(slug, hasContent);
-    })
+    }),
   );
   return works;
 };

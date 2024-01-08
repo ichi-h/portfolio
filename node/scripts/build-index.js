@@ -18,25 +18,27 @@ const splitBody = (segmenter, body) =>
 const main = async () => {
   const worksDir = path.resolve(
     process.cwd(),
-    "./packages/blog/markdown/works"
+    "./packages/blog/markdown/works",
   );
   const dirents = await fs
     .readdir(worksDir, { withFileTypes: true })
     .then((dirents) =>
-      dirents.filter((dirent) => dirent.isFile() && dirent.name.endsWith(".md"))
+      dirents.filter(
+        (dirent) => dirent.isFile() && dirent.name.endsWith(".md"),
+      ),
     );
   const md = await Promise.all(
     dirents.map((dirent) =>
       fs.readFile(path.resolve(worksDir, dirent.name), {
         encoding: "utf8",
-      })
-    )
+      }),
+    ),
   );
   const aboutMeMd = await fs.readFile(
     path.resolve(process.cwd(), "./packages/blog/markdown/about-me.md"),
     {
       encoding: "utf8",
-    }
+    },
   );
   const parsed = md.map((text) => matter(text));
   const segmenter = new TinySegmenter();

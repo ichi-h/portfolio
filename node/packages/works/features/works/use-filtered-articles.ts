@@ -16,7 +16,7 @@ export interface WorkFilter {
 const filterWorks = (works: Work[], filter: WorkFilter) => {
   if (filter.category.length === 0) return works;
   const filteredWorks = works.filter((work) =>
-    filter.category.every((c) => work.category.includes(c))
+    filter.category.every((c) => work.category.includes(c)),
   );
   return filteredWorks;
 };
@@ -31,7 +31,7 @@ export const useFilteredWorks = (works: Work[]) => {
     CATEGORY.map((c) => ({
       label: c,
       selected: false,
-    }))
+    })),
   );
 
   const searchWorks = useCallback(
@@ -46,7 +46,7 @@ export const useFilteredWorks = (works: Work[]) => {
       });
       setFilteredWorks(result);
     },
-    [works]
+    [works],
   );
 
   useEffect(() => {

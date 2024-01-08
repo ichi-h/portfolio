@@ -14,6 +14,7 @@
     "react-hooks/rules-of-hooks": "off",
     "unused-imports/no-unused-imports": "warn",
     "@next/next/no-img-element": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
     "import/order": [
       "error",
       {

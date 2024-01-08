@@ -16,7 +16,7 @@ export const mdToHtml = async (markdown: string) => {
   const docs = (await remark().use(html).process(markdown)).toString();
   return docs.replace(/{{([^}]+)}}/g, (value) => {
     const template = JSON.parse(
-      value.replace(/{{([^}]+)}}/g, "{$1}")
+      value.replace(/{{([^}]+)}}/g, "{$1}"),
     ) as Template;
     if (template.type === "text") {
       const style = template.style.map((s) => `text-${s}`).join(" ");

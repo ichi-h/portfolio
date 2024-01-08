@@ -14,7 +14,7 @@ export const WorksCategory = () => {
 
   const toggleTag = (label: string) => () => {
     const newSelectedCategory = selectedCategory.map((t) =>
-      t.label === label ? { ...t, selected: !t.selected } : t
+      t.label === label ? { ...t, selected: !t.selected } : t,
     );
     setSelectedCategory(newSelectedCategory);
     router.push({

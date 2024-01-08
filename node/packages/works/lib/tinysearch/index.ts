@@ -7,7 +7,7 @@ export interface TinySearchResult {
 
 export const customSearch = (
   word: string,
-  limit: number
+  limit: number,
 ): TinySearchResult[] => {
   const result = search(word, limit) as string[][];
   return result.map(([title, url]) => ({
