@@ -1,7 +1,10 @@
 import { createContext } from "react";
 
-import { useFilteredWorks } from "./use-filtered-articles";
+import { Send } from "@/utils/elmish";
 
-export const WorksContext = createContext<ReturnType<
-  typeof useFilteredWorks
-> | null>(null);
+import { Message, Model } from "./data";
+
+export const WorksContext = createContext<{
+  model: Model;
+  send: Send<Message>;
+} | null>(null);

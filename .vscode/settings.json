@@ -1,6 +1,8 @@
 {
   "prettier.configPath": ".prettierrc",
-  "eslint.workingDirectories": ["."],
+  "eslint.workingDirectories": [
+    "."
+  ],
   "editor.renderWhitespace": "all",
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
@@ -10,6 +12,7 @@
   "cSpell.words": [
     "actix",
     "Dotenv",
+    "elmish",
     "Linaria",
     "proto",
     "protoc"

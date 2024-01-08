@@ -1,4 +1,4 @@
-import { Work } from "@/markdown";
+import { SummarizedWork } from "@/model/work";
 import { THEME } from "@/ui/base";
 import { Hover } from "@/ui/parts/animation/hover";
 import { Box } from "@/ui/parts/box/box";
@@ -11,7 +11,7 @@ import { Text } from "@/ui/parts/text/text";
 import { formatDate } from "@/utils/date";
 
 interface Props {
-  work: Work;
+  work: SummarizedWork;
 }
 
 export const WorksCard = ({ work }: Props) => {
@@ -47,7 +47,7 @@ export const WorksCard = ({ work }: Props) => {
           <Box align="right" width="100%">
             <Text fontSize={THEME.size.xs}>
               <PublishIcon width={THEME.size.sm} height={THEME.size.sm} />{" "}
-              {formatDate(work.createdAt)}
+              {formatDate(work.publishedAt)}
             </Text>
           </Box>
         </Stack>

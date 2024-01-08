@@ -9,19 +9,18 @@ import { WithHeaderAndFooter } from "@/ui/components/layouts";
 
 import type { NextPageWithLayout, InferGetStaticPropsType } from "next";
 
-export const getStaticProps = async () => {
-  const works = await getAllWorks();
-  return {
-    props: {
-      works,
-    },
-  };
-};
+// export const getStaticProps = async () => {
+//   const works = await getAllWorks();
+//   return {
+//     props: {
+//       works,
+//     },
+//   };
+// };
 
-type Props = InferGetStaticPropsType<typeof getStaticProps>;
+// type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Home: NextPageWithLayout<Props> = ({ works }: { works: Work[] }) => {
-  const provider = useFilteredWorks(works);
+const Home: NextPageWithLayout = () => {
   return (
     <>
       <Head>
@@ -35,9 +34,7 @@ const Home: NextPageWithLayout<Props> = ({ works }: { works: Work[] }) => {
         <meta property="og:site_name" content="ichi-h.com" />
         <meta property="og:description" content="Works - ichi-h.com" />
       </Head>
-      <WorksContext.Provider value={provider}>
-        <WorksTemplate />
-      </WorksContext.Provider>
+      <WorksTemplate />
     </>
   );
 };

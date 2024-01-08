@@ -6,27 +6,26 @@ import { TagCheckbox } from "@/ui/parts/form/tag-checkbox";
 import { Stack } from "@/ui/parts/stack/stack";
 
 import { WorksContext } from "./works-context";
+import { CATEGORY, Category } from "@/model/category";
 
 export const WorksCategory = () => {
   const router = useRouter();
-  const { selectedCategory, setSelectedCategory } =
-    useCustomContext(WorksContext);
+  const {
+    model: { category },
+    send,
+  } = useCustomContext(WorksContext);
 
-  const toggleTag = (label: string) => () => {
-    const newSelectedCategory = selectedCategory.map((t) =>
-      t.label === label ? { ...t, selected: !t.selected } : t,
-    );
-    setSelectedCategory(newSelectedCategory);
-    router.push({
-      pathname: router.pathname,
-      query: {
-        ...router.query,
-        category: newSelectedCategory
-          .filter((t) => t.selected)
-          .map((t) => t.label)
-          .join(","),
-      },
-    });
+  const categories = Object.values(CATEGORY);
+
+  const check = categories.map((c) => {
+    if (c === category) {
+      return { label: c, selected: true };
+    }
+    return { label: c, selected: false };
+  });
+
+  const setCategory = (newCategory: Category) => {
+    send({ type: "setCategory", category: newCategory });
   };
 
   return (
@@ -36,14 +35,11 @@ export const WorksCategory = () => {
         wrap="wrap"
         maxWidth={`calc(${THEME.breakPoint.lg}px / 2)`}
       >
-        {selectedCategory.map((tag) => (
-          <TagCheckbox
-            key={tag.label}
-            isChecked={tag.selected}
-            onChange={toggleTag(tag.label)}
-          >
-            {tag.label}
-          </TagCheckbox>
+        <button onClick={() => setCategory("development")}>test</button>
+        {check.map((c) => (
+          <button key={c.label} onClick={() => setCategory(c.label)}>
+            {c.label}
+          </button>
         ))}
       </Stack>
     </Stack>

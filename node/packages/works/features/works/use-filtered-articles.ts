@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
-import { CATEGORY, Category } from "@/constants/category";
+import { CATEGORY, Category } from "@/model/category";
 import { Work } from "@/markdown";
 
 interface CategoryStatus {
@@ -26,9 +26,11 @@ export const useFilteredWorks = (works: Work[]) => {
   const [isReady, setIsReady] = useState(false);
   const router = useRouter();
 
+  const categories = Object.values(CATEGORY);
+
   const [filteredWorks, setFilteredWorks] = useState<Work[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryStatus[]>(
-    CATEGORY.map((c) => ({
+    categories.map((c) => ({
       label: c,
       selected: false,
     })),
@@ -53,7 +55,7 @@ export const useFilteredWorks = (works: Work[]) => {
     if (!router.isReady) return;
 
     if (!isFiltered) {
-      const newStatus = CATEGORY.map((c) => ({
+      const newStatus = categories.map((c) => ({
         label: c,
         selected: (router.query.category ?? "").includes(c) ?? false,
       }));

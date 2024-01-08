@@ -53,19 +53,19 @@ const anchor = css`
 
 export const Link = (props: Props) => {
   return (
-    <NextLink href={props.to}>
-      <a className={anchor}>
-        <StyledSpan
-          color={props.color}
-          fontSize={props.fontSize}
-          mdFontSize={props.mdFontSize}
-          smFontSize={props.smFontSize}
-          xsFontSize={props.xsFontSize}
-          textDecoration={props.textDecoration}
-        >
-          {props.children}
-        </StyledSpan>
-      </a>
+    <NextLink href={props.to} className={anchor}>
+      {/* <a className={anchor}> */}
+      <StyledSpan
+        color={props.color}
+        fontSize={props.fontSize}
+        mdFontSize={props.mdFontSize}
+        smFontSize={props.smFontSize}
+        xsFontSize={props.xsFontSize}
+        textDecoration={props.textDecoration}
+      >
+        {props.children}
+      </StyledSpan>
+      {/* </a> */}
     </NextLink>
   );
 };

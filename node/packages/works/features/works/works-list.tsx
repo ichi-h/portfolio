@@ -8,22 +8,23 @@ import { WorksCard } from "./works-card";
 import { WorksContext } from "./works-context";
 
 export const WorksList = () => {
-  const provider = useCustomContext(WorksContext);
-  const { filteredWorks, isReady } = provider;
+  const {
+    model: { worksLoader, works },
+  } = useCustomContext(WorksContext);
 
   return (
     <Stack direction="column" gap="md">
-      {!isReady && (
+      {worksLoader === "loading" && (
         <Text fontSize={THEME.size.lg} align="center">
           Loading...
         </Text>
       )}
-      {isReady && filteredWorks.length === 0 && (
+      {worksLoader === "idle" && works.length === 0 && (
         <Text fontSize={THEME.size.lg} align="center">
           お探しのものは見つかりませんでした。
         </Text>
       )}
-      {isReady && filteredWorks.length > 0 && (
+      {worksLoader === "idle" && works.length > 0 && (
         <Grid
           gridTemplateColumns="repeat(3, 1fr)"
           mdGridTemplateColumns="repeat(2, 1fr)"
@@ -32,7 +33,7 @@ export const WorksList = () => {
           gap={THEME.size.xl2}
           width="100%"
         >
-          {filteredWorks.map((work) => (
+          {works.map((work) => (
             <WorksCard key={work.slug} work={work} />
           ))}
         </Grid>
