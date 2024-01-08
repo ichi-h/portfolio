@@ -12,14 +12,14 @@ export const customFetch = async <T, E = any>(
   input: RequestInfo,
   init?: CustomRequestInit,
 ): Promise<APIResult<T, E>> => {
-  const { APP_URL } = useEnv();
+  const { BLOG_SERVER_URL } = useEnv();
   const _input = (() => {
     if (typeof input === "string") {
-      return `${APP_URL}${input}`;
+      return `${BLOG_SERVER_URL}${input}`;
     }
     return {
       ...input,
-      url: `${APP_URL}${input.url}`,
+      url: `${BLOG_SERVER_URL}${input.url}`,
     };
   })();
 
