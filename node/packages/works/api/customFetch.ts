@@ -1,5 +1,5 @@
-import { left, right } from "@/utils/either";
 import { useEnv } from "@/utils/env";
+import { ok, error } from "@/utils/result";
 
 import { APIError } from "./error";
 import { APIResult } from "./result";
@@ -26,10 +26,10 @@ export const customFetch = async <T, E = any>(
   const response = await fetch(_input, init);
 
   if (!response.ok) {
-    return left(
+    return error(
       new APIError(response.statusText, await response.json(), response.status)
     );
   }
 
-  return right((await response[init?.resolver || "json"]()) as T);
+  return ok((await response[init?.resolver || "json"]()) as T);
 };

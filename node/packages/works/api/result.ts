@@ -1,5 +1,5 @@
-import { Either } from "@/utils/either";
+import { Result } from "@/utils/result";
 
 import { APIError } from "./error";
 
-export type APIResult<T, E = any> = Either<APIError<E>, T>;
+export type APIResult<T, E = any> = Result<T, APIError<E>>;
