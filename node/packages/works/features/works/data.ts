@@ -23,7 +23,7 @@ export const init: Model = {
   category: null,
   works: [],
   total: 0,
-  worksLoader: "idle",
+  worksLoader: "loading",
   error: "",
 } as const;
 
