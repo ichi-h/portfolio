@@ -2,9 +2,11 @@ import hljs from "highlight.js";
 import python from "highlight.js/lib/languages/python";
 import Head from "next/head";
 
+import { getWork } from "@/api/works/show";
+import { getAllWorkSlugs } from "@/api/works/slug";
 import { useMounted } from "@/hooks/use-mounted";
 import { mdToHtml } from "@/lib/remark/convert";
-import { Work, getAllSlugs, getWorkBySlug } from "@/markdown";
+import { Work } from "@/model/work";
 import { ArticleHtml } from "@/ui/components/article-html";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
 import { Budge } from "@/ui/parts/budge";
@@ -21,11 +23,10 @@ import type { InferGetStaticPropsType, NextPageWithLayout } from "next";
 hljs.registerLanguage("python", python);
 
 export async function getStaticPaths() {
-  const slugs = await getAllSlugs();
+  const resp = await getAllWorkSlugs();
+  if (resp.status === "error") throw resp.value;
   return {
-    paths: slugs.map((slug) => ({
-      params: { slug },
-    })),
+    paths: [...resp.value.map((slug) => ({ params: { slug } }))],
     fallback: "blocking",
   };
 }
@@ -38,12 +39,20 @@ interface StaticContext {
 
 export const getStaticProps = async (context: StaticContext) => {
   const { slug } = context.params;
-  const work = await getWorkBySlug(slug, true);
-  const articleBody = await mdToHtml(work.content);
+  const resp = await getWork(slug);
+
+  if (resp.status === "error") {
+    return {
+      notFound: true,
+    };
+  }
+
+  const body = await mdToHtml(resp.value.body);
+
   return {
     props: {
-      work,
-      articleBody,
+      work: resp.value,
+      body,
       message: "",
     },
   };
@@ -53,10 +62,10 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>;
 
 const ArticlePage: NextPageWithLayout<Props> = ({
   work,
-  articleBody,
+  body,
 }: {
   work: Work;
-  articleBody: string;
+  body: string;
 }) => {
   useMounted(() => {
     hljs.highlightAll();
@@ -66,7 +75,6 @@ const ArticlePage: NextPageWithLayout<Props> = ({
       <Head>
         <title>{work.title} - ichi-h.com</title>
         <meta name="description" content={work.description} />
-        <meta name="keywords" content={work.keywords.join(",")} />
         <meta property="og:title" content={`${work.title} - ichi-h.com`} />
         <meta property="og:type" content="article" />
         <meta
@@ -82,22 +90,20 @@ const ArticlePage: NextPageWithLayout<Props> = ({
       </Headline>
       <Stack justify="center" direction="column" gap="xs2" wrap="wrap">
         <Stack justify="end" gap="xs2" width="100%">
-          {work.category.map((c) => (
-            <Link key={c} to={`/works?category=${c}`} textDecoration="none">
-              <Budge>{c}</Budge>
-            </Link>
-          ))}
+          <Link to={`/works?category=${work.category}`} textDecoration="none">
+            <Budge>{work.category}</Budge>
+          </Link>
         </Stack>
         <Stack justify="end" gap="xs2" width="100%">
           <Text>
-            <PublishIcon /> {formatDate(work.createdAt)}
+            <PublishIcon /> {formatDate(work.publishedAt)}
           </Text>
           <Text>
             <UpdateIcon /> {formatDate(work.updatedAt)}
           </Text>
         </Stack>
       </Stack>
-      <ArticleHtml html={articleBody} />
+      <ArticleHtml html={body} />
     </>
   );
 };
