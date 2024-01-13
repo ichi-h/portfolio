@@ -1,15 +1,11 @@
-import { useRouter } from "next/router";
-
 import { useCustomContext } from "@/hooks/use-custom-context";
+import { CATEGORY, Category } from "@/model/category";
 import { THEME } from "@/ui/base";
-import { TagCheckbox } from "@/ui/parts/form/tag-checkbox";
 import { Stack } from "@/ui/parts/stack/stack";
 
 import { WorksContext } from "./works-context";
-import { CATEGORY, Category } from "@/model/category";
 
 export const WorksCategory = () => {
-  const router = useRouter();
   const {
     model: { category },
     send,

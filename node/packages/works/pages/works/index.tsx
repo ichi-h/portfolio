@@ -1,24 +1,10 @@
 import Head from "next/head";
 
 import { WorksTemplate } from "@/features/works/template";
-import { useFilteredWorks } from "@/features/works/use-filtered-articles";
-import { WorksContext } from "@/features/works/works-context";
-import { Work, getAllWorks } from "@/markdown";
 import OGPBG from "@/public/assets/images/ogp_bg.jpg";
 import { WithHeaderAndFooter } from "@/ui/components/layouts";
 
-import type { NextPageWithLayout, InferGetStaticPropsType } from "next";
-
-// export const getStaticProps = async () => {
-//   const works = await getAllWorks();
-//   return {
-//     props: {
-//       works,
-//     },
-//   };
-// };
-
-// type Props = InferGetStaticPropsType<typeof getStaticProps>;
+import type { NextPageWithLayout } from "next";
 
 const Home: NextPageWithLayout = () => {
   return (
