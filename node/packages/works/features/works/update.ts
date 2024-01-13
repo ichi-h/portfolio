@@ -1,5 +1,4 @@
-import { APIResult } from "@/api/result";
-import { GetFilteredWorksResponse, getFilteredWorks } from "@/api/works/filter";
+import { getFilteredWorks } from "@/api/works/filter";
 import { Update, createUpdate } from "@/utils/elmish";
 
 import { Message, Model } from "./data";
@@ -49,25 +48,17 @@ const update = (
 
       return {
         newModel,
-        cmd: () => {
-          const onReceived = (
-            resp: APIResult<GetFilteredWorksResponse>,
-          ): Message => {
-            return {
-              type: "getFilteredWorksResp",
-              resp,
-            };
+        cmd: async () => {
+          const resp = await getFilteredWorks({
+            search: newModel.search,
+            category: newModel.category ?? undefined,
+            offset: newModel.offset,
+            limit: newModel.limit,
+          });
+          return {
+            type: "getFilteredWorksResp",
+            resp,
           };
-
-          return getFilteredWorks(
-            {
-              search: newModel.search,
-              category: newModel.category ?? undefined,
-              offset: newModel.offset,
-              limit: newModel.limit,
-            },
-            onReceived,
-          );
         },
       };
     }
