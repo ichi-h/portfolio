@@ -1,10 +1,13 @@
 import { styleVariants } from "@vanilla-extract/css";
 
 import { COLOR } from "@/constants";
+import { createStyleMap } from "@/libs/vanillaExtract";
 
-export const bg = styleVariants(COLOR, (value) => ({
+export const bgStyleMap = createStyleMap(COLOR, (value) => ({
   backgroundColor: value,
 }));
+
+export const bg = styleVariants(bgStyleMap);
 
 export const bgSize = styleVariants({
   auto: {
