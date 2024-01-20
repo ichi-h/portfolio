@@ -3,9 +3,6 @@ import { styleVariants } from "@vanilla-extract/css";
 import { COLOR, REM, RATIO } from "@/constants";
 
 const fontSizeMap = {
-  "0": REM[0],
-  "1": REM[1],
-  "2": REM[2],
   "3": REM[3],
   "4": REM[4],
   "5": REM[5],
