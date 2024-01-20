@@ -1,6 +1,7 @@
 import { styleVariants } from "@vanilla-extract/css";
 
 import { RATIO, REM } from "@/constants";
+import { createStyleMap } from "@/libs/vanillaExtract";
 
 const sizing = {
   ...RATIO,
@@ -15,13 +16,15 @@ const sizing = {
   fit: "fit-content",
 } as const;
 
-export const w = styleVariants(sizing, (value) => ({
+export const wStyleMap = createStyleMap(sizing, (value) => ({
   width: value,
 }));
+export const w = styleVariants(wStyleMap);
 
-export const h = styleVariants(sizing, (value) => ({
+export const hStyleMap = createStyleMap(sizing, (value) => ({
   height: value,
 }));
+export const h = styleVariants(hStyleMap);
 
 export const minW = styleVariants(REM, (value) => ({
   minWidth: value,

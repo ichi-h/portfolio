@@ -1,6 +1,7 @@
 import { styleVariants } from "@vanilla-extract/css";
 
 import { COLOR, PX, REM } from "@/constants";
+import { createStyleMap } from "@/libs/vanillaExtract";
 
 // Border
 
@@ -70,9 +71,10 @@ const radiusMap = {
   full: "9999px",
 };
 
-export const borderRadius = styleVariants(radiusMap, (value) => ({
+export const borderRadiusStyleMap = createStyleMap(radiusMap, (value) => ({
   borderRadius: value,
 }));
+export const borderRadius = styleVariants(borderRadiusStyleMap);
 
 // Outline
 
