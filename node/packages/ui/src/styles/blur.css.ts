@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { PX } from "@/src/constants";
+import { PX } from "@/constants";
 
 export const blur = styleVariants(PX, (value) => ({
   filter: `blur(${value})`,

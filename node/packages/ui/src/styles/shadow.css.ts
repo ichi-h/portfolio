@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { COLOR, COLOR_OPACITY, PX } from "@/src/constants";
+import { COLOR, COLOR_OPACITY, PX } from "@/constants";
 
 export const dropShadow = styleVariants({
   md: {

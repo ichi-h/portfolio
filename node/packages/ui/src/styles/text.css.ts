@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { COLOR, REM, RATIO } from "@/src/constants";
+import { COLOR, REM, RATIO } from "@/constants";
 
 const fontSizeMap = {
   "0": REM[0],

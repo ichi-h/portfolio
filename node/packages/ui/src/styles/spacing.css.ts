@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { REM } from "@/src/constants/rem";
+import { REM } from "@/constants/rem";
 
 export const p = styleVariants(REM, (value) => ({
   padding: value,

@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { RATIO, REM } from "@/src/constants";
+import { RATIO, REM } from "@/constants";
 
 const sizing = {
   ...RATIO,

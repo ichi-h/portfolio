@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { COLOR, PX, REM } from "@/src/constants";
+import { COLOR, PX, REM } from "@/constants";
 
 // Border
 

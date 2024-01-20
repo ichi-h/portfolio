@@ -1,6 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
 
-import { COLOR } from "@/src/constants";
+import { COLOR } from "@/constants";
 
 export const bg = styleVariants(COLOR, (value) => ({
   backgroundColor: value,

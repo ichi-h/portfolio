@@ -1,6 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
-import { RATIO, NEGATIVE_RATIO, REM, NEGATIVE_REM } from "@/src/constants";
+import { RATIO, NEGATIVE_RATIO, REM, NEGATIVE_REM } from "@/constants";
 
 export const gap = styleVariants(REM, (value) => ({
   gap: value,
