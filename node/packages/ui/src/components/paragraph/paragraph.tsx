@@ -4,10 +4,10 @@ import { ComponentProps } from "react";
 import * as s from "@/styles";
 
 type Props = {
-  align: keyof typeof s.textAlign;
-  overflow: keyof typeof s.overflow;
-  textOverflow: keyof typeof s.textOverflow;
-  whiteSpace: keyof typeof s.textWhiteSpace;
+  align?: keyof typeof s.textAlign;
+  overflow?: keyof typeof s.overflow;
+  textOverflow?: keyof typeof s.textOverflow;
+  whiteSpace?: keyof typeof s.textWhiteSpace;
 } & ComponentProps<"p">;
 
 export const Paragraph = ({
