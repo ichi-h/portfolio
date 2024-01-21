@@ -37,6 +37,7 @@ export {
   translateY,
 } from "./layout.css";
 export { opacity } from "./opacity.css";
+export { overflow, overflowX, overflowY } from "./overflow.css";
 export { dropShadow } from "./shadow.css";
 export { w, h, minW, minH, maxW, maxH } from "./sizing.css";
 export {

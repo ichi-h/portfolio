@@ -37,6 +37,7 @@ export {
   translateYMap,
 } from "./layout.css";
 export { opacityMap } from "./opacity.css";
+export { overflowMap, overflowXMap, overflowYMap } from "./overflow.css";
 export { dropShadowMap } from "./shadow.css";
 export { wMap, hMap, minWMap, minHMap, maxWMap, maxHMap } from "./sizing.css";
 export {
