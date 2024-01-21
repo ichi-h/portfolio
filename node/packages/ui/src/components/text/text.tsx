@@ -4,13 +4,12 @@ import { ComponentProps } from "react";
 import * as s from "@/styles";
 
 type Props = {
-  fontSize: keyof typeof s.fontSize;
-  color: keyof typeof s.fontColor;
-  weight: keyof typeof s.fontWeight;
-  lineHeight: keyof typeof s.lineHeight;
-  align: keyof typeof s.textAlign;
-  decoration: keyof typeof s.textDecoration;
-  verticalAlign: keyof typeof s.textVerticalAlign;
+  fontSize?: keyof typeof s.fontSize;
+  color?: keyof typeof s.fontColor;
+  weight?: keyof typeof s.fontWeight;
+  lineHeight?: keyof typeof s.lineHeight;
+  decoration?: keyof typeof s.textDecoration;
+  verticalAlign?: keyof typeof s.textVerticalAlign;
 } & ComponentProps<"span">;
 
 export const Text = ({
