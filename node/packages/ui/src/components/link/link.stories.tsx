@@ -24,5 +24,8 @@ export default meta;
 type Story = StoryObj<typeof Link>;
 
 export const Default: Story = {
+  args: {
+    href: "https://google.com",
+  },
   render: (args) => <Link {...args}>link</Link>,
 };
