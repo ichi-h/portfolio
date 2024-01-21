@@ -1,3 +1,4 @@
+export { durationMap, timingFunctionMap, delayMap } from "./animation.css";
 export { bgMap, bgSizeMap, bgPositionMap } from "./background.css";
 export { blurMap } from "./blur.css";
 export {
@@ -67,4 +68,3 @@ export {
   textDecorationMap,
   textVerticalAlignMap,
 } from "./text.css";
-export { durationMap, timingFunctionMap, delayMap } from "./transition.css";

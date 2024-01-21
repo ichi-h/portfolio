@@ -1,3 +1,11 @@
+export {
+  duration,
+  timingFunction,
+  delay,
+  animateZoomOnHover,
+  animateFadeIn,
+  animateFadeOut,
+} from "./animation.css";
 export { bg, bgSize, bgPosition } from "./background.css";
 export { blur } from "./blur.css";
 export {
@@ -67,4 +75,3 @@ export {
   textDecoration,
   textVerticalAlign,
 } from "./text.css";
-export { duration, timingFunction, delay } from "./transition.css";

@@ -1,4 +1,8 @@
-import { styleVariantsFromMap } from "@/libs/vanillaExtract";
+import { style, styleVariants } from "@vanilla-extract/css";
+
+import { flattenStyle, styleVariantsFromMap } from "@/libs/vanillaExtract";
+
+import { opacity } from "./opacity.css";
 
 export const [duration, durationMap] = styleVariantsFromMap({
   75: {
@@ -74,3 +78,40 @@ export const [delay, delayMap] = styleVariantsFromMap({
     transitionDelay: "1000ms",
   },
 });
+
+export const animateZoomOnHover = styleVariants({
+  md: {
+    ":hover": flattenStyle([
+      durationMap[100],
+      {
+        scale: 1.02,
+      },
+    ]),
+  },
+  lg: {
+    ":hover": flattenStyle([
+      durationMap[100],
+      {
+        scale: 1.06,
+      },
+    ]),
+  },
+});
+
+export const animateFadeOut = style([
+  {
+    visibility: "hidden",
+  },
+  opacity[0],
+  duration[300],
+  timingFunction.easeInOut,
+]);
+
+export const animateFadeIn = style([
+  {
+    visibility: "visible",
+  },
+  opacity[100],
+  duration[300],
+  timingFunction.easeInOut,
+]);
