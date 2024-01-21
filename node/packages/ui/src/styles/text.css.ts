@@ -1,4 +1,4 @@
-import { COLOR, REM, RATIO } from "@/constants";
+import { COLOR, REM } from "@/constants";
 import {
   styleVariantsFromData,
   styleVariantsFromMap,
@@ -40,8 +40,8 @@ export const [fontWeight, fontWeightMap] = styleVariantsFromMap({
 });
 
 const lineHeightData = {
+  normal: "normal",
   ...fontSizeData,
-  ...RATIO,
 };
 
 export const [lineHeight, lineHeightMap] = styleVariantsFromData(
