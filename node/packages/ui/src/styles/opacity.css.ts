@@ -1,6 +1,6 @@
-import { styleVariants } from "@vanilla-extract/css";
+import { styleVariantsFromMap } from "@/libs/vanillaExtract";
 
-export const opacity = styleVariants({
+export const [opacity, opacityMap] = styleVariantsFromMap({
   0: {
     opacity: 0,
   },

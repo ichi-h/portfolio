@@ -1,6 +1,6 @@
-import { styleVariants } from "@vanilla-extract/css";
+import { styleVariantsFromMap } from "@/libs/vanillaExtract";
 
-export const duration = styleVariants({
+export const [duration, durationMap] = styleVariantsFromMap({
   75: {
     transitionDuration: "75ms",
   },
@@ -27,7 +27,7 @@ export const duration = styleVariants({
   },
 });
 
-export const timingFunction = styleVariants({
+export const [timingFunction, timingFunctionMap] = styleVariantsFromMap({
   easeIn: {
     transitionTimingFunction: "ease-in",
   },
@@ -48,7 +48,7 @@ export const timingFunction = styleVariants({
   },
 });
 
-export const delay = styleVariants({
+export const [delay, delayMap] = styleVariantsFromMap({
   75: {
     transitionDelay: "75ms",
   },

@@ -1,8 +1,10 @@
-import { styleVariants } from "@vanilla-extract/css";
-
 import { COLOR, REM, RATIO } from "@/constants";
+import {
+  styleVariantsFromData,
+  styleVariantsFromMap,
+} from "@/libs/vanillaExtract";
 
-const fontSizeMap = {
+const fontSizeData = {
   "3": REM[3],
   "4": REM[4],
   "5": REM[5],
@@ -14,15 +16,21 @@ const fontSizeMap = {
   "32": REM[32],
 };
 
-export const fontSize = styleVariants(fontSizeMap, (value) => ({
-  fontSize: value,
-}));
+export const [fontSize, fontSizeMap] = styleVariantsFromData(
+  fontSizeData,
+  (value) => ({
+    fontSize: value,
+  }),
+);
 
-export const fontColor = styleVariants(COLOR, (value) => ({
-  color: value,
-}));
+export const [fontColor, fontColorMap] = styleVariantsFromData(
+  COLOR,
+  (value) => ({
+    color: value,
+  }),
+);
 
-export const fontWeight = styleVariants({
+export const [fontWeight, fontWeightMap] = styleVariantsFromMap({
   normal: {
     fontWeight: 400,
   },
@@ -31,16 +39,19 @@ export const fontWeight = styleVariants({
   },
 });
 
-const lineHeightMap = {
-  ...fontSizeMap,
+const lineHeightData = {
+  ...fontSizeData,
   ...RATIO,
 };
 
-export const lineHeight = styleVariants(lineHeightMap, (value) => ({
-  lineHeight: value,
-}));
+export const [lineHeight, lineHeightMap] = styleVariantsFromData(
+  lineHeightData,
+  (value) => ({
+    lineHeight: value,
+  }),
+);
 
-export const textAlign = styleVariants({
+export const [textAlign, textAlignMap] = styleVariantsFromMap({
   left: {
     textAlign: "left",
   },
@@ -52,7 +63,7 @@ export const textAlign = styleVariants({
   },
 });
 
-export const textOverflow = styleVariants({
+export const [textOverflow, textOverflowMap] = styleVariantsFromMap({
   ellipsis: {
     textOverflow: "ellipsis",
   },
@@ -61,7 +72,7 @@ export const textOverflow = styleVariants({
   },
 });
 
-export const textWhiteSpace = styleVariants({
+export const [textWhiteSpace, textWhiteSpaceMap] = styleVariantsFromMap({
   normal: {
     whiteSpace: "normal",
   },
@@ -79,7 +90,7 @@ export const textWhiteSpace = styleVariants({
   },
 });
 
-export const textDecoration = styleVariants({
+export const [textDecoration, textDecorationMap] = styleVariantsFromMap({
   none: {
     textDecoration: "none",
   },
@@ -91,7 +102,7 @@ export const textDecoration = styleVariants({
   },
 });
 
-export const textVerticalAlign = styleVariants({
+export const [textVerticalAlign, textVerticalAlignMap] = styleVariantsFromMap({
   baseline: {
     verticalAlign: "baseline",
   },

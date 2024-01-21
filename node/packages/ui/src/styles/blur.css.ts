@@ -1,8 +1,7 @@
-import { styleVariants } from "@vanilla-extract/css";
-
 import { PX } from "@/constants";
+import { styleVariantsFromData } from "@/libs/vanillaExtract";
 
-export const blur = styleVariants(PX, (value) => ({
+export const [blur, blurMap] = styleVariantsFromData(PX, (value) => ({
   filter: `blur(${value})`,
   WebkitFilter: `blur(${value})`,
   webkitFilter: `blur(${value})`,

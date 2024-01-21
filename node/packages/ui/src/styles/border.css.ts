@@ -1,45 +1,49 @@
-import { styleVariants } from "@vanilla-extract/css";
-
 import { COLOR, PX, REM } from "@/constants";
-import { createStyleMap } from "@/libs/vanillaExtract";
+import {
+  styleVariantsFromData,
+  styleVariantsFromMap,
+} from "@/libs/vanillaExtract";
 
 // Border
 
-export const border = styleVariants(PX, (value) => ({
+export const [border, borderMap] = styleVariantsFromData(PX, (value) => ({
   borderWidth: value,
 }));
 
-export const borderX = styleVariants(PX, (value) => ({
+export const [borderX, borderXMap] = styleVariantsFromData(PX, (value) => ({
   borderLeftWidth: value,
   borderRightWidth: value,
 }));
 
-export const borderY = styleVariants(PX, (value) => ({
+export const [borderY, borderYMap] = styleVariantsFromData(PX, (value) => ({
   borderTopWidth: value,
   borderBottomWidth: value,
 }));
 
-export const borderT = styleVariants(PX, (value) => ({
+export const [borderT, borderTMap] = styleVariantsFromData(PX, (value) => ({
   borderTopWidth: value,
 }));
 
-export const borderR = styleVariants(PX, (value) => ({
+export const [borderR, borderRMap] = styleVariantsFromData(PX, (value) => ({
   borderRightWidth: value,
 }));
 
-export const borderB = styleVariants(PX, (value) => ({
+export const [borderB, borderBMap] = styleVariantsFromData(PX, (value) => ({
   borderBottomWidth: value,
 }));
 
-export const borderL = styleVariants(PX, (value) => ({
+export const [borderL, borderLMap] = styleVariantsFromData(PX, (value) => ({
   borderLeftWidth: value,
 }));
 
-export const borderColor = styleVariants(COLOR, (value) => ({
-  borderColor: value,
-}));
+export const [borderColor, borderColorMap] = styleVariantsFromData(
+  COLOR,
+  (value) => ({
+    borderColor: value,
+  }),
+);
 
-export const borderStyle = styleVariants({
+export const [borderStyle, borderStyleMap] = styleVariantsFromMap({
   solid: {
     borderStyle: "solid",
   },
@@ -71,22 +75,27 @@ const radiusMap = {
   full: "9999px",
 };
 
-export const borderRadiusStyleMap = createStyleMap(radiusMap, (value) => ({
-  borderRadius: value,
-}));
-export const borderRadius = styleVariants(borderRadiusStyleMap);
+export const [borderRadius, borderRadiusMap] = styleVariantsFromData(
+  radiusMap,
+  (value) => ({
+    borderRadius: value,
+  }),
+);
 
 // Outline
 
-export const outline = styleVariants(PX, (value) => ({
+export const [outline, outlineMap] = styleVariantsFromData(PX, (value) => ({
   outlineWidth: value,
 }));
 
-export const outlineColor = styleVariants(COLOR, (value) => ({
-  outlineColor: value,
-}));
+export const [outlineColor, outlineColorMap] = styleVariantsFromData(
+  COLOR,
+  (value) => ({
+    outlineColor: value,
+  }),
+);
 
-export const outlineStyle = styleVariants({
+export const [outlineStyle, outlineStyleMap] = styleVariantsFromMap({
   solid: {
     outlineStyle: "solid",
   },
@@ -107,6 +116,9 @@ export const outlineStyle = styleVariants({
   },
 });
 
-export const outlineOffset = styleVariants(PX, (value) => ({
-  outlineOffset: value,
-}));
+export const [outlineOffset, outlineOffsetMap] = styleVariantsFromData(
+  PX,
+  (value) => ({
+    outlineOffset: value,
+  }),
+);

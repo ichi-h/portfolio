@@ -1,20 +1,22 @@
-import { style, styleVariants } from "@vanilla-extract/css";
-
 import { RATIO, NEGATIVE_RATIO, REM, NEGATIVE_REM } from "@/constants";
-import { createStyleMap } from "@/libs/vanillaExtract";
+import {
+  styleWitRule,
+  styleVariantsFromData,
+  styleVariantsFromMap,
+} from "@/libs/vanillaExtract";
 
-export const gap = styleVariants(REM, (value) => ({
+export const [gap, gapMap] = styleVariantsFromData(REM, (value) => ({
   gap: value,
 }));
 
 // Flexible box layout
 // see: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout
 
-export const flex = style({
+export const [flex, flexRule] = styleWitRule({
   display: "flex",
 });
 
-export const flexDirection = styleVariants({
+export const [flexDirection, flexDirectionMap] = styleVariantsFromMap({
   row: {
     flexDirection: "row",
   },
@@ -29,7 +31,7 @@ export const flexDirection = styleVariants({
   },
 });
 
-export const flexJustify = styleVariants({
+export const [flexJustify, flexJustifyMap] = styleVariantsFromMap({
   start: {
     justifyContent: "flex-start",
   },
@@ -44,7 +46,7 @@ export const flexJustify = styleVariants({
   },
 });
 
-export const flexAlign = styleVariants({
+export const [flexAlign, flexAlignMap] = styleVariantsFromMap({
   start: {
     alignItems: "flex-start",
   },
@@ -59,7 +61,7 @@ export const flexAlign = styleVariants({
   },
 });
 
-export const flexWrap = styleVariants({
+export const [flexWrap, flexWrapMap] = styleVariantsFromMap({
   wrap: {
     flexWrap: "wrap",
   },
@@ -74,11 +76,11 @@ export const flexWrap = styleVariants({
 // Grid layout
 // see: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout
 
-export const grid = style({
+export const [grid, gridRule] = styleWitRule({
   display: "grid",
 });
 
-export const gridCols = styleVariants({
+export const [gridCols, gridColsMap] = styleVariantsFromMap({
   1: {
     gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
   },
@@ -111,7 +113,7 @@ export const gridCols = styleVariants({
   },
 });
 
-export const gridRows = styleVariants({
+export const [gridRows, gridRowsMap] = styleVariantsFromMap({
   1: {
     gridTemplateRows: "repeat(1, minmax(0, 1fr))",
   },
@@ -154,7 +156,7 @@ const sizing = {
   ...NEGATIVE_REM,
 } as const;
 
-export const positionStyleMap = {
+export const [position, positionMap] = styleVariantsFromMap({
   relative: {
     position: "relative",
   },
@@ -167,30 +169,25 @@ export const positionStyleMap = {
   sticky: {
     position: "sticky",
   },
-} as const;
-export const position = styleVariants(positionStyleMap);
+});
 
-export const topStyleMap = createStyleMap(sizing, (value) => ({
+export const [top, topMap] = styleVariantsFromData(sizing, (value) => ({
   top: value,
 }));
-export const top = styleVariants(topStyleMap);
 
-export const bottomStyleMap = createStyleMap(sizing, (value) => ({
+export const [bottom, bottomMap] = styleVariantsFromData(sizing, (value) => ({
   bottom: value,
 }));
-export const bottom = styleVariants(bottomStyleMap);
 
-export const leftStyleMap = createStyleMap(sizing, (value) => ({
+export const [left, leftMap] = styleVariantsFromData(sizing, (value) => ({
   left: value,
 }));
-export const left = styleVariants(leftStyleMap);
 
-export const rightStyleMap = createStyleMap(sizing, (value) => ({
+export const [right, rightMap] = styleVariantsFromData(sizing, (value) => ({
   right: value,
 }));
-export const right = styleVariants(rightStyleMap);
 
-export const zIndex = styleVariants({
+export const [zIndex, zIndexMap] = styleVariantsFromMap({
   0: {
     zIndex: 0,
   },
@@ -226,17 +223,23 @@ export const zIndex = styleVariants({
   },
 });
 
-export const translateStyleMap = createStyleMap(sizing, (value) => ({
-  transform: `translateX(${value}) translateY(${value})`,
-}));
-export const translate = styleVariants(translateStyleMap);
+export const [translate, translateMap] = styleVariantsFromData(
+  sizing,
+  (value) => ({
+    transform: `translateX(${value}) translateY(${value})`,
+  }),
+);
 
-export const translateXStyleMap = createStyleMap(sizing, (value) => ({
-  transform: `translateX(${value})`,
-}));
-export const translateX = styleVariants(translateXStyleMap);
+export const [translateX, translateXMap] = styleVariantsFromData(
+  sizing,
+  (value) => ({
+    transform: `translateX(${value})`,
+  }),
+);
 
-export const translateYStyleMap = createStyleMap(sizing, (value) => ({
-  transform: `translateY(${value})`,
-}));
-export const translateY = styleVariants(translateYStyleMap);
+export const [translateY, translateYMap] = styleVariantsFromData(
+  sizing,
+  (value) => ({
+    transform: `translateY(${value})`,
+  }),
+);

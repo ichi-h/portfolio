@@ -1,6 +1,8 @@
 import { style } from "@vanilla-extract/css";
 
+import { flattenStyle } from "@/libs/vanillaExtract";
 import * as s from "@/styles";
+import * as srm from "@/styles/ruleMap";
 
 export const radioLabel = style([
   s.position["relative"],
@@ -42,18 +44,20 @@ export const radioMarker = style([
   },
   {
     selectors: {
-      [`${radio}:checked + &::before`]: {
-        content: "",
-        display: "block",
-        ...s.positionStyleMap["absolute"],
-        ...s.topStyleMap["1/2"],
-        ...s.leftStyleMap["1/2"],
-        ...s.translateStyleMap["-1/2"],
-        ...s.bgStyleMap["mono.900"],
-        ...s.wStyleMap[2],
-        ...s.hStyleMap[2],
-        ...s.borderRadiusStyleMap["full"],
-      },
+      [`${radio}:checked + &::before`]: flattenStyle([
+        {
+          content: "",
+          display: "block",
+        },
+        srm.positionMap["absolute"],
+        srm.topMap["1/2"],
+        srm.leftMap["1/2"],
+        srm.translateMap["-1/2"],
+        srm.bgMap["mono.900"],
+        srm.wMap[2],
+        srm.hMap[2],
+        srm.borderRadiusMap["full"],
+      ]),
     },
   },
 ]);

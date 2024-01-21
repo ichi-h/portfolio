@@ -1,63 +1,62 @@
-import { styleVariants } from "@vanilla-extract/css";
-
 import { REM } from "@/constants/rem";
+import { styleVariantsFromData } from "@/libs/vanillaExtract";
 
-export const p = styleVariants(REM, (value) => ({
+export const [p, pMap] = styleVariantsFromData(REM, (value) => ({
   padding: value,
 }));
 
-export const pt = styleVariants(REM, (value) => ({
+export const [pt, ptMap] = styleVariantsFromData(REM, (value) => ({
   paddingTop: value,
 }));
 
-export const pr = styleVariants(REM, (value) => ({
+export const [pr, prMap] = styleVariantsFromData(REM, (value) => ({
   paddingRight: value,
 }));
 
-export const pb = styleVariants(REM, (value) => ({
+export const [pb, pbMap] = styleVariantsFromData(REM, (value) => ({
   paddingBottom: value,
 }));
 
-export const pl = styleVariants(REM, (value) => ({
+export const [pl, plMap] = styleVariantsFromData(REM, (value) => ({
   paddingLeft: value,
 }));
 
-export const px = styleVariants(REM, (value) => ({
+export const [px, pxMap] = styleVariantsFromData(REM, (value) => ({
   paddingLeft: value,
   paddingRight: value,
 }));
 
-export const py = styleVariants(REM, (value) => ({
+export const [py, pyMap] = styleVariantsFromData(REM, (value) => ({
   paddingTop: value,
   paddingBottom: value,
 }));
 
-export const m = styleVariants(REM, (value) => ({
+export const [m, mMap] = styleVariantsFromData(REM, (value) => ({
   margin: value,
 }));
 
-export const mt = styleVariants(REM, (value) => ({
+export const [mt, mtMap] = styleVariantsFromData(REM, (value) => ({
   marginTop: value,
 }));
 
-export const mr = styleVariants(REM, (value) => ({
+export const [mr, mrMap] = styleVariantsFromData(REM, (value) => ({
   marginRight: value,
 }));
 
-export const mb = styleVariants(REM, (value) => ({
+export const [mb, mbMap] = styleVariantsFromData(REM, (value) => ({
   marginBottom: value,
 }));
 
-export const ml = styleVariants(REM, (value) => ({
+export const [ml, mlMap] = styleVariantsFromData(REM, (value) => ({
   marginLeft: value,
 }));
 
-export const mx = styleVariants(REM, (value) => ({
+export const [mx, mxMap] = styleVariantsFromData(REM, (value) => ({
   marginLeft: value,
   marginRight: value,
 }));
 
-export const my = styleVariants(REM, (value) => ({
+export const [my, myMap] = styleVariantsFromData(REM, (value) => ({
   marginTop: value,
   marginBottom: value,
 }));

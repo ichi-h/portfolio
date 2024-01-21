@@ -1,17 +1,15 @@
 import { style, styleVariants } from "@vanilla-extract/css";
 
+import { flattenStyle } from "@/libs/vanillaExtract";
 import * as s from "@/styles";
+import * as srm from "@/styles/ruleMap";
 
 export const button = style([
   {
     background: "none",
     cursor: "pointer",
-    ":hover": {
-      ...s.bgStyleMap["mono.100"],
-    },
-    ":active": {
-      ...s.bgStyleMap["mono.200"],
-    },
+    ":hover": flattenStyle([srm.bgMap["mono.100"]]),
+    ":active": flattenStyle([srm.bgMap["mono.200"]]),
   },
   s.fontColor["mono.900"],
   s.border["1"],
