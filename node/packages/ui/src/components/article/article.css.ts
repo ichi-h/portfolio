@@ -10,7 +10,7 @@ import * as srm from "@/styles/ruleMap";
 export const article = style([
   s.flex,
   s.flexDirection["column"],
-  s.gap[4],
+  s.gap[5],
   s.w["1/1"],
   s.fontSize[4],
   s.fontColor["mono.900"],
