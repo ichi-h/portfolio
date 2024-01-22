@@ -31,32 +31,37 @@ export const [py, pyMap] = styleVariantsFromData(REM, (value) => ({
   paddingBottom: value,
 }));
 
-export const [m, mMap] = styleVariantsFromData(REM, (value) => ({
+const marginData = {
+  ...REM,
+  auto: "auto",
+};
+
+export const [m, mMap] = styleVariantsFromData(marginData, (value) => ({
   margin: value,
 }));
 
-export const [mt, mtMap] = styleVariantsFromData(REM, (value) => ({
+export const [mt, mtMap] = styleVariantsFromData(marginData, (value) => ({
   marginTop: value,
 }));
 
-export const [mr, mrMap] = styleVariantsFromData(REM, (value) => ({
+export const [mr, mrMap] = styleVariantsFromData(marginData, (value) => ({
   marginRight: value,
 }));
 
-export const [mb, mbMap] = styleVariantsFromData(REM, (value) => ({
+export const [mb, mbMap] = styleVariantsFromData(marginData, (value) => ({
   marginBottom: value,
 }));
 
-export const [ml, mlMap] = styleVariantsFromData(REM, (value) => ({
+export const [ml, mlMap] = styleVariantsFromData(marginData, (value) => ({
   marginLeft: value,
 }));
 
-export const [mx, mxMap] = styleVariantsFromData(REM, (value) => ({
+export const [mx, mxMap] = styleVariantsFromData(marginData, (value) => ({
   marginLeft: value,
   marginRight: value,
 }));
 
-export const [my, myMap] = styleVariantsFromData(REM, (value) => ({
+export const [my, myMap] = styleVariantsFromData(marginData, (value) => ({
   marginTop: value,
   marginBottom: value,
 }));

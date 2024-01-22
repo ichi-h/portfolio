@@ -1,3 +1,4 @@
+export * from "./article";
 export * from "./avatar";
 export * from "./buttons";
 export * from "./headline";

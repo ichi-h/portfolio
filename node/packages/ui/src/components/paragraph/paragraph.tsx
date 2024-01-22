@@ -3,6 +3,8 @@ import { ComponentProps } from "react";
 
 import * as s from "@/styles";
 
+import * as styles from "./paragraph.css";
+
 type Props = {
   align?: keyof typeof s.textAlign;
   overflow?: keyof typeof s.overflow;
@@ -22,10 +24,7 @@ export const Paragraph = ({
   return (
     <p
       className={clsx([
-        s.fontSize[4],
-        s.fontColor["mono.900"],
-        s.m[0],
-        s.p[0],
+        styles.paragraph,
         s.textAlign[align],
         s.overflow[overflow],
         s.textOverflow[textOverflow],

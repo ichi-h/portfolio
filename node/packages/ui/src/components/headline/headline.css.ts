@@ -1,19 +1,24 @@
-import { style, styleVariants } from "@vanilla-extract/css";
+import {
+  flattenStyle,
+  styleVariantsFromMap,
+  styleWitRule,
+} from "@/libs/vanillaExtract";
+import * as srm from "@/styles/ruleMap";
 
-import * as s from "@/styles";
+export const [headlineBase, headlineBaseRule] = styleWitRule(
+  flattenStyle([
+    srm.fontColorMap["mono.900"],
+    srm.textAlignMap["left"],
+    srm.mMap[0],
+    srm.pMap[0],
+  ]),
+);
 
-const headlineBase = style([
-  s.fontColor["mono.900"],
-  s.textAlign["left"],
-  s.m[0],
-  s.p[0],
-]);
-
-export const headline = styleVariants({
-  1: [headlineBase, s.fontSize[12]],
-  2: [headlineBase, s.fontSize[8]],
-  3: [headlineBase, s.fontSize[7]],
-  4: [headlineBase, s.fontSize[6]],
-  5: [headlineBase, s.fontSize[5]],
-  6: [headlineBase, s.fontSize[4]],
+export const [headline, headlineMap] = styleVariantsFromMap({
+  1: [headlineBaseRule, srm.fontSizeMap[12]],
+  2: [headlineBaseRule, srm.fontSizeMap[8]],
+  3: [headlineBaseRule, srm.fontSizeMap[7]],
+  4: [headlineBaseRule, srm.fontSizeMap[6]],
+  5: [headlineBaseRule, srm.fontSizeMap[5]],
+  6: [headlineBaseRule, srm.fontSizeMap[4]],
 });

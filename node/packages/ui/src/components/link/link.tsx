@@ -41,7 +41,7 @@ export const Link = <T extends ElementType>({
 
   return (
     <Component
-      className={clsx([styles.link, className])}
+      className={clsx([styles.link, styles.linkHover, className])}
       style={style}
       {...anchorProps}
       {...props.asProps}
