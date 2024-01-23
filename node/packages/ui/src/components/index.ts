@@ -1,5 +1,6 @@
 export * from "./article";
 export * from "./avatar";
+export * from "./background";
 export * from "./buttons";
 export * from "./dialog";
 export * from "./headline";

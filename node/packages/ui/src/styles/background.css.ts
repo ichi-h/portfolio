@@ -21,6 +21,9 @@ export const [bgSize, bgSizeMap] = styleVariantsFromMap({
 });
 
 export const [bgPosition, bgPositionMap] = styleVariantsFromMap({
+  center: {
+    backgroundPosition: "center",
+  },
   top: {
     backgroundPosition: "top",
   },

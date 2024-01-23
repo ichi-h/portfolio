@@ -188,6 +188,9 @@ export const [right, rightMap] = styleVariantsFromData(sizing, (value) => ({
 }));
 
 export const [zIndex, zIndexMap] = styleVariantsFromMap({
+  "-1": {
+    zIndex: -1,
+  },
   0: {
     zIndex: 0,
   },
