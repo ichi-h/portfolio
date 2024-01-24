@@ -12,5 +12,6 @@
 
 # production
 /**/dist
+/**/build
 
 /packages/tinysearch-engine
