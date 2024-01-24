@@ -1,15 +1,20 @@
 import clsx from "clsx";
 import { ComponentProps } from "react";
 
-import * as s from "@/styles";
+import {
+  textAlign,
+  overflow as overflowStyle,
+  textOverflow as textOverflowStyle,
+  textWhiteSpace,
+} from "@/styles";
 
 import * as styles from "./paragraph.css";
 
 type Props = {
-  align?: keyof typeof s.textAlign;
-  overflow?: keyof typeof s.overflow;
-  textOverflow?: keyof typeof s.textOverflow;
-  whiteSpace?: keyof typeof s.textWhiteSpace;
+  align?: keyof typeof textAlign;
+  overflow?: keyof typeof overflowStyle;
+  textOverflow?: keyof typeof textOverflowStyle;
+  whiteSpace?: keyof typeof textWhiteSpace;
 } & ComponentProps<"p">;
 
 export const Paragraph = ({
@@ -25,10 +30,10 @@ export const Paragraph = ({
     <p
       className={clsx([
         styles.paragraph,
-        s.textAlign[align],
-        s.overflow[overflow],
-        s.textOverflow[textOverflow],
-        s.textWhiteSpace[whiteSpace],
+        textAlign[align],
+        overflowStyle[overflow],
+        textOverflowStyle[textOverflow],
+        textWhiteSpace[whiteSpace],
         className,
       ])}
       {...props}

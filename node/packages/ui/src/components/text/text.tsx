@@ -1,15 +1,22 @@
 import clsx from "clsx";
 import { ComponentProps } from "react";
 
-import * as s from "@/styles";
+import {
+  fontSize as fontSizeStyle,
+  fontColor,
+  fontWeight,
+  lineHeight as lineHeightStyle,
+  textDecoration,
+  textVerticalAlign,
+} from "@/styles";
 
 type Props = {
-  fontSize?: keyof typeof s.fontSize;
-  color?: keyof typeof s.fontColor;
-  weight?: keyof typeof s.fontWeight;
-  lineHeight?: keyof typeof s.lineHeight;
-  decoration?: keyof typeof s.textDecoration;
-  verticalAlign?: keyof typeof s.textVerticalAlign;
+  fontSize?: keyof typeof fontSizeStyle;
+  color?: keyof typeof fontColor;
+  weight?: keyof typeof fontWeight;
+  lineHeight?: keyof typeof lineHeightStyle;
+  decoration?: keyof typeof textDecoration;
+  verticalAlign?: keyof typeof textVerticalAlign;
 } & ComponentProps<"span">;
 
 export const Text = ({
@@ -26,12 +33,12 @@ export const Text = ({
   return (
     <span
       className={clsx([
-        s.fontSize[fontSize],
-        s.fontColor[color],
-        s.fontWeight[weight],
-        s.lineHeight[lineHeight],
-        s.textDecoration[decoration],
-        s.textVerticalAlign[verticalAlign],
+        fontSizeStyle[fontSize],
+        fontColor[color],
+        fontWeight[weight],
+        lineHeightStyle[lineHeight],
+        textDecoration[decoration],
+        textVerticalAlign[verticalAlign],
         className,
       ])}
       {...props}

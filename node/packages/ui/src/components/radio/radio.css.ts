@@ -1,32 +1,56 @@
 import { style } from "@vanilla-extract/css";
 
 import { flattenStyle } from "@/libs/vanillaExtract";
-import * as s from "@/styles";
-import * as srm from "@/styles/ruleMap";
+import {
+  position,
+  fontSize,
+  pl,
+  top,
+  left,
+  translateY,
+  w,
+  h,
+  borderRadius,
+  p,
+  m,
+  border,
+  borderStyle,
+  borderColor,
+} from "@/styles";
+import {
+  positionMap,
+  topMap,
+  leftMap,
+  translateMap,
+  bgMap,
+  wMap,
+  hMap,
+  borderRadiusMap,
+} from "@/styles/ruleMap";
 
 export const radioLabel = style([
-  s.position["relative"],
-  s.fontSize[4],
-  s.pl[5],
+  position["relative"],
+  fontSize[4],
+  pl[5],
   {
     cursor: "pointer",
   },
 ]);
 
 const radioMarkerShape = style([
-  s.position["absolute"],
-  s.top["1/2"],
-  s.left[0],
-  s.translateY["-1/2"],
-  s.w[3],
-  s.h[3],
-  s.borderRadius["full"],
+  position["absolute"],
+  top["1/2"],
+  left[0],
+  translateY["-1/2"],
+  w[3],
+  h[3],
+  borderRadius["full"],
 ]);
 
 export const radio = style([
   radioMarkerShape,
-  s.p[0],
-  s.m[0],
+  p[0],
+  m[0],
   {
     WebkitAppearance: "none",
     MozAppearance: "none",
@@ -36,9 +60,9 @@ export const radio = style([
 
 export const radioMarker = style([
   radioMarkerShape,
-  s.border[1],
-  s.borderStyle["solid"],
-  s.borderColor["mono.900"],
+  border[1],
+  borderStyle["solid"],
+  borderColor["mono.900"],
   {
     boxSizing: "border-box",
   },
@@ -49,14 +73,14 @@ export const radioMarker = style([
           content: "",
           display: "block",
         },
-        srm.positionMap["absolute"],
-        srm.topMap["1/2"],
-        srm.leftMap["1/2"],
-        srm.translateMap["-1/2"],
-        srm.bgMap["mono.900"],
-        srm.wMap[2],
-        srm.hMap[2],
-        srm.borderRadiusMap["full"],
+        positionMap["absolute"],
+        topMap["1/2"],
+        leftMap["1/2"],
+        translateMap["-1/2"],
+        bgMap["mono.900"],
+        wMap[2],
+        hMap[2],
+        borderRadiusMap["full"],
       ]),
     },
   },

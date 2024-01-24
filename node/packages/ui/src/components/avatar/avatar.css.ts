@@ -1,16 +1,16 @@
 import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
 
-import * as s from "@/styles";
+import { borderRadius, bgSize, w, h } from "@/styles";
 
-const avatarBase = style([s.borderRadius["full"], s.bgSize["cover"]]);
+const avatarBase = style([borderRadius["full"], bgSize["cover"]]);
 
-const size = Object.keys(s.w) as Array<keyof typeof s.w>;
+const size = Object.keys(w) as Array<keyof typeof w>;
 
 export const avatar = styleVariants(
   size.reduce(
     (acc, size) => ({
       ...acc,
-      [size]: [avatarBase, s.w[size], s.h[size]],
+      [size]: [avatarBase, w[size], h[size]],
     }),
     {} as Record<(typeof size)[number], ComplexStyleRule>,
   ),

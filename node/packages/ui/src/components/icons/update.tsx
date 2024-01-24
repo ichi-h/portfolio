@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 
 import { COLOR } from "@/constants";
-import * as s from "@/styles";
+import { w, h } from "@/styles";
 
 type Props = {
   color?: keyof typeof COLOR;
@@ -11,8 +11,8 @@ export const UpdateIcon = ({ color = "mono.900", ...props }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={s.w[4]}
-      height={s.h[4]}
+      width={w[4]}
+      height={h[4]}
       fill={COLOR[color]}
       viewBox="0 0 24 24"
       {...props}

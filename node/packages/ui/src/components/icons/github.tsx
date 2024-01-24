@@ -1,7 +1,7 @@
 import { ComponentProps } from "react";
 
 import { COLOR } from "@/constants";
-import * as s from "@/styles";
+import { w, h } from "@/styles";
 
 type Props = {
   color?: keyof typeof COLOR;
@@ -12,8 +12,8 @@ export const GitHubIcon = ({ color, ...props }: Props) => {
     <>
       {/* Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools */}
       <svg
-        width={s.w[4]}
-        height={s.h[4]}
+        width={w[4]}
+        height={h[4]}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         {...props}

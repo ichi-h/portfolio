@@ -1,16 +1,25 @@
 import clsx from "clsx";
 import { ComponentProps } from "react";
 
-import * as s from "@/styles";
+import {
+  bg,
+  opacity as opacityStyle,
+  bgPosition,
+  bgSize,
+  position as positionStyle,
+  zIndex,
+  w,
+  h,
+} from "@/styles";
 
 type Props = {
   classNameForBg?: ComponentProps<"div">["className"];
   children?: React.ReactNode;
-  color?: keyof typeof s.bg;
-  opacity?: keyof typeof s.opacity;
+  color?: keyof typeof bg;
+  opacity?: keyof typeof opacityStyle;
   src?: string;
-  position?: keyof typeof s.bgPosition;
-  size?: keyof typeof s.bgSize;
+  position?: keyof typeof bgPosition;
+  size?: keyof typeof bgSize;
 } & ComponentProps<"div">;
 
 export const Background = ({
@@ -25,17 +34,17 @@ export const Background = ({
   ...props
 }: Props) => {
   return (
-    <div className={clsx([s.position["relative"], className])}>
+    <div className={clsx([positionStyle["relative"], className])}>
       <div
         className={clsx([
-          s.position["absolute"],
-          s.zIndex["-1"],
-          s.w["1/1"],
-          s.h["1/1"],
-          s.bg[color],
-          s.opacity[opacity],
-          s.bgPosition[position],
-          s.bgSize[size],
+          positionStyle["absolute"],
+          zIndex["-1"],
+          w["1/1"],
+          h["1/1"],
+          bg[color],
+          opacityStyle[opacity],
+          bgPosition[position],
+          bgSize[size],
           classNameForBg,
         ])}
         style={{
