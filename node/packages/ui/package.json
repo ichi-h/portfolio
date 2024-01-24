@@ -1,8 +1,15 @@
 {
   "name": "portfolio-ui",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "pnpm": true,
+  "main": "./dist/portfolio-ui.umd.js",
+  "module": "./dist/portfolio-ui.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "tsc --noEmit && vite build",
