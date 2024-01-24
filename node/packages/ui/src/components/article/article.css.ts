@@ -34,6 +34,8 @@ export const article = style([
   fontColor["mono.900"],
 ]);
 
+globalStyle(`${article} *`, mMap[0]);
+
 globalStyle(`${article} p`, flattenStyle(paragraphRule));
 
 globalStyle(`${article} h1`, flattenStyle(headlineMap[1]));
