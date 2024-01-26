@@ -1,4 +1,5 @@
 import {
+  applyMedia,
   flattenStyle,
   styleVariantsFromMap,
   styleWitRule,
@@ -9,6 +10,8 @@ import {
   mMap,
   pMap,
   fontSizeMap,
+  textDecorationMap,
+  fontWeightMap,
 } from "@/styles/ruleMap";
 
 export const [headlineBase, headlineBaseRule] = styleWitRule(
@@ -21,10 +24,38 @@ export const [headlineBase, headlineBaseRule] = styleWitRule(
 );
 
 export const [headline, headlineMap] = styleVariantsFromMap({
-  1: [headlineBaseRule, fontSizeMap[12]],
-  2: [headlineBaseRule, fontSizeMap[8]],
-  3: [headlineBaseRule, fontSizeMap[7]],
-  4: [headlineBaseRule, fontSizeMap[6]],
-  5: [headlineBaseRule, fontSizeMap[5]],
-  6: [headlineBaseRule, fontSizeMap[4]],
+  1: [
+    headlineBaseRule,
+    fontSizeMap[12],
+    applyMedia({ max: "768" }, flattenStyle([fontSizeMap[8]])),
+    applyMedia({ max: "480" }, flattenStyle([fontSizeMap[7]])),
+  ],
+  2: [
+    headlineBaseRule,
+    fontSizeMap[8],
+    applyMedia({ max: "768" }, flattenStyle([fontSizeMap[7]])),
+  ],
+  3: [
+    headlineBaseRule,
+    fontSizeMap[7],
+    applyMedia({ max: "768" }, flattenStyle([fontSizeMap[6]])),
+  ],
+  4: [
+    headlineBaseRule,
+    fontSizeMap[6],
+    applyMedia({ max: "768" }, flattenStyle([fontSizeMap[5]])),
+  ],
+  5: [
+    headlineBaseRule,
+    fontSizeMap[5],
+    applyMedia({ max: "768" }, flattenStyle([fontSizeMap[4]])),
+  ],
+  6: [
+    headlineBaseRule,
+    fontSizeMap[4],
+    applyMedia(
+      { max: "768" },
+      flattenStyle([textDecorationMap["underline"], fontWeightMap["normal"]]),
+    ),
+  ],
 });

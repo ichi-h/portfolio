@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 
-import { BREAK_POINT, COLOR, COLOR_OPACITY } from "@/constants";
-import { flattenStyle } from "@/libs/vanillaExtract";
+import { COLOR, COLOR_OPACITY } from "@/constants";
+import { applyMedia, flattenStyle } from "@/libs/vanillaExtract";
 import {
   top,
   left,
@@ -25,12 +25,8 @@ export const dialog = style([
   w[160],
   p[0],
   m[0],
+  applyMedia({ max: "768" }, flattenStyle([wMap["1/1"]])),
   {
-    "@media": {
-      [`screen and (max-width: ${BREAK_POINT.md})`]: flattenStyle([
-        wMap["2/3"],
-      ]),
-    },
     selectors: {
       "&::backdrop": flattenStyle([
         {

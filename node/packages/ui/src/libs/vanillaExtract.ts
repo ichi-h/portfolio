@@ -3,7 +3,10 @@ import {
   styleVariants,
   CSSProperties,
   ComplexStyleRule,
+  StyleRule,
 } from "@vanilla-extract/css";
+
+import { BREAK_POINT } from "@/constants";
 
 const createStyleMap = <
   Data extends Record<string | number, unknown>,
@@ -42,17 +45,37 @@ export const styleVariantsFromMap = <
   return [variants, styleMap];
 };
 
-export const flattenStyle = (styles: CSSProperties[]) => {
+export const flattenStyle = (styles: StyleRule[]) => {
   return styles.reduce((acc, style) => {
     return {
       ...acc,
       ...style,
     };
-  }, {} as CSSProperties);
+  }, {} as StyleRule);
 };
 
 export const styleWitRule = <Rule extends ComplexStyleRule>(
   rule: Rule,
 ): [string, Rule] => {
   return [style(rule), rule];
+};
+
+export const applyMedia = (
+  breakPoint: {
+    min?: keyof typeof BREAK_POINT;
+    max?: keyof typeof BREAK_POINT;
+  },
+  style: CSSProperties,
+) => {
+  const minWidth = breakPoint.min
+    ? `and (min-width: ${BREAK_POINT[breakPoint.min]})`
+    : "";
+  const maxWidth = breakPoint.max
+    ? `and (max-width: ${BREAK_POINT[breakPoint.max]})`
+    : "";
+  return {
+    "@media": {
+      [`only screen ${minWidth} ${maxWidth}`]: style,
+    },
+  };
 };
