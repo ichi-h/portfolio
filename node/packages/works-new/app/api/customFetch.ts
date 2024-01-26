@@ -20,7 +20,7 @@ export const customFetch = async <T, E = any>(
     return {
       ...input,
       url: `${BLOG_SERVER_URL}${input.url}`,
-    };
+    } as Request;
   })();
 
   const response = await fetch(_input, init);
