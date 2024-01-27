@@ -5,9 +5,9 @@ export {
   animateZoomOnHover,
   animateFadeIn,
   animateFadeOut,
-} from "./animation.css";
-export { bg, bgSize, bgPosition } from "./background.css";
-export { blur } from "./blur.css";
+} from "./animation";
+export { bg, bgSize, bgPosition } from "./background";
+export { blur } from "./blur";
 export {
   border,
   borderX,
@@ -23,7 +23,7 @@ export {
   outlineColor,
   outlineStyle,
   outlineOffset,
-} from "./border.css";
+} from "./border";
 export {
   gap,
   flex,
@@ -43,11 +43,11 @@ export {
   translate,
   translateX,
   translateY,
-} from "./layout.css";
-export { opacity } from "./opacity.css";
-export { overflow, overflowX, overflowY } from "./overflow.css";
-export { dropShadow } from "./shadow.css";
-export { w, h, minW, minH, maxW, maxH } from "./sizing.css";
+} from "./layout";
+export { opacity } from "./opacity";
+export { overflow, overflowX, overflowY } from "./overflow";
+export { dropShadow } from "./shadow";
+export { w, h, minW, minH, maxW, maxH } from "./sizing";
 export {
   p,
   pt,
@@ -63,7 +63,7 @@ export {
   ml,
   mx,
   my,
-} from "./spacing.css";
+} from "./spacing";
 export {
   fontSize,
   fontColor,
@@ -74,4 +74,4 @@ export {
   textWhiteSpace,
   textDecoration,
   textVerticalAlign,
-} from "./text.css";
+} from "./text";

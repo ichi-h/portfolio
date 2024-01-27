@@ -1,6 +1,6 @@
 import { flattenStyle, styleMap, styleRule } from "@/libs/vanillaExtract";
 
-import { opacity } from "./opacity.css";
+import { opacity } from "./opacity";
 
 export const duration = styleMap({
   75: {
