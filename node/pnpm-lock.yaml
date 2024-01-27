@@ -113,6 +113,12 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
 
+  packages/styles:
+    dependencies:
+      portfolio-ui:
+        specifier: workspace:*
+        version: link:../ui
+
   packages/tinysearch-engine: {}
 
   packages/ui:
@@ -202,6 +208,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      portfolio-styles:
+        specifier: workspace:*
+        version: link:../styles
       portfolio-ui:
         specifier: workspace:*
         version: link:../ui

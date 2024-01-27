@@ -9,7 +9,9 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import styles from "portfolio-ui/dist/style.css";
+import { htmlStyle, bodyStyle } from "portfolio-styles";
+import styles from "portfolio-styles/style.css";
+import uiStyles from "portfolio-ui/style.css";
 
 import { Env } from "@/libs/remix-env";
 import { useEnv } from "@/utils/env";
@@ -24,7 +26,14 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
+  { rel: "stylesheet", href: uiStyles },
   { rel: "stylesheet", href: styles },
+  { rel: "preconnect", href: "https://fonts.googleapis.com" },
+  { rel: "preconnect", href: "https://fonts.gstatic.com" },
+  {
+    rel: "stylesheet",
+    href: "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap",
+  },
 ];
 
 export const loader = () => {
@@ -36,12 +45,12 @@ export default function App() {
   const { env } = useLoaderData<typeof loader>();
 
   return (
-    <html lang="en">
+    <html className={htmlStyle} lang="ja">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className={bodyStyle}>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

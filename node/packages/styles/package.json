@@ -1,0 +1,32 @@
+{
+  "name": "portfolio-styles",
+  "version": "0.1.0",
+  "private": true,
+  "pnpm": true,
+  "main": "./dist/portfolio-styles.cjs.js",
+  "module": "./dist/portfolio-styles.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/portfolio-styles.index.es.js",
+      "require": "./dist/portfolio-styles.index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./style.css": "./dist/style.css",
+    "./pages/home": {
+      "import": "./dist/portfolio-styles.home.es.js",
+      "require": "./dist/portfolio-styles.home.cjs.js",
+      "types": "./dist/pages/home.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "tsc --noEmit && vite build"
+  },
+  "dependencies": {
+    "portfolio-ui": "workspace:*"
+  }
+}
