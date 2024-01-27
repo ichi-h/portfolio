@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import clsx from "clsx";
-
-import * as s from "@/styles";
 
 import { Paragraph } from "./paragraph";
+import * as s from "./paragraph.css";
 
 const options = {
   align: Object.keys(s.textAlign) as Array<keyof typeof s.textAlign>,
@@ -53,16 +51,14 @@ type Story = StoryObj<typeof Paragraph>;
 export const Default: Story = {
   render: (args) => (
     <div
-      className={clsx([
-        s.flex,
-        s.flexDirection["column"],
-        s.gap[2],
-        s.border[1],
-        s.borderStyle["solid"],
-        s.borderColor["mono.500"],
-        s.w[64],
-        s.p[4],
-      ])}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "1rem",
+        border: "1px solid #000",
+        width: "300px",
+        padding: "1rem",
+      }}
     >
       <Paragraph {...args}>sample text1</Paragraph>
       <Paragraph {...args}>sample text2</Paragraph>

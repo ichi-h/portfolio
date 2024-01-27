@@ -1,20 +1,22 @@
 import { style } from "@vanilla-extract/css";
 
-import { flattenStyle, styleWitRule } from "@/libs/vanillaExtract";
-import { textDecorationMap, fontColorMap } from "@/styles/ruleMap";
+import { flattenStyle, styleRule } from "@/libs/vanillaExtract";
+import { textDecoration, fontColor } from "@/styles";
 
-export const linkHoverRule = flattenStyle([textDecorationMap["underline"]]);
+export const linkHoverRule = flattenStyle([textDecoration["underline"]]);
 
-export const [link, linkRule] = styleWitRule(
+export const linkRule = styleRule(
   flattenStyle([
-    textDecorationMap["none"],
-    fontColorMap["blue.500"],
+    textDecoration["none"],
+    fontColor["blue.500"],
     {
       fontSize: "initial",
       cursor: "pointer",
     },
   ]),
 );
+
+export const link = style(linkRule);
 
 export const linkHover = style({
   selectors: {

@@ -1,29 +1,32 @@
 import { style, globalStyle } from "@vanilla-extract/css";
 
-import { headlineMap } from "@/components/headline/headline.css";
+import { headlineRule } from "@/components/headline/headline.css";
 import { linkHoverRule, linkRule } from "@/components/link/link.css";
 import { paragraphRule } from "@/components/paragraph/paragraph.css";
 import { flattenStyle } from "@/libs/vanillaExtract";
-import { flex, flexDirection, gap, w, fontSize, fontColor } from "@/styles";
 import {
-  mMap,
-  mlMap,
-  mrMap,
-  myMap,
-  bgMap,
-  borderColorMap,
-  borderStyleMap,
-  borderMap,
-  borderLMap,
-  pMap,
-  dropShadowMap,
-  textAlignMap,
-  fontColorMap,
-  fontWeightMap,
-  textDecorationMap,
-  fontSizeMap,
-  maxWMap,
-} from "@/styles/ruleMap";
+  flex,
+  flexDirection,
+  gap,
+  w,
+  m,
+  ml,
+  mr,
+  my,
+  bg,
+  borderColor,
+  borderStyle,
+  border,
+  borderL,
+  p,
+  dropShadow,
+  textAlign,
+  fontColor,
+  fontWeight,
+  textDecoration,
+  fontSize,
+  maxW,
+} from "@/styles";
 
 export const article = style([
   flex,
@@ -34,25 +37,27 @@ export const article = style([
   fontColor["mono.900"],
 ]);
 
-globalStyle(`${article} *`, mMap[0]);
+globalStyle(`${article} *`, m[0]);
 
-globalStyle(`${article} p`, flattenStyle(paragraphRule));
+globalStyle(`${article} p`, paragraphRule);
 
-globalStyle(`${article} h1`, flattenStyle(headlineMap[1]));
-globalStyle(`${article} h2`, flattenStyle(headlineMap[2]));
-globalStyle(`${article} h3`, flattenStyle(headlineMap[3]));
-globalStyle(`${article} h4`, flattenStyle(headlineMap[4]));
-globalStyle(`${article} h5`, flattenStyle(headlineMap[5]));
-globalStyle(`${article} h6`, flattenStyle(headlineMap[6]));
+globalStyle(`${article} h1`, headlineRule[1]);
+globalStyle(`${article} h2`, headlineRule[2]);
+globalStyle(`${article} h3`, headlineRule[3]);
+globalStyle(`${article} h4`, headlineRule[4]);
+globalStyle(`${article} h5`, headlineRule[5]);
+globalStyle(`${article} h6`, headlineRule[6]);
 
-globalStyle(`${article} ul`, mMap[0]);
+globalStyle(`${article} ul`, m[0]);
 
 globalStyle(
   `${article} img`,
   flattenStyle([
-    mlMap["auto"],
-    mrMap["auto"],
-    myMap[0],
+    ml["auto"],
+    mr["auto"],
+    my[0],
+    w["1/1"],
+    maxW[192],
     {
       display: "block",
     },
@@ -65,34 +70,34 @@ globalStyle(`${article} a:hover`, linkHoverRule);
 globalStyle(
   `${article} blockquote`,
   flattenStyle([
-    bgMap["mono.50"],
-    borderColorMap["mono.300"],
-    borderStyleMap["solid"],
-    borderMap[0],
-    borderLMap[8],
-    pMap[3],
-    mMap[0],
-    dropShadowMap["md"],
+    bg["mono.50"],
+    borderColor["mono.300"],
+    borderStyle["solid"],
+    border[0],
+    borderL[8],
+    p[3],
+    m[0],
+    dropShadow["md"],
   ]),
 );
 
-globalStyle(`${article} .text-center`, textAlignMap["center"]);
-globalStyle(`${article} .text-right`, textAlignMap["right"]);
-globalStyle(`${article} .text-left`, textAlignMap["left"]);
-globalStyle(`${article} .text-blue`, fontColorMap["blue.500"]);
-globalStyle(`${article} .text-red`, fontColorMap["red.500"]);
-globalStyle(`${article} .text-gray`, fontColorMap["mono.400"]);
-globalStyle(`${article} .text-bold`, fontWeightMap["bold"]);
-globalStyle(`${article} .text-underline`, textDecorationMap["underline"]);
-globalStyle(`${article} .text-3`, fontSizeMap[3]);
-globalStyle(`${article} .text-4`, fontSizeMap[4]);
-globalStyle(`${article} .text-5`, fontSizeMap[5]);
-globalStyle(`${article} .text-6`, fontSizeMap[6]);
-globalStyle(`${article} .text-7`, fontSizeMap[7]);
-globalStyle(`${article} .text-8`, fontSizeMap[8]);
-globalStyle(`${article} .text-12`, fontSizeMap[12]);
-globalStyle(`${article} .text-16`, fontSizeMap[16]);
-globalStyle(`${article} .text-32`, fontSizeMap[32]);
+globalStyle(`${article} .text-center`, textAlign["center"]);
+globalStyle(`${article} .text-right`, textAlign["right"]);
+globalStyle(`${article} .text-left`, textAlign["left"]);
+globalStyle(`${article} .text-blue`, fontColor["blue.500"]);
+globalStyle(`${article} .text-red`, fontColor["red.500"]);
+globalStyle(`${article} .text-gray`, fontColor["mono.400"]);
+globalStyle(`${article} .text-bold`, fontWeight["bold"]);
+globalStyle(`${article} .text-underline`, textDecoration["underline"]);
+globalStyle(`${article} .text-3`, fontSize[3]);
+globalStyle(`${article} .text-4`, fontSize[4]);
+globalStyle(`${article} .text-5`, fontSize[5]);
+globalStyle(`${article} .text-6`, fontSize[6]);
+globalStyle(`${article} .text-7`, fontSize[7]);
+globalStyle(`${article} .text-8`, fontSize[8]);
+globalStyle(`${article} .text-12`, fontSize[12]);
+globalStyle(`${article} .text-16`, fontSize[16]);
+globalStyle(`${article} .text-32`, fontSize[32]);
 
 globalStyle(
   `${article} iframe[src*="youtube.com"]`,
@@ -100,9 +105,9 @@ globalStyle(
     {
       aspectRatio: "16 / 9",
     },
-    maxWMap[192],
-    mlMap["auto"],
-    mrMap["auto"],
-    myMap[0],
+    maxW[192],
+    ml["auto"],
+    mr["auto"],
+    my[0],
   ]),
 );

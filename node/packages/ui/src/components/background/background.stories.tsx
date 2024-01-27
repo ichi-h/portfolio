@@ -1,9 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import clsx from "clsx";
-
-import * as s from "@/styles";
 
 import { Background } from "./background";
+import * as s from "./background.css";
 
 const meta: Meta<typeof Background> = {
   title: "background",
@@ -50,22 +48,22 @@ export const Default: Story = {
   },
   render: (args) => (
     <Background
-      className={clsx([
-        s.flex,
-        s.flexJustify["center"],
-        s.flexAlign["center"],
-        s.w["1/1"],
-        s.h["vh"],
-      ])}
+      style={{
+        display: "flex",
+        width: "100%",
+        height: "100vh",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
       {...args}
     >
       <div
-        className={clsx([
-          s.w[32],
-          s.h[32],
-          s.bg["mono.50"],
-          s.textAlign["center"],
-        ])}
+        style={{
+          width: "128px",
+          height: "128px",
+          backgroundColor: "#f8f8f8",
+          textAlign: "center",
+        }}
       >
         content
       </div>

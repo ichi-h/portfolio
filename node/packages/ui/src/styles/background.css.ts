@@ -1,14 +1,11 @@
 import { COLOR } from "@/constants";
-import {
-  styleVariantsFromData,
-  styleVariantsFromMap,
-} from "@/libs/vanillaExtract";
+import { styleMap, styleMapFromData } from "@/libs/vanillaExtract";
 
-export const [bg, bgMap] = styleVariantsFromData(COLOR, (value) => ({
+export const bg = styleMapFromData(COLOR, (value) => ({
   backgroundColor: value,
 }));
 
-export const [bgSize, bgSizeMap] = styleVariantsFromMap({
+export const bgSize = styleMap({
   auto: {
     backgroundSize: "auto",
   },
@@ -20,7 +17,7 @@ export const [bgSize, bgSizeMap] = styleVariantsFromMap({
   },
 });
 
-export const [bgPosition, bgPositionMap] = styleVariantsFromMap({
+export const bgPosition = styleMap({
   center: {
     backgroundPosition: "center",
   },

@@ -1,22 +1,18 @@
 import { RATIO, NEGATIVE_RATIO, REM, NEGATIVE_REM } from "@/constants";
-import {
-  styleWitRule,
-  styleVariantsFromData,
-  styleVariantsFromMap,
-} from "@/libs/vanillaExtract";
+import { styleRule, styleMapFromData, styleMap } from "@/libs/vanillaExtract";
 
-export const [gap, gapMap] = styleVariantsFromData(REM, (value) => ({
+export const gap = styleMapFromData(REM, (value) => ({
   gap: value,
 }));
 
 // Flexible box layout
 // see: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout
 
-export const [flex, flexRule] = styleWitRule({
+export const flex = styleRule({
   display: "flex",
 });
 
-export const [flexDirection, flexDirectionMap] = styleVariantsFromMap({
+export const flexDirection = styleMap({
   row: {
     flexDirection: "row",
   },
@@ -31,7 +27,7 @@ export const [flexDirection, flexDirectionMap] = styleVariantsFromMap({
   },
 });
 
-export const [flexJustify, flexJustifyMap] = styleVariantsFromMap({
+export const flexJustify = styleMap({
   start: {
     justifyContent: "flex-start",
   },
@@ -46,7 +42,7 @@ export const [flexJustify, flexJustifyMap] = styleVariantsFromMap({
   },
 });
 
-export const [flexAlign, flexAlignMap] = styleVariantsFromMap({
+export const flexAlign = styleMap({
   start: {
     alignItems: "flex-start",
   },
@@ -61,7 +57,7 @@ export const [flexAlign, flexAlignMap] = styleVariantsFromMap({
   },
 });
 
-export const [flexWrap, flexWrapMap] = styleVariantsFromMap({
+export const flexWrap = styleMap({
   wrap: {
     flexWrap: "wrap",
   },
@@ -76,11 +72,11 @@ export const [flexWrap, flexWrapMap] = styleVariantsFromMap({
 // Grid layout
 // see: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout
 
-export const [grid, gridRule] = styleWitRule({
+export const grid = styleRule({
   display: "grid",
 });
 
-export const [gridCols, gridColsMap] = styleVariantsFromMap({
+export const gridCols = styleMap({
   1: {
     gridTemplateColumns: "repeat(1, minmax(0, 1fr))",
   },
@@ -113,7 +109,7 @@ export const [gridCols, gridColsMap] = styleVariantsFromMap({
   },
 });
 
-export const [gridRows, gridRowsMap] = styleVariantsFromMap({
+export const gridRows = styleMap({
   1: {
     gridTemplateRows: "repeat(1, minmax(0, 1fr))",
   },
@@ -156,7 +152,7 @@ const sizing = {
   ...NEGATIVE_REM,
 } as const;
 
-export const [position, positionMap] = styleVariantsFromMap({
+export const position = styleMap({
   relative: {
     position: "relative",
   },
@@ -171,23 +167,23 @@ export const [position, positionMap] = styleVariantsFromMap({
   },
 });
 
-export const [top, topMap] = styleVariantsFromData(sizing, (value) => ({
+export const top = styleMapFromData(sizing, (value) => ({
   top: value,
 }));
 
-export const [bottom, bottomMap] = styleVariantsFromData(sizing, (value) => ({
+export const bottom = styleMapFromData(sizing, (value) => ({
   bottom: value,
 }));
 
-export const [left, leftMap] = styleVariantsFromData(sizing, (value) => ({
+export const left = styleMapFromData(sizing, (value) => ({
   left: value,
 }));
 
-export const [right, rightMap] = styleVariantsFromData(sizing, (value) => ({
+export const right = styleMapFromData(sizing, (value) => ({
   right: value,
 }));
 
-export const [zIndex, zIndexMap] = styleVariantsFromMap({
+export const zIndex = styleMap({
   "-1": {
     zIndex: -1,
   },
@@ -226,23 +222,14 @@ export const [zIndex, zIndexMap] = styleVariantsFromMap({
   },
 });
 
-export const [translate, translateMap] = styleVariantsFromData(
-  sizing,
-  (value) => ({
-    transform: `translateX(${value}) translateY(${value})`,
-  }),
-);
+export const translate = styleMapFromData(sizing, (value) => ({
+  transform: `translateX(${value}) translateY(${value})`,
+}));
 
-export const [translateX, translateXMap] = styleVariantsFromData(
-  sizing,
-  (value) => ({
-    transform: `translateX(${value})`,
-  }),
-);
+export const translateX = styleMapFromData(sizing, (value) => ({
+  transform: `translateX(${value})`,
+}));
 
-export const [translateY, translateYMap] = styleVariantsFromData(
-  sizing,
-  (value) => ({
-    transform: `translateY(${value})`,
-  }),
-);
+export const translateY = styleMapFromData(sizing, (value) => ({
+  transform: `translateY(${value})`,
+}));

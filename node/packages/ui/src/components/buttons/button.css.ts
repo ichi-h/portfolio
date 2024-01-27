@@ -10,15 +10,15 @@ import {
   fontSize,
   px,
   borderRadius,
+  bg,
 } from "@/styles";
-import { bgMap } from "@/styles/ruleMap";
 
 export const button = style([
   {
     background: "none",
     cursor: "pointer",
-    ":hover": flattenStyle([bgMap["mono.100"]]),
-    ":active": flattenStyle([bgMap["mono.200"]]),
+    ":hover": flattenStyle([bg["mono.100"]]),
+    ":active": flattenStyle([bg["mono.200"]]),
   },
   fontColor["mono.900"],
   border["1"],

@@ -1,39 +1,32 @@
 import clsx from "clsx";
 import { ComponentProps } from "react";
 
-import {
-  textAlign,
-  overflow as overflowStyle,
-  textOverflow as textOverflowStyle,
-  textWhiteSpace,
-} from "@/styles";
-
 import * as styles from "./paragraph.css";
 
 type Props = {
-  align?: keyof typeof textAlign;
-  overflow?: keyof typeof overflowStyle;
-  textOverflow?: keyof typeof textOverflowStyle;
-  whiteSpace?: keyof typeof textWhiteSpace;
+  align?: keyof (typeof styles)["textAlign"];
+  overflow?: keyof (typeof styles)["overflow"];
+  textOverflow?: keyof (typeof styles)["textOverflow"];
+  whiteSpace?: keyof (typeof styles)["textWhiteSpace"];
 } & ComponentProps<"p">;
 
 export const Paragraph = ({
   children,
   className,
-  align = "left",
-  overflow = "visible",
-  textOverflow = "clip",
-  whiteSpace = "normal",
+  align,
+  overflow,
+  textOverflow,
+  whiteSpace,
   ...props
 }: Props) => {
   return (
     <p
       className={clsx([
         styles.paragraph,
-        textAlign[align],
-        overflowStyle[overflow],
-        textOverflowStyle[textOverflow],
-        textWhiteSpace[whiteSpace],
+        align && styles.textAlign[align],
+        overflow && styles.overflow[overflow],
+        textOverflow && styles.textOverflow[textOverflow],
+        whiteSpace && styles.textWhiteSpace[whiteSpace],
         className,
       ])}
       {...props}

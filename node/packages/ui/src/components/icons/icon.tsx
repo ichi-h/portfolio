@@ -2,7 +2,8 @@ import clsx from "clsx";
 import { ComponentProps } from "react";
 
 import { COLOR } from "@/constants";
-import { w, h } from "@/styles";
+
+import { w, h } from "./icon.css";
 
 import { TIcon } from ".";
 

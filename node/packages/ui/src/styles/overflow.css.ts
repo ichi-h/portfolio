@@ -1,4 +1,4 @@
-import { styleVariantsFromData } from "@/libs/vanillaExtract";
+import { styleMapFromData } from "@/libs/vanillaExtract";
 
 const overflowData = {
   visible: "visible",
@@ -7,23 +7,14 @@ const overflowData = {
   auto: "auto",
 } as const;
 
-export const [overflow, overflowMap] = styleVariantsFromData(
-  overflowData,
-  (value) => ({
-    overflow: value,
-  }),
-);
+export const overflow = styleMapFromData(overflowData, (value) => ({
+  overflow: value,
+}));
 
-export const [overflowX, overflowXMap] = styleVariantsFromData(
-  overflowData,
-  (value) => ({
-    overflowX: value,
-  }),
-);
+export const overflowX = styleMapFromData(overflowData, (value) => ({
+  overflowX: value,
+}));
 
-export const [overflowY, overflowYMap] = styleVariantsFromData(
-  overflowData,
-  (value) => ({
-    overflowY: value,
-  }),
-);
+export const overflowY = styleMapFromData(overflowData, (value) => ({
+  overflowY: value,
+}));

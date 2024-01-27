@@ -1,32 +1,32 @@
 import { REM } from "@/constants/rem";
-import { styleVariantsFromData } from "@/libs/vanillaExtract";
+import { styleMapFromData } from "@/libs/vanillaExtract";
 
-export const [p, pMap] = styleVariantsFromData(REM, (value) => ({
+export const p = styleMapFromData(REM, (value) => ({
   padding: value,
 }));
 
-export const [pt, ptMap] = styleVariantsFromData(REM, (value) => ({
+export const pt = styleMapFromData(REM, (value) => ({
   paddingTop: value,
 }));
 
-export const [pr, prMap] = styleVariantsFromData(REM, (value) => ({
+export const pr = styleMapFromData(REM, (value) => ({
   paddingRight: value,
 }));
 
-export const [pb, pbMap] = styleVariantsFromData(REM, (value) => ({
+export const pb = styleMapFromData(REM, (value) => ({
   paddingBottom: value,
 }));
 
-export const [pl, plMap] = styleVariantsFromData(REM, (value) => ({
+export const pl = styleMapFromData(REM, (value) => ({
   paddingLeft: value,
 }));
 
-export const [px, pxMap] = styleVariantsFromData(REM, (value) => ({
+export const px = styleMapFromData(REM, (value) => ({
   paddingLeft: value,
   paddingRight: value,
 }));
 
-export const [py, pyMap] = styleVariantsFromData(REM, (value) => ({
+export const py = styleMapFromData(REM, (value) => ({
   paddingTop: value,
   paddingBottom: value,
 }));
@@ -36,32 +36,32 @@ const marginData = {
   auto: "auto",
 };
 
-export const [m, mMap] = styleVariantsFromData(marginData, (value) => ({
+export const m = styleMapFromData(marginData, (value) => ({
   margin: value,
 }));
 
-export const [mt, mtMap] = styleVariantsFromData(marginData, (value) => ({
+export const mt = styleMapFromData(marginData, (value) => ({
   marginTop: value,
 }));
 
-export const [mr, mrMap] = styleVariantsFromData(marginData, (value) => ({
+export const mr = styleMapFromData(marginData, (value) => ({
   marginRight: value,
 }));
 
-export const [mb, mbMap] = styleVariantsFromData(marginData, (value) => ({
+export const mb = styleMapFromData(marginData, (value) => ({
   marginBottom: value,
 }));
 
-export const [ml, mlMap] = styleVariantsFromData(marginData, (value) => ({
+export const ml = styleMapFromData(marginData, (value) => ({
   marginLeft: value,
 }));
 
-export const [mx, mxMap] = styleVariantsFromData(marginData, (value) => ({
+export const mx = styleMapFromData(marginData, (value) => ({
   marginLeft: value,
   marginRight: value,
 }));
 
-export const [my, myMap] = styleVariantsFromData(marginData, (value) => ({
+export const my = styleMapFromData(marginData, (value) => ({
   marginTop: value,
   marginBottom: value,
 }));

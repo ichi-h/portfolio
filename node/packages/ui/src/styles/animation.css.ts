@@ -1,10 +1,8 @@
-import { style, styleVariants } from "@vanilla-extract/css";
-
-import { flattenStyle, styleVariantsFromMap } from "@/libs/vanillaExtract";
+import { flattenStyle, styleMap, styleRule } from "@/libs/vanillaExtract";
 
 import { opacity } from "./opacity.css";
 
-export const [duration, durationMap] = styleVariantsFromMap({
+export const duration = styleMap({
   75: {
     transitionDuration: "75ms",
   },
@@ -31,7 +29,7 @@ export const [duration, durationMap] = styleVariantsFromMap({
   },
 });
 
-export const [timingFunction, timingFunctionMap] = styleVariantsFromMap({
+export const timingFunction = styleMap({
   easeIn: {
     transitionTimingFunction: "ease-in",
   },
@@ -52,7 +50,7 @@ export const [timingFunction, timingFunctionMap] = styleVariantsFromMap({
   },
 });
 
-export const [delay, delayMap] = styleVariantsFromMap({
+export const delay = styleMap({
   75: {
     transitionDelay: "75ms",
   },
@@ -79,10 +77,10 @@ export const [delay, delayMap] = styleVariantsFromMap({
   },
 });
 
-export const animateZoomOnHover = styleVariants({
+export const animateZoomOnHover = styleMap({
   md: {
     ":hover": flattenStyle([
-      durationMap[100],
+      duration[100],
       {
         scale: 1.02,
       },
@@ -90,7 +88,7 @@ export const animateZoomOnHover = styleVariants({
   },
   lg: {
     ":hover": flattenStyle([
-      durationMap[100],
+      duration[100],
       {
         scale: 1.06,
       },
@@ -98,20 +96,24 @@ export const animateZoomOnHover = styleVariants({
   },
 });
 
-export const animateFadeOut = style([
-  {
-    visibility: "hidden",
-  },
-  opacity[0],
-  duration[300],
-  timingFunction.easeInOut,
-]);
+export const animateFadeOut = styleRule(
+  flattenStyle([
+    {
+      visibility: "hidden",
+    },
+    opacity[0],
+    duration[300],
+    timingFunction.easeInOut,
+  ]),
+);
 
-export const animateFadeIn = style([
-  {
-    visibility: "visible",
-  },
-  opacity[100],
-  duration[300],
-  timingFunction.easeInOut,
-]);
+export const animateFadeIn = styleRule(
+  flattenStyle([
+    {
+      visibility: "visible",
+    },
+    opacity[100],
+    duration[300],
+    timingFunction.easeInOut,
+  ]),
+);

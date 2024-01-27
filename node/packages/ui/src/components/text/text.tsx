@@ -1,44 +1,37 @@
 import clsx from "clsx";
 import { ComponentProps } from "react";
 
-import {
-  fontSize as fontSizeStyle,
-  fontColor,
-  fontWeight,
-  lineHeight as lineHeightStyle,
-  textDecoration,
-  textVerticalAlign,
-} from "@/styles";
+import * as styles from "./text.css";
 
 type Props = {
-  fontSize?: keyof typeof fontSizeStyle;
-  color?: keyof typeof fontColor;
-  weight?: keyof typeof fontWeight;
-  lineHeight?: keyof typeof lineHeightStyle;
-  decoration?: keyof typeof textDecoration;
-  verticalAlign?: keyof typeof textVerticalAlign;
+  fontSize?: keyof (typeof styles)["fontSize"];
+  color?: keyof (typeof styles)["fontColor"];
+  weight?: keyof (typeof styles)["fontWeight"];
+  lineHeight?: keyof (typeof styles)["lineHeight"];
+  decoration?: keyof (typeof styles)["textDecoration"];
+  verticalAlign?: keyof (typeof styles)["textVerticalAlign"];
 } & ComponentProps<"span">;
 
 export const Text = ({
   children,
   className,
-  fontSize = "4",
-  color = "mono.900",
-  weight = "normal",
-  lineHeight = "normal",
-  decoration = "none",
-  verticalAlign = "baseline",
+  fontSize,
+  color,
+  weight,
+  lineHeight,
+  decoration,
+  verticalAlign,
   ...props
 }: Props) => {
   return (
     <span
       className={clsx([
-        fontSizeStyle[fontSize],
-        fontColor[color],
-        fontWeight[weight],
-        lineHeightStyle[lineHeight],
-        textDecoration[decoration],
-        textVerticalAlign[verticalAlign],
+        fontSize && styles.fontSize[fontSize],
+        color && styles.fontColor[color],
+        weight && styles.fontWeight[weight],
+        lineHeight && styles.lineHeight[lineHeight],
+        decoration && styles.textDecoration[decoration],
+        verticalAlign && styles.textVerticalAlign[verticalAlign],
         className,
       ])}
       {...props}

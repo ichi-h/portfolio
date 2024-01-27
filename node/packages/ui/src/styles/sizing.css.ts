@@ -1,5 +1,5 @@
 import { RATIO, REM } from "@/constants";
-import { styleVariantsFromData } from "@/libs/vanillaExtract";
+import { styleMapFromData } from "@/libs/vanillaExtract";
 
 const sizing = {
   ...RATIO,
@@ -18,26 +18,26 @@ const sizing = {
   fit: "fit-content",
 } as const;
 
-export const [w, wMap] = styleVariantsFromData(sizing, (value) => ({
+export const w = styleMapFromData(sizing, (value) => ({
   width: value,
 }));
 
-export const [h, hMap] = styleVariantsFromData(sizing, (value) => ({
+export const h = styleMapFromData(sizing, (value) => ({
   height: value,
 }));
 
-export const [minW, minWMap] = styleVariantsFromData(REM, (value) => ({
+export const minW = styleMapFromData(REM, (value) => ({
   minWidth: value,
 }));
 
-export const [minH, minHMap] = styleVariantsFromData(REM, (value) => ({
+export const minH = styleMapFromData(REM, (value) => ({
   minHeight: value,
 }));
 
-export const [maxW, maxWMap] = styleVariantsFromData(REM, (value) => ({
+export const maxW = styleMapFromData(REM, (value) => ({
   maxWidth: value,
 }));
 
-export const [maxH, maxHMap] = styleVariantsFromData(REM, (value) => ({
+export const maxH = styleMapFromData(REM, (value) => ({
   maxHeight: value,
 }));

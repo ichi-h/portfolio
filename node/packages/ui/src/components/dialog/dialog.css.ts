@@ -13,7 +13,6 @@ import {
   m,
   w,
 } from "@/styles";
-import { wMap } from "@/styles/ruleMap";
 
 export const dialog = style([
   top["1/2"],
@@ -25,7 +24,7 @@ export const dialog = style([
   w[160],
   p[0],
   m[0],
-  applyMedia({ max: "768" }, flattenStyle([wMap["1/1"]])),
+  applyMedia({ max: "768" }, flattenStyle([w["1/1"]])),
   {
     selectors: {
       "&::backdrop": flattenStyle([

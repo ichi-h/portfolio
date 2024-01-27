@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import clsx from "clsx";
 
 import { COLOR } from "@/constants";
-import * as s from "@/styles";
+
+import * as s from "./icon.css";
 
 import {
   GitHubIcon,
@@ -55,7 +55,7 @@ export const Default: Story = {
     <>
       {Object.entries(icons).map(([name, Component]) => (
         <div
-          className={clsx([s.flex, s.gap[2], s.flexAlign["center"]])}
+          style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
           key={name}
         >
           <Icon icon={Component} {...args} />

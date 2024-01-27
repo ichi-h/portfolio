@@ -1,6 +1,6 @@
-import { styleVariantsFromMap } from "@/libs/vanillaExtract";
+import { styleMap } from "@/libs/vanillaExtract";
 
-export const [opacity, opacityMap] = styleVariantsFromMap({
+export const opacity = styleMap({
   0: {
     opacity: 0,
   },

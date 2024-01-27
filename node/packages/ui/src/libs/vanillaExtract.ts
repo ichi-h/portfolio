@@ -1,6 +1,4 @@
 import {
-  style,
-  styleVariants,
   CSSProperties,
   ComplexStyleRule,
   StyleRule,
@@ -8,7 +6,7 @@ import {
 
 import { BREAK_POINT } from "@/constants";
 
-const createStyleMap = <
+export const styleMapFromData = <
   Data extends Record<string | number, unknown>,
   Key extends keyof Data,
 >(
@@ -24,25 +22,16 @@ const createStyleMap = <
   );
 };
 
-export const styleVariantsFromData = <
-  Data extends Record<string | number, unknown>,
-  Key extends keyof Data,
->(
-  data: Data,
-  mapData: (value: Data[Key], key: Key) => CSSProperties,
-): [Record<keyof Data, string>, Record<keyof Data, CSSProperties>] => {
-  const styleMap = createStyleMap(data, mapData);
-  const variants = styleVariants(styleMap);
-  return [variants, styleMap];
-};
-
-export const styleVariantsFromMap = <
+export const styleMap = <
   StyleMap extends Record<string | number, ComplexStyleRule>,
 >(
   styleMap: StyleMap,
-): [Record<keyof StyleMap, string>, StyleMap] => {
-  const variants = styleVariants(styleMap);
-  return [variants, styleMap];
+): StyleMap => {
+  return styleMap;
+};
+
+export const styleRule = <Rule extends CSSProperties>(rule: Rule): Rule => {
+  return rule;
 };
 
 export const flattenStyle = (styles: StyleRule[]) => {
@@ -52,12 +41,6 @@ export const flattenStyle = (styles: StyleRule[]) => {
       ...style,
     };
   }, {} as StyleRule);
-};
-
-export const styleWitRule = <Rule extends ComplexStyleRule>(
-  rule: Rule,
-): [string, Rule] => {
-  return [style(rule), rule];
 };
 
 export const applyMedia = (
