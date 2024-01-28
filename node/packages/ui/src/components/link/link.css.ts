@@ -1,16 +1,16 @@
-import { style } from "@vanilla-extract/css";
+import { style, styleVariants } from "@vanilla-extract/css";
 
 import { flattenStyle, styleRule } from "@/libs/vanillaExtract";
-import { textDecoration, fontColor } from "@/styles";
+import { textDecoration, fontColor as fontColorRule } from "@/styles";
 
 export const linkHoverRule = flattenStyle([textDecoration["underline"]]);
+
+export const fontColor = styleVariants(fontColorRule);
 
 export const linkRule = styleRule(
   flattenStyle([
     textDecoration["none"],
-    fontColor["blue.500"],
     {
-      fontSize: "initial",
       cursor: "pointer",
     },
   ]),

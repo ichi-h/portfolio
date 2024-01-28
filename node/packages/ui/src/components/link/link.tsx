@@ -5,15 +5,15 @@ import * as styles from "./link.css";
 
 type Props<T extends ElementType> = {
   className?: string;
-  style?: React.CSSProperties;
   children?: React.ReactNode;
+  color?: keyof typeof styles.fontColor;
 } & (
-  | {
+  | ({
       href: string;
       as?: never;
       asProps?: never;
       openInNewTab?: boolean;
-    }
+    } & ComponentProps<"a">)
   | {
       href?: never;
       as: T;
@@ -24,8 +24,8 @@ type Props<T extends ElementType> = {
 
 export const Link = <T extends ElementType>({
   className,
-  style,
   children,
+  color = "blue.500",
   openInNewTab,
   ...props
 }: Props<T>) => {
@@ -41,8 +41,12 @@ export const Link = <T extends ElementType>({
 
   return (
     <Component
-      className={clsx([styles.link, styles.linkHover, className])}
-      style={style}
+      className={clsx([
+        styles.link,
+        styles.linkHover,
+        styles.fontColor[color],
+        className,
+      ])}
       {...anchorProps}
       {...props.asProps}
     >

@@ -16,6 +16,8 @@ import uiStyles from "portfolio-ui/style.css";
 import { Env } from "@/libs/remix-env";
 import { useEnv } from "@/utils/env";
 
+import { Background } from "./components/background";
+
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => ({
@@ -51,7 +53,9 @@ export default function App() {
         <Links />
       </head>
       <body className={bodyStyle}>
-        <Outlet />
+        <Background>
+          <Outlet />
+        </Background>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />

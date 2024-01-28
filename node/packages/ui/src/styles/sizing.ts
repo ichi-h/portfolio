@@ -26,18 +26,18 @@ export const h = styleMapFromData(sizing, (value) => ({
   height: value,
 }));
 
-export const minW = styleMapFromData(REM, (value) => ({
+export const minW = styleMapFromData(sizing, (value) => ({
   minWidth: value,
 }));
 
-export const minH = styleMapFromData(REM, (value) => ({
+export const minH = styleMapFromData(sizing, (value) => ({
   minHeight: value,
 }));
 
-export const maxW = styleMapFromData(REM, (value) => ({
+export const maxW = styleMapFromData(sizing, (value) => ({
   maxWidth: value,
 }));
 
-export const maxH = styleMapFromData(REM, (value) => ({
+export const maxH = styleMapFromData(sizing, (value) => ({
   maxHeight: value,
 }));
