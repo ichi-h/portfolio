@@ -6,13 +6,14 @@
   "sideEffects": false,
   "main": "build/index.js",
   "scripts": {
-    "build": "npm run build:styles && remix build",
+    "build": "npm run build:styles && npm run build:remix",
     "build:styles": "tsc --noEmit ./styles/**/*.ts && vite build",
+    "build:remix": "remix build",
     "deploy": "npm run build && wrangler publish",
     "dev:remix": "remix watch",
     "dev:miniflare": "cross-env NODE_ENV=development miniflare ./build/index.js --watch",
-    "_dev:styles": "vite build --watch",
-    "dev": "remix build && run-p dev:*",
+    "dev:styles": "vite build --base /styles --watch",
+    "dev": "npm run build:remix && run-p dev:*",
     "start": "cross-env NODE_ENV=production miniflare ./build/index.js"
   },
   "dependencies": {
