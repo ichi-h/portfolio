@@ -10,5 +10,5 @@ module.exports = {
   // assetsBuildDirectory: "public/build",
   // serverBuildPath: "build/index.js",
   // publicPath: "/build/",
-  serverDependenciesToBundle: ["portfolio-ui", "portfolio-styles"],
+  serverDependenciesToBundle: ["portfolio-ui"],
 };

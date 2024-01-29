@@ -9,11 +9,11 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import { htmlStyle, bodyStyle } from "portfolio-styles";
-import styles from "portfolio-styles/style.css";
 import uiStyles from "portfolio-ui/style.css";
 
 import { Env } from "@/libs/remix-env";
+import { htmlStyle, bodyStyle } from "@/styles";
+import styles from "@/styles/style.css";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";

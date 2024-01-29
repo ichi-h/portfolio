@@ -1,5 +1,6 @@
-import { footerStyle } from "portfolio-styles";
 import { Link, Text } from "portfolio-ui";
+
+import { footerStyle } from "@/styles";
 
 export const Footer = () => (
   <footer className={footerStyle}>

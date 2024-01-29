@@ -1,16 +1,9 @@
 import { Link as _Link } from "@remix-run/react";
-import {
-  outer,
-  headline,
-  links,
-  link,
-  footer,
-  avatar,
-} from "portfolio-styles/pages/home";
 import { Headline, Link, Text, Avatar } from "portfolio-ui";
 
 import me from "@/assets/me_512x512.jpg";
 import { Footer } from "@/components/footer";
+import { outer, headline, links, link, footer, avatar } from "@/styles/home";
 
 export default function Index() {
   return (
