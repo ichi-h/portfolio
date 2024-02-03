@@ -14,7 +14,7 @@ import {
   applyMedia,
   flattenStyle,
   fontSize,
-} from "portfolio-ui";
+} from "portfolio-styles";
 
 export const outer = style([
   position["relative"],

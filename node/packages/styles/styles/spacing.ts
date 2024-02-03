@@ -1,4 +1,4 @@
-import { REM } from "@/constants/rem";
+import { REM } from "@/constants";
 import { styleMapFromData } from "@/libs/vanillaExtract";
 
 export const p = styleMapFromData(REM, (value) => ({

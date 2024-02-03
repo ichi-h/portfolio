@@ -19,7 +19,7 @@ import {
   borderRadius,
   minW,
   pt,
-} from "portfolio-ui";
+} from "portfolio-styles";
 
 export const htmlStyle = style([m[0]]);
 

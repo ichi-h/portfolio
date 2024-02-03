@@ -34,6 +34,7 @@
     "@storybook/react-vite": "^7.6.8",
     "@storybook/test-runner": "^0.16.0",
     "@storybook/testing-library": "^0.2.2",
-    "storybook": "^7.6.8"
+    "storybook": "^7.6.8",
+    "portfolio-styles": "workspace:*"
   }
 }

@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-
-import { COLOR } from "@/constants";
+import { COLOR } from "portfolio-styles";
 
 import * as s from "./icon.css";
 

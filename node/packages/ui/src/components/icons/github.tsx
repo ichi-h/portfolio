@@ -1,6 +1,5 @@
+import { COLOR } from "portfolio-styles";
 import { ComponentProps } from "react";
-
-import { COLOR } from "@/constants";
 
 import { w, h } from "./icon.css";
 

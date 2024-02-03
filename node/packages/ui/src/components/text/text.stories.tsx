@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-
-import * as s from "@/styles";
+import * as s from "portfolio-styles";
 
 import { Text } from "./text";
 

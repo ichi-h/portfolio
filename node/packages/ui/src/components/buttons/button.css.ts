@@ -1,6 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-
-import { flattenStyle } from "@/libs/vanillaExtract";
+import { flattenStyle } from "portfolio-styles";
 import {
   fontColor,
   border,
@@ -11,7 +10,7 @@ import {
   px,
   borderRadius,
   bg,
-} from "@/styles";
+} from "portfolio-styles";
 
 export const button = style([
   {

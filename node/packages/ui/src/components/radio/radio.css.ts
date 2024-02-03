@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
-
-import { flattenStyle } from "@/libs/vanillaExtract";
+import { flattenStyle } from "portfolio-styles";
 import {
   position,
   fontSize,
@@ -18,7 +17,7 @@ import {
   borderColor,
   translate,
   bg,
-} from "@/styles";
+} from "portfolio-styles";
 
 export const radioLabel = style([
   position["relative"],

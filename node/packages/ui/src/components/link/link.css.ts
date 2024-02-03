@@ -1,7 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-
-import { flattenStyle, styleRule } from "@/libs/vanillaExtract";
-import { textDecoration, fontColor as fontColorRule } from "@/styles";
+import { flattenStyle, styleRule } from "portfolio-styles";
+import { textDecoration, fontColor as fontColorRule } from "portfolio-styles";
 
 export const linkHoverRule = flattenStyle([textDecoration["underline"]]);
 

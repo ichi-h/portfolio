@@ -1,9 +1,5 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-
-import { headlineRule } from "@/components/headline/headline.css";
-import { linkHoverRule, linkRule } from "@/components/link/link.css";
-import { paragraphRule } from "@/components/paragraph/paragraph.css";
-import { flattenStyle } from "@/libs/vanillaExtract";
+import { flattenStyle } from "portfolio-styles";
 import {
   flex,
   flexDirection,
@@ -26,7 +22,11 @@ import {
   textDecoration,
   fontSize,
   maxW,
-} from "@/styles";
+} from "portfolio-styles";
+
+import { headlineRule } from "@/components/headline/headline.css";
+import { linkHoverRule, linkRule } from "@/components/link/link.css";
+import { paragraphRule } from "@/components/paragraph/paragraph.css";
 
 export const article = style([
   flex,

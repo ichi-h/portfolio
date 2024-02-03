@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-styles",
+  "version": "0.1.0",
+  "private": true,
+  "pnpm": true,
+  "main": "./dist/portfolio-styles.umd.js",
+  "module": "./dist/portfolio-styles.es.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc --noEmit && vite build"
+  }
+}

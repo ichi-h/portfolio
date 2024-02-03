@@ -23,6 +23,7 @@
     "@remix-run/css-bundle": "^2.5.1",
     "@remix-run/react": "^1.5.1",
     "cross-env": "^7.0.3",
+    "portfolio-styles": "workspace:*",
     "portfolio-ui": "workspace:*"
   },
   "devDependencies": {
