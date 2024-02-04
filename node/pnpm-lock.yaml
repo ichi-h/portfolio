@@ -118,6 +118,10 @@ importers:
   packages/tinysearch-engine: {}
 
   packages/ui:
+    dependencies:
+      portfolio-styles:
+        specifier: workspace:*
+        version: link:../styles
     devDependencies:
       '@storybook/addon-a11y':
         specifier: ^7.6.8
@@ -152,9 +156,6 @@ importers:
       '@storybook/testing-library':
         specifier: ^0.2.2
         version: 0.2.2
-      portfolio-styles:
-        specifier: workspace:*
-        version: link:../styles
       storybook:
         specifier: ^7.6.8
         version: 7.6.8

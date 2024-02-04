@@ -1,5 +1,5 @@
-import { PX } from "@/constants";
-import { styleMapFromData } from "@/libs/vanillaExtract";
+import { PX } from "../constants/px";
+import { styleMapFromData } from "../libs/vanillaExtract";
 
 export const blur = styleMapFromData(PX, (value) => ({
   filter: `blur(${value})`,

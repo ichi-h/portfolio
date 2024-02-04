@@ -1,5 +1,6 @@
-import { COLOR, REM } from "@/constants";
-import { styleMapFromData, styleMap } from "@/libs/vanillaExtract";
+import { COLOR } from "../constants/color";
+import { REM } from "../constants/rem";
+import { styleMapFromData, styleMap } from "../libs/vanillaExtract";
 
 const fontSizeData = {
   "3": REM[3],

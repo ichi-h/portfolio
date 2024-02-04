@@ -1,4 +1,5 @@
 import { style, styleVariants } from "@vanilla-extract/css";
+
 import {
   bg as bgRule,
   opacity as opacityRule,
@@ -8,7 +9,7 @@ import {
   zIndex,
   w,
   h,
-} from "portfolio-styles";
+} from "../styles";
 
 export const backgroundParent = style(position["relative"]);
 

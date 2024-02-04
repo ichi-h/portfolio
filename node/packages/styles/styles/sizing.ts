@@ -1,5 +1,6 @@
-import { RATIO, REM } from "@/constants";
-import { styleMapFromData } from "@/libs/vanillaExtract";
+import { RATIO } from "../constants/ratio";
+import { REM } from "../constants/rem";
+import { styleMapFromData } from "../libs/vanillaExtract";
 
 const sizing = {
   ...RATIO,

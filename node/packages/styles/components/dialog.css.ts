@@ -1,6 +1,7 @@
 import { style } from "@vanilla-extract/css";
-import { COLOR, COLOR_OPACITY } from "portfolio-styles";
-import { applyMedia, flattenStyle } from "portfolio-styles";
+
+import { COLOR, COLOR_OPACITY } from "../constants/color";
+import { applyMedia, flattenStyle } from "../libs/vanillaExtract";
 import {
   top,
   left,
@@ -11,7 +12,7 @@ import {
   p,
   m,
   w,
-} from "portfolio-styles";
+} from "../styles";
 
 export const dialog = style([
   top["1/2"],

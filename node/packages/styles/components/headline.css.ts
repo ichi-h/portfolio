@@ -1,10 +1,11 @@
 import { styleVariants } from "@vanilla-extract/css";
+
 import {
   applyMedia,
   flattenStyle,
   styleMap,
   styleRule,
-} from "portfolio-styles";
+} from "../libs/vanillaExtract";
 import {
   fontColor,
   textAlign,
@@ -13,7 +14,7 @@ import {
   fontSize,
   textDecoration,
   fontWeight,
-} from "portfolio-styles";
+} from "../styles";
 
 const headlineBaseRule = styleRule(
   flattenStyle([fontColor["mono.900"], textAlign["left"], m[0], p[0]]),

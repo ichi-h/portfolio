@@ -1,5 +1,6 @@
-import { COLOR, COLOR_OPACITY, PX } from "@/constants";
-import { styleMap } from "@/libs/vanillaExtract";
+import { COLOR, COLOR_OPACITY } from "../constants/color";
+import { PX } from "../constants/px";
+import { styleMap } from "../libs/vanillaExtract";
 
 export const dropShadow = styleMap({
   md: {

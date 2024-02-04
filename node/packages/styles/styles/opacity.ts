@@ -1,4 +1,4 @@
-import { styleMap } from "@/libs/vanillaExtract";
+import { styleMap } from "../libs/vanillaExtract";
 
 export const opacity = styleMap({
   0: {

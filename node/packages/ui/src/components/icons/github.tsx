@@ -1,7 +1,6 @@
 import { COLOR } from "portfolio-styles";
+import * as styles from "portfolio-styles/components/icon.css";
 import { ComponentProps } from "react";
-
-import { w, h } from "./icon.css";
 
 type Props = {
   color?: keyof typeof COLOR;
@@ -12,8 +11,8 @@ export const GitHubIcon = ({ color, ...props }: Props) => {
     <>
       {/* Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools */}
       <svg
-        width={w[4]}
-        height={h[4]}
+        width={styles.w[4]}
+        height={styles.h[4]}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         {...props}

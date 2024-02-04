@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/link.css";
 import { ComponentProps, ElementType } from "react";
-
-import * as styles from "./link.css";
 
 type Props<T extends ElementType> = {
   className?: string;
@@ -25,7 +24,7 @@ type Props<T extends ElementType> = {
 export const Link = <T extends ElementType>({
   className,
   children,
-  color = "blue.500",
+  color = styles.defaultFontColor,
   openInNewTab,
   ...props
 }: Props<T>) => {

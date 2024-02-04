@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/paragraph.css";
 import { ComponentProps } from "react";
-
-import * as styles from "./paragraph.css";
 
 type Props = {
   align?: keyof (typeof styles)["textAlign"];

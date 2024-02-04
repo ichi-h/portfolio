@@ -1,5 +1,6 @@
-import { RATIO, NEGATIVE_RATIO, REM, NEGATIVE_REM } from "@/constants";
-import { styleRule, styleMapFromData, styleMap } from "@/libs/vanillaExtract";
+import { RATIO, NEGATIVE_RATIO } from "../constants/ratio";
+import { REM, NEGATIVE_REM } from "../constants/rem";
+import { styleRule, styleMapFromData, styleMap } from "../libs/vanillaExtract";
 
 export const gap = styleMapFromData(REM, (value) => ({
   gap: value,

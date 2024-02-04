@@ -1,18 +1,22 @@
 import { Meta, StoryObj } from "@storybook/react";
-import * as s from "portfolio-styles";
+import * as styles from "portfolio-styles/components/text.css";
 
 import { Text } from "./text";
 
 const options = {
-  fontSize: Object.keys(s.fontSize) as Array<keyof typeof s.fontSize>,
-  color: Object.keys(s.fontColor) as Array<keyof typeof s.fontColor>,
-  weight: Object.keys(s.fontWeight) as Array<keyof typeof s.fontWeight>,
-  lineHeight: Object.keys(s.lineHeight) as Array<keyof typeof s.lineHeight>,
-  decoration: Object.keys(s.textDecoration) as Array<
-    keyof typeof s.textDecoration
+  fontSize: Object.keys(styles.fontSize) as Array<keyof typeof styles.fontSize>,
+  color: Object.keys(styles.fontColor) as Array<keyof typeof styles.fontColor>,
+  weight: Object.keys(styles.fontWeight) as Array<
+    keyof typeof styles.fontWeight
   >,
-  verticalAlign: Object.keys(s.textVerticalAlign) as Array<
-    keyof typeof s.textVerticalAlign
+  lineHeight: Object.keys(styles.lineHeight) as Array<
+    keyof typeof styles.lineHeight
+  >,
+  decoration: Object.keys(styles.textDecoration) as Array<
+    keyof typeof styles.textDecoration
+  >,
+  verticalAlign: Object.keys(styles.textVerticalAlign) as Array<
+    keyof typeof styles.textVerticalAlign
   >,
 };
 

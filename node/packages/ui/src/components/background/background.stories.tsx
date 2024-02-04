@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
+import * as styles from "portfolio-styles/components/background.css";
 
 import { Background } from "./background";
-import * as s from "./background.css";
 
 const meta: Meta<typeof Background> = {
   title: "background",
@@ -11,13 +11,15 @@ const meta: Meta<typeof Background> = {
       control: {
         type: "select",
       },
-      options: Object.keys(s.bg) as `${keyof typeof s.bg}`[],
+      options: Object.keys(styles.bg) as `${keyof typeof styles.bg}`[],
     },
     opacity: {
       control: {
         type: "select",
       },
-      options: Object.keys(s.opacity) as `${keyof typeof s.opacity}`[],
+      options: Object.keys(
+        styles.opacity,
+      ) as `${keyof typeof styles.opacity}`[],
     },
     src: {
       control: {
@@ -28,13 +30,15 @@ const meta: Meta<typeof Background> = {
       control: {
         type: "select",
       },
-      options: Object.keys(s.bgPosition) as `${keyof typeof s.bgPosition}`[],
+      options: Object.keys(
+        styles.bgPosition,
+      ) as `${keyof typeof styles.bgPosition}`[],
     },
     size: {
       control: {
         type: "select",
       },
-      options: Object.keys(s.bgSize) as `${keyof typeof s.bgSize}`[],
+      options: Object.keys(styles.bgSize) as `${keyof typeof styles.bgSize}`[],
     },
   },
 };

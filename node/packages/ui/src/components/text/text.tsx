@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/text.css";
 import { ComponentProps } from "react";
-
-import * as styles from "./text.css";
 
 type Props = {
   fontSize?: keyof (typeof styles)["fontSize"];

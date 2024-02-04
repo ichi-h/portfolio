@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/radio.css";
 import { ComponentProps, forwardRef } from "react";
-
-import * as styles from "./radio.css";
 
 type Props = {
   children?: React.ReactNode;

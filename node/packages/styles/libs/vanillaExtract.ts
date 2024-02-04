@@ -4,7 +4,7 @@ import {
   StyleRule,
 } from "@vanilla-extract/css";
 
-import { BREAK_POINT } from "@/constants";
+import { BREAK_POINT } from "../constants/breakPoint";
 
 export const styleMapFromData = <
   Data extends Record<string | number, unknown>,

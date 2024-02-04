@@ -8,5 +8,6 @@
     "baseUrl": ".",
     "composite": true,
     "outDir": "./dist"
-  }
+  },
+  "exclude": ["../styles"]
 }

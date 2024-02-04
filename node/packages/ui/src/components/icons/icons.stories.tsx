@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { COLOR } from "portfolio-styles";
-
-import * as s from "./icon.css";
+import * as styles from "portfolio-styles/components/icon.css";
+import { COLOR } from "portfolio-styles/constants";
 
 import {
   GitHubIcon,
@@ -30,7 +29,7 @@ const meta: Meta<typeof Icon> = {
       control: {
         type: "select",
       },
-      options: Object.keys(s.w) as Array<keyof typeof s.w>,
+      options: Object.keys(styles.w) as Array<keyof typeof styles.w>,
     },
     color: {
       control: {

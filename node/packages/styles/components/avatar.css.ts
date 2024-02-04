@@ -1,5 +1,6 @@
 import { ComplexStyleRule, style, styleVariants } from "@vanilla-extract/css";
-import { borderRadius, bgSize, w, h } from "portfolio-styles";
+
+import { borderRadius, bgSize, w, h } from "../styles";
 
 const avatarBase = style([borderRadius["full"], bgSize["cover"]]);
 

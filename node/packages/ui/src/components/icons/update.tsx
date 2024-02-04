@@ -1,7 +1,6 @@
-import { COLOR } from "portfolio-styles";
+import * as styles from "portfolio-styles/components/icon.css";
+import { COLOR } from "portfolio-styles/constants";
 import { ComponentProps } from "react";
-
-import { w, h } from "./icon.css";
 
 type Props = {
   color?: keyof typeof COLOR;
@@ -11,8 +10,8 @@ export const UpdateIcon = ({ color = "mono.900", ...props }: Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={w[4]}
-      height={h[4]}
+      width={styles.w[4]}
+      height={styles.h[4]}
       fill={COLOR[color]}
       viewBox="0 0 24 24"
       {...props}

@@ -1,5 +1,6 @@
 import { style, styleVariants } from "@vanilla-extract/css";
-import { flattenStyle, styleRule } from "portfolio-styles";
+
+import { flattenStyle, styleRule } from "../libs/vanillaExtract";
 import {
   fontSize,
   fontColor,
@@ -9,7 +10,7 @@ import {
   overflow as overflowRule,
   textOverflow as textOverflowRule,
   textWhiteSpace as textWhiteSpaceRule,
-} from "portfolio-styles";
+} from "../styles";
 
 export const paragraphRule = styleRule(
   flattenStyle([fontSize[4], fontColor["mono.900"], m[0], p[0]]),

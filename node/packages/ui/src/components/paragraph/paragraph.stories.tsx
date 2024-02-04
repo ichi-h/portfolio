@@ -1,16 +1,16 @@
 import { Meta, StoryObj } from "@storybook/react";
+import * as styles from "portfolio-styles/components/paragraph.css";
 
 import { Paragraph } from "./paragraph";
-import * as s from "./paragraph.css";
 
 const options = {
-  align: Object.keys(s.textAlign) as Array<keyof typeof s.textAlign>,
-  overflow: Object.keys(s.overflow) as Array<keyof typeof s.overflow>,
-  textOverflow: Object.keys(s.textOverflow) as Array<
-    keyof typeof s.textOverflow
+  align: Object.keys(styles.textAlign) as Array<keyof typeof styles.textAlign>,
+  overflow: Object.keys(styles.overflow) as Array<keyof typeof styles.overflow>,
+  textOverflow: Object.keys(styles.textOverflow) as Array<
+    keyof typeof styles.textOverflow
   >,
-  whiteSpace: Object.keys(s.textWhiteSpace) as Array<
-    keyof typeof s.textWhiteSpace
+  whiteSpace: Object.keys(styles.textWhiteSpace) as Array<
+    keyof typeof styles.textWhiteSpace
   >,
 };
 

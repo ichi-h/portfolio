@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/background.css";
 import { ComponentProps } from "react";
-
-import * as styles from "./background.css";
 
 type Props = {
   classNameForBg?: ComponentProps<"div">["className"];

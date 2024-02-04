@@ -1,5 +1,7 @@
-import { COLOR, PX, REM } from "@/constants";
-import { styleMapFromData, styleMap } from "@/libs/vanillaExtract";
+import { COLOR } from "../constants/color";
+import { PX } from "../constants/px";
+import { REM } from "../constants/rem";
+import { styleMapFromData, styleMap } from "../libs/vanillaExtract";
 
 // Border
 

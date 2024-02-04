@@ -1,7 +1,6 @@
-import { COLOR } from "portfolio-styles";
+import * as styles from "portfolio-styles/components/icon.css";
+import { COLOR } from "portfolio-styles/constants";
 import { ComponentProps } from "react";
-
-import { w, h } from "./icon.css";
 
 type Props = {
   color?: keyof typeof COLOR;
@@ -10,8 +9,8 @@ type Props = {
 export const XIcon = ({ color = "mono.900", ...props }: Props) => {
   return (
     <svg
-      width={w[4]}
-      height={h[4]}
+      width={styles.w[4]}
+      height={styles.h[4]}
       fill="none"
       viewBox="0 0 1800 1800"
       xmlns="http://www.w3.org/2000/svg"

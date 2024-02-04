@@ -1,5 +1,6 @@
 import { style, globalStyle } from "@vanilla-extract/css";
-import { flattenStyle } from "portfolio-styles";
+
+import { flattenStyle } from "../libs/vanillaExtract";
 import {
   flex,
   flexDirection,
@@ -22,11 +23,11 @@ import {
   textDecoration,
   fontSize,
   maxW,
-} from "portfolio-styles";
+} from "../styles";
 
-import { headlineRule } from "@/components/headline/headline.css";
-import { linkHoverRule, linkRule } from "@/components/link/link.css";
-import { paragraphRule } from "@/components/paragraph/paragraph.css";
+import { headlineRule } from "./headline.css";
+import { defaultFontColor, linkHoverRule, linkRule } from "./link.css";
+import { paragraphRule } from "./paragraph.css";
 
 export const article = style([
   flex,
@@ -64,7 +65,10 @@ globalStyle(
   ]),
 );
 
-globalStyle(`${article} a`, linkRule);
+globalStyle(
+  `${article} a`,
+  flattenStyle([linkRule, fontColor[defaultFontColor]]),
+);
 globalStyle(`${article} a:hover`, linkHoverRule);
 
 globalStyle(

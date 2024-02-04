@@ -1,4 +1,4 @@
-import { flattenStyle, styleMap, styleRule } from "@/libs/vanillaExtract";
+import { flattenStyle, styleMap, styleRule } from "../libs/vanillaExtract";
 
 import { opacity } from "./opacity";
 

@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/dialog.css";
 import { ComponentProps, useEffect, useRef } from "react";
-
-import * as styles from "./dialog.css";
 
 type Props = {
   isOpen: boolean;

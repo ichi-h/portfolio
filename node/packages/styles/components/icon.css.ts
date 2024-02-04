@@ -1,5 +1,6 @@
 import { styleVariants } from "@vanilla-extract/css";
-import { h as hRule, w as wRule } from "portfolio-styles";
+
+import { h as hRule, w as wRule } from "../styles";
 
 export const w = styleVariants(wRule);
 

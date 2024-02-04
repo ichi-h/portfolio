@@ -1,7 +1,6 @@
 import clsx from "clsx";
+import * as styles from "portfolio-styles/components/article.css";
 import { ComponentProps } from "react";
-
-import * as styles from "./article.css";
 
 type Props = {
   dangerouslySetInnerHTML: {

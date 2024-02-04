@@ -1,4 +1,4 @@
-import { styleMapFromData } from "@/libs/vanillaExtract";
+import { styleMapFromData } from "../libs/vanillaExtract";
 
 const overflowData = {
   visible: "visible",

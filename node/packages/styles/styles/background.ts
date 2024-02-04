@@ -1,5 +1,5 @@
-import { COLOR } from "@/constants";
-import { styleMap, styleMapFromData } from "@/libs/vanillaExtract";
+import { COLOR } from "../constants/color";
+import { styleMap, styleMapFromData } from "../libs/vanillaExtract";
 
 export const bg = styleMapFromData(COLOR, (value) => ({
   backgroundColor: value,
