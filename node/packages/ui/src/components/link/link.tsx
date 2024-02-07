@@ -6,6 +6,7 @@ type Props<T extends ElementType> = {
   className?: string;
   children?: React.ReactNode;
   color?: keyof typeof styles.fontColor;
+  decoration?: keyof typeof styles.decoration;
 } & (
   | ({
       href: string;
@@ -26,6 +27,7 @@ export const Link = <T extends ElementType>({
   children,
   color = styles.defaultFontColor,
   openInNewTab,
+  decoration,
   ...props
 }: Props<T>) => {
   const isAnchor = "href" in props;
@@ -42,7 +44,8 @@ export const Link = <T extends ElementType>({
     <Component
       className={clsx([
         styles.link,
-        styles.linkHover,
+        !decoration && styles.linkHover,
+        decoration && styles.decoration[decoration],
         styles.fontColor[color],
         className,
       ])}

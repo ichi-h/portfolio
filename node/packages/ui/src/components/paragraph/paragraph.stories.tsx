@@ -42,6 +42,11 @@ const meta: Meta<typeof Paragraph> = {
       },
       options: options.whiteSpace,
     },
+    lineClamp: {
+      control: {
+        type: "number",
+      },
+    },
   },
 };
 

@@ -17,6 +17,12 @@ const meta: Meta<typeof Link> = {
         type: "boolean",
       },
     },
+    decoration: {
+      control: {
+        type: "select",
+        options: ["none", "underline", "lineThrough"],
+      },
+    },
   },
 };
 

@@ -7,7 +7,7 @@ type Props = {
 } & ComponentProps<"input">;
 
 const _Radio = forwardRef<HTMLInputElement, Props>(
-  ({ className, children, ...props }, ref) => {
+  ({ className, children, checked, defaultChecked, ...props }, ref) => {
     return (
       <label className={styles.radioLabel}>
         <input
@@ -15,6 +15,8 @@ const _Radio = forwardRef<HTMLInputElement, Props>(
           ref={ref}
           type="radio"
           className={clsx([styles.radio, className])}
+          checked={checked}
+          defaultChecked={defaultChecked}
         />
         <div className={styles.radioMarker} />
         {children}

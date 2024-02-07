@@ -11,6 +11,7 @@ export const Background: FC<Props> = ({ children }) => {
       className={backgroundParentStyle}
       classNameForBg={backgroundChildStyle}
       src="/bg.webp"
+      opacity={80}
     >
       {children}
     </Bg>

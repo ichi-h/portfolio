@@ -1,127 +1,21 @@
 import { json, LoaderArgs } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData, useNavigate, Link as _Link } from "@remix-run/react";
+import {
+  Headline,
+  Paragraph,
+  Radio,
+  Text,
+  Link,
+  Icon,
+  UpdateIcon,
+} from "portfolio-ui";
 import { useState } from "react";
 
-import { APIResult } from "@/api/result";
-import { getFilteredWorks, GetFilteredWorksResponse } from "@/api/works/filter";
 import { Category } from "@/model/category";
-import { LimitNumber } from "@/model/limitNumber";
-import { Offset } from "@/model/offset";
-import { SummarizedWork } from "@/model/work";
-import { Update, createUpdate } from "@/utils/elmish";
+import * as styles from "@/styles/works";
 
-type Model = {
-  offset: Offset;
-  limit: LimitNumber;
-  search: string;
-  category: Category | null;
-  works: SummarizedWork[];
-  total: number;
-  worksLoader: "idle" | "loading" | "error";
-  error: string;
-};
-
-const init: Model = {
-  offset: 0,
-  limit: 18,
-  search: "",
-  category: null,
-  works: [],
-  total: 0,
-  worksLoader: "loading",
-  error: "",
-} as const;
-
-type Message =
-  | { type: "setOffset"; offset: Offset }
-  | { type: "setSearch"; search: string }
-  | { type: "setCategory"; category: Category | null }
-  | { type: "getFilteredWorks" }
-  | { type: "getFilteredWorksResp"; resp: APIResult<GetFilteredWorksResponse> };
-
-const update = (
-  model: Model,
-  message: Message,
-): ReturnType<Update<Model, Message>> => {
-  switch (message.type) {
-    case "setOffset": {
-      return update(
-        {
-          ...model,
-          offset: message.offset,
-        },
-        { type: "getFilteredWorks" },
-      );
-    }
-
-    case "setSearch": {
-      return update(
-        {
-          ...model,
-          search: message.search,
-          offset: 0,
-        },
-        { type: "getFilteredWorks" },
-      );
-    }
-
-    case "setCategory": {
-      return update(
-        {
-          ...model,
-          category: message.category,
-          offset: 0,
-        },
-        { type: "getFilteredWorks" },
-      );
-    }
-
-    case "getFilteredWorks": {
-      const newModel: Model = {
-        ...model,
-        worksLoader: "loading",
-      };
-
-      return {
-        newModel,
-        cmd: async () => {
-          const resp = await getFilteredWorks({
-            search: newModel.search,
-            category: newModel.category ?? undefined,
-            offset: newModel.offset,
-            limit: newModel.limit,
-          });
-          return {
-            type: "getFilteredWorksResp",
-            resp,
-          };
-        },
-      };
-    }
-
-    case "getFilteredWorksResp": {
-      if (message.resp.status === "error") {
-        return {
-          newModel: {
-            ...model,
-            worksLoader: "error",
-            error: "Failed to get works. Please try again later.",
-          },
-        };
-      }
-      return {
-        newModel: {
-          ...model,
-          worksLoader: "idle",
-          total: message.resp.value.total,
-          works: message.resp.value.works,
-        },
-      };
-    }
-  }
-};
-
-const useUpdate = createUpdate(update);
+import { init } from "./__hooks/data";
+import { update, useUpdate } from "./__hooks/update";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const { searchParams } = new URL(request.url);
@@ -148,16 +42,100 @@ export default function Index() {
   const [model, setModel] = useState(init);
   const send = useUpdate(model, setModel);
 
-  const refetch = () => {
-    send({ type: "getFilteredWorks" });
+  const navigate = useNavigate();
+
+  const checked = (category: Category) => () => {
+    send({ type: "setCategory", category });
+    navigate({ search: `?category=${category}` });
   };
 
-  const result = JSON.stringify(model, null, 2);
-
   return (
-    <div>
-      <code>{result}</code>
-      <button onClick={refetch}>Refetch</button>
+    <div className={styles.layout}>
+      <div className={styles.heading}>
+        <Headline level="1">Works</Headline>
+      </div>
+      <div className={styles.radioGroup}>
+        <Radio
+          name="category"
+          onChange={checked("development")}
+          value="development"
+          defaultChecked={model.category === "development"}
+        >
+          <Text className={styles.radioLabel}>Development</Text>
+        </Radio>
+        <Radio
+          name="category"
+          onChange={checked("music")}
+          value="music"
+          defaultChecked={model.category === "music"}
+        >
+          <Text className={styles.radioLabel}>Music</Text>
+        </Radio>
+        <Radio
+          name="category"
+          onChange={checked("photograph")}
+          value="photograph"
+          defaultChecked={model.category === "photograph"}
+        >
+          <Text className={styles.radioLabel}>Photograph</Text>
+        </Radio>
+        <Radio
+          name="category"
+          onChange={checked("philosophy")}
+          value="philosophy"
+          defaultChecked={model.category === "philosophy"}
+        >
+          <Text className={styles.radioLabel}>Philosophy</Text>
+        </Radio>
+      </div>
+      <hr className={styles.hr} />
+      {model.worksLoader === "loading" && (
+        <Paragraph align="center">読み込み中……</Paragraph>
+      )}
+      {model.worksLoader === "error" && (
+        <Paragraph align="center">
+          エラーが発生しました。時間をおいて再度お試しください。
+        </Paragraph>
+      )}
+      {model.worksLoader === "idle" && model.works.length === 0 && (
+        <Paragraph align="center">検索結果は0件です。</Paragraph>
+      )}
+      {model.worksLoader === "idle" && model.works.length > 0 && (
+        <div className={styles.cardGrid}>
+          {model.works.map((work) => (
+            <Link
+              className={styles.cardLink}
+              key={work.slug}
+              as={_Link}
+              asProps={{ to: `/works/${work.slug}` }}
+              decoration="none"
+            >
+              <div className={styles.card}>
+                <div className={styles.cardLayout}>
+                  <img
+                    className={styles.cardThumbnail}
+                    src="/bg_ogp.webp"
+                    alt={work.title}
+                  />
+                  <div className={styles.cardPublishedAt}>
+                    <Icon size={3} icon={UpdateIcon} />
+                    <Text fontSize="3" color="mono.900">
+                      {work.publishedAt}
+                    </Text>
+                  </div>
+                  <Paragraph
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    lineClamp={3}
+                  >
+                    <Text className={styles.cardTitle}>{work.title}</Text>
+                  </Paragraph>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

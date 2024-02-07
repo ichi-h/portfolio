@@ -25,3 +25,5 @@ export const linkHover = style({
     "&:hover": linkHoverRule,
   },
 });
+
+export const decoration = styleVariants(textDecoration);

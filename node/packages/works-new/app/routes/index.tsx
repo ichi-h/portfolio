@@ -37,11 +37,11 @@ export default function Index() {
         </Link>
         <Link
           as={_Link}
-          asProps={{ to: "/works?category=photography" }}
+          asProps={{ to: "/works?category=photograph" }}
           color="mono.50"
         >
           <Text className={link} fontSize="8">
-            Photography
+            Photograph
           </Text>
         </Link>
         <Link

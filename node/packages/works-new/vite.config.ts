@@ -17,6 +17,7 @@ export default defineConfig({
       entry: [
         path.resolve(__dirname, "./styles/index.ts"),
         path.resolve(__dirname, "./styles/pages/home.ts"),
+        path.resolve(__dirname, "./styles/pages/works.ts"),
       ],
       name: "portfolio-styles",
       fileName: (_, entryName) => `${entryName}.js`,

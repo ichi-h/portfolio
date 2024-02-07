@@ -14,10 +14,7 @@ type Props = {
 export const Icon = ({ className, icon, size = 4, color, ...props }: Props) => {
   const Component = icon;
   return (
-    <div
-      className={clsx([styles.w[size], styles.h[size], className])}
-      {...props}
-    >
+    <div className={clsx([styles.w[size], className])} {...props}>
       <Component color={color} />
     </div>
   );

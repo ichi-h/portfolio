@@ -7,6 +7,7 @@ type Props = {
   overflow?: keyof (typeof styles)["overflow"];
   textOverflow?: keyof (typeof styles)["textOverflow"];
   whiteSpace?: keyof (typeof styles)["textWhiteSpace"];
+  lineClamp?: number;
 } & ComponentProps<"p">;
 
 export const Paragraph = ({
@@ -16,6 +17,7 @@ export const Paragraph = ({
   overflow,
   textOverflow,
   whiteSpace,
+  lineClamp,
   ...props
 }: Props) => {
   return (
@@ -28,6 +30,16 @@ export const Paragraph = ({
         whiteSpace && styles.textWhiteSpace[whiteSpace],
         className,
       ])}
+      style={
+        lineClamp
+          ? {
+              display: "-webkit-box",
+              lineClamp: lineClamp,
+              WebkitLineClamp: lineClamp,
+              WebkitBoxOrient: "vertical",
+            }
+          : undefined
+      }
       {...props}
     >
       {children}
