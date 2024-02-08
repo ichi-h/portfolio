@@ -17,7 +17,12 @@ export const Layout: FC<Props> = ({ children }) => (
   <div className={layoutParentStyle}>
     <div className={layoutStyle}>
       <Nav />
-      <Background classNameForBg={layoutBgStyle} color="mono.50" opacity={80}>
+      <Background
+        classNameForBg={layoutBgStyle}
+        color="mono.50"
+        opacity={90}
+        layoutPosition="absolute"
+      >
         <div className={layoutContentStyle}>{children}</div>
       </Background>
       <Footer />

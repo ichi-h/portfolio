@@ -5,6 +5,7 @@ import { ComponentProps } from "react";
 type Props = {
   classNameForBg?: ComponentProps<"div">["className"];
   styleForBg?: ComponentProps<"div">["style"];
+  layoutPosition?: keyof (typeof styles)["layoutPosition"];
   children?: React.ReactNode;
   color?: keyof (typeof styles)["bg"];
   opacity?: keyof (typeof styles)["opacity"];
@@ -17,6 +18,7 @@ export const Background = ({
   className,
   classNameForBg,
   styleForBg,
+  layoutPosition = "absolute",
   children,
   color,
   opacity,
@@ -30,6 +32,7 @@ export const Background = ({
       <div
         className={clsx([
           styles.background,
+          styles.layoutPosition[layoutPosition],
           color && styles.bg[color],
           opacity && styles.opacity[opacity],
           position && styles.bgPosition[position],

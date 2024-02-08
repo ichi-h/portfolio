@@ -12,6 +12,7 @@ export const Background: FC<Props> = ({ children }) => {
       classNameForBg={backgroundChildStyle}
       src="/bg.webp"
       opacity={80}
+      layoutPosition="fixed"
     >
       {children}
     </Bg>

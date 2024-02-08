@@ -13,12 +13,7 @@ import {
 
 export const backgroundParent = style(position["relative"]);
 
-export const background = style([
-  position["absolute"],
-  zIndex["-1"],
-  w["1/1"],
-  h["1/1"],
-]);
+export const background = style([zIndex["-1"], w["1/1"], h["1/1"]]);
 
 export const bg = styleVariants(bgRule);
 
@@ -27,3 +22,8 @@ export const opacity = styleVariants(opacityRule);
 export const bgPosition = styleVariants(bgPositionRule);
 
 export const bgSize = styleVariants(bgSizeRule);
+
+export const layoutPosition = styleVariants({
+  fixed: position["fixed"],
+  absolute: position["absolute"],
+});

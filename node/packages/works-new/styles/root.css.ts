@@ -31,7 +31,7 @@ export const bodyStyle = style([
   },
 ]);
 
-export const backgroundParentStyle = style([w["lvw"], minH["lvh"]]);
+export const backgroundParentStyle = style([minH["lvh"]]);
 
 export const backgroundChildStyle = style([blur[8]]);
 

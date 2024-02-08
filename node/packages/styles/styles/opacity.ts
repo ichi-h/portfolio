@@ -16,6 +16,9 @@ export const opacity = styleMap({
   80: {
     opacity: 0.8,
   },
+  90: {
+    opacity: 0.9,
+  },
   100: {
     opacity: 1,
   },
