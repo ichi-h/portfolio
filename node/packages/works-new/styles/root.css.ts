@@ -76,7 +76,7 @@ export const layoutStyle = style([
   w["1/2"],
   minW[256],
   applyMedia({ max: "1280" }, flattenStyle([w["3/4"], minW["auto"]])),
-  applyMedia({ max: "768" }, flattenStyle([w["1/1"], mx[6]])),
+  applyMedia({ max: "768" }, flattenStyle([w["1/1"], mx[4]])),
   applyMedia({ max: "480" }, flattenStyle([gap[4]])),
 ]);
 
