@@ -1,6 +1,14 @@
 import { json, LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData } from "@remix-run/react";
-import { Article, Headline } from "portfolio-ui";
+import {
+  Article,
+  Button,
+  Headline,
+  Icon,
+  PublishIcon,
+  Text,
+  UpdateIcon,
+} from "portfolio-ui";
 
 import * as styles from "@/styles/worksSlug";
 
@@ -29,11 +37,26 @@ export default function Index() {
   const { work } = useLoaderData<typeof loader>();
 
   return (
-    <>
+    <div className={styles.layout}>
       <div className={styles.heading}>
         <Headline level="1">{work.title}</Headline>
       </div>
+      <div className={styles.matter}>
+        <Button rounded={true} size="sm">
+          # {work.category}
+        </Button>
+      </div>
+      <div className={styles.matter}>
+        <div className={styles.date}>
+          <Icon icon={PublishIcon} />
+          <Text color="mono.900">{work.publishedAt}</Text>
+        </div>
+        <div className={styles.date}>
+          <Icon icon={UpdateIcon} />
+          <Text color="mono.900">{work.updatedAt}</Text>
+        </div>
+      </div>
       <Article dangerouslySetInnerHTML={{ __html: work.body }} />
-    </>
+    </div>
   );
 }
