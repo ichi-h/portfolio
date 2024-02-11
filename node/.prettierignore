@@ -18,3 +18,5 @@
 /packages/tinysearch-engine
 
 pnpm-lock.yaml
+
+/**/.wrangler

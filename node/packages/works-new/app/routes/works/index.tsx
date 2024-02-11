@@ -114,7 +114,10 @@ export default function Index() {
                 <div className={styles.cardLayout}>
                   <img
                     className={styles.cardThumbnail}
-                    src="/bg_ogp.webp"
+                    src={
+                      work.thumbnailUrl ||
+                      `${FRONT_API_SERVER_URL}/ogp?title=${work.title}`
+                    }
                     alt={work.title}
                   />
                   <div className={styles.cardPublishedAt}>
