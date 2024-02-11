@@ -15,6 +15,7 @@ let interactor (input: FilterWorksInput) : FilterWorksOutput =
 
         let summarizedWorks =
             works
+            |> Seq.filter (fun work -> work.slug <> "/me")
             |> Seq.map (fun work ->
                 { slug = work.slug
                   category = categoryToString work.category
