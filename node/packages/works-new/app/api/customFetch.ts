@@ -1,4 +1,3 @@
-import { useEnv } from "@/utils/env";
 import { ok, error } from "@/utils/result";
 
 import { APIError } from "./error";
@@ -12,14 +11,13 @@ export const customFetch = async <T, E = any>(
   input: RequestInfo,
   init?: CustomRequestInit,
 ): Promise<APIResult<T, E>> => {
-  const { BLOG_SERVER_URL } = useEnv();
   const _input = (() => {
     if (typeof input === "string") {
-      return `${BLOG_SERVER_URL}${input}`;
+      return input;
     }
     return {
       ...input,
-      url: `${BLOG_SERVER_URL}${input.url}`,
+      url: input.url,
     } as Request;
   })();
 

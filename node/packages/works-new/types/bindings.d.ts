@@ -8,6 +8,7 @@ declare global {
   const SESSION_SECRET: string;
 
   const APP_URL: string;
-  const BLOG_SERVER_URL: string;
+  const WORKS_SERVER_URL: string;
+  const FRONT_API_SERVER_URL: string;
   const ENVIRONMENT: string;
 }

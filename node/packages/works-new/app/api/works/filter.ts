@@ -4,6 +4,7 @@ import { Offset } from "@/model/offset";
 import { SummarizedWork } from "@/model/work";
 import { joinQueryParams } from "@/utils/queryParams";
 
+import { WORKS_SERVER_URL } from "../baseUrl";
 import { customFetch } from "../customFetch";
 
 export type GetFilteredWorksResponse = {
@@ -18,5 +19,5 @@ export const getFilteredWorks = (query: {
   limit: LimitNumber;
 }) =>
   customFetch<GetFilteredWorksResponse>(
-    `/works/filter${joinQueryParams(query)}`,
+    `${WORKS_SERVER_URL}/works/filter${joinQueryParams(query)}`,
   );

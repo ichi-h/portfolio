@@ -1,3 +1,4 @@
+import { parseMdToHtml } from "@/api/parse";
 import { getWork } from "@/api/works/show";
 import { Update, createUpdate } from "@/utils/elmish";
 
@@ -31,10 +32,45 @@ export const update = (
         };
       }
 
+      return update(
+        {
+          ...model,
+          work: message.resp.value,
+        },
+        { type: "parseMdToHtml", body: message.resp.value.body },
+      );
+    }
+
+    case "parseMdToHtml": {
+      return {
+        newModel: model,
+        cmd: async () => {
+          const resp = await parseMdToHtml(message.body);
+          return {
+            type: "parseMdToHtmlResp",
+            resp,
+          };
+        },
+      };
+    }
+
+    case "parseMdToHtmlResp": {
+      if (message.resp.status === "error") {
+        return {
+          newModel: {
+            ...model,
+            status: "error",
+          },
+        };
+      }
+
       return {
         newModel: {
           ...model,
-          work: message.resp.value,
+          work: {
+            ...model.work,
+            body: message.resp.value.html,
+          },
           status: "ok",
         },
       };

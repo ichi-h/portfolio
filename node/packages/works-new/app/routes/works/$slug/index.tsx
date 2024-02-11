@@ -8,19 +8,19 @@ import { init, Message, Model } from "./__hooks/data";
 import { update } from "./__hooks/update";
 
 export const loader = async ({ params }: LoaderArgs) => {
-  const loop = async (msg: Message): Promise<Model> => {
-    const { newModel, cmd } = update(init, msg);
+  const loop = async (model: Model, msg: Message): Promise<Model> => {
+    const { newModel, cmd } = update(model, msg);
     if (!cmd) {
       return newModel;
     }
     const next = await cmd();
-    return loop(next);
+    return loop(newModel, next);
   };
 
   if (!params.slug) {
     return json({ ...init, status: "error" });
   }
-  const model = await loop({ type: "getWork", slug: params.slug });
+  const model = await loop(init, { type: "getWork", slug: params.slug });
 
   return json(model);
 };
