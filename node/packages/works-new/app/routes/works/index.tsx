@@ -1,16 +1,10 @@
 import { json, LoaderArgs } from "@remix-run/cloudflare";
 import { useLoaderData, useNavigate, Link as _Link } from "@remix-run/react";
-import {
-  Headline,
-  Paragraph,
-  Radio,
-  Text,
-  Link,
-  Icon,
-  UpdateIcon,
-} from "portfolio-ui";
+import { Paragraph, Radio, Text, Link, Icon, UpdateIcon } from "portfolio-ui";
 import { useState } from "react";
 
+import { Hr } from "@/components/hr";
+import { Title } from "@/components/title";
 import { Category } from "@/model/category";
 import * as styles from "@/styles/works";
 
@@ -51,9 +45,7 @@ export default function Index() {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.heading}>
-        <Headline level="1">Works</Headline>
-      </div>
+      <Title>Works</Title>
       <div className={styles.radioGroup}>
         <Radio
           name="category"
@@ -88,7 +80,7 @@ export default function Index() {
           <Text className={styles.radioLabel}>Philosophy</Text>
         </Radio>
       </div>
-      <hr className={styles.hr} />
+      <Hr />
       {model.worksLoader === "loading" && (
         <Paragraph align="center">読み込み中……</Paragraph>
       )}

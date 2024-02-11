@@ -81,3 +81,13 @@ export const layoutStyle = style([
 export const layoutBgStyle = style([borderRadius[4]]);
 
 export const layoutContentStyle = style([m[6]]);
+
+export const title = style([flex, flexJustify["center"]]);
+
+export const hr = style([
+  {
+    height: "1px",
+  },
+  w["1/1"],
+  bg["mono.300"],
+]);

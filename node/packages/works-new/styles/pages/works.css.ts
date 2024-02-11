@@ -25,8 +25,6 @@ import {
 
 export const layout = style([flex, flexDirection["column"], gap[4]]);
 
-export const heading = style([flex, flexJustify["center"]]);
-
 export const radioGroup = style([
   flex,
   flexJustify["center"],

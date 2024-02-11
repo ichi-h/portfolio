@@ -3,13 +3,13 @@ import { useLoaderData, useNavigate } from "@remix-run/react";
 import {
   Article,
   Button,
-  Headline,
   Icon,
   PublishIcon,
   Text,
   UpdateIcon,
 } from "portfolio-ui";
 
+import { Title } from "@/components/title";
 import * as styles from "@/styles/worksSlug";
 
 import { init, Message, Model } from "./__hooks/data";
@@ -44,9 +44,7 @@ export default function Index() {
 
   return (
     <div className={styles.layout}>
-      <div className={styles.heading}>
-        <Headline level="1">{work.title}</Headline>
-      </div>
+      <Title>{work.title}</Title>
       <div className={styles.matter}>
         <Button rounded={true} size="sm" onClick={clickCategory}>
           # {work.category}
