@@ -198,13 +198,13 @@ main()
 
 {{ "type": "text", "style": ["bold", "blue"], "text": "強調" }}
 
-{{ "type": "text", "style": ["bold", "blue", "xs"], "text": "強調" }}
+{{ "type": "text", "style": ["bold", "blue", "3"], "text": "強調" }}
 
 {{ "type": "text", "style": ["bold", "red"], "text": "強調" }}
 
-{{ "type": "text", "style": ["bold", "red", "xl"], "text": "強調" }}
+{{ "type": "text", "style": ["bold", "red", "5"], "text": "強調" }}
 
-{{ "type": "text", "style": ["bold", "red", "xl4"], "text": "強調" }}
+{{ "type": "text", "style": ["bold", "red", "8"], "text": "強調" }}
 
-{{ "type": "text", "style": ["bold", "red", "xl7"], "text": "強調" }}
+{{ "type": "text", "style": ["bold", "red", "12"], "text": "強調" }}
 ';
