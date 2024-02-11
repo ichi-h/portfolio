@@ -1,5 +1,0 @@
-export const FADE_MANAGER = {
-  BACKGROUND: 300,
-  CONTENT: 800,
-  ANIMATION_TIME: "1s",
-};
