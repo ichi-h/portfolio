@@ -1,9 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import {
-  applyMedia,
-  flattenStyle,
   flex,
-  flexAlign,
   flexDirection,
   flexJustify,
   flexWrap,
@@ -19,10 +16,6 @@ export const matter = style([
   flexJustify["end"],
   flexWrap["wrap"],
   gap[2],
-  applyMedia(
-    { max: "480" },
-    flattenStyle([flexDirection["column"], flexAlign["end"]]),
-  ),
 ]);
 
 export const date = style([flex, gap[1]]);

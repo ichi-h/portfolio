@@ -23,7 +23,7 @@ let interactor (input: ShowWorkInput) : ShowWorkOutput =
                       description = w.description
                       body = w.body
                       thumbnailUrl = w.description
-                      publishedAt = w.publishedAt.ToString "yyyy-MM-dd hh:mm:ss"
-                      updatedAt = w.updatedAt.ToString "yyyy-MM-dd hh:mm:ss" }
+                      publishedAt = w.publishedAt.ToString "yyyy-MM-dd"
+                      updatedAt = w.updatedAt.ToString "yyyy-MM-dd" }
         | None -> return! Error NotFoundError
     }
