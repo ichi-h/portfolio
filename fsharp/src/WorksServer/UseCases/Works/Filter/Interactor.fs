@@ -20,7 +20,7 @@ let interactor (input: FilterWorksInput) : FilterWorksOutput =
                   category = categoryToString work.category
                   title = work.title
                   description = work.description
-                  thumbnailUrl = work.description
+                  thumbnailUrl = work.thumbnailUrl
                   publishedAt = work.publishedAt.ToString "yyyy-mm-dd"
                   updatedAt = work.updatedAt.ToString "yyyy-mm-dd" })
 
