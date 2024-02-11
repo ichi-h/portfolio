@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { style, globalStyle } from "@vanilla-extract/css";
 import {
   bg,
   m,
@@ -23,13 +23,11 @@ import {
 
 export const htmlStyle = style([m[0]]);
 
-export const bodyStyle = style([
-  bg["mono.900"],
-  m[0],
-  {
-    fontFamily: '"Zen Kaku Gothic New", sans-serif',
-  },
-]);
+export const bodyStyle = style([bg["mono.900"], m[0]]);
+
+globalStyle(`${htmlStyle} *`, {
+  fontFamily: '"Zen Kaku Gothic New", sans-serif',
+});
 
 export const backgroundParentStyle = style([minH["lvh"]]);
 
