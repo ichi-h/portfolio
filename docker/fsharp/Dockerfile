@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS works-server-dev
+FROM mcr.microsoft.com/dotnet/sdk:8.0-bookworm-slim AS works-server-dev
 
 WORKDIR /apps
 
@@ -11,18 +11,17 @@ RUN apt-get update && \
 
 RUN dotnet restore ./src/WorksServer/WorksServer.fsproj
 
-# ARG TARGETARCH
-# WORKDIR /src
+FROM works-server-dev AS works-server-build
 
-# COPY . .
-# # RUN dotnet restore "Api/Api.fsproj" -a $TARGETARCH
-# RUN dotnet restore "Api/Api.fsproj"
+RUN dotnet publish -o ./dist ./src/WorksServer/WorksServer.fsproj
 
-# RUN dotnet publish "Api/Api.fsproj" -o /app/publish
-# # RUN dotnet publish "Api/Api.fsproj" -a $TARGETARCH --no-restore -o /app/publish 
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim AS works-server-prod
 
-# FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
-# WORKDIR /app
-# EXPOSE 8080
-# COPY --from=build /app/publish .
-# ENTRYPOINT [ "dotnet", "Api.dll" ]
+WORKDIR /apps
+
+COPY --from=works-server-build /apps/dist/ /apps/
+COPY ./fsharp/src/WorksServer/.env ./
+
+EXPOSE 8080
+
+ENTRYPOINT [ "dotnet", "WorksServer.dll" ]
