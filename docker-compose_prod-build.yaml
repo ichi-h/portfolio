@@ -8,19 +8,41 @@ services:
       dockerfile: "./docker/db-manager/Dockerfile"
       target: db-prod
     container_name: portfolio-db-manager
-    env_file: ./db-manager/.env
+    env_file: ./db-manager/.prod.env
     volumes:
       - db-manager:/db
     tty: true
 
-  # TODO: works-server
+  db-client:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-client:latest
+    build:
+      context: .
+      dockerfile: "./docker/db-client/Dockerfile"
+    container_name: portfolio-db-client
+    env_file: ./db-client/.prod.env
+    volumes:
+      - db-manager:/db
+    command: sqlite_web /db/portfolio.sqlite3 --password -H 0.0.0.0 -p 5432 --url-prefix /db
+    tty: true
+
+  works-server:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-works-server:latest
+    build:
+      context: .
+      dockerfile: "./docker/fsharp/Dockerfile"
+      target: works-server-prod
+    container_name: portfolio-works-server
+    volumes:
+      - db-manager:/db
+      - ./fsharp/src/WorksServer/.prod.env:/apps/.env
+    tty: true
 
   nginx:
-    image: nginx:1.24
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-nginx:latest
+    build:
+      context: .
+      dockerfile: "./docker/nginx/Dockerfile"
     container_name: portfolio-nginx
-    volumes:
-      - ./docker/nginx/nginx.prod.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/log:/var/log/nginx
     restart: always
     depends_on:
       - works-server

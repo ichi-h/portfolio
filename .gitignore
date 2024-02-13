@@ -1,4 +1,5 @@
 .env
+.prod.env
 *.log
 
 credentials
