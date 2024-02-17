@@ -22,7 +22,6 @@ services:
     env_file: ./db-client/.prod.env
     volumes:
       - db-manager:/db
-    command: sqlite_web /db/portfolio.sqlite3 --password -H 0.0.0.0 -p 5432 --url-prefix /db
     tty: true
 
   works-server:
