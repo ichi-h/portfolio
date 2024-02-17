@@ -23,4 +23,4 @@ RUN wget https://github.com/benbjohnson/litestream/releases/download/v0.3.13/lit
   rm litestream-v0.3.13-linux-amd64.deb && \
   chmod +x ./entrypoint.sh
 
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "sh", "./entrypoint.sh" ]
