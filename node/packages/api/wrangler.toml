@@ -1,8 +1,8 @@
-name = "api"
+name = "portfolio-api"
 compatibility_date = "2023-12-01"
 
-[vars]
-FRONT_URL = "http://localhost:8787"
+# [vars]
+# FRONT_URL = 
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

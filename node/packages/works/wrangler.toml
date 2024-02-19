@@ -1,4 +1,4 @@
-name = "remix-cloudflare-workers"
+name = "portfolio"
 main = "./build/index.js"
 compatibility_date = "2022-04-05"
 
