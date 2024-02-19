@@ -9,6 +9,5 @@ declare global {
 
   const APP_URL: string;
   const WORKS_SERVER_URL: string;
-  const FRONT_API_SERVER_URL: string;
-  const ENVIRONMENT: string;
+  const BFF_SERVER_URL: string;
 }

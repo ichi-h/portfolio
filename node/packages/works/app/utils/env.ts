@@ -1,16 +1,10 @@
-const keys = [
-  "APP_URL",
-  "WORKS_SERVER_URL",
-  "FRONT_API_SERVER_URL",
-  "ENVIRONMENT",
-] as const;
+const keys = ["APP_URL", "WORKS_SERVER_URL", "BFF_SERVER_URL"] as const;
 
 export const useEnv = () => {
   const env = {
     APP_URL,
     WORKS_SERVER_URL,
-    FRONT_API_SERVER_URL,
-    ENVIRONMENT,
+    BFF_SERVER_URL,
   } as const;
 
   const missingEnv = Object.entries(env)

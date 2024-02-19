@@ -1,4 +1,4 @@
-import { FRONT_API_SERVER_URL } from "../baseUrl";
+import { BFF_SERVER_URL } from "../baseUrl";
 import { customFetch } from "../customFetch";
 
 export type ParseMdToHtmlResponse = {
@@ -6,7 +6,7 @@ export type ParseMdToHtmlResponse = {
 };
 
 export const parseMdToHtml = (markdown: string) =>
-  customFetch<ParseMdToHtmlResponse>(`${FRONT_API_SERVER_URL}/parse`, {
+  customFetch<ParseMdToHtmlResponse>(`${BFF_SERVER_URL}/parse`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -108,7 +108,7 @@ export default function Index() {
                     className={styles.cardThumbnail}
                     src={
                       work.thumbnailUrl ||
-                      `${FRONT_API_SERVER_URL}/ogp?title=${work.title}`
+                      `${BFF_SERVER_URL}/ogp?title=${work.title}`
                     }
                     alt={work.title}
                   />
