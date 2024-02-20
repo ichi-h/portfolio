@@ -31,6 +31,9 @@ export const loader = async ({ params }: LoaderArgs) => {
     return json({ ...init, status: "error" });
   }
   const model = await loop(init, { type: "getWork", slug: params.slug });
+  if (model.status === "error") {
+    return json({ ...init, status: "error" });
+  }
 
   return json(model);
 };

@@ -1,4 +1,3 @@
-import { ParseMdToHtmlResponse } from "@/api/parse";
 import { APIResult } from "@/api/result";
 import { Work } from "@/model/work";
 
@@ -25,4 +24,4 @@ export type Message =
   | { type: "getWork"; slug: string }
   | { type: "getWorkResp"; resp: APIResult<Work> }
   | { type: "parseMdToHtml"; body: string }
-  | { type: "parseMdToHtmlResp"; resp: APIResult<ParseMdToHtmlResponse> };
+  | { type: "parseMdToHtmlResult"; result: string };
