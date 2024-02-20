@@ -5,6 +5,14 @@ export const ogpUseCase = async (title: string, imageUrl: string) => {
     "https://github.com/googlefonts/zen-kakugothic/raw/main/fonts/ttf/ZenKakuGothicNew-Regular.ttf",
   ).then((res) => res.arrayBuffer());
 
+  const imageBuffer = await fetch(imageUrl).then((res) => res.arrayBuffer());
+  const bytes = new Uint8Array(imageBuffer);
+  const binStr = bytes.reduce(
+    (acc, byte) => acc + String.fromCharCode(byte),
+    "",
+  );
+  const imageBase64 = btoa(binStr);
+
   const generateOgpSvg = async () =>
     await satori(
       {
@@ -73,7 +81,7 @@ export const ogpUseCase = async (title: string, imageUrl: string) => {
             alignItems: "center",
             width: "100%",
             height: "100%",
-            backgroundImage: `url(${imageUrl})`,
+            backgroundImage: `url(${imageBase64})`,
           },
         },
       },

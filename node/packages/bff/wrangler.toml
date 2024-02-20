@@ -1,8 +1,8 @@
 name = "portfolio-bff"
 compatibility_date = "2023-12-01"
 
-# [vars]
-# FRONT_URL = 
+[vars]
+RESOURCE_SERVER_ORIGIN = "https://static.ichi-h.com"
 
 # [[kv_namespaces]]
 # binding = "MY_KV_NAMESPACE"

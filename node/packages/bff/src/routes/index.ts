@@ -28,7 +28,7 @@ routes.get(
   }),
   async (c) => {
     const title = c.req.query("title") || "";
-    const imageUrl = `${c.env?.FRONT_URL}/bg_ogp.jpg`;
+    const imageUrl = `${c.env?.RESOURCE_SERVER_ORIGIN}/bg_ogp.jpg`;
     const svg = await ogpUseCase(title, imageUrl);
     c.status(200);
     c.header("Content-Type", "image/svg+xml");
