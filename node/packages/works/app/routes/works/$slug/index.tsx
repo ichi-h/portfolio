@@ -9,7 +9,6 @@ import {
   UpdateIcon,
 } from "portfolio-ui";
 
-
 import { Title } from "@/components/title";
 import * as styles from "@/styles/worksSlug";
 
@@ -36,7 +35,7 @@ export const loader = async ({ params }: LoaderArgs) => {
   return json(model);
 };
 
-export const meta: MetaFunction<typeof loader> = ({data: {work}}) => ({
+export const meta: MetaFunction<typeof loader> = ({ data: { work } }) => ({
   charset: "utf-8",
   title: `${work.title} - ichi-h.com`,
   viewport: "width=device-width,initial-scale=1",

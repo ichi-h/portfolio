@@ -1,6 +1,5 @@
 import { Text } from "portfolio-ui";
 
-
 import { Layout } from "@/components/layout";
 import { Title } from "@/components/title";
 

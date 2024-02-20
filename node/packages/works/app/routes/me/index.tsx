@@ -1,6 +1,5 @@
 import { Avatar, GitHubIcon, Icon, Link, Text, XIcon } from "portfolio-ui";
 
-
 import me from "@/assets/me_512x512.jpg";
 import { Hr } from "@/components/hr";
 import { Layout } from "@/components/layout";

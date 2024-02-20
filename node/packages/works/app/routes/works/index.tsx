@@ -8,7 +8,6 @@ import { Title } from "@/components/title";
 import { Category } from "@/model/category";
 import * as styles from "@/styles/works";
 
-
 import { init } from "./__hooks/data";
 import { update, useUpdate } from "./__hooks/update";
 
