@@ -4,6 +4,11 @@ compatibility_date = "2022-04-05"
 
 workers_dev = true
 
+[vars]
+APP_URL = "https://ichi-h.com"
+WORKS_SERVER_URL = "https://services.ichi-h.com"
+BFF_SERVER_URL = "https://bff.ichi-h.com"
+
 [site]
 bucket = "./public"
 
