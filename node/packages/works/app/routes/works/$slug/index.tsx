@@ -9,11 +9,14 @@ import {
   UpdateIcon,
 } from "portfolio-ui";
 
+
 import { Title } from "@/components/title";
 import * as styles from "@/styles/worksSlug";
 
 import { init, Message, Model } from "./__hooks/data";
 import { update } from "./__hooks/update";
+
+import type { MetaFunction } from "@remix-run/cloudflare";
 
 export const loader = async ({ params }: LoaderArgs) => {
   const loop = async (model: Model, msg: Message): Promise<Model> => {
@@ -32,6 +35,24 @@ export const loader = async ({ params }: LoaderArgs) => {
 
   return json(model);
 };
+
+export const meta: MetaFunction<typeof loader> = ({data: {work}}) => ({
+  charset: "utf-8",
+  title: `${work.title} - ichi-h.com`,
+  viewport: "width=device-width,initial-scale=1",
+  robots: "index, follow",
+  "og:url": `https://ichi-h.com/works/${work.slug}`,
+  "og:type": "article",
+  "og:title": `${work.title} - ichi-h.com`,
+  "og:image": `${BFF_SERVER_URL}/ogp?title=${work.title}`,
+  "og:site_name": "ichi-h.com",
+  "og:description": work.description,
+  "twitter:title": `${work.title} - ichi-h.com`,
+  "twitter:card": "summary_large_image",
+  "twitter:description": work.description,
+  "twitter:domain": "ichi-h.com",
+  "twitter:site": "@ichi_h3",
+});
 
 export default function Index() {
   const { work } = useLoaderData<typeof loader>();

@@ -22,8 +22,20 @@ import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "ichi-h.com",
   viewport: "width=device-width,initial-scale=1",
+  robots: "index, follow",
+  "og:url": "https://ichi-h.com",
+  "og:type": "website",
+  "og:title": "ichi-h.com",
+  "og:image": "https://static.ichi-h.com/bg_ogp.jpg",
+  "og:site_name": "ichi-h.com",
+  "og:description": "To live is to think and create.",
+  "twitter:title": "ichi-h.com",
+  "twitter:card": "summary_large_image",
+  "twitter:description": "To live is to think and create.",
+  "twitter:domain": "ichi-h.com",
+  "twitter:site": "@ichi_h3",
 });
 
 export const links: LinksFunction = () => [

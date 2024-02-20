@@ -8,8 +8,11 @@ import { Title } from "@/components/title";
 import { Category } from "@/model/category";
 import * as styles from "@/styles/works";
 
+
 import { init } from "./__hooks/data";
 import { update, useUpdate } from "./__hooks/update";
+
+import type { MetaFunction } from "@remix-run/cloudflare";
 
 export const loader = async ({ request }: LoaderArgs) => {
   const { searchParams } = new URL(request.url);
@@ -30,6 +33,24 @@ export const loader = async ({ request }: LoaderArgs) => {
     init: newModel,
   });
 };
+
+export const meta: MetaFunction = () => ({
+  charset: "utf-8",
+  title: "Works - ichi-h.com",
+  viewport: "width=device-width,initial-scale=1",
+  robots: "index, follow",
+  "og:url": "https://ichi-h.com/works",
+  "og:type": "article",
+  "og:title": "Works - ichi-h.com",
+  "og:image": "https://static.ichi-h.com/bg_ogp.jpg",
+  "og:site_name": "ichi-h.com",
+  "og:description": "To live is to think and create.",
+  "twitter:title": "Works - ichi-h.com",
+  "twitter:card": "summary_large_image",
+  "twitter:description": "To live is to think and create.",
+  "twitter:domain": "ichi-h.com",
+  "twitter:site": "@ichi_h3",
+});
 
 export default function Index() {
   const { init } = useLoaderData<typeof loader>();
