@@ -81,7 +81,7 @@ export const ogpUseCase = async (title: string, imageUrl: string) => {
             alignItems: "center",
             width: "100%",
             height: "100%",
-            backgroundImage: `url(${imageBase64})`,
+            backgroundImage: `url(data:image/jpeg;base64,${imageBase64})`,
           },
         },
       },
