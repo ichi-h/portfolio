@@ -24,9 +24,14 @@ export const customFetch = async <T, E = any>(
   const response = await fetch(_input, init);
 
   if (!response.ok) {
-    return error(
-      new APIError(response.statusText, await response.json(), response.status),
-    );
+    const body = await (async () => {
+      try {
+        return (await response.json()) as E;
+      } catch (e) {
+        return {} as E;
+      }
+    })();
+    return error(new APIError(response.statusText, body, response.status));
   }
 
   return ok((await response[init?.resolver || "json"]()) as T);
