@@ -59,25 +59,20 @@ pnpm install --frozen-lockfile --prefix node
 
 cd schemas
 ./codegen.sh {project-name} {language}
-
-aws configure
-aws ecr get-login-password --region ap-northeast-1 | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com
-```
-
-## build
-
-```bash
-# server
-./push-ecr.sh
-
-# client
-cd node
-pnpm build
 ```
 
 ## deploy
 
 ```bash
+# in build server
+./login.sh
+./push-ecr.sh
+
+# client
+cd node
+pnpm build
+
 # in production server
+./login.sh
 ./deploy.sh
 ```
