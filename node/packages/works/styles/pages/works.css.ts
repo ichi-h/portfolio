@@ -25,9 +25,10 @@ import {
 
 export const layout = style([flex, flexDirection["column"], gap[4]]);
 
+export const searchMenu = style([flex, flexJustify["center"]]);
+
 export const radioGroup = style([
   flex,
-  flexJustify["center"],
   flexWrap["wrap"],
   gap[4],
   applyMedia({ max: "480" }, flattenStyle([gap[2]])),

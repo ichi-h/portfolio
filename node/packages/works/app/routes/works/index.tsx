@@ -66,39 +66,41 @@ export default function Index() {
   return (
     <div className={styles.layout}>
       <Title>Works</Title>
-      <div className={styles.radioGroup}>
-        <Radio
-          name="category"
-          onChange={checked("development")}
-          value="development"
-          defaultChecked={model.category === "development"}
-        >
-          <Text className={styles.radioLabel}>Development</Text>
-        </Radio>
-        <Radio
-          name="category"
-          onChange={checked("music")}
-          value="music"
-          defaultChecked={model.category === "music"}
-        >
-          <Text className={styles.radioLabel}>Music</Text>
-        </Radio>
-        <Radio
-          name="category"
-          onChange={checked("photograph")}
-          value="photograph"
-          defaultChecked={model.category === "photograph"}
-        >
-          <Text className={styles.radioLabel}>Photograph</Text>
-        </Radio>
-        <Radio
-          name="category"
-          onChange={checked("philosophy")}
-          value="philosophy"
-          defaultChecked={model.category === "philosophy"}
-        >
-          <Text className={styles.radioLabel}>Philosophy</Text>
-        </Radio>
+      <div className={styles.searchMenu}>
+        <div className={styles.radioGroup}>
+          <Radio
+            name="category"
+            onChange={checked("development")}
+            value="development"
+            defaultChecked={model.category === "development"}
+          >
+            <Text className={styles.radioLabel}>Development</Text>
+          </Radio>
+          <Radio
+            name="category"
+            onChange={checked("music")}
+            value="music"
+            defaultChecked={model.category === "music"}
+          >
+            <Text className={styles.radioLabel}>Music</Text>
+          </Radio>
+          <Radio
+            name="category"
+            onChange={checked("photograph")}
+            value="photograph"
+            defaultChecked={model.category === "photograph"}
+          >
+            <Text className={styles.radioLabel}>Photograph</Text>
+          </Radio>
+          <Radio
+            name="category"
+            onChange={checked("philosophy")}
+            value="philosophy"
+            defaultChecked={model.category === "philosophy"}
+          >
+            <Text className={styles.radioLabel}>Philosophy</Text>
+          </Radio>
+        </div>
       </div>
       <Hr />
       {model.worksLoader === "loading" && (
