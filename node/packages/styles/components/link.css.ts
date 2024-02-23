@@ -7,7 +7,7 @@ export const linkHoverRule = flattenStyle([textDecoration["underline"]]);
 
 export const fontColor = styleVariants(fontColorRule);
 
-export const defaultFontColor = "blue.500";
+export const defaultFontColor = "blue.600";
 
 export const linkRule = styleRule(
   flattenStyle([
