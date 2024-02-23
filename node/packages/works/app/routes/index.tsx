@@ -1,7 +1,7 @@
 import { Link as _Link } from "@remix-run/react";
 import { Headline, Link, Text, Avatar } from "portfolio-ui";
 
-import me from "@/assets/me_512x512.jpg";
+import me from "@/assets/me_512x512.webp";
 import { Footer } from "@/components/footer";
 import { outer, headline, links, link, footer, avatar } from "@/styles/home";
 

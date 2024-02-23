@@ -13,7 +13,7 @@ export const meta: MetaFunction = () => ({
   "og:url": `https://ichi-h.com/contact`,
   "og:type": "article",
   "og:title": `Contact - ichi-h.com`,
-  "og:image": "https://static.ichi-h.com/bg_ogp.jpg",
+  "og:image": `${APP_URL}/top_ogp.webp`,
   "og:site_name": "ichi-h.com",
   "og:description": "To live is to think and create.",
   "twitter:title": `Contact - ichi-h.com`,

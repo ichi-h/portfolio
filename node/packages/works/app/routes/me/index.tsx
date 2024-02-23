@@ -1,6 +1,6 @@
 import { Avatar, GitHubIcon, Icon, Link, Text, XIcon } from "portfolio-ui";
 
-import me from "@/assets/me_512x512.jpg";
+import me from "@/assets/me_512x512.webp";
 import { Hr } from "@/components/hr";
 import { Layout } from "@/components/layout";
 import { Title } from "@/components/title";
@@ -16,7 +16,7 @@ export const meta: MetaFunction = () => ({
   "og:url": `https://ichi-h.com/me`,
   "og:type": "article",
   "og:title": `Me - ichi-h.com`,
-  "og:image": "https://static.ichi-h.com/bg_ogp.jpg",
+  "og:image": `${APP_URL}/top_ogp.webp`,
   "og:site_name": "ichi-h.com",
   "og:description": "To live is to think and create.",
   "twitter:title": `Me - ichi-h.com`,
