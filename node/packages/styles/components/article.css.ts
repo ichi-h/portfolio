@@ -23,6 +23,7 @@ import {
   textDecoration,
   fontSize,
   maxW,
+  borderRadius,
 } from "../styles";
 
 import { headlineRule } from "./headline.css";
@@ -79,6 +80,22 @@ globalStyle(
     borderStyle["solid"],
     border[0],
     borderL[8],
+    borderRadius[1],
+    p[3],
+    m[0],
+    dropShadow["md"],
+  ]),
+);
+
+globalStyle(
+  `${article} code`,
+  flattenStyle([
+    {
+      display: "block",
+    },
+    bg["mono.800"],
+    fontColor["mono.50"],
+    borderRadius[1],
     p[3],
     m[0],
     dropShadow["md"],
