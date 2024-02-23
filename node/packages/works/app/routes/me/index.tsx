@@ -32,10 +32,10 @@ export default function Index() {
       <div className={styles.layout}>
         <Title>About me</Title>
         <Avatar className={styles.avatar} src={me} size={64} />
-        <Text fontSize="12" color="mono.900">
+        <Text className={styles.name} color="mono.900">
           ichi-h
         </Text>
-        <Text fontSize="6" color="mono.900">
+        <Text className={styles.subtext} color="mono.900">
           考えること。作ること。
         </Text>
         <div className={styles.snsLinks}>
@@ -44,14 +44,14 @@ export default function Index() {
             href="https://github.com/ichi-h"
             openInNewTab
           >
-            <Icon icon={GitHubIcon} size={12} />
+            <Icon className={styles.snsIcon} icon={GitHubIcon} />
           </Link>
           <Link
             className={styles.snsLink}
             href="https://twitter.com/ichi_h3"
             openInNewTab
           >
-            <Icon icon={XIcon} size={12} />
+            <Icon className={styles.snsIcon} icon={XIcon} />
           </Link>
         </div>
         <Hr />
