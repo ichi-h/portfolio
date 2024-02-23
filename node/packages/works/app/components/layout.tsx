@@ -25,7 +25,7 @@ export const Layout: FC<Props> = ({ children }) => (
       >
         <div className={layoutContentStyle}>{children}</div>
       </Background>
-      <Footer />
+      <Footer useCC={true} />
     </div>
   </div>
 );
