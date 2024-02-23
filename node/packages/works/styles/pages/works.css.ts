@@ -68,6 +68,7 @@ export const cardThumbnail = style([
   h["auto"],
   {
     objectFit: "cover",
+    aspectRatio: "1200 / 630",
   },
 ]);
 
