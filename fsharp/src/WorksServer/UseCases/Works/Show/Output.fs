@@ -1,7 +1,5 @@
 module WorksServer.UseCases.Works.Show.Output
 
-open WorksServer.Entities.Work
-
 type SummarizedWork =
     { slug: string
       category: string
