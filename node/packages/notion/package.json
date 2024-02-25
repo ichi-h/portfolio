@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/index.ts --port 8901",
+    "deploy": "wrangler deploy --minify src/index.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240208.0",
+    "wrangler": "^3.25.0"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.14",
+    "notion-to-md": "^3.1.1"
+  }
+}
