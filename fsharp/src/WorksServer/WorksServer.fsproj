@@ -17,12 +17,17 @@
     <Compile Include="UseCases/Works/Slug/Output.fs" />
     <Compile Include="UseCases/Works/Slug/Input.fs" />
     <Compile Include="UseCases/Works/Slug/Interactor.fs" />
+    <Compile Include="UseCases/Works/Redeploy/Output.fs" />
+    <Compile Include="UseCases/Works/Redeploy/Input.fs" />
+    <Compile Include="UseCases/Works/Redeploy/Interactor.fs" />
     <Compile Include="Gateway/Database/Base.fs" />
     <Compile Include="Gateway/Database/Records/Work.fs" />
     <Compile Include="Gateway/Database/Parsers/Work.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Show.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Slug.fs" />
+    <Compile Include="Gateway/Database/Queries/Works/UpdateOrCreate.fs" />
+    <Compile Include="Gateway/API/Notion/Index.fs" />
     <Compile Include="Controllers/Validations.fs" />
     <Compile Include="Controllers/Works.fs" />
     <Compile Include="Routes.fs" />

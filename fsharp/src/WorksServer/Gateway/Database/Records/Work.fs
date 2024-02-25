@@ -11,5 +11,5 @@ type WorkRecord =
       body: string
       created_at: DateTime
       updated_at: DateTime
-      published_at: DateTime
-      unpublished_at: DateTime }
+      published_at: DateTime Nullable
+      unpublished_at: DateTime Nullable }

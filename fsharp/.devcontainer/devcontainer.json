@@ -35,7 +35,8 @@
 				"oderwat.indent-rainbow",
 				"ms-dotnettools.csharp",
 				"ms-dotnettools.csdevkit",
-				"paolodellepiane.fantomas-fmt"
+				"paolodellepiane.fantomas-fmt",
+				"redhat.vscode-xml"
 			]
 		}
 	}

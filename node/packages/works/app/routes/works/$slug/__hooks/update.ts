@@ -21,9 +21,9 @@ const parse = async (markdown: string) => {
   const mdToHtml = async (md: string) =>
     (await remark().use(html).process(md)).toString();
   const docs = await mdToHtml(markdown);
-  return docs.replace(/{{([^}]+)}}/g, (value) => {
+  return docs.replace(/{{%([^}]+)%}}/g, (value) => {
     const template = JSON.parse(
-      value.replace(/{{([^}]+)}}/g, "{$1}"),
+      value.replace(/{{%([^}]+)%}}/g, "{$1}"),
     ) as Template;
     if (template.type === "text") {
       const style = template.style.map((s) => `text-${s}`).join(" ");

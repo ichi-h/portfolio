@@ -4,7 +4,7 @@ import { NotionToMarkdown } from "notion-to-md";
 
 const app = new Hono();
 
-app.get("/pages/ids", async (c) => {
+app.get("/pages", async (c) => {
   const secret = c.env?.NOTION_SECRET_KEY;
   const databaseId = c.env?.NOTION_DATABASE_ID;
 
@@ -12,8 +12,25 @@ app.get("/pages/ids", async (c) => {
   const response = await notion.databases.query({
     database_id: `${databaseId}`,
   });
-  const pageIds = response.results.map((page) => page.id);
-  return c.json(pageIds);
+  const results = response.results.map((page: any) => ({
+    id: page.id,
+    updatedAt: page.properties.updatedAt.last_edited_time,
+    description: page.properties.description.rich_text[0].plain_text,
+    category: page.properties.category.select.name,
+    unpublishedAt: page.properties.unpublishedAt.date
+      ? page.properties.unpublishedAt.date.start
+      : null,
+    slug: page.properties.slug.rich_text[0].plain_text,
+    thumbnailUrl: page.properties.thumbnailUrl.rich_text[0]
+      ? page.properties.thumbnailUrl.rich_text[0].plain_text
+      : "",
+    publishedAt: page.properties.publishedAt.date
+      ? page.properties.publishedAt.date.start
+      : null,
+    createdAt: page.properties.createdAt.created_time,
+    title: page.properties.title.title[0].plain_text,
+  }));
+  return c.json(results);
 });
 
 app.get("/blocks/:pageId", async (c) => {

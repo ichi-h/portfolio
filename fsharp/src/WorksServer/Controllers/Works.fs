@@ -7,6 +7,8 @@ open WorksServer.Controllers
 open WorksServer.Gateway.Database.Queries.Works.Filter
 open WorksServer.Gateway.Database.Queries.Works.Show
 open WorksServer.Gateway.Database.Queries.Works.Slug
+open WorksServer.Gateway.Database.Queries.Works.UpdateOrCreate
+open WorksServer.Gateway.API.Notion.Index
 open WorksServer.UseCases.Works
 open WorksServer.UseCases.Works.Filter.Input
 open WorksServer.UseCases.Works.Filter.Interactor
@@ -14,6 +16,8 @@ open WorksServer.UseCases.Works.Show.Input
 open WorksServer.UseCases.Works.Show.Interactor
 open WorksServer.UseCases.Works.Slug.Input
 open WorksServer.UseCases.Works.Slug.Interactor
+open WorksServer.UseCases.Works.Redeploy.Input
+open WorksServer.UseCases.Works.Redeploy.Interactor
 open WorksServer.Values.Category
 open WorksServer.Values.LimitNumber
 open WorksServer.Values.Offset
@@ -106,3 +110,17 @@ let slug (usecase: GetAllWorkSlugsUseCase) _ =
     | Error failure ->
         match failure with
         | Slug.Output.InfrastructureError message -> Results.StatusCode 500
+
+let redeploy (usecase: RedeployWorksUseCase) _ =
+    let outputResult =
+        usecase
+            { fetchAllPageFromCMS = fetchAllPages
+              fetchPageBodyFromCMS = fetchPageBodyById
+              updateOrCreateWork = updateOrCreateWork }
+        |> Async.RunSynchronously
+
+    match outputResult with
+    | Ok success -> Results.Ok success
+    | Error failure ->
+        match failure with
+        | Redeploy.Output.InfrastructureError message -> Results.StatusCode 500

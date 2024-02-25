@@ -23,7 +23,10 @@ let interactor (input: ShowWorkInput) : ShowWorkOutput =
                       description = w.description
                       body = w.body
                       thumbnailUrl = w.description
-                      publishedAt = w.publishedAt.ToString "yyyy-MM-dd"
+                      publishedAt =
+                        w.publishedAt
+                        |> Option.map (fun dt -> dt.ToString "yyyy-MM-dd")
+                        |> Option.defaultValue ""
                       updatedAt = w.updatedAt.ToString "yyyy-MM-dd" }
         | None -> return! Error NotFoundError
     }

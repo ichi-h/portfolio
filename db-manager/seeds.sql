@@ -166,17 +166,17 @@ Iaculis nunc magnis lectus. Nisi ligula parturient quisque magnis sollicitudin s
 
 ##### Headline 5
 
-{{
+{{%
   "type": "text",
   "style": ["center", "gray"],
   "text": "The time to create a Markov Chain model from each of the dummy texts of 100, 500, and 1000 words."
-}}
+%}}
 
 ![image](https://raw.githubusercontent.com/ichi-h/markov_rs/main/imgs/create_model.jpg)
 
 ## YouTube
 
-{{ "type": "youtube", "id": "CvglW3KNSsQ" }}
+{{% "type": "youtube", "id": "CvglW3KNSsQ" %}}
 
 ## Quote
 
@@ -194,17 +194,17 @@ main()
 
 ## Expand
 
-{{ "type": "text", "style": ["bold"], "text": "強調" }}
+{{% "type": "text", "style": ["bold"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "blue"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "blue"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "blue", "3"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "blue", "3"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "red"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "red"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "red", "5"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "red", "5"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "red", "8"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "red", "8"], "text": "強調" %}}
 
-{{ "type": "text", "style": ["bold", "red", "12"], "text": "強調" }}
+{{% "type": "text", "style": ["bold", "red", "12"], "text": "強調" %}}
 ';

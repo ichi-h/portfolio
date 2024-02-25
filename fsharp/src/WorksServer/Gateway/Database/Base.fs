@@ -57,6 +57,12 @@ let runQueryWithParams<'Record>
 
 let execute (sql: string) (param: _) (connection: IDbConnection) =
     try
-        Ok(connection.Execute(sql, param))
+        let expando = ExpandoObject()
+        let expandoDictionary = expando :> IDictionary<string, obj>
+
+        for paramValue in parameterize param do
+            expandoDictionary.Add(paramValue.Key, paramValue.Value)
+
+        Ok(connection.Execute(sql, expando))
     with
     | _ as e -> Error e.Message

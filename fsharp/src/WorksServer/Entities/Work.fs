@@ -12,5 +12,5 @@ type Work =
       thumbnailUrl: string
       createdAt: DateTime
       updatedAt: DateTime
-      publishedAt: DateTime
-      unpublishedAt: DateTime }
+      publishedAt: DateTime option
+      unpublishedAt: DateTime option }
