@@ -78,6 +78,14 @@ export const delay = styleMap({
 });
 
 export const animateZoomOnHover = styleMap({
+  sm: {
+    ":hover": flattenStyle([
+      duration[100],
+      {
+        scale: 1.01,
+      },
+    ]),
+  },
   md: {
     ":hover": flattenStyle([
       duration[100],

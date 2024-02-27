@@ -1,7 +1,10 @@
+import { ReactElement } from "react";
+import { renderToString } from "react-dom/server";
 import { remark } from "remark";
 import html from "remark-html";
 
 import { getWork } from "@/api/works/show";
+import { LinkCard } from "@/components/linkCard";
 import { Update, createUpdate } from "@/utils/elmish";
 
 import { Model, Message } from "./data";
@@ -15,16 +18,21 @@ type Template =
   | {
       type: "youtube";
       id: string;
+    }
+  | {
+      type: "linkCard";
+      href: string;
+      title: string;
+      description: string;
+      thumbnailUrl?: string;
     };
 
 const parse = async (markdown: string) => {
   const mdToHtml = async (md: string) =>
     (await remark().use(html).process(md)).toString();
   const docs = await mdToHtml(markdown);
-  return docs.replace(/{{%([^}]+)%}}/g, (value) => {
-    const template = JSON.parse(
-      value.replace(/{{%([^}]+)%}}/g, "{$1}"),
-    ) as Template;
+
+  const templateToHtml = (template: Template) => {
     if (template.type === "text") {
       const style = template.style.map((s) => `text-${s}`).join(" ");
       if (
@@ -39,8 +47,35 @@ const parse = async (markdown: string) => {
     if (template.type === "youtube") {
       return `<div class="text-center"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${template.id}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen ></iframe></div>`;
     }
-    return value;
-  });
+    if (template.type === "linkCard") {
+      return renderToString(
+        LinkCard({
+          href: template.href,
+          title: template.title,
+          description: template.description,
+          thumbnailUrl: template.thumbnailUrl,
+        }) as ReactElement,
+      );
+    }
+    return "";
+  };
+
+  return docs
+    .replace(/<p>{{%([^%]+)%}}<\/p>/g, (value) => {
+      const template = JSON.parse(
+        value
+          .replace(/<p>/, "")
+          .replace(/<\/p>/, "")
+          .replace(/{{%([^%]+)%}}/g, "{$1}"),
+      ) as Template;
+      return templateToHtml(template);
+    })
+    .replace(/{{%([^%]+)%}}/g, (value) => {
+      const template = JSON.parse(
+        value.replace(/{{%([^%]+)%}}/g, "{$1}"),
+      ) as Template;
+      return templateToHtml(template);
+    });
 };
 
 export const update = (
@@ -85,6 +120,8 @@ export const update = (
         newModel: model,
         cmd: async () => {
           const result = await parse(message.body);
+          console.log(result);
+
           return {
             type: "parseMdToHtmlResult",
             result,

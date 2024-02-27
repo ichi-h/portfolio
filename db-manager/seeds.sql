@@ -192,6 +192,24 @@ def main():
 main()
 ```
 
+## Link card
+
+{{%
+  "type": "linkCard",
+  "href": "https://ichi-h.com",
+  "title": "ichi-h.com",
+  "description": "To live is to think and to create.",
+  "thumbnailUrl": ""
+%}}
+
+{{%
+  "type": "linkCard",
+  "href": "https://ichi-h.com",
+  "title": "ichi-h.com",
+  "description": "To live is to think and to create.",
+  "thumbnailUrl": "https://static.ichi-h.com/bg_ogp.jpg"
+%}}
+
 ## Expand
 
 {{% "type": "text", "style": ["bold"], "text": "強調" %}}
@@ -207,4 +225,5 @@ main()
 {{% "type": "text", "style": ["bold", "red", "8"], "text": "強調" %}}
 
 {{% "type": "text", "style": ["bold", "red", "12"], "text": "強調" %}}
+
 ';
