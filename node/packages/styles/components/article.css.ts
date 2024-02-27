@@ -25,6 +25,7 @@ import {
   maxW,
   borderRadius,
   mt,
+  px,
 } from "../styles";
 
 import { headlineRule } from "./headline.css";
@@ -34,7 +35,7 @@ import { paragraphRule } from "./paragraph.css";
 export const article = style([
   flex,
   flexDirection["column"],
-  gap[2],
+  gap[4],
   w["1/1"],
   fontSize[4],
   fontColor["mono.900"],
@@ -76,6 +77,9 @@ globalStyle(`${article} a:hover`, linkHoverRule);
 globalStyle(
   `${article} blockquote`,
   flattenStyle([
+    flex,
+    flexDirection["column"],
+    gap[2],
     bg["mono.50"],
     borderColor["mono.300"],
     borderStyle["solid"],
@@ -90,6 +94,11 @@ globalStyle(
 
 globalStyle(
   `${article} code`,
+  flattenStyle([bg["mono.800"], fontColor["mono.50"], borderRadius[1], px[1]]),
+);
+
+globalStyle(
+  `${article} pre code`,
   flattenStyle([
     {
       display: "block",

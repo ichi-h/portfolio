@@ -40,7 +40,27 @@ app.get("/blocks/:pageId", async (c) => {
   const n2m = new NotionToMarkdown({ notionClient: notion });
 
   const mdBlocks = await n2m.pageToMarkdown(pageId);
-  const mdString = n2m.toMarkdownString(mdBlocks).parent;
+  const mdString = n2m
+    .toMarkdownString(
+      mdBlocks.map((b) => {
+        if (b.type === "quote") {
+          return {
+            ...b,
+            parent: `${b.parent}\n>\n${b.children
+              .map((c) => {
+                if (c.type === "bulleted_list_item") {
+                  return `> ${c.parent}  `;
+                }
+                return `> ${c.parent}  \n>`;
+              })
+              .join("\n")}`,
+            children: [],
+          };
+        }
+        return b;
+      }),
+    )
+    .parent.replaceAll("	>", ">");
   return c.json({ text: mdString });
 });
 

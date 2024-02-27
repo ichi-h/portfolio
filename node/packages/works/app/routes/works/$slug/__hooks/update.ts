@@ -120,8 +120,6 @@ export const update = (
         newModel: model,
         cmd: async () => {
           const result = await parse(message.body);
-          console.log(result);
-
           return {
             type: "parseMdToHtmlResult",
             result,
