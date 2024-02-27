@@ -24,6 +24,7 @@ import {
   fontSize,
   maxW,
   borderRadius,
+  mt,
 } from "../styles";
 
 import { headlineRule } from "./headline.css";
@@ -33,7 +34,7 @@ import { paragraphRule } from "./paragraph.css";
 export const article = style([
   flex,
   flexDirection["column"],
-  gap[5],
+  gap[2],
   w["1/1"],
   fontSize[4],
   fontColor["mono.900"],
@@ -44,11 +45,11 @@ globalStyle(`${article} *`, m[0]);
 globalStyle(`${article} p`, paragraphRule);
 
 globalStyle(`${article} h1`, headlineRule[1]);
-globalStyle(`${article} h2`, headlineRule[2]);
-globalStyle(`${article} h3`, headlineRule[3]);
-globalStyle(`${article} h4`, headlineRule[4]);
-globalStyle(`${article} h5`, headlineRule[5]);
-globalStyle(`${article} h6`, headlineRule[6]);
+globalStyle(`${article} h2`, flattenStyle([headlineRule[2], mt[2]]));
+globalStyle(`${article} h3`, flattenStyle([headlineRule[3], mt[2]]));
+globalStyle(`${article} h4`, flattenStyle([headlineRule[4], mt[2]]));
+globalStyle(`${article} h5`, flattenStyle([headlineRule[5], mt[2]]));
+globalStyle(`${article} h6`, flattenStyle([headlineRule[6], mt[2]]));
 
 globalStyle(`${article} ul`, m[0]);
 
