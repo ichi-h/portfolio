@@ -4,6 +4,7 @@ import { COLOR } from "portfolio-styles/constants";
 
 import {
   GitHubIcon,
+  OpenInNewIcon,
   PageIcon,
   PublishIcon,
   SearchIcon,
@@ -14,6 +15,7 @@ import {
 
 const icons = {
   GitHubIcon,
+  OpenInNewIcon,
   PageIcon,
   PublishIcon,
   SearchIcon,
