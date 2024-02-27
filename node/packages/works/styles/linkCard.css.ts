@@ -52,6 +52,7 @@ export const linkCardStyles = {
     maxW["3/4"],
     applyMedia({ max: "1280" }, flattenStyle([maxW["1/1"]])),
   ]),
+  title: style([flex, gap[1]]),
   unstyledAnchor: style([
     {
       textDecoration: "none !important",

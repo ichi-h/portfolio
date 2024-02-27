@@ -1,4 +1,4 @@
-import { Paragraph, Text } from "portfolio-ui";
+import { Icon, OpenInNewIcon, Paragraph, Text } from "portfolio-ui";
 import { FC } from "react";
 
 import { linkCardStyles } from "@/styles";
@@ -27,9 +27,12 @@ export const LinkCard: FC<Props> = ({
         <div className={linkCardStyles.layout}>
           <div className={linkCardStyles.content}>
             <Paragraph textOverflow="ellipsis" overflow="hidden" lineClamp={2}>
-              <Text fontSize="5" weight="bold">
-                {title}
-              </Text>
+              <div className={linkCardStyles.title}>
+                <Text fontSize="5" weight="bold">
+                  {title}
+                </Text>
+                <Icon icon={OpenInNewIcon} />
+              </div>
             </Paragraph>
             <Paragraph textOverflow="ellipsis" overflow="hidden" lineClamp={2}>
               <Text fontSize="4">{description}</Text>
