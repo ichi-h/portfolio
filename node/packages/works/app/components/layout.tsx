@@ -6,7 +6,7 @@ import {
   layoutStyle,
   layoutBgStyle,
   layoutContentStyle,
-} from "@/styles";
+} from "@/styles/root.css";
 
 import { Footer } from "./footer";
 import { Nav } from "./nav";

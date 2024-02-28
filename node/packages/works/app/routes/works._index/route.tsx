@@ -1,4 +1,4 @@
-import { json, LoaderArgs } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
 import { useLoaderData, useNavigate, Link as _Link } from "@remix-run/react";
 import { Paragraph, Radio, Text, Link, Icon, UpdateIcon } from "portfolio-ui";
 import { useState } from "react";
@@ -6,14 +6,15 @@ import { useState } from "react";
 import { Hr } from "@/components/hr";
 import { Title } from "@/components/title";
 import { Category } from "@/model/category";
-import * as styles from "@/styles/works";
+import * as styles from "@/styles/pages/works.css";
+import { useEnv } from "@/utils/env";
 
-import { init } from "./__hooks/data";
-import { update, useUpdate } from "./__hooks/update";
+import { init } from "./hooks/data";
+import { update, useUpdate } from "./hooks/update";
 
-import type { MetaFunction } from "@remix-run/cloudflare";
+import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 
-export const loader = async ({ request }: LoaderArgs) => {
+export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
   const category = (searchParams.get("category") ?? null) as Category | null;
   const { newModel: tmpModel, cmd } = update(init, {
@@ -30,26 +31,65 @@ export const loader = async ({ request }: LoaderArgs) => {
   const { newModel } = update(tmpModel, next);
   return json({
     init: newModel,
+    env: context.env as Env,
   });
 };
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Works - ichi-h.com",
-  viewport: "width=device-width,initial-scale=1",
-  robots: "index, follow",
-  "og:url": "https://ichi-h.com/works",
-  "og:type": "article",
-  "og:title": "Works - ichi-h.com",
-  "og:image": `${APP_URL}/top_ogp.webp`,
-  "og:site_name": "ichi-h.com",
-  "og:description": "To live is to think and create.",
-  "twitter:title": "Works - ichi-h.com",
-  "twitter:card": "summary_large_image",
-  "twitter:description": "To live is to think and create.",
-  "twitter:domain": "ichi-h.com",
-  "twitter:site": "@ichi_h3",
-});
+export const meta: MetaFunction<typeof loader> = ({}) => [
+  { title: "Works - ichi-h.com", charSet: "utf-8" },
+  {
+    name: "viewport",
+    content: "width=device-width,initial-scale=1",
+  },
+  {
+    name: "robots",
+    content: "index, follow",
+  },
+  {
+    property: "og:url",
+    content: "https://ichi-h.com/works",
+  },
+  {
+    property: "og:type",
+    content: "article",
+  },
+  {
+    property: "og:title",
+    content: "Works - ichi-h.com",
+  },
+  {
+    property: "og:image",
+    content: `${useEnv().APP_URL}/top_ogp.webp`,
+  },
+  {
+    property: "og:site_name",
+    content: "ichi-h.com",
+  },
+  {
+    property: "og:description",
+    content: "To live is to think and create.",
+  },
+  {
+    name: "twitter:title",
+    content: "Works - ichi-h.com",
+  },
+  {
+    name: "twitter:card",
+    content: "summary_large_image",
+  },
+  {
+    name: "twitter:description",
+    content: "To live is to think and create.",
+  },
+  {
+    name: "twitter:domain",
+    content: "ichi-h.com",
+  },
+  {
+    name: "twitter:site",
+    content: "@ichi_h3",
+  },
+];
 
 export default function Index() {
   const { init } = useLoaderData<typeof loader>();
@@ -130,7 +170,7 @@ export default function Index() {
                     className={styles.cardThumbnail}
                     src={
                       work.thumbnailUrl ||
-                      `${BFF_SERVER_URL}/ogp?title=${work.title}`
+                      `${useEnv().BFF_SERVER_URL}/ogp?title=${work.title}`
                     }
                     alt={work.title}
                   />

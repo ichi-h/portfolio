@@ -1,37 +1,19 @@
-import path from "path";
-
+import {
+  vitePlugin as remix,
+  cloudflareDevProxyVitePlugin as remixCloudflareDevProxy,
+} from "@remix-run/dev";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import { defineConfig } from "vite";
-import Dts from "vite-plugin-dts";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    Dts({
-      entryRoot: path.resolve(__dirname, "./styles"),
-    }),
+    remixCloudflareDevProxy(),
+    remix(),
+    tsconfigPaths(),
     vanillaExtractPlugin(),
   ],
-  publicDir: false,
-  build: {
-    lib: {
-      entry: [
-        path.resolve(__dirname, "./styles/index.ts"),
-        path.resolve(__dirname, "./styles/pages/home.ts"),
-        path.resolve(__dirname, "./styles/pages/works.ts"),
-        path.resolve(__dirname, "./styles/pages/worksSlug.ts"),
-        path.resolve(__dirname, "./styles/pages/me.css.ts"),
-      ],
-      name: "portfolio-styles",
-      fileName: (_, entryName) => `${entryName}.js`,
-      formats: ["es"],
-    },
-    outDir: path.resolve(__dirname, "./app/styles"),
-    copyPublicDir: false,
-    rollupOptions: {
-      external: [
-        path.resolve(__dirname, "./build"),
-        path.resolve(__dirname, "./public"),
-      ],
-    },
-  },
+  server: {
+    port: 8787,
+  }
 });

@@ -1,6 +1,6 @@
 import { Link, Text } from "portfolio-ui";
 
-import { footerStyle } from "@/styles";
+import { footerStyle } from "@/styles/root.css";
 
 type Props = {
   useCC?: boolean;

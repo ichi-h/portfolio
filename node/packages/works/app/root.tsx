@@ -9,39 +9,20 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import uiStyles from "portfolio-ui/style.css";
+// import uiStyles from "portfolio-ui/style.css?url";
+import "portfolio-ui/style.css";
 
 import { Env } from "@/libs/remix-env";
-import { htmlStyle, bodyStyle } from "@/styles";
-import styles from "@/styles/style.css";
+import { htmlStyle, bodyStyle } from "@/styles/root.css";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
 
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "ichi-h.com",
-  viewport: "width=device-width,initial-scale=1",
-  robots: "index, follow",
-  "og:url": "https://ichi-h.com",
-  "og:type": "website",
-  "og:title": "ichi-h.com",
-  "og:image": `${APP_URL}/top_ogp.webp`,
-  "og:site_name": "ichi-h.com",
-  "og:description": "To live is to think and create.",
-  "twitter:title": "ichi-h.com",
-  "twitter:card": "summary_large_image",
-  "twitter:description": "To live is to think and create.",
-  "twitter:domain": "ichi-h.com",
-  "twitter:site": "@ichi_h3",
-});
-
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  { rel: "stylesheet", href: uiStyles },
-  { rel: "stylesheet", href: styles },
+  // { rel: "stylesheet", href: uiStyles },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com" },
   {
@@ -53,6 +34,64 @@ export const links: LinksFunction = () => [
 export const loader = () => {
   const env = useEnv();
   return json({ env });
+};
+
+export const meta: MetaFunction<typeof loader> = ({}) => {
+  return [
+    { title: "ichi-h.com", charSet: "utf-8" },
+    {
+      name: "viewport",
+      content: "width=device-width,initial-scale=1",
+    },
+    {
+      name: "robots",
+      content: "index, follow",
+    },
+    {
+      property: "og:url",
+      content: "https://ichi-h.com",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+    {
+      property: "og:title",
+      content: "ichi-h.com",
+    },
+    {
+      property: "og:image",
+      content: `${useEnv().APP_URL}/top_ogp.webp`,
+    },
+    {
+      property: "og:site_name",
+      content: "ichi-h.com",
+    },
+    {
+      property: "og:description",
+      content: "To live is to think and create.",
+    },
+    {
+      name: "twitter:title",
+      content: "ichi-h.com",
+    },
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:description",
+      content: "To live is to think and create.",
+    },
+    {
+      name: "twitter:domain",
+      content: "ichi-h.com",
+    },
+    {
+      name: "twitter:site",
+      content: "@ichi_h3",
+    },
+  ];
 };
 
 export default function App() {

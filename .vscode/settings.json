@@ -1,7 +1,7 @@
 {
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": "./node/.prettierrc",
   "eslint.workingDirectories": [
-    "."
+    "./node"
   ],
   "editor.renderWhitespace": "all",
   "editor.formatOnPaste": true,
@@ -17,5 +17,8 @@
     "proto",
     "protoc"
   ],
-  "FSharp.suggestGitignore": false
+  "FSharp.suggestGitignore": false,
+  "prettier.ignorePath": "./node/.prettierignore",
+  "prettier.prettierPath": "./node/node_modules/prettier",
+  "eslint.lintTask.options": "./node"
 }
