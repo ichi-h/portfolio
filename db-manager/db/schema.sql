@@ -22,8 +22,21 @@ CREATE TABLE works (
   published_at datetime default null,
   unpublished_at datetime default null
 );
+CREATE TABLE languages (
+  name TEXT NOT NULL PRIMARY KEY
+);
+CREATE TABLE work_language_relations (
+  id TEXT NOT NULL PRIMARY KEY,
+  language_name TEXT NOT NULL,
+  work_slug TEXT NOT NULL,
+  UNIQUE (`language_name`, `work_slug`),
+  FOREIGN KEY (`language_name`) REFERENCES `languages` (`name`) ON DELETE CASCADE,
+  FOREIGN KEY (`work_slug`) REFERENCES `works` (`slug`) ON DELETE CASCADE
+);
 -- Dbmate schema migrations
 INSERT INTO "schema_migrations" (version) VALUES
   ('20230503071428'),
   ('20230503071637'),
-  ('20230503071751');
+  ('20230503071751'),
+  ('20240303065846'),
+  ('20240303070338');
