@@ -9,7 +9,6 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-// import uiStyles from "portfolio-ui/style.css?url";
 import "portfolio-ui/style.css";
 
 import { Env } from "@/libs/remix-env";
@@ -22,7 +21,6 @@ import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
-  // { rel: "stylesheet", href: uiStyles },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   { rel: "preconnect", href: "https://fonts.gstatic.com" },
   {
