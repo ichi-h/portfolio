@@ -38,11 +38,7 @@ export const loader = () => {
 
 export const meta: MetaFunction<typeof loader> = ({}) => {
   return [
-    { title: "ichi-h.com", charSet: "utf-8" },
-    {
-      name: "viewport",
-      content: "width=device-width,initial-scale=1",
-    },
+    { title: "ichi-h.com" },
     {
       name: "robots",
       content: "index, follow",
@@ -100,6 +96,8 @@ export default function App() {
   return (
     <html className={htmlStyle} lang="ja">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
