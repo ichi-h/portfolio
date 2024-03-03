@@ -23,6 +23,7 @@ let interactor (input: ShowWorkInput) : ShowWorkOutput =
                       description = w.description
                       body = w.body
                       thumbnailUrl = w.description
+                      languages = w.languages |> List.map (fun l -> l.name)
                       publishedAt =
                         w.publishedAt
                         |> Option.map (fun dt -> dt.ToString "yyyy-MM-dd")

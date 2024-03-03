@@ -9,6 +9,7 @@ type Page =
       title: string
       description: string
       thumbnailUrl: string
+      languages: string list
       publishedAt: string option
       unpublishedAt: string option
       createdAt: string

@@ -7,6 +7,6 @@ let getAllWorkSlugs =
     let sql = "SELECT slug FROM works"
 
     result {
-        let! records = connectDB |> runQuery<string> sql
+        let! records = connectDB () |> runQuery<string> sql
         return! Ok records
     }

@@ -7,6 +7,7 @@
     <Compile Include="Values/Category.fs" />
     <Compile Include="Values/LimitNumber.fs" />
     <Compile Include="Values/Offset.fs" />
+    <Compile Include="Entities/Language.fs" />
     <Compile Include="Entities/Work.fs" />
     <Compile Include="UseCases/Works/Filter/Output.fs" />
     <Compile Include="UseCases/Works/Filter/Input.fs" />
@@ -21,8 +22,9 @@
     <Compile Include="UseCases/Works/Redeploy/Input.fs" />
     <Compile Include="UseCases/Works/Redeploy/Interactor.fs" />
     <Compile Include="Gateway/Database/Base.fs" />
+    <Compile Include="Gateway/Database/Records/Language.fs" />
+    <Compile Include="Gateway/Database/Records/WorkLanguageRelation.fs" />
     <Compile Include="Gateway/Database/Records/Work.fs" />
-    <Compile Include="Gateway/Database/Parsers/Work.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Filter.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Show.fs" />
     <Compile Include="Gateway/Database/Queries/Works/Slug.fs" />

@@ -6,7 +6,7 @@ open System.Data
 open System.Dynamic
 open Dapper
 
-let connectDB =
+let connectDB () =
     let connectionString =
         @"Data Source=/db/portfolio.sqlite3;Version=3;foreign keys=true"
 

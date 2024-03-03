@@ -7,6 +7,7 @@ type SummarizedWork =
       description: string
       body: string
       thumbnailUrl: string
+      languages: string list
       publishedAt: string
       updatedAt: string }
 

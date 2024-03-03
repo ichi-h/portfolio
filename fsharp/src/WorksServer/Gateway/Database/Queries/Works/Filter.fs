@@ -2,13 +2,10 @@ module WorksServer.Gateway.Database.Queries.Works.Filter
 
 open FsToolkit.ErrorHandling
 open WorksServer.Gateway.Database.Base
-open WorksServer.Gateway.Database.Parsers.Work
 open WorksServer.Gateway.Database.Records.Work
 open WorksServer.Values.Category
 open WorksServer.Values.LimitNumber
 open WorksServer.Values.Offset
-
-let private selectFrom = @"SELECT * FROM works"
 
 let private whereTitle = @"title LIKE @search"
 
@@ -30,7 +27,7 @@ let private offsetBy = @"OFFSET @offset"
 
 let filterWorks (search: Option<string>) (category: Option<Category>) (offset: Offset) (limit: LimitNumber<int>) =
     let sql =
-        joinQueries [ selectFrom
+        joinQueries [ baseSelect
                       "WHERE"
                       Option.isSome search ?= ("(", "")
                       Option.isSome search ?= (whereTitle, "")
@@ -63,9 +60,7 @@ let filterWorks (search: Option<string>) (category: Option<Category>) (offset: O
           ("limit", string limit) ]
 
     result {
-        let! records =
-            connectDB
-            |> runQueryWithParams<WorkRecord> sql queryParams
+        let! records = connectDB () |> runQueryWithParams sql queryParams
 
-        return! records |> Seq.map workRecordToEntity |> Ok
+        return! workRecordToEntity records |> Ok
     }
