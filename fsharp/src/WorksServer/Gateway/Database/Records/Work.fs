@@ -37,11 +37,11 @@ type WorkRecordWithRelationRecord =
 let baseSelect =
     @"SELECT w.*, wlr.language_name FROM works w LEFT JOIN work_language_relations wlr ON w.slug = wlr.work_slug"
 
-let rec private uniqueLanguages (records: WorkRecordWithRelationRecord list) (xs: Language list) : Language list =
+let rec private uniqueLanguages (xs: Language list) (records: WorkRecordWithRelationRecord list) : Language list =
     match records with
     | record :: rest ->
         match record.language_name with
-        | null -> uniqueLanguages rest xs
+        | null -> uniqueLanguages xs rest
         | l ->
             let isContained =
                 xs
@@ -49,15 +49,18 @@ let rec private uniqueLanguages (records: WorkRecordWithRelationRecord list) (xs
                 |> List.contains l
 
             if isContained then
-                uniqueLanguages rest xs
+                uniqueLanguages xs rest
             else
-                xs
-                |> List.append [ { name = l } ]
-                |> uniqueLanguages rest
+                let newXs = xs |> List.append [ { name = l } ]
+                uniqueLanguages newXs rest
     | _ -> xs
 
 let workRecordToEntity (records: WorkRecordWithRelationRecord seq) : Work seq =
-    records
+    let uniqueRecords =
+        records
+        |> Seq.distinctBy (fun record -> record.slug)
+
+    uniqueRecords
     |> Seq.map (fun record ->
         { slug = record.slug
           category =
@@ -69,7 +72,11 @@ let workRecordToEntity (records: WorkRecordWithRelationRecord seq) : Work seq =
           thumbnailUrl = record.thumbnail_url
           createdAt = record.created_at
           updatedAt = record.updated_at
-          languages = uniqueLanguages (List.ofSeq records) []
+          languages =
+            records
+            |> Seq.filter (fun r -> r.slug = record.slug)
+            |> List.ofSeq
+            |> uniqueLanguages []
           publishedAt =
             if record.published_at.HasValue then
                 Some record.published_at.Value
