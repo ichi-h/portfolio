@@ -1,3 +1,3 @@
-import { hr } from "@/styles/root.css";
+import { hr } from "./hr.css";
 
 export const Hr = () => <hr className={hr} />;

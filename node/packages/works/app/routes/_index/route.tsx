@@ -3,14 +3,8 @@ import { Headline, Link, Text, Avatar } from "portfolio-ui";
 
 import me from "@/assets/me_512x512.webp";
 import { Footer } from "@/components/footer";
-import {
-  outer,
-  headline,
-  links,
-  link,
-  footer,
-  avatar,
-} from "@/styles/pages/home.css";
+
+import { outer, headline, links, link, footer, avatar } from "./route.css";
 
 export default function Index() {
   return (

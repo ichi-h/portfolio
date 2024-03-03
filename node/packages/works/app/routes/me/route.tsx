@@ -5,8 +5,9 @@ import me from "@/assets/me_512x512.webp";
 import { Hr } from "@/components/hr";
 import { Layout } from "@/components/layout";
 import { Title } from "@/components/title";
-import * as styles from "@/styles/pages/me.css";
 import { useEnv } from "@/utils/env";
+
+import * as styles from "./route.css";
 
 export const meta: MetaFunction = () => [
   { title: "Me - ichi-h.com", charSet: "utf-8" },

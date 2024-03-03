@@ -1,7 +1,7 @@
 import { Headline } from "portfolio-ui";
 import { FC } from "react";
 
-import { title } from "@/styles/root.css";
+import { title } from "./title.css";
 
 type Props = {
   children: React.ReactNode;

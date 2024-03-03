@@ -10,11 +10,11 @@ import {
 } from "portfolio-ui";
 
 import { Title } from "@/components/title";
-import * as styles from "@/styles/pages/worksSlug.css";
 import { useEnv } from "@/utils/env";
 
 import { init, Message, Model } from "./hooks/data";
 import { update } from "./hooks/update";
+import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 

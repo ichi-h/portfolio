@@ -12,10 +12,10 @@ import {
 import "portfolio-ui/style.css";
 
 import { Env } from "@/libs/remix-env";
-import { htmlStyle, bodyStyle } from "@/styles/root.css";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
+import "./styles/global.css";
 
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 
@@ -92,14 +92,14 @@ export default function App() {
   const { env } = useLoaderData<typeof loader>();
 
   return (
-    <html className={htmlStyle} lang="ja">
+    <html lang="ja">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body className={bodyStyle}>
+      <body>
         <Background>
           <Outlet />
         </Background>

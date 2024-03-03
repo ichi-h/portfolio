@@ -6,11 +6,11 @@ import { useState } from "react";
 import { Hr } from "@/components/hr";
 import { Title } from "@/components/title";
 import { Category } from "@/model/category";
-import * as styles from "@/styles/pages/works.css";
 import { useEnv } from "@/utils/env";
 
 import { init } from "./hooks/data";
 import { update, useUpdate } from "./hooks/update";
+import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 

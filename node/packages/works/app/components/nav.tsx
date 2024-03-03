@@ -2,7 +2,7 @@ import { Link as _Link } from "@remix-run/react";
 import { Link } from "portfolio-ui";
 import { ComponentProps, FC } from "react";
 
-import { navStyle, navLinksStyle, navLinkStyle } from "@/styles/root.css";
+import { navStyle, navLinksStyle, navLinkStyle } from "./nav.css";
 
 type Props = Omit<ComponentProps<"nav">, "children">;
 
