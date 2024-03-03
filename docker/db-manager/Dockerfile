@@ -1,6 +1,6 @@
 FROM debian:bookworm-slim as db-dev
 
-WORKDIR /db
+WORKDIR /app
 
 COPY ./db-manager .
 

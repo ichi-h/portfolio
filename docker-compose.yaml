@@ -10,6 +10,7 @@ services:
     env_file: ./db-manager/.env
     volumes:
       - db-manager:/db
+      - ./db-manager:/app
     tty: true
 
   db-client:
