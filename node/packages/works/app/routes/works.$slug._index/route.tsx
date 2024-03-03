@@ -9,6 +9,7 @@ import {
   UpdateIcon,
 } from "portfolio-ui";
 
+import "@/components/linkCard.css";
 import { Title } from "@/components/title";
 import { useEnv } from "@/utils/env";
 
