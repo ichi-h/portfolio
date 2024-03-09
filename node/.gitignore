@@ -29,3 +29,5 @@
 /**/.env.production.local
 
 /index.json
+
+/**/.turbo/

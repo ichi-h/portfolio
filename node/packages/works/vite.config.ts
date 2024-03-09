@@ -15,5 +15,8 @@ export default defineConfig({
   ],
   server: {
     port: 8787,
-  }
+  },
+  build: {
+    minify: "esbuild",
+  },
 });

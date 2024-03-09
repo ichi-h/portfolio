@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "turbo dev",
     "build": "turbo build",
+    "deploy": "turbo deploy",
     "format": "prettier --write . --ignore-path .prettierignore",
     "lint": "eslint . --ignore-path .eslintignore",
     "lintfix": "eslint . --fix --ignore-path .eslintignore"
@@ -33,7 +34,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "prettier": "^3.2.1",
-    "turbo": "^1.12.3",
+    "turbo": "^1.12.5",
     "typescript": "5.3.3",
     "vite": "^5.1.4",
     "vite-plugin-dts": "^2.3.0"
@@ -45,5 +46,8 @@
     "*.{js,ts,.jsx,tsx}": [
       "eslint . --fix --ignore-path .eslintignore"
     ]
+  },
+  "engines": {
+    "node": ">=20.0.0"
   }
 }

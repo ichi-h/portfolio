@@ -2,7 +2,6 @@
   "name": "portfolio-ui",
   "version": "0.1.0",
   "private": true,
-  "pnpm": true,
   "main": "./dist/portfolio-ui.umd.js",
   "module": "./dist/portfolio-ui.es.js",
   "types": "./dist/index.d.ts",

@@ -2,7 +2,6 @@
   "name": "portfolio-mock",
   "version": "0.1.0",
   "private": true,
-  "pnpm": true,
   "scripts": {
     "dev:works-swagger": "cross-env VITE_SERVICE=works PORT=3010 vite",
     "dev:works-mock": "prism mock ../../../schemas/works/openapi.yaml -p 8081"
