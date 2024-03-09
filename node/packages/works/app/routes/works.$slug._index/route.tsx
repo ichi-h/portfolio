@@ -25,7 +25,7 @@ import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 
-export const loader = async ({ params, context }: LoaderFunctionArgs) => {
+export const loader = async ({ params }: LoaderFunctionArgs) => {
   const loop = async (model: Model, msg: Message): Promise<Model> => {
     const { newModel, cmd } = update(model, msg);
     if (!cmd) {
@@ -36,11 +36,11 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   };
 
   if (!params.slug) {
-    return json({ ...init, status: "error", env: context.env as Env });
+    return json({ ...init, status: "error" });
   }
   const model = await loop(init, { type: "getWork", slug: params.slug });
   if (model.status === "error") {
-    return json({ ...init, status: "error", env: context.env as Env });
+    return json({ ...init, status: "error" });
   }
 
   return json(model);
