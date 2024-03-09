@@ -14,6 +14,7 @@ export const init: Model = {
     description: "",
     body: "",
     thumbnailUrl: "",
+    languages: [],
     publishedAt: "",
     updatedAt: "",
   },

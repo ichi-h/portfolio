@@ -15,9 +15,10 @@ import { Env } from "@/components/env";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
-import "./styles/global.css";
 
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
+
+import "./styles/global.css";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),

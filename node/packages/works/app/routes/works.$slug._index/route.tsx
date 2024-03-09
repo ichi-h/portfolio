@@ -1,5 +1,7 @@
 import { json } from "@remix-run/cloudflare";
 import { useLoaderData, useNavigate } from "@remix-run/react";
+import hljs from "highlight.js";
+import mermaid from "mermaid";
 import {
   Article,
   Button,
@@ -8,8 +10,12 @@ import {
   Text,
   UpdateIcon,
 } from "portfolio-ui";
+import { useEffect, useLayoutEffect } from "react";
+
+import "highlight.js/styles/atom-one-dark.min.css";
 
 import "@/components/linkCard.css";
+
 import { Title } from "@/components/title";
 import { useEnv } from "@/utils/env";
 
@@ -37,9 +43,7 @@ export const loader = async ({ params, context }: LoaderFunctionArgs) => {
     return json({ ...init, status: "error", env: context.env as Env });
   }
 
-  return json({
-    ...model,
-  });
+  return json(model);
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => [
@@ -73,6 +77,38 @@ export default function Index() {
   const clickCategory = () => {
     navigate(`/works?category=${work.category}`);
   };
+
+  const languages = work.languages.filter((lang) => lang !== "mermaid");
+  const includeMermaid = work.languages.includes("mermaid");
+
+  useLayoutEffect(() => {
+    if (languages.length > 0) {
+      Promise.all(
+        languages.map(async (lang) => {
+          if (lang === "mermaid") return null;
+          try {
+            return await import(
+              `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/es/languages/${lang}.min.js`
+            );
+          } catch (_) {
+            return null;
+          }
+        }),
+      ).then((res) => {
+        res.forEach((mod) => {
+          if (mod) hljs.registerLanguage(mod.default.name, mod.default);
+        });
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    languages.length > 0 && hljs.highlightAll();
+    includeMermaid && mermaid.initialize({ startOnLoad: true });
+    return () => {
+      includeMermaid && mermaid.init();
+    };
+  }, []);
 
   return (
     <div className={styles.layout}>

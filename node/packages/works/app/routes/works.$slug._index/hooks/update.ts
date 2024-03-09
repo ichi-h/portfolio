@@ -30,7 +30,7 @@ type Template =
 const parse = async (markdown: string) => {
   const mdToHtml = async (md: string) =>
     (await remark().use(html).process(md)).toString();
-  const docs = await mdToHtml(markdown);
+  const docs = (await mdToHtml(markdown)).replace(/~~(.+?)~~/g, "<s>$1</s>");
 
   const templateToHtml = (template: Template) => {
     if (template.type === "text") {
@@ -129,12 +129,22 @@ export const update = (
     }
 
     case "parseMdToHtmlResult": {
+      const body = message.result
+        .replace(
+          /<pre><code class="language-f#">/g,
+          '<pre><code class="language-fsharp">',
+        )
+        .replace(
+          /<pre><code class="language-mermaid">(.*?)<\/code><\/pre>/gs,
+          '<pre class="mermaid">$1</pre>',
+        );
+
       return {
         newModel: {
           ...model,
           work: {
             ...model.work,
-            body: message.result,
+            body,
           },
           status: "ok",
         },

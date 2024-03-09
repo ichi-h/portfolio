@@ -9,6 +9,7 @@ export const workSchema = z.object({
   description: z.string(),
   body: z.string(),
   thumbnailUrl: z.string(),
+  languages: z.array(z.string()),
   publishedAt: z.string().min(1),
   updatedAt: z.string().min(1),
 });
@@ -24,6 +25,7 @@ export const INITIAL_WORK: Work = {
   description: "",
   body: "",
   thumbnailUrl: "",
+  languages: [],
   publishedAt: "",
   updatedAt: "",
 } as const;

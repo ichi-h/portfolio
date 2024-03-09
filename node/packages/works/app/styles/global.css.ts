@@ -5,6 +5,10 @@ globalStyle("*", {
   fontFamily: '"Zen Kaku Gothic New", sans-serif',
 });
 
+globalStyle("code", {
+  fontFamily: "monospace",
+});
+
 globalStyle("html", flattenStyle([bg["mono.900"], m[0]]));
 
 globalStyle("body", m[0]);
