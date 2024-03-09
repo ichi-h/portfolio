@@ -1,6 +1,8 @@
 import { json } from "@remix-run/cloudflare";
+import { LinksFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useNavigate } from "@remix-run/react";
 import hljs from "highlight.js";
+import codeStyle from "highlight.js/styles/base16/snazzy.min.css?url";
 import mermaid from "mermaid";
 import {
   Article,
@@ -12,8 +14,6 @@ import {
 } from "portfolio-ui";
 import { useEffect, useLayoutEffect } from "react";
 
-import "highlight.js/styles/base16/snazzy.min.css";
-
 import "@/components/linkCard.css";
 
 import { Title } from "@/components/title";
@@ -24,6 +24,13 @@ import { update } from "./hooks/update";
 import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
+
+export const links: LinksFunction = () => [
+  {
+    rel: "stylesheet",
+    href: codeStyle,
+  },
+];
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
   const loop = async (model: Model, msg: Message): Promise<Model> => {
@@ -69,6 +76,19 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => [
   { name: "twitter:site", content: "@ichi_h3" },
 ];
 
+const extractLanguage = (markdown: string) => {
+  const codeBlocks = markdown.match(/<code class="language-[^]+?">/g);
+  if (!codeBlocks) return [];
+  return codeBlocks
+    .map((codeBlock) => {
+      const res = codeBlock.match(/language-([^]+?)"/);
+      if (!res) return "";
+      return res[1];
+    })
+    .filter(Boolean)
+    .filter((lang, i, self) => self.indexOf(lang) === i);
+};
+
 export default function Index() {
   const { work } = useLoaderData<typeof loader>();
 
@@ -78,8 +98,8 @@ export default function Index() {
     navigate(`/works?category=${work.category}`);
   };
 
-  const languages = work.languages.filter((lang) => lang !== "mermaid");
-  const includeMermaid = work.languages.includes("mermaid");
+  const languages = extractLanguage(work.body);
+  const includeMermaid = work.body.includes('<pre class="mermaid">');
 
   useLayoutEffect(() => {
     if (languages.length > 0) {

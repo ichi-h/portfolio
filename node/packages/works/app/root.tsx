@@ -9,16 +9,15 @@ import {
   ScrollRestoration,
   useLoaderData,
 } from "@remix-run/react";
-import "portfolio-ui/style.css";
+import uiStyle from "portfolio-ui/style.css?url";
 
 import { Env } from "@/components/env";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
+import { html } from "./styles/global.css";
 
 import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
-
-import "./styles/global.css";
 
 export const links: LinksFunction = () => [
   ...(cssBundleHref ? [{ rel: "stylesheet", href: cssBundleHref }] : []),
@@ -27,6 +26,10 @@ export const links: LinksFunction = () => [
   {
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap",
+  },
+  {
+    rel: "stylesheet",
+    href: uiStyle,
   },
 ];
 
@@ -93,7 +96,7 @@ export default function App() {
   const { env } = useLoaderData<typeof loader>();
 
   return (
-    <html lang="ja">
+    <html className={html} lang="ja">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
