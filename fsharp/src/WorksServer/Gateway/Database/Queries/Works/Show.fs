@@ -7,7 +7,7 @@ open WorksServer.Gateway.Database.Records.Work
 let showWork (slug: string) =
     let sql =
         joinQueries [ baseSelect
-                      @"WHERE slug = @slug AND published_at IS NOT NULL AND unpublished_at IS NULL LIMIT 1" ]
+                      @"WHERE slug = @slug AND published_at IS NOT NULL AND unpublished_at IS NULL" ]
 
     let queryParams = [ ("slug", slug) ]
 
