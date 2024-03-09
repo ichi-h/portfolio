@@ -17,7 +17,7 @@ app.get("/pages", async (c) => {
     updatedAt: page.properties.updatedAt.last_edited_time,
     description: page.properties.description.rich_text[0].plain_text,
     category: page.properties.category.select.name,
-    languages: page.properties.languages.multi_select.map((l: any) => l.name),
+    languages: [],
     unpublishedAt: page.properties.unpublishedAt.date
       ? page.properties.unpublishedAt.date.start
       : null,
