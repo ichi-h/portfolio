@@ -11,7 +11,7 @@ import {
 } from "@remix-run/react";
 import "portfolio-ui/style.css";
 
-import { Env } from "@/libs/remix-env";
+import { Env } from "@/components/env";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
