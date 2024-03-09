@@ -1,17 +1,18 @@
 import { style } from "@vanilla-extract/css";
 import {
-  m,
   w,
   flex,
   flexDirection,
   gap,
-  mx,
   applyMedia,
   flattenStyle,
   flexJustify,
   borderRadius,
   minW,
   pt,
+  m,
+  RATIO,
+  REM,
 } from "portfolio-styles";
 
 export const layoutParentStyle = style([
@@ -27,12 +28,27 @@ export const layoutStyle = style([
   flexDirection["column"],
   gap[6],
   w["1/2"],
-  minW[256],
-  applyMedia({ max: "1280" }, flattenStyle([w["3/4"], minW["auto"]])),
-  applyMedia({ max: "768" }, flattenStyle([w["1/1"], mx[4]])),
+  minW[224],
+  applyMedia(
+    { max: "1280" },
+    flattenStyle([
+      {
+        width: `calc(${REM[192]} - ${REM[8]})`,
+      },
+      minW["auto"],
+    ]),
+  ),
+  applyMedia(
+    { max: "768" },
+    flattenStyle([
+      {
+        width: `calc(${RATIO["1/1"]} - ${REM[8]})`,
+      },
+    ]),
+  ),
   applyMedia({ max: "480" }, flattenStyle([gap[4]])),
 ]);
 
 export const layoutBgStyle = style([borderRadius[4]]);
 
-export const layoutContentStyle = style([m[6]]);
+export const layoutContentStyle = style([m[8]]);

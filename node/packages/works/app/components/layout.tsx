@@ -19,7 +19,6 @@ export const Layout: FC<Props> = ({ children }) => (
       <Background
         classNameForBg={layoutBgStyle}
         color="mono.50"
-        opacity={90}
         layoutPosition="absolute"
       >
         <div className={layoutContentStyle}>{children}</div>

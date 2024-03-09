@@ -12,7 +12,7 @@ import {
 } from "portfolio-ui";
 import { useEffect, useLayoutEffect } from "react";
 
-import "highlight.js/styles/atom-one-dark.min.css";
+import "highlight.js/styles/base16/snazzy.min.css";
 
 import "@/components/linkCard.css";
 

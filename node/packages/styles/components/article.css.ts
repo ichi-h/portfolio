@@ -25,7 +25,7 @@ import {
   maxW,
   borderRadius,
   mt,
-  px,
+  lineHeight,
 } from "../styles";
 
 import { headlineRule } from "./headline.css";
@@ -43,7 +43,7 @@ export const article = style([
 
 globalStyle(`${article} *`, m[0]);
 
-globalStyle(`${article} p`, paragraphRule);
+globalStyle(`${article} p`, flattenStyle([paragraphRule, lineHeight["7"]]));
 
 globalStyle(`${article} h1`, headlineRule[1]);
 globalStyle(`${article} h2`, flattenStyle([headlineRule[2], mt[2]]));
@@ -93,24 +93,18 @@ globalStyle(
 );
 
 globalStyle(
-  `${article} code`,
-  flattenStyle([bg["mono.800"], fontColor["mono.50"], borderRadius[1], px[1]]),
-);
-
-globalStyle(
-  `${article} pre code`,
+  `${article} p code`,
   flattenStyle([
-    {
-      display: "block",
-    },
-    bg["mono.800"],
-    fontColor["mono.50"],
+    border[1],
+    borderColor["mono.200"],
+    borderStyle["solid"],
+    fontColor["red.500"],
     borderRadius[1],
-    p[3],
-    m[0],
-    dropShadow["md"],
+    p[1],
   ]),
 );
+
+globalStyle(`${article} pre code`, flattenStyle([borderRadius[1]]));
 
 globalStyle(`${article} .text-center`, textAlign["center"]);
 globalStyle(`${article} .text-right`, textAlign["right"]);
