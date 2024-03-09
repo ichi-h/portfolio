@@ -7,6 +7,7 @@
   "type": "module",
   "main": "build/server/index.js",
   "scripts": {
+    "_build": "pnpm run --dir ../../ build",
     "build": "remix vite:build",
     "deploy": "wrangler pages deploy ./build/client --project-name portfolio",
     "dev": "remix vite:dev",
