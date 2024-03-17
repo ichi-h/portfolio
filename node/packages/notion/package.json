@@ -1,4 +1,5 @@
 {
+  "name": "portfolio-notion",
   "scripts": {
     "dev": "wrangler dev src/index.ts --port 8901",
     "deploy": "wrangler deploy --minify src/index.ts"

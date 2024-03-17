@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "turbo dev",
+    "dev": "turbo dev --parallel",
     "build": "turbo build",
     "deploy": "turbo deploy",
     "format": "prettier --write . --ignore-path .prettierignore",
