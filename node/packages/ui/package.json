@@ -19,23 +19,22 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "build": "tsc --noEmit && vite build",
-    "storybook:build": "NODE_OPTIONS=--max_old_space_size=4096 storybook build"
+    "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
+    "deploy:storybook": "wrangler pages deploy ./storybook-static --project-name portfolio-ui"
   },
   "dependencies": {
+    "@storybook/test": "^8.0.0",
     "portfolio-styles": "workspace:*"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^7.6.8",
-    "@storybook/addon-essentials": "^7.6.8",
-    "@storybook/addon-interactions": "^7.6.8",
-    "@storybook/addon-links": "^7.6.8",
-    "@storybook/blocks": "^7.6.8",
-    "@storybook/builder-vite": "^7.6.8",
-    "@storybook/jest": "^0.2.3",
-    "@storybook/react": "^7.6.8",
-    "@storybook/react-vite": "^7.6.8",
-    "@storybook/test-runner": "^0.16.0",
-    "@storybook/testing-library": "^0.2.2",
-    "storybook": "^7.6.8"
+    "@storybook/addon-a11y": "^8.0.0",
+    "@storybook/addon-essentials": "^8.0.0",
+    "@storybook/addon-interactions": "^8.0.0",
+    "@storybook/addon-links": "^8.0.0",
+    "@storybook/blocks": "^8.0.0",
+    "@storybook/react": "^8.0.0",
+    "@storybook/react-vite": "^8.0.0",
+    "@storybook/test-runner": "^0.17.0",
+    "storybook": "^8.0.0"
   }
 }

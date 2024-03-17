@@ -37,7 +37,8 @@
     "turbo": "^1.12.5",
     "typescript": "5.3.3",
     "vite": "^5.1.4",
-    "vite-plugin-dts": "^2.3.0"
+    "vite-plugin-dts": "^2.3.0",
+    "wrangler": "^3.30.0"
   },
   "lint-staged": {
     "*.{js,ts,.jsx,tsx,json,md}": [
