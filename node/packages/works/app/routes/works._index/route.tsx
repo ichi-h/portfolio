@@ -40,7 +40,7 @@ export const init: Model = {
   error: "",
 } as const;
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
   const search = searchParams.get("search") ?? "";
   const category =
@@ -49,6 +49,10 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
   const limit = createLimitNumber();
 
   const resp = await getFilteredWorks({
+    // FIXME: remove any type
+    username: (context.cloudflare.env as any).BASIC_AUTH_USERNAME,
+    password: (context.cloudflare.env as any).BASIC_AUTH_PASSWORD,
+  })({
     search,
     category,
     offset,

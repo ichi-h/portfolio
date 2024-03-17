@@ -28,6 +28,7 @@ services:
   nginx:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-nginx:latest
     container_name: portfolio-nginx
+    env_file: ./nginx/.prod.env
     restart: always
     depends_on:
       - works-server

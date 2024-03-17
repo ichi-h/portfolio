@@ -53,12 +53,16 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export const loader = async ({ params }: LoaderFunctionArgs) => {
+export const loader = async ({ params, context }: LoaderFunctionArgs) => {
   if (!params.slug) {
     return json({ ...init, status: "error" });
   }
 
-  const resp = await getWork(params.slug);
+  const resp = await getWork({
+    // FIXME: remove any type
+    username: (context.cloudflare.env as any).BASIC_AUTH_USERNAME,
+    password: (context.cloudflare.env as any).BASIC_AUTH_PASSWORD,
+  })(params.slug);
 
   if (resp.status === "error") {
     return json({ ...init, status: "error" });

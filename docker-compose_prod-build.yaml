@@ -41,6 +41,7 @@ services:
     build:
       context: .
       dockerfile: "./docker/nginx/Dockerfile"
+    env_file: ./nginx/.prod.env
     container_name: portfolio-nginx
     restart: always
     depends_on:
