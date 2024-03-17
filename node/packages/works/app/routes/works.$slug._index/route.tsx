@@ -1,9 +1,7 @@
 import { json } from "@remix-run/cloudflare";
 import { LinksFunction } from "@remix-run/cloudflare";
 import { useLoaderData, useNavigate } from "@remix-run/react";
-import hljs from "highlight.js";
 import codeStyle from "highlight.js/styles/base16/snazzy.min.css?url";
-import mermaid from "mermaid";
 import {
   Article,
   Button,
@@ -12,13 +10,13 @@ import {
   Text,
   UpdateIcon,
 } from "portfolio-ui";
-import { useEffect, useLayoutEffect } from "react";
+import { Suspense, lazy } from "react";
 
 import "@/components/linkCard.css";
 
 import { getWork } from "@/api/works/show";
 import { Title } from "@/components/title";
-import { Work } from "@/model/work";
+import type { Work } from "@/model/work";
 import { useEnv } from "@/utils/env";
 
 import { parseMd2Html } from "./parseMd2Html";
@@ -102,20 +100,6 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => [
   { name: "twitter:site", content: "@ichi_h3" },
 ];
 
-const extractLanguage = (html: string) => {
-  const codeBlocks = html.match(/<code class="language-[^]+?">/g);
-  if (!codeBlocks) return [];
-  return codeBlocks
-    .map((codeBlock) => {
-      const res = codeBlock.match(/language-([^]+?)"/);
-      if (!res) return "";
-      return res[1];
-    })
-    .filter(Boolean)
-    .filter((lang, i, self) => self.indexOf(lang) === i)
-    .filter((lang) => lang !== "mermaid" && lang !== "html");
-};
-
 export default function Index() {
   const { work } = useLoaderData<typeof loader>();
 
@@ -125,56 +109,32 @@ export default function Index() {
     navigate(`/works?category=${work.category}`);
   };
 
-  const languages = extractLanguage(work.body);
-  const includeMermaid = work.body.includes('<pre class="mermaid">');
-
-  useLayoutEffect(() => {
-    if (languages.length > 0) {
-      Promise.all(
-        languages.map(async (lang) => {
-          try {
-            return await import(
-              `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/es/languages/${lang}.min.js`
-            );
-          } catch (_) {
-            return null;
-          }
-        }),
-      ).then((res) => {
-        res.forEach((mod) => {
-          if (mod) hljs.registerLanguage(mod.default.name, mod.default);
-        });
-      });
-    }
-  }, []);
-
-  useEffect(() => {
-    languages.length > 0 && hljs.highlightAll();
-    includeMermaid && mermaid.initialize({ startOnLoad: true });
-    return () => {
-      includeMermaid && mermaid.init();
-    };
-  }, []);
+  const Highlight = lazy(() => import("./Highlight.client"));
 
   return (
-    <div className={styles.layout}>
-      <Title>{work.title}</Title>
-      <div className={styles.matter}>
-        <Button rounded={true} size="sm" onClick={clickCategory}>
-          # {work.category}
-        </Button>
-      </div>
-      <div className={styles.matter}>
-        <div className={styles.date}>
-          <Icon icon={PublishIcon} />
-          <Text color="mono.900">{work.publishedAt}</Text>
+    <>
+      <div className={styles.layout}>
+        <Title>{work.title}</Title>
+        <div className={styles.matter}>
+          <Button rounded={true} size="sm" onClick={clickCategory}>
+            # {work.category}
+          </Button>
         </div>
-        <div className={styles.date}>
-          <Icon icon={UpdateIcon} />
-          <Text color="mono.900">{work.updatedAt}</Text>
+        <div className={styles.matter}>
+          <div className={styles.date}>
+            <Icon icon={PublishIcon} />
+            <Text color="mono.900">{work.publishedAt}</Text>
+          </div>
+          <div className={styles.date}>
+            <Icon icon={UpdateIcon} />
+            <Text color="mono.900">{work.updatedAt}</Text>
+          </div>
         </div>
+        <Article dangerouslySetInnerHTML={{ __html: work.body }} />
       </div>
-      <Article dangerouslySetInnerHTML={{ __html: work.body }} />
-    </div>
+      <Suspense fallback={<></>}>
+        <Highlight work={work} />
+      </Suspense>
+    </>
   );
 }

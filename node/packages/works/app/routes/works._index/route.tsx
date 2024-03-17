@@ -10,10 +10,10 @@ import { Paragraph, Radio, Text, Link, Icon, UpdateIcon } from "portfolio-ui";
 import { getFilteredWorks } from "@/api/works/filter";
 import { Hr } from "@/components/hr";
 import { Title } from "@/components/title";
-import { Category, createCategory } from "@/model/category";
-import { LimitNumber, createLimitNumber } from "@/model/limitNumber";
-import { Offset, createOffset } from "@/model/offset";
-import { SummarizedWork } from "@/model/work";
+import type { Category } from "@/model/category";
+import type { LimitNumber } from "@/model/limitNumber";
+import type { Offset } from "@/model/offset";
+import type { SummarizedWork } from "@/model/work";
 import { useEnv } from "@/utils/env";
 
 import * as styles from "./route.css";
@@ -43,10 +43,11 @@ export const init: Model = {
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
   const search = searchParams.get("search") ?? "";
-  const category =
-    createCategory(searchParams.get("category") ?? "") ?? undefined;
-  const offset = createOffset(Number(searchParams.get("offset") ?? "0"));
-  const limit = createLimitNumber();
+  const category = (searchParams.get("category") ?? undefined) as
+    | Category
+    | undefined;
+  const offset = Number(searchParams.get("offset") ?? 0);
+  const limit = 18;
 
   const resp = await getFilteredWorks({
     // FIXME: remove any type
