@@ -98,8 +98,8 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => [
   { name: "twitter:site", content: "@ichi_h3" },
 ];
 
-const extractLanguage = (markdown: string) => {
-  const codeBlocks = markdown.match(/<code class="language-[^]+?">/g);
+const extractLanguage = (html: string) => {
+  const codeBlocks = html.match(/<code class="language-[^]+?">/g);
   if (!codeBlocks) return [];
   return codeBlocks
     .map((codeBlock) => {
@@ -108,7 +108,8 @@ const extractLanguage = (markdown: string) => {
       return res[1];
     })
     .filter(Boolean)
-    .filter((lang, i, self) => self.indexOf(lang) === i);
+    .filter((lang, i, self) => self.indexOf(lang) === i)
+    .filter((lang) => lang !== "mermaid" && lang !== "html");
 };
 
 export default function Index() {
@@ -127,7 +128,6 @@ export default function Index() {
     if (languages.length > 0) {
       Promise.all(
         languages.map(async (lang) => {
-          if (lang === "mermaid") return null;
           try {
             return await import(
               `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/es/languages/${lang}.min.js`
