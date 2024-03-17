@@ -20,9 +20,10 @@ graph LR
     end
     subgraph "CloudFlare"
         DNS[DNS, CDN, WAF]
-        DNS ---> OG
+        DNS --> OG
         DNS --> WorksClient
         DNS -- "Auth\nrequired" --> AdminClient
+        DNS ----> NotionServer
         subgraph "Workers"
             NotionServer["Notion"]
             OG[og:image]
@@ -53,7 +54,6 @@ graph LR
                     WorksServer <--> WorksDB
                     WorksDBClient <--> WorksDB
                 end
-                WorksServer --> NotionServer
             end
         end
     end
