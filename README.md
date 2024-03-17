@@ -84,6 +84,8 @@ graph LR
     - Pages & Workers
     - DNS
     - R2
+- CMS
+  - Notion
 - IDaaS
   - Auth0 (not yet)
 
