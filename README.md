@@ -5,8 +5,6 @@
 
 ## Diagrams
 
-### Architecture
-
 ```mermaid
 graph LR
     Admin["Admin\n(not yet)"]
@@ -60,6 +58,19 @@ graph LR
         end
     end
 ```
+
+## Packages
+
+- db-client
+  - SQL client for SQLite DB.
+- db-manager
+  - Database replication system in SQLite + Litestream.
+- fsharp
+  - Business logic in F#.
+- nginx
+  - Reverse proxy server for db-client and fsharp.
+- node
+  - Presentation layer for each server, design system, UI library, and small API servers.
 
 ## Setup
 
