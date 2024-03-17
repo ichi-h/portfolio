@@ -85,16 +85,6 @@ importers:
         specifier: ^3.30.0
         version: 3.30.0
 
-  packages/bff:
-    dependencies:
-      satori:
-        specifier: ^0.7.3
-        version: 0.7.3
-    devDependencies:
-      '@cloudflare/workers-types':
-        specifier: ^4.20240129.0
-        version: 4.20240129.0
-
   packages/mock:
     dependencies:
       swagger-ui-dist:
@@ -119,6 +109,16 @@ importers:
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20240208.0
+        version: 4.20240222.0
+
+  packages/og-image:
+    dependencies:
+      satori:
+        specifier: ^0.7.3
+        version: 0.7.3
+    devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20240129.0
         version: 4.20240222.0
 
   packages/styles: {}
@@ -1816,10 +1816,6 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
-
-  /@cloudflare/workers-types@4.20240129.0:
-    resolution: {integrity: sha512-VyHbih/bqh/RN2FRxnXznG0bpBIg9RfSP1ldbAVnCXFinjOdv0zm2P/RWqOVN9+FgU5sanRltwwT7jGngxZy8w==}
-    dev: true
 
   /@cloudflare/workers-types@4.20240222.0:
     resolution: {integrity: sha512-luO0BdK3rLlCv3B240+cTrfqm+XSbHtpk+88aJtGwzyVK9QF/Xz8lBgE/oZZLN8nCTmOvxAZnszyxUuZ8GP8Cg==}

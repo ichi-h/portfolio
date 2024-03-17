@@ -1,12 +1,12 @@
 import { Hono } from "hono";
 import { cache } from "hono/cache";
 
-import { ogpUseCase } from "../useCases/ogp";
+import { ogpUseCase } from "./useCases/ogp";
 
-const routes = new Hono();
+const app = new Hono();
 
-routes.get(
-  "/ogp",
+app.get(
+  "/",
   cache({
     cacheName: "ogp",
     cacheControl: "public, max-age=86400",
@@ -22,4 +22,4 @@ routes.get(
   },
 );
 
-export default routes;
+export default app;

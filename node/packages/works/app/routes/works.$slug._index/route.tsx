@@ -89,7 +89,7 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => [
   { property: "og:title", content: `${data?.work.title} - ichi-h.com` },
   {
     property: "og:image",
-    content: `${useEnv().BFF_SERVER_URL}/ogp?title=${data?.work.title}`,
+    content: `${useEnv().OG_IMAGE_SERVER_URL}?title=${data?.work.title}`,
   },
   { property: "og:site_name", content: "ichi-h.com" },
   { property: "og:description", content: data?.work.description },

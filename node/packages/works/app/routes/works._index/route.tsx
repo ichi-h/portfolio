@@ -217,7 +217,7 @@ export default function Index() {
                             className={styles.cardThumbnail}
                             src={
                               work.thumbnailUrl ||
-                              `${useEnv().BFF_SERVER_URL}/ogp?title=${work.title}`
+                              `${useEnv().OG_IMAGE_SERVER_URL}?title=${work.title}`
                             }
                             alt={work.title}
                           />
