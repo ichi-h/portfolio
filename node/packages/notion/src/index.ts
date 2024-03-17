@@ -11,6 +11,22 @@ app.get("/pages", async (c) => {
   const notion = new Client({ auth: `${secret}` });
   const response = await notion.databases.query({
     database_id: `${databaseId}`,
+    filter: {
+      and: [
+        {
+          property: "unpublishedAt",
+          date: {
+            is_empty: true,
+          },
+        },
+        {
+          property: "publishedAt",
+          date: {
+            is_not_empty: true,
+          },
+        },
+      ],
+    },
   });
   const results = response.results.map((page: any) => ({
     id: page.id,
