@@ -18,9 +18,9 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "tsc --noEmit && vite build",
+    "build": "tsc --noEmit && vite build && pnpm build:storybook",
     "build:storybook": "NODE_OPTIONS=--max_old_space_size=4096 storybook build",
-    "deploy:storybook": "wrangler pages deploy ./storybook-static --project-name portfolio-ui"
+    "deploy": "wrangler pages deploy ./storybook-static --project-name portfolio-ui"
   },
   "dependencies": {
     "@storybook/test": "^8.0.0",
