@@ -7,11 +7,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
 } from "@remix-run/react";
 import uiStyle from "portfolio-ui/style.css?url";
 
-import { Env } from "@/components/env";
 import { useEnv } from "@/utils/env";
 
 import { Background } from "./components/background";
@@ -93,8 +91,6 @@ export const meta: MetaFunction<typeof loader> = ({}) => {
 };
 
 export default function App() {
-  const { env } = useLoaderData<typeof loader>();
-
   return (
     <html className={html} lang="ja">
       <head>
@@ -110,7 +106,6 @@ export default function App() {
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
-        <Env data={env} />
       </body>
     </html>
   );
