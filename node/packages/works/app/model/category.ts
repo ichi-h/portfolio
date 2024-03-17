@@ -15,3 +15,11 @@ export const CATEGORY: Record<Category, Category> = {
   music: "music",
   photograph: "photograph",
 } as const;
+
+export const createCategory = (input: unknown): Category | null => {
+  const res = categorySchema.safeParse(String(input));
+  if (res.success) {
+    return res.data;
+  }
+  return null;
+};

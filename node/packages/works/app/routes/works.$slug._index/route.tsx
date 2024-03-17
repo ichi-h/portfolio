@@ -16,14 +16,35 @@ import { useEffect, useLayoutEffect } from "react";
 
 import "@/components/linkCard.css";
 
+import { getWork } from "@/api/works/show";
 import { Title } from "@/components/title";
+import { Work } from "@/model/work";
 import { useEnv } from "@/utils/env";
 
-import { init, Message, Model } from "./hooks/data";
-import { update } from "./hooks/update";
+import { parseMd2Html } from "./parseMd2Html";
 import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
+
+export type Model = {
+  work: Work;
+  status: "ok" | "error";
+};
+
+export const init: Model = {
+  work: {
+    slug: "",
+    category: "philosophy",
+    title: "",
+    description: "",
+    body: "",
+    thumbnailUrl: "",
+    languages: [],
+    publishedAt: "",
+    updatedAt: "",
+  },
+  status: "ok",
+} as const;
 
 export const links: LinksFunction = () => [
   {
@@ -33,24 +54,25 @@ export const links: LinksFunction = () => [
 ];
 
 export const loader = async ({ params }: LoaderFunctionArgs) => {
-  const loop = async (model: Model, msg: Message): Promise<Model> => {
-    const { newModel, cmd } = update(model, msg);
-    if (!cmd) {
-      return newModel;
-    }
-    const next = await cmd();
-    return loop(newModel, next);
-  };
-
   if (!params.slug) {
     return json({ ...init, status: "error" });
   }
-  const model = await loop(init, { type: "getWork", slug: params.slug });
-  if (model.status === "error") {
+
+  const resp = await getWork(params.slug);
+
+  if (resp.status === "error") {
     return json({ ...init, status: "error" });
   }
 
-  return json(model);
+  const body = await parseMd2Html(resp.value.body);
+
+  return json({
+    work: {
+      ...resp.value,
+      body,
+    },
+    status: "ok",
+  });
 };
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => [

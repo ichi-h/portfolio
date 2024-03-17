@@ -3,11 +3,7 @@ import { renderToString } from "react-dom/server";
 import { remark } from "remark";
 import html from "remark-html";
 
-import { getWork } from "@/api/works/show";
 import { LinkCard } from "@/components/linkCard";
-import { Update, createUpdate } from "@/utils/elmish";
-
-import { Model, Message } from "./data";
 
 type Template =
   | {
@@ -27,10 +23,15 @@ type Template =
       thumbnailUrl?: string;
     };
 
-const parse = async (markdown: string) => {
+export const parseMd2Html = async (markdown: string) => {
   const mdToHtml = async (md: string) =>
     (await remark().use(html).process(md)).toString();
-  const docs = (await mdToHtml(markdown)).replace(/~~(.+?)~~/g, "<s>$1</s>");
+  const docs = (await mdToHtml(markdown))
+    .replace(
+      /<pre><code class="language-mermaid">(.*?)<\/code><\/pre>/gs,
+      '<pre class="mermaid">$1</pre>',
+    )
+    .replace(/~~(.+?)~~/g, "<s>$1</s>");
 
   const templateToHtml = (template: Template) => {
     if (template.type === "text") {
@@ -77,80 +78,3 @@ const parse = async (markdown: string) => {
       return templateToHtml(template);
     });
 };
-
-export const update = (
-  model: Model,
-  message: Message,
-): ReturnType<Update<Model, Message>> => {
-  switch (message.type) {
-    case "getWork": {
-      return {
-        newModel: model,
-        cmd: async () => {
-          const resp = await getWork(message.slug);
-          return {
-            type: "getWorkResp",
-            resp,
-          };
-        },
-      };
-    }
-
-    case "getWorkResp": {
-      if (message.resp.status === "error") {
-        return {
-          newModel: {
-            ...model,
-            status: "error",
-          },
-        };
-      }
-
-      return update(
-        {
-          ...model,
-          work: message.resp.value,
-        },
-        { type: "parseMdToHtml", body: message.resp.value.body },
-      );
-    }
-
-    case "parseMdToHtml": {
-      return {
-        newModel: model,
-        cmd: async () => {
-          const result = await parse(message.body);
-          return {
-            type: "parseMdToHtmlResult",
-            result,
-          };
-        },
-      };
-    }
-
-    case "parseMdToHtmlResult": {
-      const body = message.result
-        .replace(
-          /<pre><code class="language-f#">/g,
-          '<pre><code class="language-fsharp">',
-        )
-        .replace(
-          /<pre><code class="language-mermaid">(.*?)<\/code><\/pre>/gs,
-          '<pre class="mermaid">$1</pre>',
-        );
-
-      return {
-        newModel: {
-          ...model,
-          work: {
-            ...model.work,
-            body,
-          },
-          status: "ok",
-        },
-      };
-    }
-  }
-};
-
-export const useUpdate = createUpdate(update);

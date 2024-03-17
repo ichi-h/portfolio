@@ -1,37 +1,78 @@
 import { json } from "@remix-run/cloudflare";
-import { useLoaderData, useNavigate, Link as _Link } from "@remix-run/react";
+import {
+  useLoaderData,
+  useNavigate,
+  Link as _Link,
+  useNavigation,
+} from "@remix-run/react";
 import { Paragraph, Radio, Text, Link, Icon, UpdateIcon } from "portfolio-ui";
-import { useState } from "react";
 
+import { getFilteredWorks } from "@/api/works/filter";
 import { Hr } from "@/components/hr";
 import { Title } from "@/components/title";
-import { Category } from "@/model/category";
+import { Category, createCategory } from "@/model/category";
+import { LimitNumber, createLimitNumber } from "@/model/limitNumber";
+import { Offset, createOffset } from "@/model/offset";
+import { SummarizedWork } from "@/model/work";
 import { useEnv } from "@/utils/env";
 
-import { init } from "./hooks/data";
-import { update, useUpdate } from "./hooks/update";
 import * as styles from "./route.css";
 
 import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
 
-export const loader = async ({ request, context }: LoaderFunctionArgs) => {
+export type Model = {
+  offset: Offset;
+  limit: LimitNumber;
+  search: string;
+  category: Category | undefined;
+  works: SummarizedWork[];
+  total: number;
+  error: string;
+};
+
+export const init: Model = {
+  offset: 0,
+  limit: 18,
+  search: "",
+  category: undefined,
+  works: [],
+  total: 0,
+  error: "",
+} as const;
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
   const { searchParams } = new URL(request.url);
-  const category = (searchParams.get("category") ?? null) as Category | null;
-  const { newModel: tmpModel, cmd } = update(init, {
-    type: "setCategory",
+  const search = searchParams.get("search") ?? "";
+  const category =
+    createCategory(searchParams.get("category") ?? "") ?? undefined;
+  const offset = createOffset(Number(searchParams.get("offset") ?? "0"));
+  const limit = createLimitNumber();
+
+  const resp = await getFilteredWorks({
+    search,
     category,
+    offset,
+    limit,
   });
-  if (!cmd) {
-    return json({
-      init: tmpModel,
+
+  if (resp.status === "error") {
+    return json<Model>({
+      ...init,
+      error: "Failed to get works.",
     });
   }
 
-  const next = await cmd();
-  const { newModel } = update(tmpModel, next);
-  return json({
-    init: newModel,
-    env: context.env as Env,
+  const works = resp.value.works;
+  const total = resp.value.total;
+
+  return json<Model>({
+    offset,
+    limit,
+    search,
+    category,
+    works,
+    total,
+    error: "",
   });
 };
 
@@ -92,14 +133,12 @@ export const meta: MetaFunction<typeof loader> = ({}) => [
 ];
 
 export default function Index() {
-  const { init } = useLoaderData<typeof loader>();
-  const [model, setModel] = useState(init);
-  const send = useUpdate(model, setModel);
+  const model = useLoaderData<typeof loader>();
 
   const navigate = useNavigate();
+  const navigation = useNavigation();
 
   const checked = (category: Category) => () => {
-    send({ type: "setCategory", category });
     navigate({ search: `?category=${category}` });
   };
 
@@ -143,55 +182,64 @@ export default function Index() {
         </div>
       </div>
       <Hr />
-      {model.worksLoader === "loading" && (
+      {navigation.state === "loading" && (
         <Paragraph align="center">読み込み中……</Paragraph>
       )}
-      {model.worksLoader === "error" && (
-        <Paragraph align="center">
-          エラーが発生しました。時間をおいて再度お試しください。
-        </Paragraph>
-      )}
-      {model.worksLoader === "idle" && model.works.length === 0 && (
-        <Paragraph align="center">検索結果は0件です。</Paragraph>
-      )}
-      {model.worksLoader === "idle" && model.works.length > 0 && (
-        <div className={styles.cardGrid}>
-          {model.works.map((work) => (
-            <Link
-              className={styles.cardLink}
-              key={work.slug}
-              as={_Link}
-              asProps={{ to: `/works/${work.slug}` }}
-              decoration="none"
-            >
-              <div className={styles.card}>
-                <div className={styles.cardLayout}>
-                  <img
-                    className={styles.cardThumbnail}
-                    src={
-                      work.thumbnailUrl ||
-                      `${useEnv().BFF_SERVER_URL}/ogp?title=${work.title}`
-                    }
-                    alt={work.title}
-                  />
-                  <div className={styles.cardPublishedAt}>
-                    <Icon size={3} icon={UpdateIcon} />
-                    <Text fontSize="3" color="mono.900">
-                      {work.publishedAt}
-                    </Text>
-                  </div>
-                  <Paragraph
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    lineClamp={3}
-                  >
-                    <Text className={styles.cardTitle}>{work.title}</Text>
-                  </Paragraph>
+      {navigation.state === "idle" && (
+        <>
+          {model.error ? (
+            <Paragraph align="center">
+              エラーが発生しました。時間をおいて再度お試しください。
+            </Paragraph>
+          ) : (
+            <>
+              {model.works.length === 0 && (
+                <Paragraph align="center">検索結果は0件です。</Paragraph>
+              )}
+              {model.works.length > 0 && (
+                <div className={styles.cardGrid}>
+                  {model.works.map((work) => (
+                    <Link
+                      className={styles.cardLink}
+                      key={work.slug}
+                      as={_Link}
+                      asProps={{ to: `/works/${work.slug}` }}
+                      decoration="none"
+                    >
+                      <div className={styles.card}>
+                        <div className={styles.cardLayout}>
+                          <img
+                            className={styles.cardThumbnail}
+                            src={
+                              work.thumbnailUrl ||
+                              `${useEnv().BFF_SERVER_URL}/ogp?title=${work.title}`
+                            }
+                            alt={work.title}
+                          />
+                          <div className={styles.cardPublishedAt}>
+                            <Icon size={3} icon={UpdateIcon} />
+                            <Text fontSize="3" color="mono.900">
+                              {work.publishedAt}
+                            </Text>
+                          </div>
+                          <Paragraph
+                            overflow="hidden"
+                            textOverflow="ellipsis"
+                            lineClamp={3}
+                          >
+                            <Text className={styles.cardTitle}>
+                              {work.title}
+                            </Text>
+                          </Paragraph>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+              )}
+            </>
+          )}
+        </>
       )}
     </div>
   );

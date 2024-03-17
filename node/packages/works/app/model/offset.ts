@@ -8,5 +8,5 @@ export const offsetSchema = z
 
 export type Offset = z.infer<typeof offsetSchema>;
 
-export const createOffset = (offset: number): Offset =>
-  offsetSchema.parse(offset);
+export const createOffset = (offset: unknown): Offset =>
+  offsetSchema.parse(Number(offset));
