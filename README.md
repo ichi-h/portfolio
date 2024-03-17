@@ -59,6 +59,34 @@ graph LR
     end
 ```
 
+## Technology Stack
+
+- Container technology
+  - Docker
+- Main libraries
+  - F#
+    - Minimal API
+  - Node
+    - TypeScript
+    - Remix (React)
+    - vanilla-extract
+    - Hono
+- Database
+  - SQLite
+  - Litestream
+- Proxy server
+  - Nginx
+- Cloud services
+  - AWS
+    - Lightsail
+    - ECR
+  - Cloudflare
+    - Pages & Workers
+    - DNS
+    - R2
+- IDaaS
+  - Auth0 (not yet)
+
 ## Packages
 
 - db-client
