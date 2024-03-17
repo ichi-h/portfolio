@@ -1,17 +1,20 @@
 # portfolio
 
+- URL: https://ichi-h.com
+- storybook: https://portfolio-ui-40i.pages.dev
+
 ## Diagrams
 
 ### Architecture
 
 ```mermaid
 graph LR
-    Admin[Admin]
+    Admin["Admin\n(not yet)"]
     Users[Users]
     Admin --> DNS
     Users --> DNS
     Admin <-- "OAuth" --> IdP
-    subgraph "Auth0"
+    subgraph "Auth0 (not yet)"
         IdP
     end
     subgraph "Notion"
@@ -19,31 +22,40 @@ graph LR
     end
     subgraph "CloudFlare"
         DNS[DNS, CDN, WAF]
-        DNS --> OG
+        DNS ---> OG
         DNS --> WorksClient
         DNS -- "Auth\nrequired" --> AdminClient
         subgraph "Workers"
+            NotionServer["Notion"]
             OG[og:image]
+            NotionServer <-- "Notion API" --> NotionDB
+
         end
         subgraph "Pages"
             WorksClient[Works]
-            AdminClient[Admin]
+            AdminClient["Admin\n(not yet)"]
+        end
+        subgraph "R2"
+            WorksServerDB["Works DB\n(SQLite)"]
         end
     end
     subgraph "AWS"
-        subgraph "S3"
-            WorksServerDB["Works DB\n(SQLite)"]
-        end
-        subgraph "ECR"
-            WorksServerImage["Works server\nimage"]
-        end
+        ECR --> Instance
         subgraph "Tokyo region"
             subgraph "Lightsail VPC"
-                WorksServer[Works server\ncontainer]
-                DNS ----> WorksServer
-                WorksServer <-- "Notion API" --> NotionDB
-                WorksServerImage <--> WorksServer
-                WorksServer <-- "Replicate\n(Litestream)" --> WorksServerDB
+                subgraph "Instance"
+                    WorksDB[Works DB\ncontainer]
+                    WorksProxy[Works\nproxy container]
+                    WorksDBClient[Works DB\nclient container]
+                    WorksServer[Works server\ncontainer]
+                    WorksProxy --> WorksServer
+                    WorksProxy -- "Auth\nrequired" --> WorksDBClient
+                    DNS --> WorksProxy
+                    WorksDB <-- "Replicate\n(Litestream)" --> WorksServerDB
+                    WorksServer <--> WorksDB
+                    WorksDBClient <--> WorksDB
+                end
+                WorksServer --> NotionServer
             end
         end
     end
@@ -61,6 +73,14 @@ cd schemas
 ./codegen.sh {project-name} {language}
 ```
 
+## develop
+
+```bash
+docker-compose up -d
+cd node
+pnpm dev
+```
+
 ## deploy
 
 ```bash
@@ -71,6 +91,7 @@ cd schemas
 # client
 cd node
 pnpm build
+pnpm run deploy
 
 # in production server
 ./login.sh
