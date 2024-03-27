@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   db-manager:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-manager:latest
@@ -9,17 +7,6 @@ services:
       target: db-prod
     container_name: portfolio-db-manager
     env_file: ./db-manager/.prod.env
-    volumes:
-      - db-manager:/db
-    tty: true
-
-  db-client:
-    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-client:latest
-    build:
-      context: .
-      dockerfile: "./docker/db-client/Dockerfile"
-    container_name: portfolio-db-client
-    env_file: ./db-client/.prod.env
     volumes:
       - db-manager:/db
     tty: true

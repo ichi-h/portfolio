@@ -1,5 +1,3 @@
-version: "3.7"
-
 services:
   db-manager:
     build:
@@ -11,16 +9,6 @@ services:
     volumes:
       - db-manager:/db
       - ./db-manager:/app
-    tty: true
-
-  db-client:
-    build:
-      context: .
-      dockerfile: "./docker/db-client/Dockerfile"
-    container_name: portfolio-db-client
-    env_file: ./db-client/.env
-    volumes:
-      - db-manager:/db
     tty: true
 
   works-server:

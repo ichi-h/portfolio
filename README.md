@@ -23,7 +23,7 @@ graph LR
         DNS --> OG
         DNS --> WorksClient
         DNS -- "Auth\nrequired" --> AdminClient
-        DNS ----> NotionServer
+        DNS --> NotionServer
         subgraph "Workers"
             NotionServer["Notion"]
             OG[og:image]
@@ -34,25 +34,21 @@ graph LR
             WorksClient[Works]
             AdminClient["Admin\n(not yet)"]
         end
-        subgraph "R2"
-            WorksServerDB["Works DB\n(SQLite)"]
-        end
     end
     subgraph "AWS"
         ECR --> Instance
         subgraph "Tokyo region"
             subgraph "Lightsail VPC"
                 subgraph "Instance"
-                    WorksDB[Works DB\ncontainer]
+                    WorksDBVolume[Works DB\nvolume]
                     WorksProxy[Works\nproxy container]
-                    WorksDBClient[Works DB\nclient container]
+                    WorksDBClient[Works DB\nmanager container]
                     WorksServer[Works server\ncontainer]
                     WorksProxy --> WorksServer
                     WorksProxy -- "Auth\nrequired" --> WorksDBClient
                     DNS --> WorksProxy
-                    WorksDB <-- "Replicate\n(Litestream)" --> WorksServerDB
-                    WorksServer <--> WorksDB
-                    WorksDBClient <--> WorksDB
+                    WorksServer <--> WorksDBVolume
+                    WorksDBClient <--> WorksDBVolume
                 end
             end
         end
@@ -73,7 +69,8 @@ graph LR
     - Hono
 - Database
   - SQLite
-  - Litestream
+  - dbmate
+  - sqlite-web
 - Proxy server
   - Nginx
 - Cloud services
@@ -91,10 +88,8 @@ graph LR
 
 ## Packages
 
-- db-client
-  - SQL client for SQLite DB.
 - db-manager
-  - Database replication system in SQLite + Litestream.
+  - Manage SQLite database in dbmate and sqlite-web.
 - fsharp
   - Business logic in F#.
 - nginx
