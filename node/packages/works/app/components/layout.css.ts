@@ -13,14 +13,17 @@ import {
   m,
   RATIO,
   REM,
+  h,
 } from "portfolio-styles";
 
 export const layoutParentStyle = style([
   flex,
   flexJustify["center"],
   w["1/1"],
-  pt[6],
-  applyMedia({ max: "480" }, flattenStyle([pt[4]])),
+  h["svh"],
+  {
+    overflowY: "scroll",
+  },
 ]);
 
 export const layoutStyle = style([
@@ -29,6 +32,7 @@ export const layoutStyle = style([
   gap[6],
   w["1/2"],
   minW[224],
+  pt[6],
   applyMedia(
     { max: "1280" },
     flattenStyle([
@@ -36,6 +40,7 @@ export const layoutStyle = style([
         width: `calc(${REM[192]} - ${REM[8]})`,
       },
       minW["auto"],
+      pt[4],
     ]),
   ),
   applyMedia(
