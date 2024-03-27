@@ -80,7 +80,6 @@ graph LR
   - Cloudflare
     - Pages & Workers
     - DNS
-    - R2
 - CMS
   - Notion
 - IDaaS
