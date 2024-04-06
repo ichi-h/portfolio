@@ -78,6 +78,7 @@ app.get("/blocks/:pageId", async (c) => {
       }),
     )
     .parent.replace(/```f#/g, "```fsharp")
+    .replace(/((^> +- .+\n)+)(> +[^-]*)$/gm, "$1>\n$3")
     .replaceAll("	>", ">");
   return c.json({ text: mdString });
 });
