@@ -75,6 +75,7 @@ graph LR
     - Hono
 - Database
   - SQLite
+  - Litestream
   - dbmate
   - sqlite-web
 - Proxy server
@@ -93,14 +94,21 @@ graph LR
 
 ## Packages
 
+- db-client
+  - SQL client for SQLite.
 - db-manager
-  - Manage SQLite database in dbmate and sqlite-web.
+  - Database replication and migration system in SQLite + Litestream + dbmate.
 - fsharp
   - Business logic in F#.
 - nginx
   - Reverse proxy server for db-client and fsharp.
 - node
-  - Presentation layer for each server, design system, UI library, and small API servers.
+  - Presentation layer for each server
+  - Design system
+  - UI library
+  - Small API servers.
+- schemas
+  - Documentations for each server in OpenAPI.
 
 ## Setup
 
