@@ -24,9 +24,9 @@ let interactor (input: FilterWorksInput) : FilterWorksOutput =
                   thumbnailUrl = work.thumbnailUrl
                   publishedAt =
                     work.publishedAt
-                    |> Option.map (fun dt -> dt.ToString "yyyy-mm-dd")
+                    |> Option.map (fun dt -> dt.ToString "yyyy-MM-dd")
                     |> Option.defaultValue ""
-                  updatedAt = work.updatedAt.ToString "yyyy-mm-dd" })
+                  updatedAt = work.updatedAt.ToString "yyyy-MM-dd" })
 
         return!
             Ok
