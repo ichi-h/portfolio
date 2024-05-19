@@ -9,8 +9,8 @@
 graph LR
     Admin["Admin\n(not yet)"]
     Users[Users]
-    Admin --> DNS
     Users --> DNS
+    Admin --> DNS
     Admin <-- "OAuth" --> IdP
     subgraph "Auth0 (not yet)"
         IdP
@@ -19,7 +19,7 @@ graph LR
         NotionDB["Database"]
     end
     subgraph "CloudFlare"
-        DNS[DNS, CDN, WAF]
+        DNS[DNS, CDN]
         DNS --> OG
         DNS --> WorksClient
         DNS -- "Auth\nrequired" --> AdminClient
@@ -34,21 +34,27 @@ graph LR
             WorksClient[Works]
             AdminClient["Admin\n(not yet)"]
         end
+        subgraph "R2"
+            WorksServerDB["Works DB\n(SQLite)"]
+        end
     end
     subgraph "AWS"
         ECR --> Instance
         subgraph "Tokyo region"
             subgraph "Lightsail VPC"
                 subgraph "Instance"
+                    WorksDBManger[Works DB\nmanager container]
+                    Proxy[Proxy container]
                     WorksDBVolume[Works DB\nvolume]
-                    WorksProxy[Works\nproxy container]
-                    WorksDBClient[Works DB\nmanager container]
+                    WorksDBClient[Works DB\nclient container]
                     WorksServer[Works server\ncontainer]
-                    WorksProxy --> WorksServer
-                    WorksProxy -- "Auth\nrequired" --> WorksDBClient
-                    DNS --> WorksProxy
+                    Proxy --> WorksServer
+                    Proxy -- "Auth\nrequired" --> WorksDBClient
+                    DNS ---> Proxy
+                    WorksServerDB <-- "Replicate\n(Litestream)" --> WorksDBManger
                     WorksServer <--> WorksDBVolume
                     WorksDBClient <--> WorksDBVolume
+                    WorksDBManger <--> WorksDBVolume
                 end
             end
         end

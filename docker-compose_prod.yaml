@@ -7,6 +7,14 @@ services:
       - db-manager:/db
     tty: true
 
+  db-client:
+    image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-db-client:latest
+    container_name: portfolio-db-client
+    env_file: ./db-client/.prod.env
+    volumes:
+      - db-manager:/db
+    tty: true
+
   works-server:
     image: ${AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-1.amazonaws.com/portfolio-works-server:latest
     container_name: portfolio-works-server
